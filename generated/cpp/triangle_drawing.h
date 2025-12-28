@@ -21,7 +21,7 @@ using std::to_string;
 * @param clr The color for the triangle
 * @param tri The triangles details
 *
-*/;
+*/
 void draw_triangle(color clr, const triangle &tri);
 /**
 * Draw a triangle using the supplied drawing options.
@@ -29,7 +29,7 @@ void draw_triangle(color clr, const triangle &tri);
 * @param tri The triangles details
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_triangle(color clr, const triangle &tri, drawing_options opts);
 /**
 * Draw a triangle to the current window.
@@ -47,7 +47,7 @@ void draw_triangle(color clr, const triangle &tri, drawing_options opts);
 * @param y3 The distance from the top of the window to the
 * third point of the triangle
 *
-*/;
+*/
 void draw_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 /**
 * Draw a triangle using the supplied drawing options.
@@ -66,7 +66,7 @@ void draw_triangle(color clr, double x1, double y1, double x2, double y2, double
 * third point of the triangle
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 /**
 * Draw a triangle on a given bitmap, using the supplied drawing options.
@@ -74,7 +74,7 @@ void draw_triangle(color clr, double x1, double y1, double x2, double y2, double
 * @param clr The color for the triangle
 * @param tri The triangles details
 *
-*/;
+*/
 void draw_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri);
 /**
 * Draw a triangle on a given bitmap, using the supplied drawing options.
@@ -83,7 +83,7 @@ void draw_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri)
 * @param tri The triangles details
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri, drawing_options opts);
 /**
 * Draw a triangle to the given bitmap.
@@ -102,7 +102,7 @@ void draw_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri,
 * @param y3 The distance from the top of the bitmap to the
 * third point of the triangle
 *
-*/;
+*/
 void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 /**
 * Draw a triangle to the given bitmap, using the supplied drawing options.
@@ -122,7 +122,7 @@ void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1
 * third point of the triangle
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 /**
 * Draw a triangle on a given window, using the supplied drawing options.
@@ -130,7 +130,7 @@ void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1
 * @param clr The color for the triangle
 * @param tri The triangles details
 *
-*/;
+*/
 void draw_triangle_on_window(window destination, color clr, const triangle &tri);
 /**
 * Draw a triangle on a given window, using the supplied drawing options.
@@ -139,7 +139,7 @@ void draw_triangle_on_window(window destination, color clr, const triangle &tri)
 * @param tri The triangles details
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_triangle_on_window(window destination, color clr, const triangle &tri, drawing_options opts);
 /**
 * Draw a triangle to the given window.
@@ -158,7 +158,7 @@ void draw_triangle_on_window(window destination, color clr, const triangle &tri,
 * @param y3 The distance from the top of the window to the
 * third point of the triangle
 *
-*/;
+*/
 void draw_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 /**
 * Draw a triangle to the given window, using the supplied drawing options.
@@ -178,14 +178,14 @@ void draw_triangle_on_window(window destination, color clr, double x1, double y1
 * third point of the triangle
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 /**
 * Draw a triangle onto the current window.
 * @param clr The color for the triangle
 * @param tri The triangles details
 *
-*/;
+*/
 void fill_triangle(color clr, const triangle &tri);
 /**
 * Fill a triangle using the supplied drawing options.
@@ -193,7 +193,7 @@ void fill_triangle(color clr, const triangle &tri);
 * @param tri The triangles details
 * @param opts The drawing options
 *
-*/;
+*/
 void fill_triangle(color clr, const triangle &tri, drawing_options opts);
 /**
 * Fills a triangle on the current window.
@@ -211,7 +211,7 @@ void fill_triangle(color clr, const triangle &tri, drawing_options opts);
 * @param y3 The distance from the top of the window to the
 * third point of the triangle
 *
-*/;
+*/
 void fill_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 /**
 * Fills a triangle using the supplied drawing options.
@@ -230,7 +230,7 @@ void fill_triangle(color clr, double x1, double y1, double x2, double y2, double
 * third point of the triangle
 * @param opts The drawing options
 *
-*/;
+*/
 void fill_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 /**
 * Fill a triangle on a given bitmap
@@ -238,7 +238,7 @@ void fill_triangle(color clr, double x1, double y1, double x2, double y2, double
 * @param clr The color for the triangle
 * @param tri The triangles details
 *
-*/;
+*/
 void fill_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri);
 /**
 * Fill a triangle on a given bitmap, using given drawing options
@@ -247,7 +247,7 @@ void fill_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri)
 * @param tri The triangles details
 * @param opts The drawing options
 *
-*/;
+*/
 void fill_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri, drawing_options opts);
 /**
 * Fill a triangle on a given bitmap
@@ -266,7 +266,7 @@ void fill_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri,
 * @param y3 The distance from the top of the bitmap to the
 * third point of the triangle
 *
-*/;
+*/
 void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 /**
 * Fill a triangle on a given bitmap, using the supplied drawing options.
@@ -286,7 +286,7 @@ void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1
 * third point of the triangle
 * @param opts The drawing options
 *
-*/;
+*/
 void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 /**
 * Fill a triangle on a given window
@@ -294,7 +294,7 @@ void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1
 * @param clr The color for the triangle
 * @param tri The triangles details
 *
-*/;
+*/
 void fill_triangle_on_window(window destination, color clr, const triangle &tri);
 /**
 * Fill a triangle on a given window, using given drawing options
@@ -303,7 +303,7 @@ void fill_triangle_on_window(window destination, color clr, const triangle &tri)
 * @param tri The triangles details
 * @param opts The drawing options
 *
-*/;
+*/
 void fill_triangle_on_window(window destination, color clr, const triangle &tri, drawing_options opts);
 /**
 * Fill a triangle on a given window
@@ -322,7 +322,7 @@ void fill_triangle_on_window(window destination, color clr, const triangle &tri,
 * @param y3 The distance from the top of the window to the
 * third point of the triangle
 *
-*/;
+*/
 void fill_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 /**
 * Fill a triangle on a given window, using the supplied drawing options.
@@ -342,7 +342,7 @@ void fill_triangle_on_window(window destination, color clr, double x1, double y1
 * third point of the triangle
 * @param opts The drawing options
 *
-*/;
+*/
 void fill_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
 #endif /* __triangle_drawing_h */

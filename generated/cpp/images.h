@@ -21,13 +21,13 @@ using std::to_string;
 * @param bmp The bitmap to encompass.
 * @param pt The point where the bitmap is located.
 * @return A circle that surrounds the bitmap.
-*/;
+*/
 circle bitmap_bounding_circle(bitmap bmp, const point_2d &pt);
 /**
 * Returns a rectangle that is the same size as a bitmap (the whole bitmap).
 * @param bmp The bitmap
 * @return A rectangle with the same size as the bitmap.
-*/;
+*/
 rectangle bitmap_bounding_rectangle(bitmap bmp);
 /**
 * Returns a rectangle that is the same size as the bitmap and is located at
@@ -37,14 +37,14 @@ rectangle bitmap_bounding_rectangle(bitmap bmp);
 * @param y The y location of the rectangle
 * @return A rectangle with the same size as the bitmap, at the
 indicated location.
-*/;
+*/
 rectangle bitmap_bounding_rectangle(bitmap bmp, double x, double y);
 /**
 * This returns a point that represents the center of a cell from this
 * bitmap in local space.
 * @param bmp The bitmap to get the center of.
 * @return A point in the center of a cell for this bitmap.
-*/;
+*/
 point_2d bitmap_cell_center(bitmap bmp);
 /**
 * Returns a circle that will encompass the bitmap cell if it were drawn
@@ -53,7 +53,7 @@ point_2d bitmap_cell_center(bitmap bmp);
 * @param x The the x location of the bitmap.
 * @param y The the y location of the bitmap.
 * @return A circle that will encompass the bitmap cell.
-*/;
+*/
 circle bitmap_cell_circle(bitmap bmp, double x, double y);
 /**
 * Returns a circle that will encompass the bitmap cell if it were drawn
@@ -61,7 +61,7 @@ circle bitmap_cell_circle(bitmap bmp, double x, double y);
 * @param bmp The bitmap to get the details from.
 * @param pt The point indicating the location of the bitmap.
 * @return A circle that will encompass the bitmap cell.
-*/;
+*/
 circle bitmap_cell_circle(bitmap bmp, const point_2d pt);
 /**
 * Returns a circle that will encompass the bitmap cell if it were drawn
@@ -70,26 +70,26 @@ circle bitmap_cell_circle(bitmap bmp, const point_2d pt);
 * @param pt The point indicating the location of the bitmap.
 * @param scale The scaling factor for the bitmap drawing.
 * @return A circle that will encompass the bitmap cell.
-*/;
+*/
 circle bitmap_cell_circle(bitmap bmp, const point_2d pt, double scale);
 /**
 * Returns the number of cell columns in the bitmap.
 * This is setup using `bitmap_set_cell_details`
 * @param bmp The bitmap to check
 * @return The number of cell columns
-*/;
+*/
 int bitmap_cell_columns(bitmap bmp);
 /**
 * Returns the number of cells within the bitmap.
 * @param bmp The bitmap to check.
 * @return The number of individual cells within the bitmap.
-*/;
+*/
 int bitmap_cell_count(bitmap bmp);
 /**
 * Returns the height of each cell in this bitmap.
 * @param bmp The bitmap to get the details from.
 * @return The height of each cells in bmp
-*/;
+*/
 int bitmap_cell_height(bitmap bmp);
 /**
 * Returns a vector that represents the movement needed to get to a given
@@ -97,13 +97,13 @@ int bitmap_cell_height(bitmap bmp);
 * @param src The bitmap with the cell details.
 * @param cell The index of the cell
 * @return The offset needed to get to the cell from the top left of the bitmap.
-*/;
+*/
 vector_2d bitmap_cell_offset(bitmap src, int cell);
 /**
 * Returns a rectangle that will encompass a cell of the bitmap.
 * @param src The bitmap to get the details from
 * @return A rectangle with width and height from the bitmap's cell details.
-*/;
+*/
 rectangle bitmap_cell_rectangle(bitmap src);
 /**
 * Returns a rectangle that will encompass the bitmap cell if it were drawn
@@ -111,55 +111,55 @@ rectangle bitmap_cell_rectangle(bitmap src);
 * @param src The bitmap to get the details from
 * @param pt The point details for the rectangle.
 * @return A rectangle at pt, with width and height from the bitmap's cell details.
-*/;
+*/
 rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt);
 /**
 * Returns the number of rows of cells in the bitmap. These details are set in
 * `bitmap_set_cell_details`.
 * @param bmp The bitmap to get the details from.
 * @return The number of rows of cells in the bitmap.
-*/;
+*/
 int bitmap_cell_rows(bitmap bmp);
 /**
 * Returns the width of each cell in this bitmap.
 * @param bmp The bitmap to get the details from.
 * @return The width of each cells in bmp
-*/;
+*/
 int bitmap_cell_width(bitmap bmp);
 /**
 * This returns a point that represents the center of the bitmap in local
 * space.
 * @param bmp The bitmap to get the center of.
 * @return A point in the center of the bitmap.
-*/;
+*/
 point_2d bitmap_center(bitmap bmp);
 /**
 * Returns the filename from which the bitmap was loaded. This will be an empty
 * string for created bitmaps.
 * @param bmp The bitmap to get the filename from.
 * @return The file name of the bitmap.
-*/;
+*/
 string bitmap_filename(bitmap bmp);
 /**
 * Returns the total height of the bitmap. If the bitmap contains cells, you ca
 * get the height of a cell using `bitmap_cell_height`.
 * @param bmp The bitmap to get the details from.
 * @return The height of the bitmap.
-*/;
+*/
 int bitmap_height(bitmap bmp);
 /**
 * Returns the total height of the bitmap. If the bitmap contains cells, you ca
 * get the height of a cell using `bitmap_cell_height`.
 * @param name The name of the bitmap to get the details from.
 * @return The height of the bitmap.
-*/;
+*/
 int bitmap_height(string name);
 /**
 * Returns the name of the bitmap was loaded. This is the name you can use to
 * access this bitmap.
 * @param bmp The bitmap to get the name from.
 * @return The name of the bitmap.
-*/;
+*/
 string bitmap_name(bitmap bmp);
 /**
 * Returns the `bitmap` that has been loaded with the specified name,
@@ -168,7 +168,7 @@ string bitmap_name(bitmap bmp);
 * @param name The name of the bitmap to check.
 * @return The bitmap with the name specified, which may refer to nothing
 if the bitmap has not been loaded.
-*/;
+*/
 bitmap bitmap_named(string name);
 /**
 * Returns a rectangle that can be used to access the part of a bitmap
@@ -176,7 +176,7 @@ bitmap bitmap_named(string name);
 * @param src The bitmap
 * @param cell The cell
 * @return The area of the cell within the bitmap
-*/;
+*/
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
 /**
 * Initialise the bitmap cell details. This allows parts of the bitmap to be
@@ -189,25 +189,25 @@ rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
 * @param count The total number of cells, may be fewer than columns *
 * rows
 *
-*/;
+*/
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
 /**
 * Lets you test if bitmap value is valid. This will return true when it is a valid bitmap.
 * @param bmp the bitmap to test
 * @return true when the bitmap is valid.
-*/;
+*/
 bool bitmap_valid(bitmap bmp);
 /**
 * Returns the width of the bitmap.
 * @param bmp The bitmap
 * @return The width of the bitmap
-*/;
+*/
 int bitmap_width(bitmap bmp);
 /**
 * Returns the width of the bitmap.
 * @param name The name of the bitmap
 * @return The width of the bitmap
-*/;
+*/
 int bitmap_width(string name);
 /**
 * Clear the bitmap to the indicated color. This will ensure the entire
@@ -215,7 +215,7 @@ int bitmap_width(string name);
 * @param bmp The bitmap
 * @param clr The new color for the surface of the bitmap
 *
-*/;
+*/
 void clear_bitmap(bitmap bmp, color clr);
 /**
 * Clear the bitmap to the indicated color. This will ensure the entire
@@ -223,7 +223,7 @@ void clear_bitmap(bitmap bmp, color clr);
 * @param name The name of the bitmap
 * @param clr The new color for the surface of the bitmap
 *
-*/;
+*/
 void clear_bitmap(string name, color clr);
 /**
 * Creates a new bitmap that you can draw to. Initially the bitmap will
@@ -234,7 +234,7 @@ void clear_bitmap(string name, color clr);
 * @param width The width of the created bitmap
 * @param height The height of the created bitmap
 * @return A new transparent bitmap
-*/;
+*/
 bitmap create_bitmap(string name, int width, int height);
 /**
 * Draws the bitmap supplied into `bmp` to the current window.
@@ -245,7 +245,7 @@ bitmap create_bitmap(string name, int width, int height);
 * @param y the y location which represents where the bitmap
 * will be drawn
 *
-*/;
+*/
 void draw_bitmap(bitmap bmp, double x, double y);
 /**
 * Draws the bitmap supplied into `bmp` to the current window.
@@ -258,7 +258,7 @@ void draw_bitmap(bitmap bmp, double x, double y);
 * @param opts the `drawing_options` which provide extra information
 * for how to draw the `bitmap`
 *
-*/;
+*/
 void draw_bitmap(bitmap bmp, double x, double y, drawing_options opts);
 /**
 * Searches and draws a bitmap with name `name` to the current window.
@@ -269,7 +269,7 @@ void draw_bitmap(bitmap bmp, double x, double y, drawing_options opts);
 * @param y the y location which represents where the bitmap
 * will be drawn
 *
-*/;
+*/
 void draw_bitmap(string name, double x, double y);
 /**
 * Searches and draws a bitmap with name `name` to the current window.
@@ -282,7 +282,7 @@ void draw_bitmap(string name, double x, double y);
 * @param opts the `drawing_options` which provide extra information
 * for how to draw the `bitmap`
 *
-*/;
+*/
 void draw_bitmap(string name, double x, double y, drawing_options opts);
 /**
 * Draws the bitmap supplied into `bmp` to the given bitmap.
@@ -294,7 +294,7 @@ void draw_bitmap(string name, double x, double y, drawing_options opts);
 * @param y the y location which represents where the bitmap
 * will be drawn
 *
-*/;
+*/
 void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, double x, double y);
 /**
 * Draws the bitmap supplied into `bmp` to the given bitmap.
@@ -308,7 +308,7 @@ void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, double x, double y);
 * @param opts the `drawing_options` which provide extra information
 * for how to draw the `bitmap`
 *
-*/;
+*/
 void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, double x, double y, drawing_options opts);
 /**
 * Draws the bitmap supplied into `bmp` to the given window.
@@ -320,7 +320,7 @@ void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, double x, double y, d
 * @param y the y location which represents where the bitmap
 * will be drawn
 *
-*/;
+*/
 void draw_bitmap_on_window(window destination, bitmap bmp, double x, double y);
 /**
 * Draws the bitmap supplied into `bmp` to the given window.
@@ -334,26 +334,26 @@ void draw_bitmap_on_window(window destination, bitmap bmp, double x, double y);
 * @param opts the `drawing_options` which provide extra information
 * for how to draw the `bitmap`
 *
-*/;
+*/
 void draw_bitmap_on_window(window destination, bitmap bmp, double x, double y, drawing_options opts);
 /**
 * Free all of the loaded bitmap resources.
 
 *
-*/;
+*/
 void free_all_bitmaps();
 /**
 * Frees the bitmap resource.
 * @param to_delete The bitmap to be freed.
 *
-*/;
+*/
 void free_bitmap(bitmap to_delete);
 /**
 * Determines if SplashKit has a bitmap loaded for the supplied name.
 * This checks against all bitmaps loaded.
 * @param name The name to check
 * @return True if SplashKit has a bitmap with that name
-*/;
+*/
 bool has_bitmap(string name);
 /**
 * Loads and returns a bitmap. The supplied `filename` is used to
@@ -363,14 +363,14 @@ bool has_bitmap(string name);
 * @param name The name of the bitmap resource in SplashKit
 * @param filename The filename to load
 * @return The loaded bitmap
-*/;
+*/
 bitmap load_bitmap(string name, string filename);
 /**
 * Check if the bitmap has a pixel drawn at the indicated point.
 * @param bmp The bitmap to check.
 * @param pt The point within the bitmap to check.
 * @return True if the pixel at that point in the bitmap is drawn.
-*/;
+*/
 bool pixel_drawn_at_point(bitmap bmp, const point_2d &pt);
 /**
 * Check if the bitmap has a pixel drawn at the indicated point.
@@ -378,7 +378,7 @@ bool pixel_drawn_at_point(bitmap bmp, const point_2d &pt);
 * @param x The x coordinate within the bitmap to check
 * @param y The y coordinate within the bitmap to check
 * @return True if the pixel at that point in the bitmap is drawn.
-*/;
+*/
 bool pixel_drawn_at_point(bitmap bmp, double x, double y);
 /**
 * Check if the bitmap has a pixel drawn at the indicated point in the cell.
@@ -387,7 +387,7 @@ bool pixel_drawn_at_point(bitmap bmp, double x, double y);
 * @param pt The point within the bitmap to check.
 * @return True if the pixel at that point in the bitmap's cell is
 drawn.
-*/;
+*/
 bool pixel_drawn_at_point(bitmap bmp, int cell, const point_2d &pt);
 /**
 * Check if the bitmap has a pixel drawn at the indicated point in the cell.
@@ -397,7 +397,7 @@ bool pixel_drawn_at_point(bitmap bmp, int cell, const point_2d &pt);
 * @param y The y coordinate within the bitmap to check
 * @return True if the pixel at that point in the bitmap's cell is
 drawn.
-*/;
+*/
 bool pixel_drawn_at_point(bitmap bmp, int cell, double x, double y);
 /**
 * Sets up the collision mask for a bitmap. This enables collision detection between
@@ -408,7 +408,7 @@ bool pixel_drawn_at_point(bitmap bmp, int cell, double x, double y);
 * changed by drawing onto the bitmap.
 * @param bmp the bitmap to setup
 *
-*/;
+*/
 void setup_collision_mask(bitmap bmp);
 
 #endif /* __images_h */

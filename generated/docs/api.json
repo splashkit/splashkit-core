@@ -96890,6 +96890,108 @@
         }
       },
       {
+        "signature": "double to_double(const string &text);",
+        "name": "to_double",
+        "method_name": null,
+        "unique_global_name": "to_double",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Convert the passed in string into a double. This can fail in an error if\nthe value is not a number, consider using `is_number` to check before\nconverting a string.",
+        "brief": null,
+        "return": {
+          "type": "double",
+          "description": "The double value read from the text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to convert.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "cpp": [
+            "double to_double(const string &text)"
+          ],
+          "python": [
+            "def to_double(text):"
+          ],
+          "csharp": [
+            "public static double SplashKit.ToDouble(string text);"
+          ],
+          "pascal": [
+            "function ToDouble(const text: String): Double"
+          ]
+        }
+      },
+      {
+        "signature": "int to_integer(const string &text);",
+        "name": "to_integer",
+        "method_name": null,
+        "unique_global_name": "to_integer",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Convert the passed in string into an integer. This can fail in an error if\nthe value is not an integer, consider using `is_integer` to check before\nconverting a string.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The integer value read from the text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to convert.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "cpp": [
+            "int to_integer(const string &text)"
+          ],
+          "python": [
+            "def to_integer(text):"
+          ],
+          "csharp": [
+            "public static int SplashKit.ToInteger(string text);"
+          ],
+          "pascal": [
+            "function ToInteger(const text: String): Integer"
+          ]
+        }
+      },
+      {
         "signature": "string to_lowercase(const string &text);",
         "name": "to_lowercase",
         "method_name": null,

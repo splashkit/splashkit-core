@@ -24,7 +24,7 @@ using std::to_string;
 * @param circ The circle to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `circ` when drawn.
-*/;
+*/
 bool bitmap_circle_collision(bitmap bmp, const point_2d &pt, const circle &circ);
 /**
 * Tests if a bitmap drawn at `x`, `y` would intersect with a circle.
@@ -34,7 +34,7 @@ bool bitmap_circle_collision(bitmap bmp, const point_2d &pt, const circle &circ)
 * @param circ The circle to test
 * @return True if a drawn pixel in the bitmap will
 intersect with `circ` when drawn.
-*/;
+*/
 bool bitmap_circle_collision(bitmap bmp, double x, double y, const circle &circ);
 /**
 * Tests if a bitmap cell drawn using a passed in translation, will
@@ -46,7 +46,7 @@ bool bitmap_circle_collision(bitmap bmp, double x, double y, const circle &circ)
 * @param circ The circle to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `circ` when drawn.
-*/;
+*/
 bool bitmap_circle_collision(bitmap bmp, int cell, const matrix_2d &translation, const circle &circ);
 /**
 * Tests if a bitmap cell drawn at `pt` would intersect with a circle.
@@ -56,7 +56,7 @@ bool bitmap_circle_collision(bitmap bmp, int cell, const matrix_2d &translation,
 * @param circ The circle to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `circ` when drawn.
-*/;
+*/
 bool bitmap_circle_collision(bitmap bmp, int cell, const point_2d &pt, const circle &circ);
 /**
 * Tests if a bitmap cell drawn at `x`, `y` would intersect with a circle.
@@ -67,7 +67,7 @@ bool bitmap_circle_collision(bitmap bmp, int cell, const point_2d &pt, const cir
 * @param circ The circle to test
 * @return True if a drawn pixel in the bitmap will
 intersect with `circ` when drawn.
-*/;
+*/
 bool bitmap_circle_collision(bitmap bmp, int cell, double x, double y, const circle &circ);
 /**
 * Check if two bitmaps collide.
@@ -78,7 +78,7 @@ bool bitmap_circle_collision(bitmap bmp, int cell, double x, double y, const cir
 * @param x2 The x location where the second bitmap is drawn
 * @param y2 The y location where the second bitmap is drawn
 * @return True if pixels in the two bitmaps would collide/overlap
-*/;
+*/
 bool bitmap_collision(bitmap bmp1, double x1, double y1, bitmap bmp2, double x2, double y2);
 /**
 * Check if two bitmaps collide.
@@ -87,7 +87,7 @@ bool bitmap_collision(bitmap bmp1, double x1, double y1, bitmap bmp2, double x2,
 * @param bmp2 The second bitmap
 * @param pt2 The point where bitmap 2 is drawn
 * @return True if pixels in the two bitmaps would collide/overlap
-*/;
+*/
 bool bitmap_collision(bitmap bmp1, const point_2d &pt1, bitmap bmp2, const point_2d &pt2);
 /**
 * Check if two bitmaps collide, based on their cell and transform
@@ -99,7 +99,7 @@ bool bitmap_collision(bitmap bmp1, const point_2d &pt1, bitmap bmp2, const point
 * @param cell2 The cell of the second bitmap.
 * @param matrix2 The transformation for the second matrix
 * @return True if pixels in the two bitmaps would collide/overlap
-*/;
+*/
 bool bitmap_collision(bitmap bmp1, int cell1, const matrix_2d &matrix1, bitmap bmp2, int cell2, const matrix_2d &matrix2);
 /**
 * Check if two bitmaps collide.
@@ -110,7 +110,7 @@ bool bitmap_collision(bitmap bmp1, int cell1, const matrix_2d &matrix1, bitmap b
 * @param cell2 The cell of the second bitmap.
 * @param pt2 The point where bitmap 2 is drawn
 * @return True if pixels in the two bitmaps would collide/overlap
-*/;
+*/
 bool bitmap_collision(bitmap bmp1, int cell1, const point_2d &pt1, bitmap bmp2, int cell2, const point_2d &pt2);
 /**
 * Check if two bitmaps collide.
@@ -123,7 +123,7 @@ bool bitmap_collision(bitmap bmp1, int cell1, const point_2d &pt1, bitmap bmp2, 
 * @param x2 The x location where the second bitmap is drawn
 * @param y2 The y location where the second bitmap is drawn
 * @return True if pixels in the two bitmaps would collide/overlap
-*/;
+*/
 bool bitmap_collision(bitmap bmp1, int cell1, double x1, double y1, bitmap bmp2, int cell2, double x2, double y2);
 /**
 * Tests if a bitmap drawn using the passed in translation matrix would draw a pixel
@@ -134,7 +134,7 @@ bool bitmap_collision(bitmap bmp1, int cell1, double x1, double y1, bitmap bmp2,
 * @param pt The point in the resulting drawing that is being tested.
 * @return True if drawing the bitmap, using the passed in translation,
 will draw a pixel at the indicated point.
-*/;
+*/
 bool bitmap_point_collision(bitmap bmp, const matrix_2d &translation, const point_2d &pt);
 /**
 * Tests if a bitmap drawn at the `bmp_pt` point would draw a pixel
@@ -144,7 +144,7 @@ bool bitmap_point_collision(bitmap bmp, const matrix_2d &translation, const poin
 * @param pt The point in the resulting drawing that is being tested.
 * @return True if drawing the bitmap, at `bmp_pt`,
 will draw a pixel at the indicated point (`pt`).
-*/;
+*/
 bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d &pt);
 /**
 * Tests if a bitmap drawn at x,y would draw a pixel at the passed in point. Use
@@ -156,7 +156,7 @@ bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d &
 * @param y The y location of the point to test
 * @return True if drawing the bitmap, at the indicated location,
 will draw a pixel at the indicated point.
-*/;
+*/
 bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, double y);
 /**
 * Tests if a bitmap cell drawn using the passed in translation matrix would draw a pixel
@@ -168,7 +168,7 @@ bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, do
 * @param pt The point in the resulting drawing that is being tested.
 * @return True if drawing the bitmap, using the passed in translation,
 will draw a pixel at the indicated point.
-*/;
+*/
 bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &pt);
 /**
 * Tests if a cell of a bitmap drawn at x,y would draw a pixel at the passed in point. Use
@@ -179,7 +179,7 @@ bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, 
 * @param pt The point in the resulting drawing that is being tested.
 * @return True if drawing the bitmap cell, at the indicated location,
 will draw a pixel at the indicated point.
-*/;
+*/
 bool bitmap_point_collision(bitmap bmp, int cell, const point_2d &bmp_pt, const point_2d &pt);
 /**
 * Tests if a cell of a bitmap drawn at x,y would draw a pixel at the passed in point. Use
@@ -192,7 +192,7 @@ bool bitmap_point_collision(bitmap bmp, int cell, const point_2d &bmp_pt, const 
 * @param y The y location of the point to test
 * @return True if drawing the bitmap cell, at the indicated location,
 will draw a pixel at the indicated point.
-*/;
+*/
 bool bitmap_point_collision(bitmap bmp, int cell, double bmp_x, double bmp_y, double x, double y);
 /**
 * Tests if a bitmap drawn at `pt` would intersect with a quad.
@@ -201,7 +201,7 @@ bool bitmap_point_collision(bitmap bmp, int cell, double bmp_x, double bmp_y, do
 * @param q The quad to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `q` when drawn.
-*/;
+*/
 bool bitmap_quad_collision(bitmap bmp, const point_2d &pt, const quad &q);
 /**
 * Tests if a bitmap drawn at `x`, `y` would intersect with a quad.
@@ -211,7 +211,7 @@ bool bitmap_quad_collision(bitmap bmp, const point_2d &pt, const quad &q);
 * @param q The quad to test
 * @return True if a drawn pixel in the bitmap will
 intersect with `q` when drawn.
-*/;
+*/
 bool bitmap_quad_collision(bitmap bmp, double x, double y, const quad &q);
 /**
 * Tests if a bitmap cell drawn using a passed in translation, will
@@ -223,7 +223,7 @@ bool bitmap_quad_collision(bitmap bmp, double x, double y, const quad &q);
 * @param q The quad to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `q` when drawn.
-*/;
+*/
 bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q);
 /**
 * Tests if a bitmap cell drawn at `pt` would intersect with a quad.
@@ -233,7 +233,7 @@ bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, c
 * @param q The quad to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `q` when drawn.
-*/;
+*/
 bool bitmap_quad_collision(bitmap bmp, int cell, const point_2d &pt, const quad &q);
 /**
 * Tests if a bitmap cell drawn at `x`, `y` would intersect with a quad.
@@ -244,7 +244,7 @@ bool bitmap_quad_collision(bitmap bmp, int cell, const point_2d &pt, const quad 
 * @param q The quad to test
 * @return True if a drawn pixel in the bitmap will
 intersect with `q` when drawn.
-*/;
+*/
 bool bitmap_quad_collision(bitmap bmp, int cell, double x, double y, const quad &q);
 /**
 * Tests if a bitmap drawn at `pt` would intersect with a ray.
@@ -254,7 +254,7 @@ bool bitmap_quad_collision(bitmap bmp, int cell, double x, double y, const quad 
 * @param heading The heading of the ray
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with the ray when drawn.
-*/;
+*/
 bool bitmap_ray_collision(bitmap bmp, const point_2d &pt, const point_2d &origin, const vector_2d &heading);
 /**
 * Tests if a bitmap drawn at `x`, `y` would intersect with a ray.
@@ -265,7 +265,7 @@ bool bitmap_ray_collision(bitmap bmp, const point_2d &pt, const point_2d &origin
 * @param heading The heading of the ray
 * @return True if a drawn pixel in the bitmap will
 intersect with the ray when drawn.
-*/;
+*/
 bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d &origin, const vector_2d &heading);
 /**
 * Tests if a bitmap cell drawn using a passed in translation, will
@@ -278,7 +278,7 @@ bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d &origin
 * @param heading The heading of the ray
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with the ray when drawn.
-*/;
+*/
 bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &origin, const vector_2d &heading);
 /**
 * Tests if a bitmap cell drawn at `pt` would intersect with a ray.
@@ -289,7 +289,7 @@ bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d &translation, co
 * @param heading The heading of the ray
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with the ray when drawn.
-*/;
+*/
 bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d &pt, const point_2d &origin, const vector_2d &heading);
 /**
 * Tests if a bitmap cell drawn at `x`, `y` would intersect with a ray.
@@ -301,7 +301,7 @@ bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d &pt, const point_
 * @param heading The heading of the ray
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with the ray when drawn.
-*/;
+*/
 bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_2d &origin, const vector_2d &heading);
 /**
 * Tests if a bitmap drawn at `pt` would intersect with a rectangle.
@@ -310,7 +310,7 @@ bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_
 * @param rect The rectangle to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `rect` when drawn.
-*/;
+*/
 bool bitmap_rectangle_collision(bitmap bmp, const point_2d &pt, const rectangle &rect);
 /**
 * Tests if a bitmap drawn at `x`, `y` would intersect with a rectangle.
@@ -320,7 +320,7 @@ bool bitmap_rectangle_collision(bitmap bmp, const point_2d &pt, const rectangle 
 * @param rect The rectangle to test
 * @return True if a drawn pixel in the bitmap will
 intersect with `rect` when drawn.
-*/;
+*/
 bool bitmap_rectangle_collision(bitmap bmp, double x, double y, const rectangle &rect);
 /**
 * Tests if a bitmap cell drawn using a passed in translation, will
@@ -332,7 +332,7 @@ bool bitmap_rectangle_collision(bitmap bmp, double x, double y, const rectangle 
 * @param rect The rectangle to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `rect` when drawn.
-*/;
+*/
 bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d &translation, const rectangle &rect);
 /**
 * Tests if a bitmap cell drawn at `pt` would intersect with a rectangle.
@@ -342,7 +342,7 @@ bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d &translati
 * @param rect The rectangle to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `rect` when drawn.
-*/;
+*/
 bool bitmap_rectangle_collision(bitmap bmp, int cell, const point_2d &pt, const rectangle &rect);
 /**
 * Tests if a cell of the bitmap drawn at `x`, `y` would intersect with a rectangle.
@@ -353,7 +353,7 @@ bool bitmap_rectangle_collision(bitmap bmp, int cell, const point_2d &pt, const 
 * @param rect The rectangle to test
 * @return True if a drawn pixel in the bitmap will
 intersect with `rect` when drawn.
-*/;
+*/
 bool bitmap_rectangle_collision(bitmap bmp, int cell, double x, double y, const rectangle &rect);
 /**
 * Tests if a bitmap drawn at `pt` would intersect with a triangle.
@@ -362,7 +362,7 @@ bool bitmap_rectangle_collision(bitmap bmp, int cell, double x, double y, const 
 * @param tri The triangle to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `tri` when drawn.
-*/;
+*/
 bool bitmap_triangle_collision(bitmap bmp, const point_2d &pt, const triangle &tri);
 /**
 * Tests if a bitmap drawn at `x`, `y` would intersect with a triangle.
@@ -372,7 +372,7 @@ bool bitmap_triangle_collision(bitmap bmp, const point_2d &pt, const triangle &t
 * @param tri The triangle to test
 * @return True if a drawn pixel in the bitmap will
 intersect with `tri` when drawn.
-*/;
+*/
 bool bitmap_triangle_collision(bitmap bmp, double x, double y, const triangle &tri);
 /**
 * Tests if a bitmap cell drawn using a passed in translation, will
@@ -384,7 +384,7 @@ bool bitmap_triangle_collision(bitmap bmp, double x, double y, const triangle &t
 * @param tri The triangle to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `tri` when drawn.
-*/;
+*/
 bool bitmap_triangle_collision(bitmap bmp, int cell, const matrix_2d &translation, const triangle &tri);
 /**
 * Tests if a bitmap cell drawn at `pt` would intersect with a triangle.
@@ -394,7 +394,7 @@ bool bitmap_triangle_collision(bitmap bmp, int cell, const matrix_2d &translatio
 * @param tri The triangle to test
 * @return True if a drawn pixel in the cell of the bitmap will
 intersect with `tri` when drawn.
-*/;
+*/
 bool bitmap_triangle_collision(bitmap bmp, int cell, const point_2d &pt, const triangle &tri);
 /**
 * Tests if a bitmap cell drawn at `x`, `y` would intersect with a triangle.
@@ -405,7 +405,7 @@ bool bitmap_triangle_collision(bitmap bmp, int cell, const point_2d &pt, const t
 * @param tri The triangle to test
 * @return True if a drawn pixel in the bitmap will
 intersect with `tri` when drawn.
-*/;
+*/
 bool bitmap_triangle_collision(bitmap bmp, int cell, double x, double y, const triangle &tri);
 /**
 * Returns the direction of the collision between a collider quad
@@ -416,7 +416,7 @@ bool bitmap_triangle_collision(bitmap bmp, int cell, double x, double y, const t
 * @return The direction of the collision relative to the collider quad,
 expressed as a unit vector. If the quads are not colliding, this function
 will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const quad &collider, const quad &collidee);
 /**
 * Returns the direction of the collision between a collider circle
@@ -427,7 +427,7 @@ vector_2d calculate_collision_direction(const quad &collider, const quad &collid
 * @return The direction of the collision relative to the collider circle,
 expressed as a unit vector. If the circles are not colliding, this function
 will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const circle &collider, const circle &collidee);
 /**
 * Returns the direction of the collision between a circle
@@ -438,7 +438,7 @@ vector_2d calculate_collision_direction(const circle &collider, const circle &co
 * @return The direction of the collision relative to the circle,
 expressed as a unit vector. If the circle and quad are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const circle &collider, const quad &collidee);
 /**
 * Returns the direction of the collision between a circle
@@ -449,7 +449,7 @@ vector_2d calculate_collision_direction(const circle &collider, const quad &coll
 * @return The direction of the collision relative to the circle,
 expressed as a unit vector. If the circle and rectangle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const circle &collider, const rectangle &collidee);
 /**
 * Returns the direction of the collision between a circle
@@ -460,7 +460,7 @@ vector_2d calculate_collision_direction(const circle &collider, const rectangle 
 * @return The direction of the collision relative to the circle,
 expressed as a unit vector. If the circle and sprite are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const circle &collider, const sprite collidee);
 /**
 * Returns the direction of the collision between a circle
@@ -471,7 +471,7 @@ vector_2d calculate_collision_direction(const circle &collider, const sprite col
 * @return The direction of the collision relative to the circle,
 expressed as a unit vector. If the circle and triangle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const circle &collider, const triangle &collidee);
 /**
 * Returns the direction of the collision between a quad
@@ -482,7 +482,7 @@ vector_2d calculate_collision_direction(const circle &collider, const triangle &
 * @return The direction of the collision relative to the quad,
 expressed as a unit vector. If the quad and circle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const quad &collider, const circle &collidee);
 /**
 * Returns the direction of the collision between a quad
@@ -493,7 +493,7 @@ vector_2d calculate_collision_direction(const quad &collider, const circle &coll
 * @return The direction of the collision relative to the quad,
 expressed as a unit vector. If the quad and rectangle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const quad &collider, const rectangle &collidee);
 /**
 * Returns the direction of the collision between a quad
@@ -504,7 +504,7 @@ vector_2d calculate_collision_direction(const quad &collider, const rectangle &c
 * @return The direction of the collision relative to the quad,
 expressed as a unit vector. If the quad and sprite are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const quad &collider, const sprite collidee);
 /**
 * Returns the direction of the collision between a quad
@@ -515,7 +515,7 @@ vector_2d calculate_collision_direction(const quad &collider, const sprite colli
 * @return The direction of the collision relative to the quad,
 expressed as a unit vector. If the quad and triangle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const quad &collider, const triangle &collidee);
 /**
 * Returns the direction of the collision between a rectangle
@@ -526,7 +526,7 @@ vector_2d calculate_collision_direction(const quad &collider, const triangle &co
 * @return The direction of the collision relative to the rectangle,
 expressed as a unit vector. If the rectangle and circle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const rectangle &collider, const circle &collidee);
 /**
 * Returns the direction of the collision between a rectangle
@@ -537,7 +537,7 @@ vector_2d calculate_collision_direction(const rectangle &collider, const circle 
 * @return The direction of the collision relative to the rectangle,
 expressed as a unit vector. If the rectangle and quad are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const rectangle &collider, const quad &collidee);
 /**
 * Returns the direction of the collision between a collider rectangle
@@ -548,7 +548,7 @@ vector_2d calculate_collision_direction(const rectangle &collider, const quad &c
 * @return The direction of the collision relative to the collider rectangle,
 expressed as a unit vector. If the rectangles are not colliding, this function
 will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const rectangle &collider, const rectangle &collidee);
 /**
 * Returns the direction of the collision between a rectangle
@@ -559,7 +559,7 @@ vector_2d calculate_collision_direction(const rectangle &collider, const rectang
 * @return The direction of the collision relative to the rectangle,
 expressed as a unit vector. If the rectangle and sprite are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const rectangle &collider, const sprite collidee);
 /**
 * Returns the direction of the collision between a rectangle
@@ -570,7 +570,7 @@ vector_2d calculate_collision_direction(const rectangle &collider, const sprite 
 * @return The direction of the collision relative to the rectangle,
 expressed as a unit vector. If the rectangle and triangle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const rectangle &collider, const triangle &collidee);
 /**
 * Returns the direction of the collision between a sprite
@@ -581,7 +581,7 @@ vector_2d calculate_collision_direction(const rectangle &collider, const triangl
 * @return The direction of the collision relative to the sprite,
 expressed as a unit vector. If the sprite and circle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const sprite collider, const circle &collidee);
 /**
 * Returns the direction of the collision between a sprite
@@ -592,7 +592,7 @@ vector_2d calculate_collision_direction(const sprite collider, const circle &col
 * @return The direction of the collision relative to the sprite,
 expressed as a unit vector. If the sprite and quad are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const sprite collider, const quad &collidee);
 /**
 * Returns the direction of the collision between a sprite
@@ -603,7 +603,7 @@ vector_2d calculate_collision_direction(const sprite collider, const quad &colli
 * @return The direction of the collision relative to the sprite,
 expressed as a unit vector. If the sprite and rectangle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const sprite collider, const rectangle &collidee);
 /**
 * Returns the direction of the collision between two sprites
@@ -614,7 +614,7 @@ vector_2d calculate_collision_direction(const sprite collider, const rectangle &
 * @return The direction of the collision relative to the collider sprite,
 expressed as a unit vector. If the sprites are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const sprite collider, const sprite collidee);
 /**
 * Returns the direction of the collision between a sprite
@@ -625,7 +625,7 @@ vector_2d calculate_collision_direction(const sprite collider, const sprite coll
 * @return The direction of the collision relative to the sprite,
 expressed as a unit vector. If the sprite and triangle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const sprite collider, const triangle &collidee);
 /**
 * Returns the direction of the collision between a triangle
@@ -636,7 +636,7 @@ vector_2d calculate_collision_direction(const sprite collider, const triangle &c
 * @return The direction of the collision relative to the triangle,
 expressed as a unit vector. If the triangle and circle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const triangle &collider, const circle &collidee);
 /**
 * Returns the direction of the collision between a triangle
@@ -647,7 +647,7 @@ vector_2d calculate_collision_direction(const triangle &collider, const circle &
 * @return The direction of the collision relative to the triangle,
 expressed as a unit vector. If the triangle and quad are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const triangle &collider, const quad &collidee);
 /**
 * Returns the direction of the collision between a triangle
@@ -658,7 +658,7 @@ vector_2d calculate_collision_direction(const triangle &collider, const quad &co
 * @return The direction of the collision relative to the triangle,
 expressed as a unit vector. If the triangle and rectangle are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const triangle &collider, const rectangle &collidee);
 /**
 * Returns the direction of the collision between a triangle
@@ -669,7 +669,7 @@ vector_2d calculate_collision_direction(const triangle &collider, const rectangl
 * @return The direction of the collision relative to the triangle,
 expressed as a unit vector. If the triangle and sprite are not colliding,
 this function will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const triangle &collider, const sprite collidee);
 /**
 * Returns the direction of the collision between a collider triangle
@@ -680,7 +680,7 @@ vector_2d calculate_collision_direction(const triangle &collider, const sprite c
 * @return The direction of the collision relative to the collider triangle,
 expressed as a unit vector. If the triangles are not colliding, this function
 will return a zero vector.
-*/;
+*/
 vector_2d calculate_collision_direction(const triangle &collider, const triangle &collidee);
 /**
 * Resolves the collision between a collider quad and a collidee quad by moving the
@@ -694,7 +694,7 @@ vector_2d calculate_collision_direction(const triangle &collider, const triangle
 * not resolve the collision.
 * @return True if the quads are colliding and the collision was resolved,
 false if the quads are not colliding
-*/;
+*/
 bool resolve_collision(quad &collider, const quad &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a collider circle and a collidee circle by moving the
@@ -708,7 +708,7 @@ bool resolve_collision(quad &collider, const quad &collidee, const vector_2d &di
 * not resolve the collision.
 * @return True if the circles are colliding and the collision was resolved,
 false if the circles are not colliding
-*/;
+*/
 bool resolve_collision(circle &collider, const circle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a circle and a quad by moving the
@@ -722,7 +722,7 @@ bool resolve_collision(circle &collider, const circle &collidee, const vector_2d
 * not resolve the collision.
 * @return True if the circle and quad are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(circle &collider, const quad &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a circle and a rectangle by moving the
@@ -736,7 +736,7 @@ bool resolve_collision(circle &collider, const quad &collidee, const vector_2d &
 * not resolve the collision.
 * @return True if the circle and rectangle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(circle &collider, const rectangle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a circle and a sprite by moving the
@@ -750,7 +750,7 @@ bool resolve_collision(circle &collider, const rectangle &collidee, const vector
 * not resolve the collision.
 * @return True if the circle and sprite are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(circle &collider, const sprite collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a circle and a triangle by moving the
@@ -764,7 +764,7 @@ bool resolve_collision(circle &collider, const sprite collidee, const vector_2d 
 * not resolve the collision.
 * @return True if the circle and triangle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(circle &collider, const triangle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a quad and a circle by moving the
@@ -778,7 +778,7 @@ bool resolve_collision(circle &collider, const triangle &collidee, const vector_
 * not resolve the collision.
 * @return True if the quad and circle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(quad &collider, const circle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a quad and a rectangle by moving the
@@ -792,7 +792,7 @@ bool resolve_collision(quad &collider, const circle &collidee, const vector_2d &
 * not resolve the collision.
 * @return True if the quad and rectangle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(quad &collider, const rectangle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a quad and a sprite by moving the
@@ -806,7 +806,7 @@ bool resolve_collision(quad &collider, const rectangle &collidee, const vector_2
 * not resolve the collision.
 * @return True if the quad and sprite are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(quad &collider, const sprite collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a quad and a triangle by moving the
@@ -820,7 +820,7 @@ bool resolve_collision(quad &collider, const sprite collidee, const vector_2d &d
 * not resolve the collision.
 * @return True if the quad and triangle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(quad &collider, const triangle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a rectangle and a circle by moving the
@@ -834,7 +834,7 @@ bool resolve_collision(quad &collider, const triangle &collidee, const vector_2d
 * not resolve the collision.
 * @return True if the rectangle and circle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(rectangle &collider, const circle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a rectangle and a quad by moving the
@@ -848,7 +848,7 @@ bool resolve_collision(rectangle &collider, const circle &collidee, const vector
 * not resolve the collision.
 * @return True if the rectangle and quad are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(rectangle &collider, const quad &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between two rectangles by moving the
@@ -862,7 +862,7 @@ bool resolve_collision(rectangle &collider, const quad &collidee, const vector_2
 * not resolve the collision.
 * @return True if the rectangles are colliding and the collision was resolved,
 false if the rectangles are not colliding
-*/;
+*/
 bool resolve_collision(rectangle &collider, const rectangle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a rectangle and a sprite by moving the
@@ -876,7 +876,7 @@ bool resolve_collision(rectangle &collider, const rectangle &collidee, const vec
 * not resolve the collision.
 * @return True if the rectangle and sprite are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(rectangle &collider, const sprite collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a rectangle and a triangle by moving the
@@ -890,7 +890,7 @@ bool resolve_collision(rectangle &collider, const sprite collidee, const vector_
 * not resolve the collision.
 * @return True if the rectangle and triangle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(rectangle &collider, const triangle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a sprite and a circle by moving the
@@ -904,7 +904,7 @@ bool resolve_collision(rectangle &collider, const triangle &collidee, const vect
 * the function will not resolve the collision.
 * @return True if the sprite and circle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(sprite collider, const circle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a sprite and a quad by moving the
@@ -918,7 +918,7 @@ bool resolve_collision(sprite collider, const circle &collidee, const vector_2d 
 * the function will not resolve the collision.
 * @return True if the sprite and quad are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(sprite collider, const quad &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a sprite and a rectangle by moving the
@@ -932,7 +932,7 @@ bool resolve_collision(sprite collider, const quad &collidee, const vector_2d &d
 * the function will not resolve the collision.
 * @return True if the sprite and rectangle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(sprite collider, const rectangle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between two sprites by moving the
@@ -946,7 +946,7 @@ bool resolve_collision(sprite collider, const rectangle &collidee, const vector_
 * not resolve the collision.
 * @return True if the sprites are colliding and the collision was resolved,
 false if the sprites are not colliding
-*/;
+*/
 bool resolve_collision(sprite collider, const sprite collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a sprite and a triangle by moving the
@@ -960,7 +960,7 @@ bool resolve_collision(sprite collider, const sprite collidee, const vector_2d &
 * the function will not resolve the collision.
 * @return True if the sprite and triangle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(sprite collider, const triangle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a triangle and a circle by moving the
@@ -974,7 +974,7 @@ bool resolve_collision(sprite collider, const triangle &collidee, const vector_2
 * not resolve the collision.
 * @return True if the triangle and circle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(triangle &collider, const circle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a triangle and a quad by moving the
@@ -988,7 +988,7 @@ bool resolve_collision(triangle &collider, const circle &collidee, const vector_
 * not resolve the collision.
 * @return True if the triangle and quad are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(triangle &collider, const quad &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a triangle and a rectangle by moving the
@@ -1002,7 +1002,7 @@ bool resolve_collision(triangle &collider, const quad &collidee, const vector_2d
 * not resolve the collision.
 * @return True if the triangle and rectangle are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(triangle &collider, const rectangle &collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a triangle and a sprite by moving the
@@ -1016,7 +1016,7 @@ bool resolve_collision(triangle &collider, const rectangle &collidee, const vect
 * not resolve the collision.
 * @return True if the triangle and sprite are colliding and the collision
 was resolved, false if they are not colliding
-*/;
+*/
 bool resolve_collision(triangle &collider, const sprite collidee, const vector_2d &direction);
 /**
 * Resolves the collision between a collider triangle and a collidee triangle by moving the
@@ -1030,7 +1030,7 @@ bool resolve_collision(triangle &collider, const sprite collidee, const vector_2
 * not resolve the collision.
 * @return True if the triangles are colliding and the collision was resolved,
 false if the triangles are not colliding
-*/;
+*/
 bool resolve_collision(triangle &collider, const triangle &collidee, const vector_2d &direction);
 /**
 * Tests if a sprite will collide with a bitmap drawn at the indicated
@@ -1041,7 +1041,7 @@ bool resolve_collision(triangle &collider, const triangle &collidee, const vecto
 * @param y The y location where the bitmap is drawn
 * @return True if the sprite collides with the bitmap when drawn
 at the indicated location.
-*/;
+*/
 bool sprite_bitmap_collision(sprite s, bitmap bmp, double x, double y);
 /**
 * Tests if a sprite will collide with a bitmap drawn at the indicated
@@ -1052,7 +1052,7 @@ bool sprite_bitmap_collision(sprite s, bitmap bmp, double x, double y);
 * @param pt The point where the bitmap is drawn
 * @return True if the sprite collides with the bitmap cell when drawn
 at the indicated location.
-*/;
+*/
 bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, const point_2d &pt);
 /**
 * Tests if a sprite will collide with a bitmap drawn at the indicated
@@ -1064,35 +1064,35 @@ bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, const point_2d &pt)
 * @param y The y location where the bitmap is drawn
 * @return True if the sprite collides with the bitmap cell when drawn
 at the indicated location.
-*/;
+*/
 bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, double x, double y);
 /**
 * Tests if a sprite is drawn within an given area (circle).
 * @param s The sprite to test
 * @param c The circle to check
 * @return True if the sprite it drawn in the circle area
-*/;
+*/
 bool sprite_circle_collision(sprite s, const circle &c);
 /**
 * Tests if two given sprites `s1` and `s2` are collided
 * @param s1 the first `sprite` to test
 * @param s2 the second `sprite` to test
 * @return return `true` if both `s1` and `s2` are colliding, false otherwise.
-*/;
+*/
 bool sprite_collision(sprite s1, sprite s2);
 /**
 * Tests if a sprite is drawn at a given point.
 * @param s The sprite to test
 * @param pt The point to check
 * @return True if the sprite it drawn at the indicated point
-*/;
+*/
 bool sprite_point_collision(sprite s, const point_2d &pt);
 /**
 * Tests if a sprite is drawn within an given area (quad).
 * @param s The sprite to test
 * @param q The quad to check
 * @return True if the sprite it drawn in the quad area
-*/;
+*/
 bool sprite_quad_collision(sprite s, const quad &q);
 /**
 * Tests if a sprite is drawn along a given ray.
@@ -1100,21 +1100,21 @@ bool sprite_quad_collision(sprite s, const quad &q);
 * @param origin The origin of the ray
 * @param heading The heading of the ray
 * @return True if the sprite is drawn along the ray
-*/;
+*/
 bool sprite_ray_collision(sprite s, const point_2d &origin, const vector_2d &heading);
 /**
 * Tests if a sprite is drawn within an given area (rectangle).
 * @param s The sprite to test
 * @param rect The rectangle to check
 * @return True if the sprite it drawn in the rectangle area
-*/;
+*/
 bool sprite_rectangle_collision(sprite s, const rectangle &rect);
 /**
 * Tests if a sprite is drawn within an given area (triangle).
 * @param s The sprite to test
 * @param t The triangle to check
 * @return True if the sprite it drawn in the triangle area
-*/;
+*/
 bool sprite_triangle_collision(sprite s, const triangle &t);
 
 #endif /* __collisions_h */

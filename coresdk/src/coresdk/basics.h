@@ -91,7 +91,27 @@ namespace splashkit_lib
      */
     double convert_to_double(const string &text);
 
-        /**
+    /**
+     * Convert the passed in string into an integer. This can fail in an error if
+     * the value is not an integer, consider using `is_integer` to check before
+     * converting a string.
+     *
+     * @param  text The text to convert.
+     * @return      The integer value read from the text.
+     */
+    int to_integer(const string &text);
+
+    /**
+     * Convert the passed in string into a double. This can fail in an error if
+     * the value is not a number, consider using `is_number` to check before
+     * converting a string.
+     *
+     * @param  text The text to convert.
+     * @return      The double value read from the text.
+     */
+    double to_double(const string &text);
+
+    /**
      * Returns the length of a string in characters.
      *
      * @param text      The text to get the length of

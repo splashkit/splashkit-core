@@ -1749,6 +1749,10 @@ sklib.__sklib__split__string_ref__char.argtypes = [ _sklib_string, c_char ]
 sklib.__sklib__split__string_ref__char.restype = _sklib_vector_string
 sklib.__sklib__square_root__int.argtypes = [ c_int ]
 sklib.__sklib__square_root__int.restype = c_double
+sklib.__sklib__to_double__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__to_double__string_ref.restype = c_double
+sklib.__sklib__to_integer__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__to_integer__string_ref.restype = c_int
 sklib.__sklib__to_lowercase__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__to_lowercase__string_ref.restype = _sklib_string
 sklib.__sklib__to_uppercase__string_ref.argtypes = [ _sklib_string ]
@@ -4690,6 +4694,14 @@ def square_root ( number ):
     __skparam__number = __skadapter__to_sklib_int(number)
     __skreturn = sklib.__sklib__square_root__int(__skparam__number)
     return __skadapter__to_double(__skreturn)
+def to_double ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__to_double__string_ref(__skparam__text)
+    return __skadapter__to_double(__skreturn)
+def to_integer ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__to_integer__string_ref(__skparam__text)
+    return __skadapter__to_int(__skreturn)
 def to_lowercase ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__to_lowercase__string_ref(__skparam__text)

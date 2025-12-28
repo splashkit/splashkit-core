@@ -2047,7 +2047,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1753421299,
+    "parsed_at": 1766882903,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -3238,6 +3238,80 @@
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "double to_double(const string &text);",
+        "name": "to_double",
+        "method_name": null,
+        "unique_global_name": "to_double",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Convert the passed in string into a double. This can fail in an error if\nthe value is not a number, consider using `is_number` to check before\nconverting a string.",
+        "brief": null,
+        "return": {
+          "type": "double",
+          "description": "The double value read from the text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to convert.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "int to_integer(const string &text);",
+        "name": "to_integer",
+        "method_name": null,
+        "unique_global_name": "to_integer",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Convert the passed in string into an integer. This can fail in an error if\nthe value is not an integer, consider using `is_integer` to check before\nconverting a string.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The integer value read from the text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to convert.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
             "is_array": false,
             "array_dimension_sizes": [
 

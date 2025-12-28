@@ -148,7 +148,17 @@ namespace splashkit_lib
         return std::stoi(text);
     }
 
+    int to_integer(const string &text)
+    {
+        return std::stoi(text);
+    }
+
     double convert_to_double(const string &text)
+    {
+        return std::stod(text);
+    }
+
+    double to_double(const string &text)
     {
         return std::stod(text);
     }

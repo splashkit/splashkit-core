@@ -246,6 +246,8 @@ __sklib_string __sklib__oct_to_hex__string_ref(const __sklib_string oct_str);
 __sklib_string __sklib__replace_all__string_ref__string_ref__string_ref(const __sklib_string text, const __sklib_string substr, const __sklib_string new_text);
 __sklib_vector_string __sklib__split__string_ref__char(const __sklib_string text, char delimiter);
 double __sklib__square_root__int(int number);
+double __sklib__to_double__string_ref(const __sklib_string text);
+int __sklib__to_integer__string_ref(const __sklib_string text);
 __sklib_string __sklib__to_lowercase__string_ref(const __sklib_string text);
 __sklib_string __sklib__to_uppercase__string_ref(const __sklib_string text);
 __sklib_string __sklib__trim__string_ref(const __sklib_string text);

@@ -24,7 +24,7 @@ using std::to_string;
 * - Updates keys down, text input, etc.
 
 *
-*/;
+*/
 void process_events();
 /**
 * Checks to see if the user has asked for the application to quit. This
@@ -32,13 +32,13 @@ void process_events();
 * `window_close_requested`.
 
 * @return True if the application has been requested to close.
-*/;
+*/
 bool quit_requested();
 /**
 * Cancels a quit request, ensuring the quit requested will return false.
 
 *
-*/;
+*/
 void reset_quit();
 
 #endif /* __input_h */

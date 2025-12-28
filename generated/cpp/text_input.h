@@ -23,38 +23,38 @@ using std::to_string;
 * @param font_size The size of the font
 * @param opts Any drawing options
 *
-*/;
+*/
 void draw_collected_text(color clr, font fnt, int font_size, const drawing_options &opts);
 /**
 * Ends reading text in for the current window.
 
 *
-*/;
+*/
 void end_reading_text();
 /**
 * Ends reading text for the passed in window.
 * @param wind The window to end reading text
 *
-*/;
+*/
 void end_reading_text(window wind);
 /**
 * Returns true when the current window is reading text.
 
 * @return True when window is setup to read input from the user.
-*/;
+*/
 bool reading_text();
 /**
 * Returns true when the window is reading text.
 * @param wind The window to check
 * @return True when window is setup to read input from the user.
-*/;
+*/
 bool reading_text(window wind);
 /**
 * Start reading text in the current window within the bounds of the
 * supplied rectangle.
 * @param rect The area where the text will be entered.
 *
-*/;
+*/
 void start_reading_text(rectangle rect);
 /**
 * Start reading text in the current window within the bounds of the
@@ -62,7 +62,7 @@ void start_reading_text(rectangle rect);
 * @param rect The area where the text will be entered.
 * @param initial_text The initial text, which may be edited by the user.
 *
-*/;
+*/
 void start_reading_text(rectangle rect, string initial_text);
 /**
 * Start reading text in the window within the bounds of the
@@ -70,7 +70,7 @@ void start_reading_text(rectangle rect, string initial_text);
 * @param wind The window where the text will be entered
 * @param rect The area where the text will be entered.
 *
-*/;
+*/
 void start_reading_text(window wind, rectangle rect);
 /**
 * Start reading text in the window within the bounds of the
@@ -79,31 +79,31 @@ void start_reading_text(window wind, rectangle rect);
 * @param rect The area where the text will be entered.
 * @param initial_text The initial text, which may be edited by the user.
 *
-*/;
+*/
 void start_reading_text(window wind, rectangle rect, string initial_text);
 /**
 * Did the user press escape and cancel the enterring of text?
 
 * @return True when the use has cancelled text entry
-*/;
+*/
 bool text_entry_cancelled();
 /**
 * Did the user press escape and cancel the enterring of text?
 * @param wind The window to check
 * @return True when the use has cancelled text entry
-*/;
+*/
 bool text_entry_cancelled(window wind);
 /**
 * The text the user has currently enterred on the current window.
 
 * @return The user's text entry
-*/;
+*/
 string text_input();
 /**
 * The text the user has currently enterred on the current window.
 * @param wind The window to check
 * @return The user's text entry
-*/;
+*/
 string text_input(window wind);
 
 #endif /* __text_input_h */

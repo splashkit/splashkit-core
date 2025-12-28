@@ -19,40 +19,40 @@ using std::to_string;
 * Returns the number of `animation`s within an `animation_script`.
 * @param script The `animation_script` to count the animations in.
 * @return Returns an `int` equal to the total number of animations in the script.
-*/;
+*/
 int animation_count(animation_script script);
 /**
 * Returns the current cell (the part of the image or sprite) of this
 * animation. This can be used to animate an image or sprite.
 * @param anim The `animation` to return the cell of.
 * @return Returns the current cell of the animation passed to the method.
-*/;
+*/
 int animation_current_cell(animation anim);
 /**
 * Returns the `vector_2d` assigned to the current frame in the animation.
 * @param anim The animation to check the vector of.
 * @return Returns the `vector_2d` assigned to the current frame in the animation.
-*/;
+*/
 vector_2d animation_current_vector(animation anim);
 /**
 * Checks if an `animation` has ended.
 * @param anim The animation to check.
 * @return Returns a `bool` denoting whether the `animation` has ended.
-*/;
+*/
 bool animation_ended(animation anim);
 /**
 * Returns true if the `animation` entered a new frame on its last update.
 * This can be used to trigger actions on frames within an animation.
 * @param anim The animation to check.
 * @return Returns a `bool` denoting whether the `animation` has ended.
-*/;
+*/
 bool animation_entered_frame(animation anim);
 /**
 * Returns the amount of time spent in the current frame. When this
 * exceeds the frames duration the animation moves to the next frame.
 * @param anim The animation to check.
 * @return Returns the amount of time spent in the current frame as a `float`.
-*/;
+*/
 float animation_frame_time(animation anim);
 /**
 * Searches an `animation_script` for an `animation` and returns its
@@ -60,19 +60,19 @@ float animation_frame_time(animation anim);
 * @param script The `animation_script` to look for the `animation` in.
 * @param name The name of the `animation` to look for.
 * @return Returns the index of the `animation` in the `animation_script`
-*/;
+*/
 int animation_index(animation_script script, const string &name);
 /**
 * Searches an `animation_script` for an animation and returns its name.
 * @param temp The `animation` to search for.
 * @return Returns the name of the `animation` in the `animation_script`.
-*/;
+*/
 string animation_name(animation temp);
 /**
 * Retuns the name of an `animation_script`.
 * @param script The `animation_script` to return the name of.
 * @return Returns a `string` that is the name of the animation script passed to the method.
-*/;
+*/
 string animation_script_name(animation_script script);
 /**
 * Loads and returns a `animation_script`. The supplied filename is
@@ -82,7 +82,7 @@ string animation_script_name(animation_script script);
 * the animation_script_named method.
 * @param name Indicates the name used to locate the animation_script to load
 * @return Returns the newly loaded `animation_script`.
-*/;
+*/
 animation_script animation_script_named(const string &name);
 /**
 * Setup an `animation` to follow the script from an indicated name.
@@ -93,7 +93,7 @@ animation_script animation_script_named(const string &name);
 * @param script The `animation_script` to assign the `animation` to.
 * @param name The name of the `animation` to be assigned.
 *
-*/;
+*/
 void assign_animation(animation anim, animation_script script, const string &name);
 /**
 * Assigns an `animation` to an `animation_script`. This may play a
@@ -104,7 +104,7 @@ void assign_animation(animation anim, animation_script script, const string &nam
 * @param name The name of the `animation` to be assigned.
 * @param with_sound Denotes whether the `animation` should play audio.
 *
-*/;
+*/
 void assign_animation(animation anim, animation_script script, const string &name, bool with_sound);
 /**
 * Assigns an `animation` to an `animation_script`.
@@ -112,7 +112,7 @@ void assign_animation(animation anim, animation_script script, const string &nam
 * @param script The `animation_script` to assign the `animation` to.
 * @param idx The index of the `animation` to create.
 *
-*/;
+*/
 void assign_animation(animation anim, animation_script script, int idx);
 /**
 * Assigns an `animation` to an `animation_script`. This may play a
@@ -123,7 +123,7 @@ void assign_animation(animation anim, animation_script script, int idx);
 * @param idx The index of the `animation` to create.
 * @param with_sound Denotes whether the `animation` should play audio.
 *
-*/;
+*/
 void assign_animation(animation anim, animation_script script, int idx, bool with_sound);
 /**
 * Assigns an `animation` to an `animation_script`.
@@ -131,7 +131,7 @@ void assign_animation(animation anim, animation_script script, int idx, bool wit
 * @param script_name The name of the `animation_script` to assign the `animation` to.
 * @param name The name of the `animation` to be assigned.
 *
-*/;
+*/
 void assign_animation(animation anim, const string &script_name, const string &name);
 /**
 * Assigns an `animation` to an `animation_script`. This may play a
@@ -142,7 +142,7 @@ void assign_animation(animation anim, const string &script_name, const string &n
 * @param name The name of the `animation` to be assigned
 * @param with_sound Denotes whether the `animation` should play audio.
 *
-*/;
+*/
 void assign_animation(animation anim, const string &script_name, const string &name, bool with_sound);
 /**
 * Setup an `animation` to follow the script from an indicated index.
@@ -151,7 +151,7 @@ void assign_animation(animation anim, const string &script_name, const string &n
 * @param anim The `animation` to be assigned.
 * @param idx The index of the animation to use from its current script.
 *
-*/;
+*/
 void assign_animation(animation anim, int idx);
 /**
 * Setup an `animation` to follow the script from an indicated index.
@@ -161,7 +161,7 @@ void assign_animation(animation anim, int idx);
 * @param idx The index of the animation to use from its current script.
 * @param with_sound Denotes whether the `animation` should play audio.
 *
-*/;
+*/
 void assign_animation(animation anim, int idx, bool with_sound);
 /**
 * Setup an `animation` to follow the script from an indicated name.
@@ -170,7 +170,7 @@ void assign_animation(animation anim, int idx, bool with_sound);
 * @param anim The `animation` to be assigned.
 * @param name The name of the animation to use from its current script.
 *
-*/;
+*/
 void assign_animation(animation anim, string name);
 /**
 * Setup an `animation` to follow the script from an indicated name.
@@ -180,7 +180,7 @@ void assign_animation(animation anim, string name);
 * @param name The name of the animation to use from its current script.
 * @param with_sound Denotes whether the `animation` should play audio.
 *
-*/;
+*/
 void assign_animation(animation anim, string name, bool with_sound);
 /**
 * Creates an animation from an `animation_script`. This may play a
@@ -190,14 +190,14 @@ void assign_animation(animation anim, string name, bool with_sound);
 * @param idx The index of the `animation` to create.
 * @param with_sound Denotes whether the `animation` should play audio.
 * @return Returns the newly created `animation_script`.
-*/;
+*/
 animation create_animation(animation_script script, int idx, bool with_sound);
 /**
 * Creates an animation from an `animation_script`.
 * @param script The `animation_script` to create the `animation` from
 * @param name The name for the new `animation`
 * @return Returns the newly created `animation`
-*/;
+*/
 animation create_animation(animation_script script, const string &name);
 /**
 * Creates an animation from a `animation_script`. This may play a
@@ -207,7 +207,7 @@ animation create_animation(animation_script script, const string &name);
 * @param name The name for the new `animation`
 * @param with_sound Denotes whether the `animation` should play audio.
 * @return Returns the newly created `animation`.
-*/;
+*/
 animation create_animation(animation_script script, const string &name, bool with_sound);
 /**
 * Creates an animation from an `animation_script`'s name. This may
@@ -216,7 +216,7 @@ animation create_animation(animation_script script, const string &name, bool wit
 * @param script_name The name of the `animation_script` to create the `animation` from
 * @param name The name for the new `animation`
 * @return Returns the newly created `animation`
-*/;
+*/
 animation create_animation(const string &script_name, const string &name);
 /**
 * Creates an animation from an `animation_script`'s name. This may
@@ -226,19 +226,19 @@ animation create_animation(const string &script_name, const string &name);
 * @param name The name for the new `animation`
 * @param with_sound Denotes whether the `animation` should play audio.
 * @return Returns the newly created `animation`
-*/;
+*/
 animation create_animation(const string &script_name, const string &name, bool with_sound);
 /**
 * Frees all loaded `animation_script`s.
 
 *
-*/;
+*/
 void free_all_animation_scripts();
 /**
 * Disposes of the resources used in the animation.
 * @param ani The `animation` to be disposed of.
 *
-*/;
+*/
 void free_animation(animation ani);
 /**
 * Frees loaded animation frames data. Use this when you will no
@@ -246,7 +246,7 @@ void free_animation(animation ani);
 * sprite.
 * @param script_to_free The `animation_script` to be freed.
 *
-*/;
+*/
 void free_animation_script(animation_script script_to_free);
 /**
 * Frees loaded `animation_script` data. Use this when you will no
@@ -254,7 +254,7 @@ void free_animation_script(animation_script script_to_free);
 * sprite.
 * @param name The name of the `animation_script` to be freed.
 *
-*/;
+*/
 void free_animation_script(const string &name);
 /**
 * Returns whether an `animation_script` has been loaded with the
@@ -262,7 +262,7 @@ void free_animation_script(const string &name);
 * @param script The `animation_script` to check.
 * @param name The name of the `animation_script` to look for.
 * @return Returns a `bool` that denotes whether the `animation_script` has been loaded.
-*/;
+*/
 bool has_animation_named(animation_script script, const string &name);
 /**
 * Determines if SplashKit has animation frames loaded for the
@@ -270,20 +270,20 @@ bool has_animation_named(animation_script script, const string &name);
 * those loaded without a name are assigned the filename as a default.
 * @param name The name of the animation script to look for.
 * @return Returns the `bool` that denotes if the animation has the `animation_script`
-*/;
+*/
 bool has_animation_script(const string &name);
 /**
 * Load animation details from an animation frames file.
 * @param name The name of the `animation_script`.
 * @param filename The file to load the `animation_script` from.
 * @return Returns the newly loaded `animation_script`.
-*/;
+*/
 animation_script load_animation_script(const string &name, const string &filename);
 /**
 * Restarts an `animation`.
 * @param anim The `animation` to restart.
 *
-*/;
+*/
 void restart_animation(animation anim);
 /**
 * Restarts an `animation`. This may play a sound effect if the first
@@ -291,7 +291,7 @@ void restart_animation(animation anim);
 * @param anim The `animation` to restart.
 * @param with_sound Denotes whether the `animation` should play audio.
 *
-*/;
+*/
 void restart_animation(animation anim, bool with_sound);
 /**
 * Updates the animation, updating the time spent and possibly moving to
@@ -301,7 +301,7 @@ void restart_animation(animation anim, bool with_sound);
 * @param pct The amount that the frame time will be incremented
 * @param with_sound Denotes whether the `animation` should play audio.
 *
-*/;
+*/
 void update_animation(animation anim, float pct, bool with_sound);
 /**
 * Updates the animation, updating the time spent and possibly moving to
@@ -309,7 +309,7 @@ void update_animation(animation anim, float pct, bool with_sound);
 * frame triggers a sound.
 * @param anim The `animation` to update.
 *
-*/;
+*/
 void update_animation(animation anim);
 /**
 * Updates the animation, updating the time spent and possibly moving to
@@ -318,7 +318,7 @@ void update_animation(animation anim);
 * @param anim The `animation` to update.
 * @param pct The amount that the frame time will be incremented
 *
-*/;
+*/
 void update_animation(animation anim, float pct);
 
 #endif /* __animations_h */

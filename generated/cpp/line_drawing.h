@@ -21,7 +21,7 @@ using std::to_string;
 * @param clr The color of the line
 * @param l The line's details
 *
-*/;
+*/
 void draw_line(color clr, const line &l);
 /**
 * Draws a line.
@@ -29,7 +29,7 @@ void draw_line(color clr, const line &l);
 * @param l The line's details
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_line(color clr, const line &l, drawing_options opts);
 /**
 * Draw a line from one point to another on the current window.
@@ -37,7 +37,7 @@ void draw_line(color clr, const line &l, drawing_options opts);
 * @param from_pt The start of the line
 * @param to_pt The end of the line
 *
-*/;
+*/
 void draw_line(color clr, const point_2d &from_pt, const point_2d &to_pt);
 /**
 * Draw a line from one point to another on the current window.
@@ -46,7 +46,7 @@ void draw_line(color clr, const point_2d &from_pt, const point_2d &to_pt);
 * @param to_pt The end of the line
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_line(color clr, const point_2d &from_pt, const point_2d &to_pt, const drawing_options &opts);
 /**
 * Draw a line from one point to another on the current window.
@@ -60,7 +60,7 @@ void draw_line(color clr, const point_2d &from_pt, const point_2d &to_pt, const 
 * @param y2 The distance from the top of the window/bitmap to the second
 * point
 *
-*/;
+*/
 void draw_line(color clr, double x1, double y1, double x2, double y2);
 /**
 * Draw a line from one point to another
@@ -75,7 +75,7 @@ void draw_line(color clr, double x1, double y1, double x2, double y2);
 * point
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_line(color clr, double x1, double y1, double x2, double y2, const drawing_options &opts);
 /**
 * Draws a line onto the given bitmap.
@@ -83,7 +83,7 @@ void draw_line(color clr, double x1, double y1, double x2, double y2, const draw
 * @param clr The color of the line
 * @param l The line's details
 *
-*/;
+*/
 void draw_line_on_bitmap(bitmap destination, color clr, const line &l);
 /**
 * Draws a line on the given bitmap.
@@ -92,7 +92,7 @@ void draw_line_on_bitmap(bitmap destination, color clr, const line &l);
 * @param l The line's details
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_line_on_bitmap(bitmap destination, color clr, const line &l, drawing_options opts);
 /**
 * Draw a line from one point to another on the given bitmap.
@@ -101,7 +101,7 @@ void draw_line_on_bitmap(bitmap destination, color clr, const line &l, drawing_o
 * @param from_pt The start of the line
 * @param to_pt The end of the line
 *
-*/;
+*/
 void draw_line_on_bitmap(bitmap destination, color clr, const point_2d &from_pt, const point_2d &to_pt);
 /**
 * Draw a line from one point to another on the given bitmap.
@@ -111,7 +111,7 @@ void draw_line_on_bitmap(bitmap destination, color clr, const point_2d &from_pt,
 * @param to_pt The end of the line
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_line_on_bitmap(bitmap destination, color clr, const point_2d &from_pt, const point_2d &to_pt, const drawing_options &opts);
 /**
 * Draw a line from one point to another on the given bitmap.
@@ -126,7 +126,7 @@ void draw_line_on_bitmap(bitmap destination, color clr, const point_2d &from_pt,
 * @param y2 The distance from the top of the bitmap/bitmap to the second
 * point
 *
-*/;
+*/
 void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2);
 /**
 * Draw a line from one point to another
@@ -142,7 +142,7 @@ void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, do
 * point
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, const drawing_options &opts);
 /**
 * Draws a line onto the given window.
@@ -150,7 +150,7 @@ void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, do
 * @param clr The color of the line
 * @param l The line's details
 *
-*/;
+*/
 void draw_line_on_window(window destination, color clr, const line &l);
 /**
 * Draws a line on the given window.
@@ -159,7 +159,7 @@ void draw_line_on_window(window destination, color clr, const line &l);
 * @param l The line's details
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_line_on_window(window destination, color clr, const line &l, drawing_options opts);
 /**
 * Draw a line from one point to another on the given window.
@@ -168,7 +168,7 @@ void draw_line_on_window(window destination, color clr, const line &l, drawing_o
 * @param from_pt The start of the line
 * @param to_pt The end of the line
 *
-*/;
+*/
 void draw_line_on_window(window destination, color clr, const point_2d &from_pt, const point_2d &to_pt);
 /**
 * Draw a line from one point to another on the given window.
@@ -178,7 +178,7 @@ void draw_line_on_window(window destination, color clr, const point_2d &from_pt,
 * @param to_pt The end of the line
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_line_on_window(window destination, color clr, const point_2d &from_pt, const point_2d &to_pt, const drawing_options &opts);
 /**
 * Draw a line from one point to another on the given window.
@@ -193,7 +193,7 @@ void draw_line_on_window(window destination, color clr, const point_2d &from_pt,
 * @param y2 The distance from the top of the window/bitmap to the second
 * point
 *
-*/;
+*/
 void draw_line_on_window(window destination, color clr, double x1, double y1, double x2, double y2);
 /**
 * Draw a line from one point to another
@@ -209,7 +209,7 @@ void draw_line_on_window(window destination, color clr, double x1, double y1, do
 * point
 * @param opts The drawing options
 *
-*/;
+*/
 void draw_line_on_window(window destination, color clr, double x1, double y1, double x2, double y2, const drawing_options &opts);
 
 #endif /* __line_drawing_h */

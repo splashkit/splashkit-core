@@ -1267,6 +1267,12 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__square_root__int", CharSet=CharSet.Ansi)]
     private static extern double __sklib__square_root__int(int number);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_double__string_ref", CharSet=CharSet.Ansi)]
+    private static extern double __sklib__to_double__string_ref(__sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_integer__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__to_integer__string_ref(__sklib_string text);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_lowercase__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__to_lowercase__string_ref(__sklib_string text);
 
@@ -6242,6 +6248,34 @@ namespace SplashKitSDK
       __skparam__number = __skadapter__to_sklib_int(number);
       __skreturn = __sklib__square_root__int(__skparam__number);
       return __skadapter__to_double(__skreturn);
+    }
+    /// <summary>
+    /// Convert the passed in string into a double. This can fail in an error if the value is not a number, consider using `is_number` to check before converting a string.
+    /// </summary>
+    /// <param name="text"> The text to convert.</param>
+    /// <returns>The double value read from the text.</returns>
+    public static double ToDouble(string text)
+    {
+      __sklib_string __skparam__text;
+      double __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__to_double__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_double(__skreturn);
+    }
+    /// <summary>
+    /// Convert the passed in string into an integer. This can fail in an error if the value is not an integer, consider using `is_integer` to check before converting a string.
+    /// </summary>
+    /// <param name="text"> The text to convert.</param>
+    /// <returns>The integer value read from the text.</returns>
+    public static int ToInteger(string text)
+    {
+      __sklib_string __skparam__text;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__to_integer__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_int(__skreturn);
     }
     /// <summary>
     /// Return a lowercase version of the passed in string.

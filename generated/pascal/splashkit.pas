@@ -513,6 +513,8 @@ function OctToHex(const octStr: String): String;
 function ReplaceAll(const text: String; const substr: String; const newText: String): String;
 function Split(const text: String; delimiter: Char): ArrayOfString;
 function SquareRoot(number: Integer): Double;
+function ToDouble(const text: String): Double;
+function ToInteger(const text: String): Integer;
 function ToLowercase(const text: String): String;
 function ToUppercase(const text: String): String;
 function Trim(const text: String): String;
@@ -3066,6 +3068,8 @@ function __sklib__oct_to_hex__string_ref(const octStr: __sklib_string): __sklib_
 function __sklib__replace_all__string_ref__string_ref__string_ref(const text: __sklib_string; const substr: __sklib_string; const newText: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__split__string_ref__char(const text: __sklib_string; delimiter: Char): __sklib_vector_string; cdecl; external;
 function __sklib__square_root__int(number: Integer): Double; cdecl; external;
+function __sklib__to_double__string_ref(const text: __sklib_string): Double; cdecl; external;
+function __sklib__to_integer__string_ref(const text: __sklib_string): Integer; cdecl; external;
 function __sklib__to_lowercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__to_uppercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__trim__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
@@ -5049,6 +5053,24 @@ begin
   __skparam__number := __skadapter__to_sklib_int(number);
   __skreturn := __sklib__square_root__int(__skparam__number);
   result := __skadapter__to_double(__skreturn);
+end;
+function ToDouble(const text: String): Double;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: Double;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__to_double__string_ref(__skparam__text);
+  result := __skadapter__to_double(__skreturn);
+end;
+function ToInteger(const text: String): Integer;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__to_integer__string_ref(__skparam__text);
+  result := __skadapter__to_int(__skreturn);
 end;
 function ToLowercase(const text: String): String;
 var

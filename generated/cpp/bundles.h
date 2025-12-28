@@ -20,13 +20,13 @@ using std::to_string;
 * associated resources.
 * @param name The name of the resource bundle to be freed
 *
-*/;
+*/
 void free_resource_bundle(const string name);
 /**
 * Returns true when the named resource bundle has already been loaded.
 * @param name The name of the resource bundle.
 * @return True when the bundle is already loaded.
-*/;
+*/
 bool has_resource_bundle(const string &name);
 /**
 * Loads all of the resources in the resource bundle. The resource bundle is a
@@ -120,7 +120,7 @@ bool has_resource_bundle(const string &name);
 * @param name The name of the bundle when it is loaded.
 * @param filename The filename to load.
 *
-*/;
+*/
 void load_resource_bundle(const string &name, const string &filename);
 
 #endif /* __bundles_h */

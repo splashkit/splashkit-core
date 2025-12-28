@@ -424,6 +424,18 @@ double square_root(int number) {
     double __skreturn = __sklib__square_root__int(__skparam__number);
     return __skadapter__to_double(__skreturn);
 }
+double to_double(const string &text) {
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    double __skreturn = __sklib__to_double__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(__skparam__text);
+    return __skadapter__to_double(__skreturn);
+}
+int to_integer(const string &text) {
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    int __skreturn = __sklib__to_integer__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(__skparam__text);
+    return __skadapter__to_int(__skreturn);
+}
 string to_lowercase(const string &text) {
     const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
     __sklib_string __skreturn = __sklib__to_lowercase__string_ref(__skparam__text);

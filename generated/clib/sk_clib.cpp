@@ -374,6 +374,16 @@ double __sklib__square_root__int(int number) {
     double __skreturn = square_root(__skparam__number);
     return __sklib__to_double(__skreturn);
 }
+double __sklib__to_double__string_ref(const __sklib_string text) {
+    string __skparam__text = __sklib__to_string(text);
+    double __skreturn = to_double(__skparam__text);
+    return __sklib__to_double(__skreturn);
+}
+int __sklib__to_integer__string_ref(const __sklib_string text) {
+    string __skparam__text = __sklib__to_string(text);
+    int __skreturn = to_integer(__skparam__text);
+    return __sklib__to_int(__skreturn);
+}
 __sklib_string __sklib__to_lowercase__string_ref(const __sklib_string text) {
     string __skparam__text = __sklib__to_string(text);
     string __skreturn = to_lowercase(__skparam__text);
