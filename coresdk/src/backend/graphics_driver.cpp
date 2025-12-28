@@ -418,11 +418,9 @@ namespace splashkit_lib
                 SDL_QueryTexture(_sk_open_bitmaps[i]->texture[0], nullptr, nullptr, &w, &h);
 
                 int sz = 4 * w * h;
-                int pixels[w * h];
+                int *pixels = (int *)calloc(w * h, sizeof(int));
 
                 //            std::cout << "sz = " << sz << " size of pixels = " << sizeof(pixels) << std::endl;
-
-                memset(pixels, 0, sizeof(pixels));
 
                 _sk_bitmap_be_texture_to_pixels(_sk_open_bitmaps[i], pixels, sz, w, h);
 
@@ -446,6 +444,8 @@ namespace splashkit_lib
                 }
 
                 SDL_UnlockSurface(_sk_open_bitmaps[i]->surface);
+                free(pixels);
+                pixels = nullptr;
                 
                 // Last window is being closed, saving the surface means the loaded bitmap will no longer be drawable!
                 _sk_open_bitmaps[i]->drawable = false;
