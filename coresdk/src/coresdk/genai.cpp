@@ -375,6 +375,18 @@ namespace splashkit_lib
 
         string home_path = path_from( {path_to_user_home(), ".splashkit", "models"} );
 
+        // test that home_path exists, or create
+        try {
+            std::error_code ec;
+            if (!std::filesystem::exists(home_path)) {
+                if (!std::filesystem::create_directories(home_path, ec)) {
+                    CLOG(ERROR, "GenAI") << "Unable to create models directory: '" << home_path << "' - " << ec.message();
+                }
+            }
+        } catch (const std::exception& e) {
+            CLOG(ERROR, "GenAI") << "Exception while ensuring models directory exists: " << e.what();
+        }
+
         language_model_options options = models[model];
         options.path =  home_path + options.path;
         options.seed = 0;
