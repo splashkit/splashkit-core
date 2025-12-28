@@ -69,7 +69,7 @@ if [[ $GENERATE_LIB ]]; then
     *) exit -1 ;;
   esac
 
-  if $BUILD_DOT_NET; then
+  if [[ $BUILD_DOT_NET ]]; then
     cd "$APP_PATH/nuget-pkg"
 
     echo
