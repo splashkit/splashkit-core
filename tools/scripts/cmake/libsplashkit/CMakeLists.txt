@@ -4,6 +4,7 @@
 
 cmake_minimum_required(VERSION 3.10)
 project(splashkit)
+include(ExternalProject)
 
 # SK Directories relative to cmake project
 set(SK_ROOT "../../../..")
@@ -59,8 +60,8 @@ if (WIN32 OR MSYS OR MINGW)
         "${SK_LIB}/${OS_PATH_SUFFIX}/*.dll"
     )
 elseif (APPLE)
-    set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk")
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "12.3") # CACHE STRING "Minimum OS X deployment version")
+    set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "12") # CACHE STRING "Minimum OS X deployment version")
     message(CMAKE_OSX_DEPLOYMENT_TARGET="${CMAKE_OSX_DEPLOYMENT_TARGET}")
     message(CMAKE_OSX_SYSROOT="${CMAKE_OSX_SYSROOT}")
 
@@ -77,6 +78,7 @@ elseif (APPLE)
                    -framework AudioToolbox \
                    -framework CoreAudio \
                    -framework CoreVideo \
+                   -framework Accelerate \
                    -lSDL2 \
                    -lSDL2_mixer \
                    -lSDL2_ttf \
@@ -166,6 +168,8 @@ include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/catch")
 include_directories("${SK_EXT}/hash-library")
 include_directories("${SK_EXT}/microui/src")
+include_directories("${SK_EXT}/llama.cpp/include")
+include_directories("${SK_EXT}/llama.cpp/ggml/include")
 include_directories(${SK_GENERATED}/cpp, ${SK_GENERATED}/clib)
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
@@ -181,7 +185,7 @@ endif()
 # MAC OS ONLY DIRECTORY INCLUDES
 if (APPLE)
     include_directories("${SK_EXT}/SDL_image/external/libpng-1.6.2")
-    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
+    set(CMAKE_OSX_ARCHITECTURES "arm64")
 endif()
 
 # WINDOWS ONLY DIRECTORY INCLUDES
@@ -190,6 +194,55 @@ if (MSYS)
     include_directories(/${MINGW_PATH_PART}/include/libpng16)
     include_directories("${SK_LIB}/win_inc")
 endif()
+
+# INCLUDE LLAMA.CPP
+
+# Included as an external project so that it can be configured
+# as Release, independently of the main project.
+
+# Compiled as CPU only
+# TODO: Decide on minimum architecture requirements
+ExternalProject_Add(
+    llama_ext
+    SOURCE_DIR "${SK_EXT}/llama.cpp"
+    CMAKE_ARGS
+        -DLLAMA_BUILD_TESTS=OFF
+        -DLLAMA_BUILD_TOOLS=OFF
+        -DLLAMA_BUILD_EXAMPLES=OFF
+        -DLLAMA_BUILD_SERVER=OFF
+        -DGGML_BLAS=OFF
+        -DGGML_METAL=OFF
+        -DGGML_VULKAN=OFF
+        -DBUILD_SHARED_LIBS=OFF
+        -DLLAMA_BUILD_COMMON=OFF
+        -DLLAMA_TOOLS_INSTALL=OFF
+        -DCMAKE_BUILD_TYPE=Release
+        -DGGML_STATIC=ON
+        -DGGML_OPENMP=OFF
+        -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+        -DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk
+        -DCMAKE_OSX_DEPLOYMENT_TARGET=12
+)
+
+ExternalProject_Get_Property(llama_ext INSTALL_DIR)
+
+foreach(lib llama ggml ggml-cpu ggml-base)
+    add_library(${lib} STATIC IMPORTED GLOBAL)
+    if (MSYS AND NOT "${lib}" STREQUAL "llama") # llama still ends up as libllama.a on Windows, unsure why
+        set_target_properties(${lib} PROPERTIES
+            IMPORTED_LOCATION
+                ${INSTALL_DIR}/lib/${lib}.a # no lib prefix
+        )
+    else()
+        set_target_properties(${lib} PROPERTIES
+            IMPORTED_LOCATION
+                ${INSTALL_DIR}/lib/lib${lib}.a # lib prefix
+        )
+    endif()
+    add_dependencies(${lib} llama_ext)
+endforeach()
+
+set(LLAMA_LIB_FLAGS llama ggml ggml-cpu ggml-base)
 
 # MACRO DEFINITIONS #
 add_definitions(-DELPP_THREAD_SAFE)
@@ -200,7 +253,7 @@ add_definitions(-DELPP_THREAD_SAFE)
 
 
 add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES} ${ADAPTER_INCLUDE_FILES} ${ADAPTER_CPP_FILES})
-target_link_libraries(SplashKit ${LIB_FLAGS})
+target_link_libraries(SplashKit ${LIB_FLAGS} ${LLAMA_LIB_FLAGS})
 
 if (LINUX)
     target_link_libraries(SplashKit ${PNG_LIBRARY})
