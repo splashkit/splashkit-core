@@ -206,6 +206,67 @@ namespace splashkit_lib
         return _create_response(curl_handle, res, data_read);
     }
 
+    struct _sk_http_get_file_callback_data
+    {
+        void (*user_callback)(unsigned long, unsigned long);
+        int resuming_from;
+    };
+
+    int _sk_http_get_file_callback(_sk_http_get_file_callback_data* data, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow)
+    {
+        data->user_callback(dltotal == 0 ? 0 : (data->resuming_from + dltotal), data->resuming_from + dlnow);
+        return 0;
+    }
+
+    sk_http_response *sk_http_get_file(const string &filename, const string &host, unsigned short port, void (*user_callback)(unsigned long, unsigned long))
+    {
+        const string temp_extension = ".temp";
+        string temp_filename = filename+temp_extension;
+
+        FILE *file = fopen(temp_filename.c_str(), "ab+");
+
+        // find resume point
+        fseek(file, 0L, SEEK_END);
+        curl_off_t resume_from = ftell(file);
+
+        // init the curl session
+        CURL *curl_handle = curl_easy_init();
+        CURLcode res;
+
+        _init_curl(curl_handle, host, port);
+
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_data);
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, file);
+
+        _sk_http_get_file_callback_data callback_data;
+        if (user_callback)
+        {
+            curl_easy_setopt(curl_handle, CURLOPT_XFERINFOFUNCTION, _sk_http_get_file_callback);
+            curl_easy_setopt(curl_handle, CURLOPT_XFERINFODATA, &callback_data);
+            curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 0);
+
+            callback_data.user_callback = user_callback;
+            callback_data.resuming_from = resume_from;
+        }
+
+        curl_easy_setopt(curl_handle, CURLOPT_RESUME_FROM_LARGE, resume_from);
+
+        // get it!
+        res = curl_easy_perform(curl_handle);
+
+        fclose(file);
+
+        // try renaming the temp file if the download was okay - rename returns 0 on success
+        if (res == CURLE_OK && rename(temp_filename.c_str(), filename.c_str()))
+        {
+            LOG(WARNING) << "Failed to rename temporary download file " << temp_filename << " to " << filename;
+            return nullptr;
+        }
+
+        request_stream data_read = { nullptr, 0 };
+        return _create_response(curl_handle, res, data_read);
+    }
+
     sk_http_response *sk_http_put(const string &host, unsigned short port, const string &body)
     {
         request_stream data_read = { nullptr, 0 };

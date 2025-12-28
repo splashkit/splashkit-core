@@ -77,6 +77,7 @@ Makefile
 cmake_install.cmake
 splashkit_test
 projects/cmake/Resources
+llama_ext-prefix
 .ninja_deps
 .ninja_log
 build.ninja
@@ -100,6 +101,7 @@ out/skm
 out/lib/
 tools/scripts/nuget-pkg/obj
 tools/scripts/test/obj
+
 
 ### Debian packaging ###
 tools/scripts/debian/libsplashkit-dev*

@@ -548,5 +548,75 @@ namespace splashkit_lib
         BUBBLE = 4,
         BUBBLE_MULTICOLORED = 5
     };
+
+    /**
+     * Language Models:
+     * Choose between different language models to trade off speed and intelligence
+     * Each model is scaled to fit within 1~2GB and will be automatically downloaded when needed - feel free to try them out!
+     *
+     * @constant QWEN3_0_6B_BASE       Qwen3 0.6B Base model - small, extremely fast and good for text commpletion. Very limited world knowledge.
+     * @constant QWEN3_0_6B_INSTRUCT   Qwen3 0.6B Instruct model (default) - small, extremely fast and can follow simple instructions. Very limited world knowledge.
+     * @constant QWEN3_0_6B_THINKING   Qwen3 0.6B Thinking model - small, extremely fast and can follow more specific instructions, but has a short delay before starting to reply. Very limited world knowledge.
+     * @constant QWEN3_1_7B_BASE       Qwen3 1.7B Base model - decently fast and good for text commpletion. Limited world knowledge.
+     * @constant QWEN3_1_7B_INSTRUCT   Qwen3 1.7B Instruct model - decently fast and can follow instructions. Limited world knowledge.
+     * @constant QWEN3_1_7B_THINKING   Qwen3 1.7B Thinking model - decently fast and can follow more difficult instructions, but has a delay before starting to reply. Limited world knowledge.
+     * @constant QWEN3_4B_BASE         Qwen3 4B Base model - slower but excellent for text commpletion/pattern based completion
+     * @constant QWEN3_4B_INSTRUCT     Qwen3 4B Instruct model - slower but can follow complex instructions
+     * @constant QWEN3_4B_THINKING     Qwen3 4B Thinking model - slower but can follow complex and specific instructions, but has a potentially long delay before starting to reply
+     * @constant GEMMA3_270M_BASE      Gemma3 270M Base model - tiny, extremely fast, and good for text completion. Very limited world knowledge.
+     * @constant GEMMA3_270M_INSTRUCT  Gemma3 270M Instruct model - tiny, extremely fast, and good for very simple instructions. Very limited world knowledge.
+     * @constant GEMMA3_1B_BASE        Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_1B_INSTRUCT    Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_4B_BASE        Gemma3 4B Base model - slower but good for text commpletion/pattern based completion. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_4B_INSTRUCT    Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multi-lingual abilities.
+     */
+    enum language_model
+    {
+        QWEN3_0_6B_BASE = 4,
+        QWEN3_0_6B_INSTRUCT = 5,
+        QWEN3_0_6B_THINKING = 6,
+        QWEN3_1_7B_BASE = 8,
+        QWEN3_1_7B_INSTRUCT = 9,
+        QWEN3_1_7B_THINKING = 10,
+        QWEN3_4B_BASE = 12,
+        QWEN3_4B_INSTRUCT = 13,
+        QWEN3_4B_THINKING = 14,
+        GEMMA3_270M_BASE = 16,
+        GEMMA3_270M_INSTRUCT = 17,
+        GEMMA3_1B_BASE = 20,
+        GEMMA3_1B_INSTRUCT = 21,
+        GEMMA3_4B_BASE = 24,
+        GEMMA3_4B_INSTRUCT = 25,
+    };
+
+    /**
+     * Language model options allow you to customize the language model used. These should be
+     * initialised using functions such as `option_language_model`.
+     *
+     * @field name             The name of the model (used in diagnostic messages).
+     * @field url              A URL to download a model from.
+     * @field path             A path to a custom language model (.gguf) file on your computer/a place to download it to.
+     * @field max_tokens       The maximum number of tokens to output when replying. One word is approximately two tokens.
+     * @field temperature      Increases the likelihood of unlikely tokens to be chosen.
+     * @field top_p            Only choose from the top P most likely tokens.
+     * @field top_k            Only choose from the top K most likely tokens.
+     * @field min_p            Remove tokens less likely than P.
+     * @field presence_penalty Penalizes words that have been used once, making them less likely. Can reduce repetition.
+     * @field prompt_append    A string to append to prompts automatically.
+     */
+    struct language_model_options
+    {
+        string name;
+        string url;
+        string path;
+        int max_tokens;
+        double temperature;
+        double top_p;
+        int top_k;
+        double min_p;
+        double presence_penalty;
+        string prompt_append;
+        int seed;
+    };
 }
 #endif /* types_hpp */

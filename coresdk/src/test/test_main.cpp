@@ -68,6 +68,7 @@ void setup_tests()
     add_test("GPIO - SPI MAX7219 LED matrix Tests", run_gpio_spi_led_matrix_tests);
     add_test("GPIO - I2C HT16K33 LED matrix Tests", run_gpio_i2c_led_matrix_tests);
     add_test("GPIO - I2C HT16K33 LED 14 Segment Tests", run_gpio_i2c_quad_14_seg_test);
+    add_test("Gen AI", run_genai_test);
 }
 
 int main(int argv, char **args)

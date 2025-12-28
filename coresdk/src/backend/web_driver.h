@@ -17,6 +17,7 @@ namespace splashkit_lib
 
     sk_http_response *sk_http_post(const string &host, unsigned short port, const string &body);
     sk_http_response *sk_http_get(const string &host, unsigned short port);
+    sk_http_response *sk_http_get_file(const string &filename, const string &host, unsigned short port, void (*user_callback)(unsigned long, unsigned long));
     sk_http_response *sk_http_put(const string &host, unsigned short port, const string &body);
     sk_http_response *sk_http_delete(const string &host, unsigned short port, const string &body);
     sk_http_response *sk_http_make_request(const sk_http_request &request);
