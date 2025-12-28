@@ -50,6 +50,8 @@ case $doit in
   *) exit -1 ;;
 esac
 
+
+
 if [[ $GENERATE_LIB ]]; then
   echo
   echo "Running Translator - this is a long process...."
@@ -60,28 +62,37 @@ if [[ $GENERATE_LIB ]]; then
   # docker compose build
   docker compose run --rm  headerdoc clib,cpp,pascal,python,csharp,docs
 
-  cd "$APP_PATH/nuget-pkg"
+  read -p "Build dotnet lib? [y,n] " doit
+  case $doit in
+    y|Y) BUILD_DOT_NET=true ;;
+    n|N) echo ; echo "Skipping dotnet build" ;;
+    *) exit -1 ;;
+  esac
 
-  echo
-  echo "What version for nuget?"
-  read nugetver
+  if $BUILD_DOT_NET; then
+    cd "$APP_PATH/nuget-pkg"
 
-  dotnet build --configuration Release /p:version=$nugetver
+    echo
+    echo "What version for nuget?"
+    read nugetver
 
-  echo "Check you are happy to publish this, then publish using:"
+    dotnet build --configuration Release /p:version=$nugetver
 
-  source $SK_ROOT/.env
-  
-  echo "dotnet nuget push ./bin/Release/*.nupkg  --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate"
-  
-  cd "$APP_PATH"
+    echo "Check you are happy to publish this, then publish using:"
+
+    source $SK_ROOT/.env
+    
+    echo "dotnet nuget push ./bin/Release/*.nupkg  --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate"
+    
+    cd "$APP_PATH"
+  fi
+
   read -p "Rebuild website? [y,n]" doit
   case $doit in
     y|Y) bash deploy-website.sh ;;
     n|N) echo ; echo "Skipping Website re-build" ;;
   *) exit -1 ;;
   esac
-
 fi
 
 function do_make {
