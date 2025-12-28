@@ -3,7 +3,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1753421298,
+    "parsed_at": 1766953051,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -1953,7 +1953,7 @@
     "group": "audio",
     "brief": "SplashKit Audio allows you to load and play music and sound effects.",
     "description": "SplashKit's audio library allows you to easily load and play music and\nsound effects within your programs. To get started with audio the first\nthing you need to do is load a sound effect or music file. You can do this\nby calling the `load_sound_effect(string name)` function to the\n`load_music(string name)` function.",
-    "parsed_at": 1753421298,
+    "parsed_at": 1766953051,
     "path": "coresdk/src/coresdk/audio.h",
     "functions": [
       {
@@ -2047,7 +2047,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1766882903,
+    "parsed_at": 1766953052,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -3454,7 +3454,7 @@
     "group": "resource_bundles",
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
-    "parsed_at": 1753421299,
+    "parsed_at": 1766953052,
     "path": "coresdk/src/coresdk/bundles.h",
     "functions": [
       {
@@ -3599,7 +3599,7 @@
     "group": "camera",
     "brief": "SplashKit camera functionality allows you to move a virtual camera\naround in your world.",
     "description": "Splashkit camera functionality allows you to move a virtual camera around in\nyour world. This camera projects to the users window, allowing you to\ndraw things to the screen in your world coordinates.",
-    "parsed_at": 1753421300,
+    "parsed_at": 1766953052,
     "path": "coresdk/src/coresdk/camera.h",
     "functions": [
       {
@@ -4666,7 +4666,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1755863744,
+    "parsed_at": 1766953053,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
@@ -6315,7 +6315,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421301,
+    "parsed_at": 1766953053,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -7609,7 +7609,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421301,
+    "parsed_at": 1766953053,
     "path": "coresdk/src/coresdk/clipping.h",
     "functions": [
       {
@@ -8208,7 +8208,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1753421304,
+    "parsed_at": 1766953055,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -14871,7 +14871,7 @@
     "group": "color",
     "brief": "SplashKit simplifies color manipulation in graphical applications for developers, ensuring ease of use and efficiency.",
     "description": null,
-    "parsed_at": 1753421307,
+    "parsed_at": 1766953057,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -20071,7 +20071,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421308,
+    "parsed_at": 1766953057,
     "path": "coresdk/src/coresdk/drawing_options.h",
     "functions": [
       {
@@ -21441,7 +21441,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421309,
+    "parsed_at": 1766953057,
     "path": "coresdk/src/coresdk/ellipse_drawing.h",
     "functions": [
       {
@@ -23532,11 +23532,707 @@
 
     ]
   },
+  "genai": {
+    "group": "generative_ai",
+    "brief": "SplashKit gives you a simple way to use and embed local AIs in your projects,\nthat run on your own computer.",
+    "description": null,
+    "parsed_at": 1766953058,
+    "path": "coresdk/src/coresdk/genai.h",
+    "functions": [
+      {
+        "signature": "void conversation_add_message(conversation c,const string& message);",
+        "name": "conversation_add_message",
+        "method_name": "add_message",
+        "unique_global_name": "conversation_add_message",
+        "unique_method_name": "conversation.add_message",
+        "suffix_name": null,
+        "description": "Adds a message to a `conversation`, that the language model will begin replying to.\nYou can receive the reply one piece at a time by calling `conversation_get_reply_piece(conversation c)` in a loop",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "c": {
+            "type": "conversation",
+            "description": "The `conversation` object to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "message": {
+            "type": "string",
+            "description": "The user message to add to the conversation - the language model will reply to this",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "conversation",
+          "method": "add_message",
+          "self": "c",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "string conversation_get_reply_piece(conversation c);",
+        "name": "conversation_get_reply_piece",
+        "method_name": "get_reply_piece",
+        "unique_global_name": "conversation_get_reply_piece",
+        "unique_method_name": "conversation.get_reply_piece",
+        "suffix_name": null,
+        "description": "Returns a single piece of a reply (generally one word at a time) from the `conversation`\nYou can use a loop while checking `conversation_is_replying` to retrieve the reply as it generates",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "Returns a small piece of the reply (generally 1 word or less)",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "c": {
+            "type": "conversation",
+            "description": "The `conversation` object to recieve the reply from",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "conversation",
+          "method": "get_reply_piece",
+          "self": "c",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "bool conversation_is_replying(conversation c);",
+        "name": "conversation_is_replying",
+        "method_name": "is_replying",
+        "unique_global_name": "conversation_is_replying",
+        "unique_method_name": "conversation.is_replying",
+        "suffix_name": null,
+        "description": "Checks if a language model is currently generating a reply within a `conversation`.\nIf so, you can continue to receive the message with `conversation_get_reply_piece(conversation c)`",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Returns whether the language model is still generating a reply",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "c": {
+            "type": "conversation",
+            "description": "The `conversation` object to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "conversation",
+          "method": "is_replying",
+          "self": "c",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "bool conversation_is_thinking(conversation c);",
+        "name": "conversation_is_thinking",
+        "method_name": "is_thinking",
+        "unique_global_name": "conversation_is_thinking",
+        "unique_method_name": "conversation.is_thinking",
+        "suffix_name": null,
+        "description": "Checks if a language model is currently \"thinking\" while generating a reply within a `conversation`.\nYou can use this to filter out the \"thoughts\" and display them differently (or hide them entirely)",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Returns whether the language model is currently thinking while generating a reply",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "c": {
+            "type": "conversation",
+            "description": "The `conversation` object to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "conversation",
+          "method": "is_thinking",
+          "self": "c",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "conversation create_conversation(language_model_options options);",
+        "name": "create_conversation",
+        "method_name": null,
+        "unique_global_name": "create_conversation_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures",
+        "brief": "Creates a new `conversation` object, that uses a chosen language model among other options.",
+        "return": {
+          "type": "conversation",
+          "description": "Returns a new `conversation` object.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "options": {
+            "type": "language_model_options",
+            "description": "The options to use - use this to choose the language model, and change various parameters.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "conversation",
+          "constructor": true,
+          "suffix": "with_options",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "conversation create_conversation();",
+        "name": "create_conversation",
+        "method_name": null,
+        "unique_global_name": "create_conversation",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures",
+        "brief": "Creates a new `conversation` object, that uses the default language model.",
+        "return": {
+          "type": "conversation",
+          "description": "Returns a new `conversation` object.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "class": "conversation",
+          "constructor": true,
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "conversation create_conversation(language_model model);",
+        "name": "create_conversation",
+        "method_name": null,
+        "unique_global_name": "create_conversation_with_model",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures",
+        "brief": "Creates a new `conversation` object, that uses a chosen language model.",
+        "return": {
+          "type": "conversation",
+          "description": "Returns a new `conversation` object.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "model": {
+            "type": "language_model",
+            "description": "The language model to use",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "conversation",
+          "constructor": true,
+          "suffix": "with_model",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "void free_all_conversations();",
+        "name": "free_all_conversations",
+        "method_name": "free_all",
+        "unique_global_name": "free_all_conversations",
+        "unique_method_name": ".free_all",
+        "suffix_name": null,
+        "description": "Releases all of the `conversation` objects which have been loaded.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "method": "free_all",
+          "static": "generative_ai",
+          "group": "generative_ai"
+        }
+      },
+      {
+        "signature": "void free_conversation(conversation c);",
+        "name": "free_conversation",
+        "method_name": "free",
+        "unique_global_name": "free_conversation",
+        "unique_method_name": "conversation.free",
+        "suffix_name": null,
+        "description": "Frees the resources associated with the `conversation` object.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "c": {
+            "type": "conversation",
+            "description": "The `conversation` object whose resources should be released.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "conversation",
+          "destructor": true,
+          "method": "free",
+          "self": "c",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "string generate_reply(string prompt,language_model_options options);",
+        "name": "generate_reply",
+        "method_name": null,
+        "unique_global_name": "generate_reply_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.\nInstruct or Thinking models are recommended. Base models likely won't output sensible results.",
+        "brief": "Generates a reply to a textual prompt by a language model",
+        "return": {
+          "type": "string",
+          "description": "The generated reply.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "prompt": {
+            "type": "string",
+            "description": "The prompt for the language model to reply to.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "options": {
+            "type": "language_model_options",
+            "description": "The generation options - use the `option_` functions to create this, for instance `option_language_model`",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_options",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "string generate_reply(language_model model,string prompt);",
+        "name": "generate_reply",
+        "method_name": null,
+        "unique_global_name": "generate_reply_with_model",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.\nInstruct or Thinking models are recommended. Base models likely won't output sensible results.",
+        "brief": "Generates a reply to a textual prompt by a language model",
+        "return": {
+          "type": "string",
+          "description": "The generated reply.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "model": {
+            "type": "language_model",
+            "description": "The language model to use",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "prompt": {
+            "type": "string",
+            "description": "The prompt for the language model to reply to.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_model",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "string generate_reply(string prompt);",
+        "name": "generate_reply",
+        "method_name": null,
+        "unique_global_name": "generate_reply",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.\nInstruct or Thinking models are recommended. Base models likely won't output sensible results.",
+        "brief": "Generates a reply to a textual prompt by a language model",
+        "return": {
+          "type": "string",
+          "description": "The generated reply.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "prompt": {
+            "type": "string",
+            "description": "The prompt for the language model to reply to.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "string generate_text(string text,language_model_options options);",
+        "name": "generate_text",
+        "method_name": null,
+        "unique_global_name": "generate_text_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
+        "brief": "Generates text that continues from a prompt",
+        "return": {
+          "type": "string",
+          "description": "The generated reply.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The input text for the language model to continue.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "options": {
+            "type": "language_model_options",
+            "description": "The generation options - use the `option_` functions to create this, for instance `option_language_model`",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_options",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "string generate_text(language_model model,string text);",
+        "name": "generate_text",
+        "method_name": null,
+        "unique_global_name": "generate_text_with_model",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
+        "brief": "Generates text that continues from a prompt",
+        "return": {
+          "type": "string",
+          "description": "The generated reply.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "model": {
+            "type": "language_model",
+            "description": "The language model to use",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The input text for the language model to continue.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_model",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "string generate_text(string text);",
+        "name": "generate_text",
+        "method_name": null,
+        "unique_global_name": "generate_text",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
+        "brief": "Generates text that continues from a prompt",
+        "return": {
+          "type": "string",
+          "description": "The generated reply.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The input text for the language model to continue.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      },
+      {
+        "signature": "language_model_options option_language_model(language_model model);",
+        "name": "option_language_model",
+        "method_name": null,
+        "unique_global_name": "option_language_model",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Use this option to choose which language model to use, and initialize its default settings",
+        "brief": null,
+        "return": {
+          "type": "language_model_options",
+          "description": "Language model options that will use that model and its default settings.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "model": {
+            "type": "language_model",
+            "description": "The language model to use",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "generative_ai",
+          "static": "generative_ai"
+        }
+      }
+    ],
+    "typedefs": [
+      {
+        "signature": "typedef struct sk_conversation *conversation;",
+        "name": "conversation",
+        "description": "The `conversation` type is used to refer to conversations between the user\nand a language model. You can use it to send messages to the language model,\nand stream responses back.\n\n\nAll `conversation` objects are:\n\n\n- created with `create_conversation()`, `create_conversation(language_model model)` or\n`create_conversation(language_model_options options)`\n\n\n- and must be released using `free_conversation()` (to release a specific `conversation` object)\nor `free_all_conversation()` (to release all created `conversation` objects).",
+        "brief": null,
+        "attributes": {
+          "class": "conversation",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        },
+        "is_function_pointer": false,
+        "aliased_type": null,
+        "aliased_identifier": null,
+        "is_pointer": false,
+        "new_identifier": null
+      }
+    ],
+    "structs": [
+
+    ],
+    "enums": [
+
+    ],
+    "defines": [
+
+    ]
+  },
   "geometry": {
     "group": "geometry",
     "brief": "SplashKit's geometry functions assist with geometry-related computations.",
     "description": null,
-    "parsed_at": 1753421309,
+    "parsed_at": 1766953058,
     "path": "coresdk/src/coresdk/geometry.h",
     "functions": [
       {
@@ -23668,7 +24364,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421309,
+    "parsed_at": 1766953058,
     "path": "coresdk/src/coresdk/graphics.h",
     "functions": [
       {
@@ -24247,7 +24943,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1753421310,
+    "parsed_at": 1766953059,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -26772,7 +27468,7 @@
     "group": "input",
     "brief": "Input handles user interaction and events such as keypresses.",
     "description": null,
-    "parsed_at": 1753421310,
+    "parsed_at": 1766953059,
     "path": "coresdk/src/coresdk/input.h",
     "functions": [
       {
@@ -26865,7 +27561,7 @@
     "group": "interface",
     "brief": "SplashKit Interface provides functions to create user interfaces, with elements such as draggable panels, buttons and text boxes.",
     "description": "SplashKit`s interface library provides various functions for creating\npanels, and drawing interface elements such as buttons, text boxes, and more",
-    "parsed_at": 1753421311,
+    "parsed_at": 1766953059,
     "path": "coresdk/src/coresdk/interface.h",
     "functions": [
       {
@@ -30346,7 +31042,7 @@
     "group": "json",
     "brief": "SplashKit Json allows you to create and read JSON objects.",
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
-    "parsed_at": 1753421312,
+    "parsed_at": 1766953060,
     "path": "coresdk/src/coresdk/json.h",
     "functions": [
       {
@@ -32099,7 +32795,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421313,
+    "parsed_at": 1766953061,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -33097,7 +33793,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421314,
+    "parsed_at": 1766953061,
     "path": "coresdk/src/coresdk/line_drawing.h",
     "functions": [
       {
@@ -34636,7 +35332,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421314,
+    "parsed_at": 1766953061,
     "path": "coresdk/src/coresdk/line_geometry.h",
     "functions": [
       {
@@ -35510,7 +36206,7 @@
     "group": "logging",
     "brief": "SplashKit Logging facilitates streamlined logging with customizable severity levels and modes.",
     "description": "SplashKit Logging module,  allows users to initialize a custom logger with specified log levels and modes (console, file, or both). \nThe module provides functions to log messages at different severity levels (INFO, DEBUG, WARNING, ERROR, FATAL) with timestamped entries. \nUsers can close the logging process as needed, and the module handles customization for console and file output.",
-    "parsed_at": 1753421314,
+    "parsed_at": 1766953061,
     "path": "coresdk/src/coresdk/logging.h",
     "functions": [
       {
@@ -35759,7 +36455,7 @@
     "group": "physics",
     "brief": "Provides matrix functions to work on 2d coordinates.",
     "description": null,
-    "parsed_at": 1753421315,
+    "parsed_at": 1766953062,
     "path": "coresdk/src/coresdk/matrix_2d.h",
     "functions": [
       {
@@ -36497,7 +37193,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421315,
+    "parsed_at": 1766953062,
     "path": "coresdk/src/coresdk/mouse_input.h",
     "functions": [
       {
@@ -36984,7 +37680,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1763278387,
+    "parsed_at": 1766953062,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -38040,7 +38736,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1753421317,
+    "parsed_at": 1766953063,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -41332,7 +42028,7 @@
     "group": "physics",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421317,
+    "parsed_at": 1766953063,
     "path": "coresdk/src/coresdk/physics.h",
     "functions": [
 
@@ -41354,7 +42050,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421317,
+    "parsed_at": 1766953063,
     "path": "coresdk/src/coresdk/point_drawing.h",
     "functions": [
       {
@@ -42568,7 +43264,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421318,
+    "parsed_at": 1766953064,
     "path": "coresdk/src/coresdk/point_geometry.h",
     "functions": [
       {
@@ -43595,7 +44291,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421318,
+    "parsed_at": 1766953064,
     "path": "coresdk/src/coresdk/quad_geometry.h",
     "functions": [
       {
@@ -44277,7 +44973,7 @@
     "group": "utilities",
     "brief": "SplashKit random provides a simple implementation of random.",
     "description": "The SplashKit`s random library provides two rnd methods, a `rnd()` which generates\na random number between 0 and 1, and `rnd(int ubound)` which\ngenerates a random number between 0 and the value scpeficied in `ubound`.",
-    "parsed_at": 1753421318,
+    "parsed_at": 1766953064,
     "path": "coresdk/src/coresdk/random.h",
     "functions": [
       {
@@ -44411,7 +45107,7 @@
     "group": "raspberry",
     "brief": "Provides support for using an ADC device with the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1764933340,
+    "parsed_at": 1766953064,
     "path": "coresdk/src/coresdk/raspi_adc.h",
     "functions": [
       {
@@ -44859,7 +45555,7 @@
     "group": "raspberry",
     "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1764933340,
+    "parsed_at": 1766953064,
     "path": "coresdk/src/coresdk/raspi_gpio.h",
     "functions": [
       {
@@ -46414,11 +47110,804 @@
 
     ]
   },
+  "raspi_motor_driver": {
+    "group": "raspberry",
+    "brief": "Provides support for using a motor driver with the GPIO pins on the Raspberry Pi.",
+    "description": null,
+    "parsed_at": 1766953065,
+    "path": "coresdk/src/coresdk/raspi_motor_driver.h",
+    "functions": [
+      {
+        "signature": "void close_all_motors();",
+        "name": "close_all_motors",
+        "method_name": null,
+        "unique_global_name": "close_all_motors",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Closes all opened motor devices.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void close_motor(const string &name);",
+        "name": "close_motor",
+        "method_name": null,
+        "unique_global_name": "close_motor_named",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Closes and frees a motor device by name.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "Name of the motor device.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "named",
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void close_motor(motor_device dev);",
+        "name": "close_motor",
+        "method_name": null,
+        "unique_global_name": "close_motor",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Closes and frees resources for a motor device.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "dev": {
+            "type": "motor_device",
+            "description": "The motor device handle.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "bool has_motor_device(const string &name);",
+        "name": "has_motor_device",
+        "method_name": null,
+        "unique_global_name": "has_motor_device",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if a motor device with the given name is already opened.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "true if open, false otherwise.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "Identifier for the motor driver.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "motor_device motor_named(const string &name);",
+        "name": "motor_named",
+        "method_name": null,
+        "unique_global_name": "motor_named",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Retrieves an existing motor device handle by name.",
+        "brief": null,
+        "return": {
+          "type": "motor_device",
+          "description": "motor_device pointer or nullptr.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "Identifier for the motor driver.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "motor_device open_motor(const string &name,motor_driver_type type,gpio_pin in1_pin,gpio_pin in2_pin,gpio_pin en_pin);",
+        "name": "open_motor",
+        "method_name": null,
+        "unique_global_name": "open_motor",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Opens a motor device with the specified parameters.",
+        "brief": null,
+        "return": {
+          "type": "motor_device",
+          "description": "A valid motor_device on success, or nullptr on failure.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "Identifier for the motor driver.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "type": {
+            "type": "motor_driver_type",
+            "description": "Type of motor driver (e.g., L298N).",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "in1_pin": {
+            "type": "gpio_pin",
+            "description": "GPIO pin for IN1.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "in2_pin": {
+            "type": "gpio_pin",
+            "description": "GPIO pin for IN2.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "en_pin": {
+            "type": "gpio_pin",
+            "description": "GPIO pin for ENA.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void set_motor_direction(motor_device dev,motor_direction dir);",
+        "name": "set_motor_direction",
+        "method_name": null,
+        "unique_global_name": "set_motor_direction",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the motor rotation direction.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "dev": {
+            "type": "motor_device",
+            "description": "The motor device handle.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "dir": {
+            "type": "motor_direction",
+            "description": "Desired rotation direction.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void set_motor_speed(motor_device dev,double speed);",
+        "name": "set_motor_speed",
+        "method_name": null,
+        "unique_global_name": "set_motor_speed",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the PWM speed of the motor (0-1).",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "dev": {
+            "type": "motor_device",
+            "description": "The motor device handle.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "speed": {
+            "type": "double",
+            "description": "Duty cycle speed (0..1).",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void stop_motor(motor_device dev);",
+        "name": "stop_motor",
+        "method_name": null,
+        "unique_global_name": "stop_motor",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Stops the motor immediately (brake).",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "dev": {
+            "type": "motor_device",
+            "description": "The motor device handle.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      }
+    ],
+    "typedefs": [
+      {
+        "signature": "typedef struct _motor_data *motor_device;",
+        "name": "motor_device",
+        "description": "The `motor_device` type is used to refer to motor driver devices that can\nbe managed by the SplashKit motor driver code. Motor devices are:\n\n- checked with `has_motor_device` to see if a motor is already opened,\n\n- accessed using `motor_named` to retrieve an existing motor device by name,\n\n- opened using `open_motor` with specific parameters such as motor type and GPIO pins,\n\n- controlled using `set_motor_direction` to set the rotation direction and\n`set_motor_speed` to adjust the PWM speed,\n\n- stopped immediately using `stop_motor` for braking,\n\n- and must be released using `close_motor` (to release a specific motor device\nby handle or name) or `close_all_motors` (to release all opened motor devices).\n\nMotor devices allow you to control DC motors or similar devices using GPIO pins\nand PWM signals, enabling precise control over speed and direction.\n\nUse `close_motor` or `close_all_motors` to release resources associated with\nmotor devices when they are no longer needed.",
+        "brief": "Opaque handle for an L298N motor driver instance.",
+        "attributes": {
+          "class": "motor_device",
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "is_function_pointer": false,
+        "aliased_type": null,
+        "aliased_identifier": null,
+        "is_pointer": false,
+        "new_identifier": null
+      }
+    ],
+    "structs": [
+
+    ],
+    "enums": [
+
+    ],
+    "defines": [
+
+    ]
+  },
+  "raspi_servo_driver": {
+    "group": "raspberry",
+    "brief": "Provides support for using servo motors with the GPIO pins on the Raspberry Pi.",
+    "description": null,
+    "parsed_at": 1766953065,
+    "path": "coresdk/src/coresdk/raspi_servo_driver.h",
+    "functions": [
+      {
+        "signature": "void close_all_servos();",
+        "name": "close_all_servos",
+        "method_name": null,
+        "unique_global_name": "close_all_servos",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Close *all* servos.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void close_servo(const string &name);",
+        "name": "close_servo",
+        "method_name": null,
+        "unique_global_name": "close_servo_named",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Closes a servo device given its name.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the servo device to close.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "named",
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void close_servo(servo_device dev);",
+        "name": "close_servo",
+        "method_name": "close",
+        "unique_global_name": "close_servo",
+        "unique_method_name": "servo_device.close",
+        "suffix_name": null,
+        "description": "Close one servo (by handle) or by name.\nCloses a servo device given its pointer.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "dev": {
+            "type": "servo_device",
+            "description": "The servo device to close.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "servo_device",
+          "destructor": true,
+          "method": "close",
+          "self": "dev",
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "bool has_servo_device(const string &name);",
+        "name": "has_servo_device",
+        "method_name": null,
+        "unique_global_name": "has_servo_device",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns true if a servo with this name is already open.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "true if the servo is open, false otherwise.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "Your identifier for this servo.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "servo_device open_servo(const string &name,gpio_pin control_pin);",
+        "name": "open_servo",
+        "method_name": null,
+        "unique_global_name": "open_servo",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Open (and initialize) a servo on the given board pin.",
+        "brief": null,
+        "return": {
+          "type": "servo_device",
+          "description": "A valid servo_device, or nullptr on failure.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "Your identifier for this servo.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "control_pin": {
+            "type": "gpio_pin",
+            "description": "Board‐numbered GPIO pin for the servo signal line.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "servo_device",
+          "constructor": true,
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "servo_device servo_named(const string &name);",
+        "name": "servo_named",
+        "method_name": null,
+        "unique_global_name": "servo_named",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Look up an already‐opened servo by name.",
+        "brief": null,
+        "return": {
+          "type": "servo_device",
+          "description": "A valid servo_device, or nullptr if not found.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "Your identifier for this servo.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void set_servo_angle(servo_device dev,double angle_degrees);",
+        "name": "set_servo_angle",
+        "method_name": "set_angle",
+        "unique_global_name": "set_servo_angle",
+        "unique_method_name": "servo_device.set_angle",
+        "suffix_name": null,
+        "description": "Convenience: map an angle (0…180°) into the 500…2500 µs range.\nThis is a linear mapping, so it may not be accurate for all servos.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "dev": {
+            "type": "servo_device",
+            "description": "The servo device to control.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "angle_degrees": {
+            "type": "double",
+            "description": "The angle in degrees (0…180).",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "servo_device",
+          "method": "set_angle",
+          "self": "dev",
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void stop_servo(servo_device dev);",
+        "name": "stop_servo",
+        "method_name": "stop",
+        "unique_global_name": "stop_servo",
+        "unique_method_name": "servo_device.stop",
+        "suffix_name": null,
+        "description": "Stop sending pulses (servo will hold last position or drift).\nThis is a convenience function that sets the pulse width to 0.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "dev": {
+            "type": "servo_device",
+            "description": "The servo device to control.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "servo_device",
+          "method": "stop",
+          "self": "dev",
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      }
+    ],
+    "typedefs": [
+      {
+        "signature": "typedef struct _servo_data *servo_device;",
+        "name": "servo_device",
+        "description": "The `servo_device` type is used to refer to servo driver devices that can\nbe managed by the SplashKit servo driver code. Servo devices are:\nOpaque handle for a single‐pin servo device.\nServo devices are:\n- checked with `has_servo_device` to see if a servo is already opened,\n\n- accessed using `servo_named` to retrieve an existing servo device by name,\n\n- opened using `open_servo` with specific parameters such as a unique name\nand the GPIO pin for the servo signal line,\n\n- controlled using `set_servo_pulsewidth` to send raw pulse-width signals\nor `set_servo_angle` to map an angle (0–180°) into the pulse-width range,\n\n- stopped using `stop_servo` to halt signal pulses while holding the last\nposition or allowing the servo to drift,\n\n- and must be released using `close_servo` (to release a specific servo device\nby handle or name) or `close_all_servos` (to release all opened servo devices).\n\nServo devices allow you to control hobby servos or similar devices using GPIO pins\nand PWM signals, enabling precise control over position and movement.\n\nUse `close_servo` or `close_all_servos` to release resources associated with\nservo devices when they are no longer needed.",
+        "brief": null,
+        "attributes": {
+          "class": "servo_device",
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "is_function_pointer": false,
+        "aliased_type": null,
+        "aliased_identifier": null,
+        "is_pointer": false,
+        "new_identifier": null
+      }
+    ],
+    "structs": [
+
+    ],
+    "enums": [
+
+    ],
+    "defines": [
+
+    ]
+  },
   "rectangle_drawing": {
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421320,
+    "parsed_at": 1766953065,
     "path": "coresdk/src/coresdk/rectangle_drawing.h",
     "functions": [
       {
@@ -49313,7 +50802,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421320,
+    "parsed_at": 1766953066,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -50302,7 +51791,7 @@
     "group": "resources",
     "brief": "SplashKit resource functions allow you to locate resources in a\nproject's `Resources` folder.",
     "description": null,
-    "parsed_at": 1753421321,
+    "parsed_at": 1766953066,
     "path": "coresdk/src/coresdk/resources.h",
     "functions": [
       {
@@ -50620,7 +52109,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421321,
+    "parsed_at": 1766953066,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -51629,7 +53118,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1753421324,
+    "parsed_at": 1766953068,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -58505,7 +59994,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1753421324,
+    "parsed_at": 1766953068,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -58925,7 +60414,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1753421325,
+    "parsed_at": 1766953068,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -61852,7 +63341,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421325,
+    "parsed_at": 1766953069,
     "path": "coresdk/src/coresdk/text_input.h",
     "functions": [
       {
@@ -62405,7 +63894,7 @@
     "group": "timers",
     "brief": "Timers in SplashKit can be used to track the passing of time.",
     "description": null,
-    "parsed_at": 1753421326,
+    "parsed_at": 1766953069,
     "path": "coresdk/src/coresdk/timers.h",
     "functions": [
       {
@@ -63244,7 +64733,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421327,
+    "parsed_at": 1766953069,
     "path": "coresdk/src/coresdk/triangle_drawing.h",
     "functions": [
       {
@@ -65651,7 +67140,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421327,
+    "parsed_at": 1766953070,
     "path": "coresdk/src/coresdk/triangle_geometry.h",
     "functions": [
       {
@@ -66215,7 +67704,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1764387908,
+    "parsed_at": 1766953070,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -66577,6 +68066,160 @@
           "anim": {
             "type": "animation",
             "description": "The animation to use, which overrides the part\noption",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "types"
+        }
+      },
+      {
+        "signature": "struct language_model_options {string name;string url;string path;int max_tokens;double temperature;double top_p;int top_k;double min_p;double presence_penalty;string prompt_append;int seed;};",
+        "name": "language_model_options",
+        "description": "Language model options allow you to customize the language model used. These should be\ninitialised using functions such as `option_language_model`.",
+        "brief": null,
+        "fields": {
+          "name": {
+            "type": "string",
+            "description": "The name of the model (used in diagnostic messages).",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "url": {
+            "type": "string",
+            "description": "A URL to download a model from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "path": {
+            "type": "string",
+            "description": "A path to a custom language model (.gguf) file on your computer/a place to download it to.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "max_tokens": {
+            "type": "int",
+            "description": "The maximum number of tokens to output when replying. One word is approximately two tokens.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "temperature": {
+            "type": "double",
+            "description": "Increases the likelihood of unlikely tokens to be chosen.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "top_p": {
+            "type": "double",
+            "description": "Only choose from the top P most likely tokens.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "top_k": {
+            "type": "int",
+            "description": "Only choose from the top K most likely tokens.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "min_p": {
+            "type": "double",
+            "description": "Remove tokens less likely than P.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "presence_penalty": {
+            "type": "double",
+            "description": "Penalizes words that have been used once, making them less likely. Can reduce repetition.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "prompt_append": {
+            "type": "string",
+            "description": "A string to append to prompts automatically.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "seed": {
+            "type": "int",
+            "description": "Language model options allow you to customize the language model used. These should be\ninitialised using functions such as `option_language_model`.",
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,
@@ -67277,6 +68920,77 @@
         }
       },
       {
+        "signature": "enum language_model {QWEN3_0_6B_BASE = 4,QWEN3_0_6B_INSTRUCT = 5,QWEN3_0_6B_THINKING = 6,QWEN3_1_7B_BASE = 8,QWEN3_1_7B_INSTRUCT = 9,QWEN3_1_7B_THINKING = 10,QWEN3_4B_BASE = 12,QWEN3_4B_INSTRUCT = 13,QWEN3_4B_THINKING = 14,GEMMA3_270M_BASE = 16,GEMMA3_270M_INSTRUCT = 17,GEMMA3_1B_BASE = 20,GEMMA3_1B_INSTRUCT = 21,GEMMA3_4B_BASE = 24,GEMMA3_4B_INSTRUCT = 25,};",
+        "name": "language_model",
+        "description": "Language Models:\nChoose between different language models to trade off speed and intelligence\nEach model is scaled to fit within 1~2GB and will be automatically downloaded when needed - feel free to try them out!",
+        "brief": null,
+        "constants": {
+          "QWEN3_0_6B_BASE": {
+            "description": "Qwen3 0.6B Base model - small, extremely fast and good for text commpletion. Very limited world knowledge.",
+            "number": 4
+          },
+          "QWEN3_0_6B_INSTRUCT": {
+            "description": "Qwen3 0.6B Instruct model (default) - small, extremely fast and can follow simple instructions. Very limited world knowledge.",
+            "number": 5
+          },
+          "QWEN3_0_6B_THINKING": {
+            "description": "Qwen3 0.6B Thinking model - small, extremely fast and can follow more specific instructions, but has a short delay before starting to reply. Very limited world knowledge.",
+            "number": 6
+          },
+          "QWEN3_1_7B_BASE": {
+            "description": "Qwen3 1.7B Base model - decently fast and good for text commpletion. Limited world knowledge.",
+            "number": 8
+          },
+          "QWEN3_1_7B_INSTRUCT": {
+            "description": "Qwen3 1.7B Instruct model - decently fast and can follow instructions. Limited world knowledge.",
+            "number": 9
+          },
+          "QWEN3_1_7B_THINKING": {
+            "description": "Qwen3 1.7B Thinking model - decently fast and can follow more difficult instructions, but has a delay before starting to reply. Limited world knowledge.",
+            "number": 10
+          },
+          "QWEN3_4B_BASE": {
+            "description": "Qwen3 4B Base model - slower but excellent for text commpletion/pattern based completion",
+            "number": 12
+          },
+          "QWEN3_4B_INSTRUCT": {
+            "description": "Qwen3 4B Instruct model - slower but can follow complex instructions",
+            "number": 13
+          },
+          "QWEN3_4B_THINKING": {
+            "description": "Qwen3 4B Thinking model - slower but can follow complex and specific instructions, but has a potentially long delay before starting to reply",
+            "number": 14
+          },
+          "GEMMA3_270M_BASE": {
+            "description": "Gemma3 270M Base model - tiny, extremely fast, and good for text completion. Very limited world knowledge.",
+            "number": 16
+          },
+          "GEMMA3_270M_INSTRUCT": {
+            "description": "Gemma3 270M Instruct model - tiny, extremely fast, and good for very simple instructions. Very limited world knowledge.",
+            "number": 17
+          },
+          "GEMMA3_1B_BASE": {
+            "description": "Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multi-lingual abilities.",
+            "number": 20
+          },
+          "GEMMA3_1B_INSTRUCT": {
+            "description": "Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multi-lingual abilities.",
+            "number": 21
+          },
+          "GEMMA3_4B_BASE": {
+            "description": "Gemma3 4B Base model - slower but good for text commpletion/pattern based completion. Has decent world knowledge and multi-lingual abilities.",
+            "number": 24
+          },
+          "GEMMA3_4B_INSTRUCT": {
+            "description": "Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multi-lingual abilities.",
+            "number": 25
+          }
+        },
+        "attributes": {
+          "group": "types"
+        }
+      },
+      {
         "signature": "enum motor_direction {MOTOR_FORWARD,MOTOR_BACKWARD};",
         "name": "motor_direction",
         "description": "Motor Movement Directions:",
@@ -67340,7 +69054,7 @@
     "group": "utilities",
     "brief": "SplashKit provides miscellaneous utilities for unclassified functionality.",
     "description": null,
-    "parsed_at": 1753421329,
+    "parsed_at": 1766953071,
     "path": "coresdk/src/coresdk/utils.h",
     "functions": [
       {
@@ -67548,7 +69262,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1753421329,
+    "parsed_at": 1766953071,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
@@ -68981,7 +70695,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421329,
+    "parsed_at": 1766953071,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -69576,7 +71290,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421330,
+    "parsed_at": 1766953072,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -71295,7 +73009,7 @@
     "group": "windows",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1753421331,
+    "parsed_at": 1766953072,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {

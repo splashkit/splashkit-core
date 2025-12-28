@@ -90,6 +90,12 @@ unsigned char __skadapter__to_unsigned_char(unsigned char v) {
 __sklib_ptr __skadapter__to_sklib_ptr(__sklib_ptr v) {
     return v;
 }
+__sklib_ptr __skadapter__to_sklib_conversation(conversation v) {
+    return static_cast<__sklib_ptr>(v);
+}
+conversation __skadapter__to_conversation(__sklib_ptr v) {
+    return static_cast<conversation>(v);
+}
 __sklib_ptr __skadapter__to_sklib_json(json v) {
     return static_cast<__sklib_ptr>(v);
 }
@@ -125,6 +131,18 @@ __sklib_ptr __skadapter__to_sklib_adc_device(adc_device v) {
 }
 adc_device __skadapter__to_adc_device(__sklib_ptr v) {
     return static_cast<adc_device>(v);
+}
+__sklib_ptr __skadapter__to_sklib_motor_device(motor_device v) {
+    return static_cast<__sklib_ptr>(v);
+}
+motor_device __skadapter__to_motor_device(__sklib_ptr v) {
+    return static_cast<motor_device>(v);
+}
+__sklib_ptr __skadapter__to_sklib_servo_device(servo_device v) {
+    return static_cast<__sklib_ptr>(v);
+}
+servo_device __skadapter__to_servo_device(__sklib_ptr v) {
+    return static_cast<servo_device>(v);
 }
 __sklib_ptr __skadapter__to_sklib_sound_effect(sound_effect v) {
     return static_cast<__sklib_ptr>(v);
@@ -300,6 +318,12 @@ int __skadapter__to_sklib_interface_style(interface_style v) {
 interface_style __skadapter__to_interface_style(int v) {
     return static_cast<interface_style>(v);
 }
+int __skadapter__to_sklib_language_model(language_model v) {
+    return static_cast<int>(v);
+}
+language_model __skadapter__to_language_model(int v) {
+    return static_cast<language_model>(v);
+}
 int __skadapter__to_sklib_motor_direction(motor_direction v) {
     return static_cast<int>(v);
 }
@@ -440,6 +464,36 @@ drawing_options __skadapter__to_drawing_options(__sklib_drawing_options v) {
     __skreturn.camera = __skadapter__to_drawing_dest(v.camera);
     __skreturn.line_width = __skadapter__to_int(v.line_width);
     __skreturn.anim = __skadapter__to_animation(v.anim);
+    return __skreturn;
+}
+__sklib_language_model_options __skadapter__to_sklib_language_model_options(language_model_options v) {
+    __sklib_language_model_options __skreturn;
+    __skreturn.name = __skadapter__to_sklib_string(v.name);
+    __skreturn.url = __skadapter__to_sklib_string(v.url);
+    __skreturn.path = __skadapter__to_sklib_string(v.path);
+    __skreturn.max_tokens = __skadapter__to_int(v.max_tokens);
+    __skreturn.temperature = __skadapter__to_double(v.temperature);
+    __skreturn.top_p = __skadapter__to_double(v.top_p);
+    __skreturn.top_k = __skadapter__to_int(v.top_k);
+    __skreturn.min_p = __skadapter__to_double(v.min_p);
+    __skreturn.presence_penalty = __skadapter__to_double(v.presence_penalty);
+    __skreturn.prompt_append = __skadapter__to_sklib_string(v.prompt_append);
+    __skreturn.seed = __skadapter__to_int(v.seed);
+    return __skreturn;
+}
+language_model_options __skadapter__to_language_model_options(__sklib_language_model_options v) {
+    language_model_options __skreturn;
+    __skreturn.name = __skadapter__to_string(v.name);
+    __skreturn.url = __skadapter__to_string(v.url);
+    __skreturn.path = __skadapter__to_string(v.path);
+    __skreturn.max_tokens = __skadapter__to_int(v.max_tokens);
+    __skreturn.temperature = __skadapter__to_double(v.temperature);
+    __skreturn.top_p = __skadapter__to_double(v.top_p);
+    __skreturn.top_k = __skadapter__to_int(v.top_k);
+    __skreturn.min_p = __skadapter__to_double(v.min_p);
+    __skreturn.presence_penalty = __skadapter__to_double(v.presence_penalty);
+    __skreturn.prompt_append = __skadapter__to_string(v.prompt_append);
+    __skreturn.seed = __skadapter__to_int(v.seed);
     return __skreturn;
 }
 __sklib_line __skadapter__to_sklib_line(line v) {

@@ -149,6 +149,11 @@ namespace SplashKitSDK
     private static InterfaceStyle __skadapter__to_interface_style(int v) { return (InterfaceStyle)v; }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int __skadapter__to_sklib_language_model(LanguageModel v) { return (int)v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static LanguageModel __skadapter__to_language_model(int v) { return (LanguageModel)v; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_sklib_motor_direction(MotorDirection v) { return (int)v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static MotorDirection __skadapter__to_motor_direction(int v) { return (MotorDirection)v; }
@@ -350,6 +355,40 @@ namespace SplashKitSDK
       __skreturn.Camera = __skadapter__to_drawing_dest(v.Camera);
       __skreturn.LineWidth = __skadapter__to_int(v.LineWidth);
       __skreturn.Anim = __skadapter__to_animation(v.Anim);
+      return __skreturn;
+    }
+
+
+    private static __sklib_language_model_options __skadapter__to_sklib_language_model_options(LanguageModelOptions v)
+    {
+      __sklib_language_model_options __skreturn;
+      __skreturn.Name = __skadapter__to_sklib_string(v.Name);
+      __skreturn.Url = __skadapter__to_sklib_string(v.Url);
+      __skreturn.Path = __skadapter__to_sklib_string(v.Path);
+      __skreturn.MaxTokens = __skadapter__to_sklib_int(v.MaxTokens);
+      __skreturn.Temperature = __skadapter__to_sklib_double(v.Temperature);
+      __skreturn.TopP = __skadapter__to_sklib_double(v.TopP);
+      __skreturn.TopK = __skadapter__to_sklib_int(v.TopK);
+      __skreturn.MinP = __skadapter__to_sklib_double(v.MinP);
+      __skreturn.PresencePenalty = __skadapter__to_sklib_double(v.PresencePenalty);
+      __skreturn.PromptAppend = __skadapter__to_sklib_string(v.PromptAppend);
+      __skreturn.Seed = __skadapter__to_sklib_int(v.Seed);
+      return __skreturn;
+    }
+    private static LanguageModelOptions __skadapter__to_language_model_options(__sklib_language_model_options v)
+    {
+      LanguageModelOptions __skreturn;
+      __skreturn.Name = __skadapter__to_string(v.Name);
+      __skreturn.Url = __skadapter__to_string(v.Url);
+      __skreturn.Path = __skadapter__to_string(v.Path);
+      __skreturn.MaxTokens = __skadapter__to_int(v.MaxTokens);
+      __skreturn.Temperature = __skadapter__to_double(v.Temperature);
+      __skreturn.TopP = __skadapter__to_double(v.TopP);
+      __skreturn.TopK = __skadapter__to_int(v.TopK);
+      __skreturn.MinP = __skadapter__to_double(v.MinP);
+      __skreturn.PresencePenalty = __skadapter__to_double(v.PresencePenalty);
+      __skreturn.PromptAppend = __skadapter__to_string(v.PromptAppend);
+      __skreturn.Seed = __skadapter__to_int(v.Seed);
       return __skreturn;
     }
 
@@ -968,6 +1007,11 @@ namespace SplashKitSDK
     private static SpriteFunction __skadapter__to_sklib_sprite_function(SpriteFunction v) { return v; }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static IntPtr __skadapter__to_sklib_conversation(Conversation v) { return v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static Conversation __skadapter__to_conversation(IntPtr v) { return Conversation.FetchOrCreate(v); }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static IntPtr __skadapter__to_sklib_json(Json v) { return v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Json __skadapter__to_json(IntPtr v) { return Json.FetchOrCreate(v); }
@@ -996,6 +1040,16 @@ namespace SplashKitSDK
     private static IntPtr __skadapter__to_sklib_adc_device(AdcDevice v) { return v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static AdcDevice __skadapter__to_adc_device(IntPtr v) { return AdcDevice.FetchOrCreate(v); }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static IntPtr __skadapter__to_sklib_motor_device(MotorDevice v) { return v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static MotorDevice __skadapter__to_motor_device(IntPtr v) { return MotorDevice.FetchOrCreate(v); }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static IntPtr __skadapter__to_sklib_servo_device(ServoDevice v) { return v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static ServoDevice __skadapter__to_servo_device(IntPtr v) { return ServoDevice.FetchOrCreate(v); }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static IntPtr __skadapter__to_sklib_sound_effect(SoundEffect v) { return v; }
@@ -2473,6 +2527,54 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__conversation_add_message__conversation__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__conversation_add_message__conversation__string_ref(__sklib_ptr c, __sklib_string message);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__conversation_get_reply_piece__conversation", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__conversation_get_reply_piece__conversation(__sklib_ptr c);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__conversation_is_replying__conversation", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__conversation_is_replying__conversation(__sklib_ptr c);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__conversation_is_thinking__conversation", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__conversation_is_thinking__conversation(__sklib_ptr c);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_conversation__language_model_options", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__create_conversation__language_model_options(__sklib_language_model_options options);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_conversation", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__create_conversation();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_conversation__language_model", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__create_conversation__language_model(int model);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_conversations", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__free_all_conversations();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_conversation__conversation", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__free_conversation__conversation(__sklib_ptr c);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_reply__string__language_model_options", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__generate_reply__string__language_model_options(__sklib_string prompt, __sklib_language_model_options options);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_reply__language_model__string", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__generate_reply__language_model__string(int model, __sklib_string prompt);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_reply__string", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__generate_reply__string(__sklib_string prompt);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__string__language_model_options", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__generate_text__string__language_model_options(__sklib_string text, __sklib_language_model_options options);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__language_model__string", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__generate_text__language_model__string(int model, __sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__string", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__generate_text__string(__sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_language_model__language_model", CharSet=CharSet.Ansi)]
+    private static extern __sklib_language_model_options __sklib__option_language_model__language_model(int model);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__cosine__float", CharSet=CharSet.Ansi)]
     private static extern float __sklib__cosine__float(float degrees);
 
@@ -3843,6 +3945,57 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__remote_raspi_write__connection__gpio_pin__gpio_pin_value", CharSet=CharSet.Ansi)]
     private static extern void __sklib__remote_raspi_write__connection__gpio_pin__gpio_pin_value(__sklib_ptr pi, int pin, int value);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_motors", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__close_all_motors();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_motor__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__close_motor__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_motor__motor_device", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__close_motor__motor_device(__sklib_ptr dev);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_motor_device__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_motor_device__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__motor_named__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__motor_named__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_motor__string_ref__motor_driver_type__gpio_pin__gpio_pin__gpio_pin", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__open_motor__string_ref__motor_driver_type__gpio_pin__gpio_pin__gpio_pin(__sklib_string name, int type, int in1Pin, int in2Pin, int enPin);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_motor_direction__motor_device__motor_direction", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_motor_direction__motor_device__motor_direction(__sklib_ptr dev, int dir);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_motor_speed__motor_device__double", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_motor_speed__motor_device__double(__sklib_ptr dev, double speed);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_motor__motor_device", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__stop_motor__motor_device(__sklib_ptr dev);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_servos", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__close_all_servos();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_servo__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__close_servo__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_servo__servo_device", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__close_servo__servo_device(__sklib_ptr dev);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_servo_device__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_servo_device__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_servo__string_ref__gpio_pin", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__open_servo__string_ref__gpio_pin(__sklib_string name, int controlPin);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__servo_named__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__servo_named__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_servo_angle__servo_device__double", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_servo_angle__servo_device__double(__sklib_ptr dev, double angleDegrees);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_servo__servo_device", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__stop_servo__servo_device(__sklib_ptr dev);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad__color__quad_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_quad__color__quad_ref(__sklib_color clr, __sklib_quad q);
@@ -12189,6 +12342,221 @@ namespace SplashKitSDK
       __sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts);
     }
     /// <summary>
+    /// Adds a message to a `conversation`, that the language model will begin replying to. You can receive the reply one piece at a time by calling `conversation_get_reply_piece(conversation c)` in a loop
+    /// </summary>
+    /// <param name="c"> The `conversation` object to check</param>
+    /// <param name="message"> The user message to add to the conversation - the language model will reply to this</param>
+    public static void ConversationAddMessage(Conversation c, string message)
+    {
+      __sklib_ptr __skparam__c;
+      __sklib_string __skparam__message;
+      __skparam__c = __skadapter__to_sklib_conversation(c);
+      __skparam__message = __skadapter__to_sklib_string(message);
+      __sklib__conversation_add_message__conversation__string_ref(__skparam__c, __skparam__message);
+    __skadapter__free__sklib_string(ref __skparam__message);
+    }
+    /// <summary>
+    /// Returns a single piece of a reply (generally one word at a time) from the `conversation` You can use a loop while checking `conversation_is_replying` to retrieve the reply as it generates
+    /// </summary>
+    /// <param name="c"> The `conversation` object to recieve the reply from</param>
+    /// <returns>Returns a small piece of the reply (generally 1 word or less)</returns>
+    public static string ConversationGetReplyPiece(Conversation c)
+    {
+      __sklib_ptr __skparam__c;
+      __sklib_string __skreturn;
+      __skparam__c = __skadapter__to_sklib_conversation(c);
+      __skreturn = __sklib__conversation_get_reply_piece__conversation(__skparam__c);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// Checks if a language model is currently generating a reply within a `conversation`. If so, you can continue to receive the message with `conversation_get_reply_piece(conversation c)`
+    /// </summary>
+    /// <param name="c"> The `conversation` object to check</param>
+    /// <returns>Returns whether the language model is still generating a reply</returns>
+    public static bool ConversationIsReplying(Conversation c)
+    {
+      __sklib_ptr __skparam__c;
+      int __skreturn;
+      __skparam__c = __skadapter__to_sklib_conversation(c);
+      __skreturn = __sklib__conversation_is_replying__conversation(__skparam__c);
+      return __skadapter__to_bool(__skreturn);
+    }
+    /// <summary>
+    /// Checks if a language model is currently "thinking" while generating a reply within a `conversation`. You can use this to filter out the "thoughts" and display them differently (or hide them entirely)
+    /// </summary>
+    /// <param name="c"> The `conversation` object to check</param>
+    /// <returns>Returns whether the language model is currently thinking while generating a reply</returns>
+    public static bool ConversationIsThinking(Conversation c)
+    {
+      __sklib_ptr __skparam__c;
+      int __skreturn;
+      __skparam__c = __skadapter__to_sklib_conversation(c);
+      __skreturn = __sklib__conversation_is_thinking__conversation(__skparam__c);
+      return __skadapter__to_bool(__skreturn);
+    }
+    /// <summary>
+    /// The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
+    /// </summary>
+    /// <param name="options"> The options to use - use this to choose the language model, and change various parameters.</param>
+    /// <returns>Returns a new `conversation` object.</returns>
+    public static Conversation CreateConversation(LanguageModelOptions options)
+    {
+      __sklib_language_model_options __skparam__options;
+      __sklib_ptr __skreturn;
+      __skparam__options = __skadapter__to_sklib_language_model_options(options);
+      __skreturn = __sklib__create_conversation__language_model_options(__skparam__options);
+      return __skadapter__to_conversation(__skreturn);
+    }
+    /// <summary>
+    /// The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
+    /// </summary>
+    /// <returns>Returns a new `conversation` object.</returns>
+    public static Conversation CreateConversation()
+    {
+      __sklib_ptr __skreturn;
+      __skreturn = __sklib__create_conversation();
+      return __skadapter__to_conversation(__skreturn);
+    }
+    /// <summary>
+    /// The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
+    /// </summary>
+    /// <param name="model"> The language model to use</param>
+    /// <returns>Returns a new `conversation` object.</returns>
+    public static Conversation CreateConversation(LanguageModel model)
+    {
+      int __skparam__model;
+      __sklib_ptr __skreturn;
+      __skparam__model = __skadapter__to_sklib_language_model(model);
+      __skreturn = __sklib__create_conversation__language_model(__skparam__model);
+      return __skadapter__to_conversation(__skreturn);
+    }
+    /// <summary>
+    /// Releases all of the `conversation` objects which have been loaded.
+    /// </summary>
+    public static void FreeAllConversations()
+    {
+      __sklib__free_all_conversations();
+    }
+    /// <summary>
+    /// Frees the resources associated with the `conversation` object.
+    /// </summary>
+    /// <param name="c"> The `conversation` object whose resources should be released.</param>
+    public static void FreeConversation(Conversation c)
+    {
+      __sklib_ptr __skparam__c;
+      __skparam__c = __skadapter__to_sklib_conversation(c);
+      __sklib__free_conversation__conversation(__skparam__c);
+    }
+    /// <summary>
+    /// The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions. Instruct or Thinking models are recommended. Base models likely won't output sensible results.
+    /// </summary>
+    /// <param name="prompt"> The prompt for the language model to reply to.</param>
+    /// <param name="options"> The generation options - use the `option_` functions to create this, for instance `option_language_model`</param>
+    /// <returns>The generated reply.</returns>
+    public static string GenerateReply(string prompt, LanguageModelOptions options)
+    {
+      __sklib_string __skparam__prompt;
+      __sklib_language_model_options __skparam__options;
+      __sklib_string __skreturn;
+      __skparam__prompt = __skadapter__to_sklib_string(prompt);
+      __skparam__options = __skadapter__to_sklib_language_model_options(options);
+      __skreturn = __sklib__generate_reply__string__language_model_options(__skparam__prompt, __skparam__options);
+    __skadapter__free__sklib_string(ref __skparam__prompt);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions. Instruct or Thinking models are recommended. Base models likely won't output sensible results.
+    /// </summary>
+    /// <param name="model"> The language model to use</param>
+    /// <param name="prompt"> The prompt for the language model to reply to.</param>
+    /// <returns>The generated reply.</returns>
+    public static string GenerateReply(LanguageModel model, string prompt)
+    {
+      int __skparam__model;
+      __sklib_string __skparam__prompt;
+      __sklib_string __skreturn;
+      __skparam__model = __skadapter__to_sklib_language_model(model);
+      __skparam__prompt = __skadapter__to_sklib_string(prompt);
+      __skreturn = __sklib__generate_reply__language_model__string(__skparam__model, __skparam__prompt);
+    __skadapter__free__sklib_string(ref __skparam__prompt);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions. Instruct or Thinking models are recommended. Base models likely won't output sensible results.
+    /// </summary>
+    /// <param name="prompt"> The prompt for the language model to reply to.</param>
+    /// <returns>The generated reply.</returns>
+    public static string GenerateReply(string prompt)
+    {
+      __sklib_string __skparam__prompt;
+      __sklib_string __skreturn;
+      __skparam__prompt = __skadapter__to_sklib_string(prompt);
+      __skreturn = __sklib__generate_reply__string(__skparam__prompt);
+    __skadapter__free__sklib_string(ref __skparam__prompt);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
+    /// </summary>
+    /// <param name="text"> The input text for the language model to continue.</param>
+    /// <param name="options"> The generation options - use the `option_` functions to create this, for instance `option_language_model`</param>
+    /// <returns>The generated reply.</returns>
+    public static string GenerateText(string text, LanguageModelOptions options)
+    {
+      __sklib_string __skparam__text;
+      __sklib_language_model_options __skparam__options;
+      __sklib_string __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__options = __skadapter__to_sklib_language_model_options(options);
+      __skreturn = __sklib__generate_text__string__language_model_options(__skparam__text, __skparam__options);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
+    /// </summary>
+    /// <param name="model"> The language model to use</param>
+    /// <param name="text"> The input text for the language model to continue.</param>
+    /// <returns>The generated reply.</returns>
+    public static string GenerateText(LanguageModel model, string text)
+    {
+      int __skparam__model;
+      __sklib_string __skparam__text;
+      __sklib_string __skreturn;
+      __skparam__model = __skadapter__to_sklib_language_model(model);
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__generate_text__language_model__string(__skparam__model, __skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
+    /// </summary>
+    /// <param name="text"> The input text for the language model to continue.</param>
+    /// <returns>The generated reply.</returns>
+    public static string GenerateText(string text)
+    {
+      __sklib_string __skparam__text;
+      __sklib_string __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__generate_text__string(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// Use this option to choose which language model to use, and initialize its default settings
+    /// </summary>
+    /// <param name="model"> The language model to use</param>
+    /// <returns>Language model options that will use that model and its default settings.</returns>
+    public static LanguageModelOptions OptionLanguageModel(LanguageModel model)
+    {
+      int __skparam__model;
+      __sklib_language_model_options __skreturn;
+      __skparam__model = __skadapter__to_sklib_language_model(model);
+      __skreturn = __sklib__option_language_model__language_model(__skparam__model);
+      return __skadapter__to_language_model_options(__skreturn);
+    }
+    /// <summary>
     /// Returns the cosine of the supplied angle (in degrees).
     /// </summary>
     /// <param name="degrees"> The angle in degrees</param>
@@ -18723,6 +19091,220 @@ namespace SplashKitSDK
       __skparam__pin = __skadapter__to_sklib_gpio_pin(pin);
       __skparam__value = __skadapter__to_sklib_gpio_pin_value(value);
       __sklib__remote_raspi_write__connection__gpio_pin__gpio_pin_value(__skparam__pi, __skparam__pin, __skparam__value);
+    }
+    /// <summary>
+    /// Closes all opened motor devices.
+    /// </summary>
+    public static void CloseAllMotors()
+    {
+      __sklib__close_all_motors();
+    }
+    /// <summary>
+    /// Closes and frees a motor device by name.
+    /// </summary>
+    /// <param name="name"> Name of the motor device.</param>
+    public static void CloseMotor(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__close_motor__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    /// <summary>
+    /// Closes and frees resources for a motor device.
+    /// </summary>
+    /// <param name="dev"> The motor device handle.</param>
+    public static void CloseMotor(MotorDevice dev)
+    {
+      __sklib_ptr __skparam__dev;
+      __skparam__dev = __skadapter__to_sklib_motor_device(dev);
+      __sklib__close_motor__motor_device(__skparam__dev);
+    }
+    /// <summary>
+    /// Checks if a motor device with the given name is already opened.
+    /// </summary>
+    /// <param name="name"> Identifier for the motor driver.</param>
+    /// <returns>true if open, false otherwise.</returns>
+    public static bool HasMotorDevice(string name)
+    {
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__has_motor_device__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
+    }
+    /// <summary>
+    /// Retrieves an existing motor device handle by name.
+    /// </summary>
+    /// <param name="name"> Identifier for the motor driver.</param>
+    /// <returns>motor_device pointer or nullptr.</returns>
+    public static MotorDevice MotorNamed(string name)
+    {
+      __sklib_string __skparam__name;
+      __sklib_ptr __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__motor_named__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_motor_device(__skreturn);
+    }
+    /// <summary>
+    /// Opens a motor device with the specified parameters.
+    /// </summary>
+    /// <param name="name"> Identifier for the motor driver.</param>
+    /// <param name="type"> Type of motor driver (e.g., L298N).</param>
+    /// <param name="in1Pin"> GPIO pin for IN1.</param>
+    /// <param name="in2Pin"> GPIO pin for IN2.</param>
+    /// <param name="enPin"> GPIO pin for ENA.</param>
+    /// <returns>A valid motor_device on success, or nullptr on failure.</returns>
+    public static MotorDevice OpenMotor(string name, MotorDriverType type, GpioPin in1Pin, GpioPin in2Pin, GpioPin enPin)
+    {
+      __sklib_string __skparam__name;
+      int __skparam__type;
+      int __skparam__in1_pin;
+      int __skparam__in2_pin;
+      int __skparam__en_pin;
+      __sklib_ptr __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skparam__type = __skadapter__to_sklib_motor_driver_type(type);
+      __skparam__in1_pin = __skadapter__to_sklib_gpio_pin(in1Pin);
+      __skparam__in2_pin = __skadapter__to_sklib_gpio_pin(in2Pin);
+      __skparam__en_pin = __skadapter__to_sklib_gpio_pin(enPin);
+      __skreturn = __sklib__open_motor__string_ref__motor_driver_type__gpio_pin__gpio_pin__gpio_pin(__skparam__name, __skparam__type, __skparam__in1_pin, __skparam__in2_pin, __skparam__en_pin);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_motor_device(__skreturn);
+    }
+    /// <summary>
+    /// Sets the motor rotation direction.
+    /// </summary>
+    /// <param name="dev"> The motor device handle.</param>
+    /// <param name="dir"> Desired rotation direction.</param>
+    public static void SetMotorDirection(MotorDevice dev, MotorDirection dir)
+    {
+      __sklib_ptr __skparam__dev;
+      int __skparam__dir;
+      __skparam__dev = __skadapter__to_sklib_motor_device(dev);
+      __skparam__dir = __skadapter__to_sklib_motor_direction(dir);
+      __sklib__set_motor_direction__motor_device__motor_direction(__skparam__dev, __skparam__dir);
+    }
+    /// <summary>
+    /// Sets the PWM speed of the motor (0-1).
+    /// </summary>
+    /// <param name="dev"> The motor device handle.</param>
+    /// <param name="speed"> Duty cycle speed (0..1).</param>
+    public static void SetMotorSpeed(MotorDevice dev, double speed)
+    {
+      __sklib_ptr __skparam__dev;
+      double __skparam__speed;
+      __skparam__dev = __skadapter__to_sklib_motor_device(dev);
+      __skparam__speed = __skadapter__to_sklib_double(speed);
+      __sklib__set_motor_speed__motor_device__double(__skparam__dev, __skparam__speed);
+    }
+    /// <summary>
+    /// Stops the motor immediately (brake).
+    /// </summary>
+    /// <param name="dev"> The motor device handle.</param>
+    public static void StopMotor(MotorDevice dev)
+    {
+      __sklib_ptr __skparam__dev;
+      __skparam__dev = __skadapter__to_sklib_motor_device(dev);
+      __sklib__stop_motor__motor_device(__skparam__dev);
+    }
+    /// <summary>
+    /// Close *all* servos.
+    /// </summary>
+    public static void CloseAllServos()
+    {
+      __sklib__close_all_servos();
+    }
+    /// <summary>
+    /// Closes a servo device given its name.
+    /// </summary>
+    /// <param name="name"> The name of the servo device to close.</param>
+    public static void CloseServo(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__close_servo__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    /// <summary>
+    /// Close one servo (by handle) or by name. Closes a servo device given its pointer.
+    /// </summary>
+    /// <param name="dev"> The servo device to close.</param>
+    public static void CloseServo(ServoDevice dev)
+    {
+      __sklib_ptr __skparam__dev;
+      __skparam__dev = __skadapter__to_sklib_servo_device(dev);
+      __sklib__close_servo__servo_device(__skparam__dev);
+    }
+    /// <summary>
+    /// Returns true if a servo with this name is already open.
+    /// </summary>
+    /// <param name="name"> Your identifier for this servo.</param>
+    /// <returns>true if the servo is open, false otherwise.</returns>
+    public static bool HasServoDevice(string name)
+    {
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__has_servo_device__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
+    }
+    /// <summary>
+    /// Open (and initialize) a servo on the given board pin.
+    /// </summary>
+    /// <param name="name"> Your identifier for this servo.</param>
+    /// <param name="controlPin"> Board‐numbered GPIO pin for the servo signal line.</param>
+    /// <returns>A valid servo_device, or nullptr on failure.</returns>
+    public static ServoDevice OpenServo(string name, GpioPin controlPin)
+    {
+      __sklib_string __skparam__name;
+      int __skparam__control_pin;
+      __sklib_ptr __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skparam__control_pin = __skadapter__to_sklib_gpio_pin(controlPin);
+      __skreturn = __sklib__open_servo__string_ref__gpio_pin(__skparam__name, __skparam__control_pin);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_servo_device(__skreturn);
+    }
+    /// <summary>
+    /// Look up an already‐opened servo by name.
+    /// </summary>
+    /// <param name="name"> Your identifier for this servo.</param>
+    /// <returns>A valid servo_device, or nullptr if not found.</returns>
+    public static ServoDevice ServoNamed(string name)
+    {
+      __sklib_string __skparam__name;
+      __sklib_ptr __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__servo_named__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_servo_device(__skreturn);
+    }
+    /// <summary>
+    /// Convenience: map an angle (0…180°) into the 500…2500 µs range. This is a linear mapping, so it may not be accurate for all servos.
+    /// </summary>
+    /// <param name="dev"> The servo device to control.</param>
+    /// <param name="angleDegrees"> The angle in degrees (0…180).</param>
+    public static void SetServoAngle(ServoDevice dev, double angleDegrees)
+    {
+      __sklib_ptr __skparam__dev;
+      double __skparam__angle_degrees;
+      __skparam__dev = __skadapter__to_sklib_servo_device(dev);
+      __skparam__angle_degrees = __skadapter__to_sklib_double(angleDegrees);
+      __sklib__set_servo_angle__servo_device__double(__skparam__dev, __skparam__angle_degrees);
+    }
+    /// <summary>
+    /// Stop sending pulses (servo will hold last position or drift). This is a convenience function that sets the pulse width to 0.
+    /// </summary>
+    /// <param name="dev"> The servo device to control.</param>
+    public static void StopServo(ServoDevice dev)
+    {
+      __sklib_ptr __skparam__dev;
+      __skparam__dev = __skadapter__to_sklib_servo_device(dev);
+      __sklib__stop_servo__servo_device(__skparam__dev);
     }
     /// <summary>
     /// Draw a quad to the current window.
@@ -26152,6 +26734,24 @@ namespace SplashKitSDK
     Bubble = 4,
     BubbleMulticolored = 5
   }
+  public enum LanguageModel
+  {
+    Qwen306BBase = 4,
+    Qwen306BInstruct = 5,
+    Qwen306BThinking = 6,
+    Qwen317BBase = 8,
+    Qwen317BInstruct = 9,
+    Qwen317BThinking = 10,
+    Qwen34BBase = 12,
+    Qwen34BInstruct = 13,
+    Qwen34BThinking = 14,
+    Gemma3270mBase = 16,
+    Gemma3270mInstruct = 17,
+    Gemma31BBase = 20,
+    Gemma31BInstruct = 21,
+    Gemma34BBase = 24,
+    Gemma34BInstruct = 25
+  }
   public enum MotorDirection
   {
     MotorForward,
@@ -26965,6 +27565,38 @@ namespace SplashKitSDK
   }
 
   [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_language_model_options
+  {
+    public __sklib_string Name;
+    public __sklib_string Url;
+    public __sklib_string Path;
+    public int MaxTokens;
+    public double Temperature;
+    public double TopP;
+    public int TopK;
+    public double MinP;
+    public double PresencePenalty;
+    public __sklib_string PromptAppend;
+    public int Seed;
+
+  }
+
+  public struct LanguageModelOptions
+  {
+    public string Name;
+    public string Url;
+    public string Path;
+    public int MaxTokens;
+    public double Temperature;
+    public double TopP;
+    public int TopK;
+    public double MinP;
+    public double PresencePenalty;
+    public string PromptAppend;
+    public int Seed;
+  }
+
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
   internal struct __sklib_line
   {
     public __sklib_point_2d StartPoint;
@@ -27189,6 +27821,89 @@ namespace SplashKitSDK
         }
     }
 
+/// <summary>
+/// This class represents Conversation, which wraps a pointer to SplashKit resources.
+/// </summary>
+public class Conversation : PointerWrapper
+{
+  private Conversation(IntPtr ptr) : base(ptr, true) {}
+
+  internal static Conversation FetchOrCreate(IntPtr ptr)
+  {
+    #pragma warning disable CS8603
+    if (ptr == IntPtr.Zero) return null;
+
+    if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Conversation;
+    #pragma warning restore CS8603
+    return new Conversation(ptr);
+  }
+
+    /// <summary>
+    /// Creates a new instance of Conversation using the provided parameters.
+    /// </summary>
+    /// <param name="options"> The options to use - use this to choose the language model, and change various parameters.</param>
+    public Conversation(LanguageModelOptions options) : base ( SplashKit.CreateConversation(options), false )
+    { }
+    /// <summary>
+    /// Creates a new instance of Conversation using the provided parameters.
+    /// </summary>
+    public Conversation() : base ( SplashKit.CreateConversation(), false )
+    { }
+    /// <summary>
+    /// Creates a new instance of Conversation using the provided parameters.
+    /// </summary>
+    /// <param name="model"> The language model to use</param>
+    public Conversation(LanguageModel model) : base ( SplashKit.CreateConversation(model), false )
+    { }
+    protected internal override void DoFree()
+    {
+        SplashKit.FreeConversation(this);
+    }
+    /// <summary>
+    /// Adds a message to a `conversation`, that the language model will begin replying to. You can receive the reply one piece at a time by calling `conversation_get_reply_piece(conversation c)` in a loop
+    /// </summary>
+    /// <param name="message"> The user message to add to the conversation - the language model will reply to this</param>
+    public void AddMessage(string message)
+    {
+        SplashKit.ConversationAddMessage(this, message);
+    }
+
+    /// <summary>
+    /// Returns a single piece of a reply (generally one word at a time) from the `conversation` You can use a loop while checking `conversation_is_replying` to retrieve the reply as it generates
+    /// </summary>
+    /// <returns>Returns a small piece of the reply (generally 1 word or less)</returns>
+    public string GetReplyPiece()
+    {
+        return SplashKit.ConversationGetReplyPiece(this);
+    }
+
+    /// <summary>
+    /// Checks if a language model is currently generating a reply within a `conversation`. If so, you can continue to receive the message with `conversation_get_reply_piece(conversation c)`
+    /// </summary>
+    /// <returns>Returns whether the language model is still generating a reply</returns>
+    public bool IsReplying()
+    {
+        return SplashKit.ConversationIsReplying(this);
+    }
+
+    /// <summary>
+    /// Checks if a language model is currently "thinking" while generating a reply within a `conversation`. You can use this to filter out the "thoughts" and display them differently (or hide them entirely)
+    /// </summary>
+    /// <returns>Returns whether the language model is currently thinking while generating a reply</returns>
+    public bool IsThinking()
+    {
+        return SplashKit.ConversationIsThinking(this);
+    }
+
+    /// <summary>
+    /// Frees the resources associated with the `conversation` object.
+    /// </summary>
+    public void Free()
+    {
+        SplashKit.FreeConversation(this);
+    }
+
+}
 /// <summary>
 /// This class represents Json, which wraps a pointer to SplashKit resources.
 /// </summary>
@@ -27998,6 +28713,78 @@ public class AdcDevice : PointerWrapper
     public int Read(AdcPin channel)
     {
         return SplashKit.ReadAdc(this, channel);
+    }
+
+}
+/// <summary>
+/// This class represents MotorDevice, which wraps a pointer to SplashKit resources.
+/// </summary>
+public class MotorDevice : PointerWrapper
+{
+  private MotorDevice(IntPtr ptr) : base(ptr, true) {}
+
+  internal static MotorDevice FetchOrCreate(IntPtr ptr)
+  {
+    #pragma warning disable CS8603
+    if (ptr == IntPtr.Zero) return null;
+
+    if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as MotorDevice;
+    #pragma warning restore CS8603
+    return new MotorDevice(ptr);
+  }
+
+}
+/// <summary>
+/// This class represents ServoDevice, which wraps a pointer to SplashKit resources.
+/// </summary>
+public class ServoDevice : PointerWrapper
+{
+  private ServoDevice(IntPtr ptr) : base(ptr, true) {}
+
+  internal static ServoDevice FetchOrCreate(IntPtr ptr)
+  {
+    #pragma warning disable CS8603
+    if (ptr == IntPtr.Zero) return null;
+
+    if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as ServoDevice;
+    #pragma warning restore CS8603
+    return new ServoDevice(ptr);
+  }
+
+    /// <summary>
+    /// Creates a new instance of ServoDevice using the provided parameters.
+    /// </summary>
+    /// <param name="name"> Your identifier for this servo.</param>
+    /// <param name="controlPin"> Board‐numbered GPIO pin for the servo signal line.</param>
+    public ServoDevice(string name, GpioPin controlPin) : base ( SplashKit.OpenServo(name, controlPin), false )
+    { }
+    protected internal override void DoFree()
+    {
+        SplashKit.CloseServo(this);
+    }
+    /// <summary>
+    /// Close one servo (by handle) or by name. Closes a servo device given its pointer.
+    /// </summary>
+    public void Close()
+    {
+        SplashKit.CloseServo(this);
+    }
+
+    /// <summary>
+    /// Convenience: map an angle (0…180°) into the 500…2500 µs range. This is a linear mapping, so it may not be accurate for all servos.
+    /// </summary>
+    /// <param name="angleDegrees"> The angle in degrees (0…180).</param>
+    public void SetAngle(double angleDegrees)
+    {
+        SplashKit.SetServoAngle(this, angleDegrees);
+    }
+
+    /// <summary>
+    /// Stop sending pulses (servo will hold last position or drift). This is a convenience function that sets the pulse width to 0.
+    /// </summary>
+    public void Stop()
+    {
+        SplashKit.StopServo(this);
     }
 
 }
@@ -32619,6 +33406,19 @@ public static class Camera{
     {
         get { return SplashKit.VectorWorldToScreen(); }
     }
+}
+/// <summary>
+/// Static methods for working with GenerativeAi in the SplashKit framework.
+/// </summary>
+public static class GenerativeAi{
+    /// <summary>
+    /// Releases all of the `conversation` objects which have been loaded.
+    /// </summary>
+    public static void FreeAll()
+    {
+        SplashKit.FreeAllConversations();
+    }
+
 }
 /// <summary>
 /// Static methods for working with Networking in the SplashKit framework.

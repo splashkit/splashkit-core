@@ -2,6 +2,8 @@ unit SplashKit;
 
 interface
 
+type __sklib_conversation__record_type = record end;
+type Conversation = ^__sklib_conversation__record_type;
 type __sklib_json__record_type = record end;
 type Json = ^__sklib_json__record_type;
 type __sklib_music__record_type = record end;
@@ -14,6 +16,10 @@ type __sklib_server_socket__record_type = record end;
 type ServerSocket = ^__sklib_server_socket__record_type;
 type __sklib_adc_device__record_type = record end;
 type AdcDevice = ^__sklib_adc_device__record_type;
+type __sklib_motor_device__record_type = record end;
+type MotorDevice = ^__sklib_motor_device__record_type;
+type __sklib_servo_device__record_type = record end;
+type ServoDevice = ^__sklib_servo_device__record_type;
 type __sklib_sound_effect__record_type = record end;
 type SoundEffect = ^__sklib_sound_effect__record_type;
 type __sklib_sprite__record_type = record end;
@@ -327,6 +333,23 @@ type InterfaceStyle = (
   BUBBLE = 4,
   BUBBLE_MULTICOLORED = 5
 );
+type LanguageModel = (
+  QWEN3_0_6B_BASE = 4,
+  QWEN3_0_6B_INSTRUCT = 5,
+  QWEN3_0_6B_THINKING = 6,
+  QWEN3_1_7B_BASE = 8,
+  QWEN3_1_7B_INSTRUCT = 9,
+  QWEN3_1_7B_THINKING = 10,
+  QWEN3_4B_BASE = 12,
+  QWEN3_4B_INSTRUCT = 13,
+  QWEN3_4B_THINKING = 14,
+  GEMMA3_270M_BASE = 16,
+  GEMMA3_270M_INSTRUCT = 17,
+  GEMMA3_1B_BASE = 20,
+  GEMMA3_1B_INSTRUCT = 21,
+  GEMMA3_4B_BASE = 24,
+  GEMMA3_4B_INSTRUCT = 25
+);
 type MotorDirection = (
   MOTOR_FORWARD,
   MOTOR_BACKWARD
@@ -405,6 +428,22 @@ end;
 
 operator = (const left, right: DrawingOptions): Boolean;
 operator <> (const left, right: DrawingOptions): Boolean;
+type LanguageModelOptions = record
+  name: String;
+  url: String;
+  path: String;
+  maxTokens: Integer;
+  temperature: Double;
+  topP: Double;
+  topK: Integer;
+  minP: Double;
+  presencePenalty: Double;
+  promptAppend: String;
+  seed: Integer;
+end;
+
+operator = (const left, right: LanguageModelOptions): Boolean;
+operator <> (const left, right: LanguageModelOptions): Boolean;
 type Line = record
   startPoint: Point2D;
   endPoint: Point2D;
@@ -915,6 +954,22 @@ procedure FillEllipseOnWindow(destination: Window; clr: Color; rect: Rectangle);
 procedure FillEllipseOnWindow(destination: Window; clr: Color; rect: Rectangle; opts: DrawingOptions);
 procedure FillEllipseOnWindow(destination: Window; clr: Color; x: Double; y: Double; width: Double; height: Double);
 procedure FillEllipseOnWindow(destination: Window; clr: Color; x: Double; y: Double; width: Double; height: Double; opts: DrawingOptions);
+procedure ConversationAddMessage(c: Conversation; const message: String);
+function ConversationGetReplyPiece(c: Conversation): String;
+function ConversationIsReplying(c: Conversation): Boolean;
+function ConversationIsThinking(c: Conversation): Boolean;
+function CreateConversation(options: LanguageModelOptions): Conversation;
+function CreateConversation(): Conversation;
+function CreateConversation(model: LanguageModel): Conversation;
+procedure FreeAllConversations();
+procedure FreeConversation(c: Conversation);
+function GenerateReply(prompt: String; options: LanguageModelOptions): String;
+function GenerateReply(model: LanguageModel; prompt: String): String;
+function GenerateReply(prompt: String): String;
+function GenerateText(text: String; options: LanguageModelOptions): String;
+function GenerateText(model: LanguageModel; text: String): String;
+function GenerateText(text: String): String;
+function OptionLanguageModel(model: LanguageModel): LanguageModelOptions;
 function Cosine(degrees: Single): Single;
 function Sine(degrees: Single): Single;
 function Tangent(degrees: Single): Single;
@@ -1372,6 +1427,23 @@ procedure RemoteRaspiSetPwmDutycycle(pi: Connection; pin: GpioPin; dutycycle: In
 procedure RemoteRaspiSetPwmFrequency(pi: Connection; pin: GpioPin; frequency: Integer);
 procedure RemoteRaspiSetPwmRange(pi: Connection; pin: GpioPin; range: Integer);
 procedure RemoteRaspiWrite(pi: Connection; pin: GpioPin; value: GpioPinValue);
+procedure CloseAllMotors();
+procedure CloseMotor(const name: String);
+procedure CloseMotor(dev: MotorDevice);
+function HasMotorDevice(const name: String): Boolean;
+function MotorNamed(const name: String): MotorDevice;
+function OpenMotor(const name: String; type: MotorDriverType; in1Pin: GpioPin; in2Pin: GpioPin; enPin: GpioPin): MotorDevice;
+procedure SetMotorDirection(dev: MotorDevice; dir: MotorDirection);
+procedure SetMotorSpeed(dev: MotorDevice; speed: Double);
+procedure StopMotor(dev: MotorDevice);
+procedure CloseAllServos();
+procedure CloseServo(const name: String);
+procedure CloseServo(dev: ServoDevice);
+function HasServoDevice(const name: String): Boolean;
+function OpenServo(const name: String; controlPin: GpioPin): ServoDevice;
+function ServoNamed(const name: String): ServoDevice;
+procedure SetServoAngle(dev: ServoDevice; angleDegrees: Double);
+procedure StopServo(dev: ServoDevice);
 procedure DrawQuad(clr: Color; const q: Quad);
 procedure DrawQuad(clr: Color; const q: Quad; const opts: DrawingOptions);
 procedure DrawQuadOnBitmap(destination: Bitmap; clr: Color; const q: Quad);
@@ -1935,6 +2007,27 @@ begin
   result := not (left = right);
 end;
 
+operator = (const left, right: LanguageModelOptions): Boolean;
+begin
+  result :=
+    (left.name = right.name) and
+    (left.url = right.url) and
+    (left.path = right.path) and
+    (left.maxTokens = right.maxTokens) and
+    (left.temperature = right.temperature) and
+    (left.topP = right.topP) and
+    (left.topK = right.topK) and
+    (left.minP = right.minP) and
+    (left.presencePenalty = right.presencePenalty) and
+    (left.promptAppend = right.promptAppend) and
+    (left.seed = right.seed);
+end;
+
+operator <> (const left, right: LanguageModelOptions): Boolean;
+begin
+  result := not (left = right);
+end;
+
 operator = (const left, right: Line): Boolean;
 begin
   result :=
@@ -2030,6 +2123,19 @@ type __sklib_drawing_options = record
   camera: LongInt;
   lineWidth: Integer;
   anim: __sklib_ptr;
+end;
+type __sklib_language_model_options = record
+  name: __sklib_string;
+  url: __sklib_string;
+  path: __sklib_string;
+  maxTokens: Integer;
+  temperature: Double;
+  topP: Double;
+  topK: Integer;
+  minP: Double;
+  presencePenalty: Double;
+  promptAppend: __sklib_string;
+  seed: Integer;
 end;
 type __sklib_line = record
   startPoint: __sklib_point_2d;
@@ -2295,6 +2401,14 @@ function __skadapter__to_sklib_interface_style(v: InterfaceStyle): LongInt;
 begin
   result := Integer(v);
 end;
+function __skadapter__to_language_model(v: LongInt): LanguageModel;
+begin
+  result := LanguageModel(v);
+end;
+function __skadapter__to_sklib_language_model(v: LanguageModel): LongInt;
+begin
+  result := Integer(v);
+end;
 function __skadapter__to_motor_direction(v: LongInt): MotorDirection;
 begin
   result := MotorDirection(v);
@@ -2334,6 +2448,14 @@ end;
 function __skadapter__to_ptr(v: __sklib_ptr): Pointer;
 begin
   result := Pointer(v);
+end;
+function __skadapter__to_conversation(v: __sklib_ptr): Conversation;
+begin
+  result := Conversation(v);
+end;
+function __skadapter__to_sklib_conversation(v: Conversation): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
 end;
 function __skadapter__to_json(v: __sklib_ptr): Json;
 begin
@@ -2380,6 +2502,22 @@ begin
   result := AdcDevice(v);
 end;
 function __skadapter__to_sklib_adc_device(v: AdcDevice): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_motor_device(v: __sklib_ptr): MotorDevice;
+begin
+  result := MotorDevice(v);
+end;
+function __skadapter__to_sklib_motor_device(v: MotorDevice): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_servo_device(v: __sklib_ptr): ServoDevice;
+begin
+  result := ServoDevice(v);
+end;
+function __skadapter__to_sklib_servo_device(v: ServoDevice): __sklib_ptr;
 begin
   result := __sklib_ptr(v);
 end;
@@ -2584,6 +2722,34 @@ begin
   result.camera := __skadapter__to_drawing_dest(v.camera);
   result.lineWidth := __skadapter__to_int(v.lineWidth);
   result.anim := __skadapter__to_animation(v.anim);
+end;
+function __skadapter__to_sklib_language_model_options(v: LanguageModelOptions): __sklib_language_model_options;
+begin
+  result.name := __skadapter__to_sklib_string(v.name);
+  result.url := __skadapter__to_sklib_string(v.url);
+  result.path := __skadapter__to_sklib_string(v.path);
+  result.maxTokens := __skadapter__to_sklib_int(v.maxTokens);
+  result.temperature := __skadapter__to_sklib_double(v.temperature);
+  result.topP := __skadapter__to_sklib_double(v.topP);
+  result.topK := __skadapter__to_sklib_int(v.topK);
+  result.minP := __skadapter__to_sklib_double(v.minP);
+  result.presencePenalty := __skadapter__to_sklib_double(v.presencePenalty);
+  result.promptAppend := __skadapter__to_sklib_string(v.promptAppend);
+  result.seed := __skadapter__to_sklib_int(v.seed);
+end;
+function __skadapter__to_language_model_options(v: __sklib_language_model_options): LanguageModelOptions;
+begin
+  result.name := __skadapter__to_string(v.name);
+  result.url := __skadapter__to_string(v.url);
+  result.path := __skadapter__to_string(v.path);
+  result.maxTokens := __skadapter__to_int(v.maxTokens);
+  result.temperature := __skadapter__to_double(v.temperature);
+  result.topP := __skadapter__to_double(v.topP);
+  result.topK := __skadapter__to_int(v.topK);
+  result.minP := __skadapter__to_double(v.minP);
+  result.presencePenalty := __skadapter__to_double(v.presencePenalty);
+  result.promptAppend := __skadapter__to_string(v.promptAppend);
+  result.seed := __skadapter__to_int(v.seed);
 end;
 function __skadapter__to_sklib_line(v: Line): __sklib_line;
 begin
@@ -3470,6 +3636,22 @@ procedure __sklib__fill_ellipse_on_window__window__color__rectangle(destination:
 procedure __sklib__fill_ellipse_on_window__window__color__rectangle__drawing_options(destination: __sklib_ptr; clr: __sklib_color; rect: __sklib_rectangle; opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__fill_ellipse_on_window__window__color__double__double__double__double(destination: __sklib_ptr; clr: __sklib_color; x: Double; y: Double; width: Double; height: Double); cdecl; external;
 procedure __sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options(destination: __sklib_ptr; clr: __sklib_color; x: Double; y: Double; width: Double; height: Double; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__conversation_add_message__conversation__string_ref(c: __sklib_ptr; const message: __sklib_string); cdecl; external;
+function __sklib__conversation_get_reply_piece__conversation(c: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__conversation_is_replying__conversation(c: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__conversation_is_thinking__conversation(c: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__create_conversation__language_model_options(options: __sklib_language_model_options): __sklib_ptr; cdecl; external;
+function __sklib__create_conversation(): __sklib_ptr; cdecl; external;
+function __sklib__create_conversation__language_model(model: LongInt): __sklib_ptr; cdecl; external;
+procedure __sklib__free_all_conversations(); cdecl; external;
+procedure __sklib__free_conversation__conversation(c: __sklib_ptr); cdecl; external;
+function __sklib__generate_reply__string__language_model_options(prompt: __sklib_string; options: __sklib_language_model_options): __sklib_string; cdecl; external;
+function __sklib__generate_reply__language_model__string(model: LongInt; prompt: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__generate_reply__string(prompt: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__generate_text__string__language_model_options(text: __sklib_string; options: __sklib_language_model_options): __sklib_string; cdecl; external;
+function __sklib__generate_text__language_model__string(model: LongInt; text: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__generate_text__string(text: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__option_language_model__language_model(model: LongInt): __sklib_language_model_options; cdecl; external;
 function __sklib__cosine__float(degrees: Single): Single; cdecl; external;
 function __sklib__sine__float(degrees: Single): Single; cdecl; external;
 function __sklib__tangent__float(degrees: Single): Single; cdecl; external;
@@ -3927,6 +4109,23 @@ procedure __sklib__remote_raspi_set_pwm_dutycycle__connection__gpio_pin__int(pi:
 procedure __sklib__remote_raspi_set_pwm_frequency__connection__gpio_pin__int(pi: __sklib_ptr; pin: LongInt; frequency: Integer); cdecl; external;
 procedure __sklib__remote_raspi_set_pwm_range__connection__gpio_pin__int(pi: __sklib_ptr; pin: LongInt; range: Integer); cdecl; external;
 procedure __sklib__remote_raspi_write__connection__gpio_pin__gpio_pin_value(pi: __sklib_ptr; pin: LongInt; value: LongInt); cdecl; external;
+procedure __sklib__close_all_motors(); cdecl; external;
+procedure __sklib__close_motor__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__close_motor__motor_device(dev: __sklib_ptr); cdecl; external;
+function __sklib__has_motor_device__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__motor_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__open_motor__string_ref__motor_driver_type__gpio_pin__gpio_pin__gpio_pin(const name: __sklib_string; type: LongInt; in1Pin: LongInt; in2Pin: LongInt; enPin: LongInt): __sklib_ptr; cdecl; external;
+procedure __sklib__set_motor_direction__motor_device__motor_direction(dev: __sklib_ptr; dir: LongInt); cdecl; external;
+procedure __sklib__set_motor_speed__motor_device__double(dev: __sklib_ptr; speed: Double); cdecl; external;
+procedure __sklib__stop_motor__motor_device(dev: __sklib_ptr); cdecl; external;
+procedure __sklib__close_all_servos(); cdecl; external;
+procedure __sklib__close_servo__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__close_servo__servo_device(dev: __sklib_ptr); cdecl; external;
+function __sklib__has_servo_device__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__open_servo__string_ref__gpio_pin(const name: __sklib_string; controlPin: LongInt): __sklib_ptr; cdecl; external;
+function __sklib__servo_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__set_servo_angle__servo_device__double(dev: __sklib_ptr; angleDegrees: Double); cdecl; external;
+procedure __sklib__stop_servo__servo_device(dev: __sklib_ptr); cdecl; external;
 procedure __sklib__draw_quad__color__quad_ref(clr: __sklib_color; const q: __sklib_quad); cdecl; external;
 procedure __sklib__draw_quad__color__quad_ref__drawing_options_ref(clr: __sklib_color; const q: __sklib_quad; const opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__draw_quad_on_bitmap__bitmap__color__quad_ref(destination: __sklib_ptr; clr: __sklib_color; const q: __sklib_quad); cdecl; external;
@@ -9148,6 +9347,149 @@ begin
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
   __sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts);
 end;
+procedure ConversationAddMessage(c: Conversation; const message: String);
+var
+  __skparam__c: __sklib_ptr;
+  __skparam__message: __sklib_string;
+begin
+  __skparam__c := __skadapter__to_sklib_conversation(c);
+  __skparam__message := __skadapter__to_sklib_string(message);
+  __sklib__conversation_add_message__conversation__string_ref(__skparam__c, __skparam__message);
+end;
+function ConversationGetReplyPiece(c: Conversation): String;
+var
+  __skparam__c: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__c := __skadapter__to_sklib_conversation(c);
+  __skreturn := __sklib__conversation_get_reply_piece__conversation(__skparam__c);
+  result := __skadapter__to_string(__skreturn);
+end;
+function ConversationIsReplying(c: Conversation): Boolean;
+var
+  __skparam__c: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__c := __skadapter__to_sklib_conversation(c);
+  __skreturn := __sklib__conversation_is_replying__conversation(__skparam__c);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function ConversationIsThinking(c: Conversation): Boolean;
+var
+  __skparam__c: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__c := __skadapter__to_sklib_conversation(c);
+  __skreturn := __sklib__conversation_is_thinking__conversation(__skparam__c);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function CreateConversation(options: LanguageModelOptions): Conversation;
+var
+  __skparam__options: __sklib_language_model_options;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__options := __skadapter__to_sklib_language_model_options(options);
+  __skreturn := __sklib__create_conversation__language_model_options(__skparam__options);
+  result := __skadapter__to_conversation(__skreturn);
+end;
+function CreateConversation(): Conversation;
+var
+  __skreturn: __sklib_ptr;
+begin
+  __skreturn := __sklib__create_conversation();
+  result := __skadapter__to_conversation(__skreturn);
+end;
+function CreateConversation(model: LanguageModel): Conversation;
+var
+  __skparam__model: LongInt;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__model := __skadapter__to_sklib_language_model(model);
+  __skreturn := __sklib__create_conversation__language_model(__skparam__model);
+  result := __skadapter__to_conversation(__skreturn);
+end;
+procedure FreeAllConversations();
+begin
+  __sklib__free_all_conversations();
+end;
+procedure FreeConversation(c: Conversation);
+var
+  __skparam__c: __sklib_ptr;
+begin
+  __skparam__c := __skadapter__to_sklib_conversation(c);
+  __sklib__free_conversation__conversation(__skparam__c);
+end;
+function GenerateReply(prompt: String; options: LanguageModelOptions): String;
+var
+  __skparam__prompt: __sklib_string;
+  __skparam__options: __sklib_language_model_options;
+  __skreturn: __sklib_string;
+begin
+  __skparam__prompt := __skadapter__to_sklib_string(prompt);
+  __skparam__options := __skadapter__to_sklib_language_model_options(options);
+  __skreturn := __sklib__generate_reply__string__language_model_options(__skparam__prompt, __skparam__options);
+  result := __skadapter__to_string(__skreturn);
+end;
+function GenerateReply(model: LanguageModel; prompt: String): String;
+var
+  __skparam__model: LongInt;
+  __skparam__prompt: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__model := __skadapter__to_sklib_language_model(model);
+  __skparam__prompt := __skadapter__to_sklib_string(prompt);
+  __skreturn := __sklib__generate_reply__language_model__string(__skparam__model, __skparam__prompt);
+  result := __skadapter__to_string(__skreturn);
+end;
+function GenerateReply(prompt: String): String;
+var
+  __skparam__prompt: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__prompt := __skadapter__to_sklib_string(prompt);
+  __skreturn := __sklib__generate_reply__string(__skparam__prompt);
+  result := __skadapter__to_string(__skreturn);
+end;
+function GenerateText(text: String; options: LanguageModelOptions): String;
+var
+  __skparam__text: __sklib_string;
+  __skparam__options: __sklib_language_model_options;
+  __skreturn: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__options := __skadapter__to_sklib_language_model_options(options);
+  __skreturn := __sklib__generate_text__string__language_model_options(__skparam__text, __skparam__options);
+  result := __skadapter__to_string(__skreturn);
+end;
+function GenerateText(model: LanguageModel; text: String): String;
+var
+  __skparam__model: LongInt;
+  __skparam__text: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__model := __skadapter__to_sklib_language_model(model);
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__generate_text__language_model__string(__skparam__model, __skparam__text);
+  result := __skadapter__to_string(__skreturn);
+end;
+function GenerateText(text: String): String;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__generate_text__string(__skparam__text);
+  result := __skadapter__to_string(__skreturn);
+end;
+function OptionLanguageModel(model: LanguageModel): LanguageModelOptions;
+var
+  __skparam__model: LongInt;
+  __skreturn: __sklib_language_model_options;
+begin
+  __skparam__model := __skadapter__to_sklib_language_model(model);
+  __skreturn := __sklib__option_language_model__language_model(__skparam__model);
+  result := __skadapter__to_language_model_options(__skreturn);
+end;
 function Cosine(degrees: Single): Single;
 var
   __skparam__degrees: Single;
@@ -13536,6 +13878,147 @@ begin
   __skparam__pin := __skadapter__to_sklib_gpio_pin(pin);
   __skparam__value := __skadapter__to_sklib_gpio_pin_value(value);
   __sklib__remote_raspi_write__connection__gpio_pin__gpio_pin_value(__skparam__pi, __skparam__pin, __skparam__value);
+end;
+procedure CloseAllMotors();
+begin
+  __sklib__close_all_motors();
+end;
+procedure CloseMotor(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__close_motor__string_ref(__skparam__name);
+end;
+procedure CloseMotor(dev: MotorDevice);
+var
+  __skparam__dev: __sklib_ptr;
+begin
+  __skparam__dev := __skadapter__to_sklib_motor_device(dev);
+  __sklib__close_motor__motor_device(__skparam__dev);
+end;
+function HasMotorDevice(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_motor_device__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function MotorNamed(const name: String): MotorDevice;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__motor_named__string_ref(__skparam__name);
+  result := __skadapter__to_motor_device(__skreturn);
+end;
+function OpenMotor(const name: String; type: MotorDriverType; in1Pin: GpioPin; in2Pin: GpioPin; enPin: GpioPin): MotorDevice;
+var
+  __skparam__name: __sklib_string;
+  __skparam__type: LongInt;
+  __skparam__in1_pin: LongInt;
+  __skparam__in2_pin: LongInt;
+  __skparam__en_pin: LongInt;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__type := __skadapter__to_sklib_motor_driver_type(type);
+  __skparam__in1_pin := __skadapter__to_sklib_gpio_pin(in1Pin);
+  __skparam__in2_pin := __skadapter__to_sklib_gpio_pin(in2Pin);
+  __skparam__en_pin := __skadapter__to_sklib_gpio_pin(enPin);
+  __skreturn := __sklib__open_motor__string_ref__motor_driver_type__gpio_pin__gpio_pin__gpio_pin(__skparam__name, __skparam__type, __skparam__in1_pin, __skparam__in2_pin, __skparam__en_pin);
+  result := __skadapter__to_motor_device(__skreturn);
+end;
+procedure SetMotorDirection(dev: MotorDevice; dir: MotorDirection);
+var
+  __skparam__dev: __sklib_ptr;
+  __skparam__dir: LongInt;
+begin
+  __skparam__dev := __skadapter__to_sklib_motor_device(dev);
+  __skparam__dir := __skadapter__to_sklib_motor_direction(dir);
+  __sklib__set_motor_direction__motor_device__motor_direction(__skparam__dev, __skparam__dir);
+end;
+procedure SetMotorSpeed(dev: MotorDevice; speed: Double);
+var
+  __skparam__dev: __sklib_ptr;
+  __skparam__speed: Double;
+begin
+  __skparam__dev := __skadapter__to_sklib_motor_device(dev);
+  __skparam__speed := __skadapter__to_sklib_double(speed);
+  __sklib__set_motor_speed__motor_device__double(__skparam__dev, __skparam__speed);
+end;
+procedure StopMotor(dev: MotorDevice);
+var
+  __skparam__dev: __sklib_ptr;
+begin
+  __skparam__dev := __skadapter__to_sklib_motor_device(dev);
+  __sklib__stop_motor__motor_device(__skparam__dev);
+end;
+procedure CloseAllServos();
+begin
+  __sklib__close_all_servos();
+end;
+procedure CloseServo(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__close_servo__string_ref(__skparam__name);
+end;
+procedure CloseServo(dev: ServoDevice);
+var
+  __skparam__dev: __sklib_ptr;
+begin
+  __skparam__dev := __skadapter__to_sklib_servo_device(dev);
+  __sklib__close_servo__servo_device(__skparam__dev);
+end;
+function HasServoDevice(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_servo_device__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function OpenServo(const name: String; controlPin: GpioPin): ServoDevice;
+var
+  __skparam__name: __sklib_string;
+  __skparam__control_pin: LongInt;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__control_pin := __skadapter__to_sklib_gpio_pin(controlPin);
+  __skreturn := __sklib__open_servo__string_ref__gpio_pin(__skparam__name, __skparam__control_pin);
+  result := __skadapter__to_servo_device(__skreturn);
+end;
+function ServoNamed(const name: String): ServoDevice;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__servo_named__string_ref(__skparam__name);
+  result := __skadapter__to_servo_device(__skreturn);
+end;
+procedure SetServoAngle(dev: ServoDevice; angleDegrees: Double);
+var
+  __skparam__dev: __sklib_ptr;
+  __skparam__angle_degrees: Double;
+begin
+  __skparam__dev := __skadapter__to_sklib_servo_device(dev);
+  __skparam__angle_degrees := __skadapter__to_sklib_double(angleDegrees);
+  __sklib__set_servo_angle__servo_device__double(__skparam__dev, __skparam__angle_degrees);
+end;
+procedure StopServo(dev: ServoDevice);
+var
+  __skparam__dev: __sklib_ptr;
+begin
+  __skparam__dev := __skadapter__to_sklib_servo_device(dev);
+  __sklib__stop_servo__servo_device(__skparam__dev);
 end;
 procedure DrawQuad(clr: Color; const q: Quad);
 var

@@ -23,6 +23,7 @@
 #include "color.h"
 #include "drawing_options.h"
 #include "ellipse_drawing.h"
+#include "genai.h"
 #include "geometry.h"
 #include "graphics.h"
 #include "images.h"
@@ -44,6 +45,8 @@
 #include "random.h"
 #include "raspi_adc.h"
 #include "raspi_gpio.h"
+#include "raspi_motor_driver.h"
+#include "raspi_servo_driver.h"
 #include "rectangle_drawing.h"
 #include "rectangle_geometry.h"
 #include "resources.h"
@@ -91,6 +94,8 @@ unsigned short __sklib__to_unsigned_short(unsigned short v);
 __sklib_unsigned_char __sklib__to_sklib_unsigned_char(unsigned char v);
 unsigned char __sklib__to_unsigned_char(unsigned char v);
 __sklib_ptr __sklib__to_sklib_ptr(__sklib_ptr v);
+__sklib_ptr __sklib__to_sklib_conversation(splashkit_lib::conversation v);
+conversation __sklib__to_conversation(__sklib_ptr v);
 __sklib_ptr __sklib__to_sklib_json(splashkit_lib::json v);
 json __sklib__to_json(__sklib_ptr v);
 __sklib_ptr __sklib__to_sklib_music(splashkit_lib::music v);
@@ -103,6 +108,10 @@ __sklib_ptr __sklib__to_sklib_server_socket(splashkit_lib::server_socket v);
 server_socket __sklib__to_server_socket(__sklib_ptr v);
 __sklib_ptr __sklib__to_sklib_adc_device(splashkit_lib::adc_device v);
 adc_device __sklib__to_adc_device(__sklib_ptr v);
+__sklib_ptr __sklib__to_sklib_motor_device(splashkit_lib::motor_device v);
+motor_device __sklib__to_motor_device(__sklib_ptr v);
+__sklib_ptr __sklib__to_sklib_servo_device(splashkit_lib::servo_device v);
+servo_device __sklib__to_servo_device(__sklib_ptr v);
 __sklib_ptr __sklib__to_sklib_sound_effect(splashkit_lib::sound_effect v);
 sound_effect __sklib__to_sound_effect(__sklib_ptr v);
 __sklib_ptr __sklib__to_sklib_sprite(splashkit_lib::sprite v);
@@ -161,6 +170,8 @@ int __sklib__to_sklib_http_status_code(http_status_code v);
 http_status_code __sklib__to_http_status_code(int v);
 int __sklib__to_sklib_interface_style(interface_style v);
 interface_style __sklib__to_interface_style(int v);
+int __sklib__to_sklib_language_model(language_model v);
+language_model __sklib__to_language_model(int v);
 int __sklib__to_sklib_motor_direction(motor_direction v);
 motor_direction __sklib__to_motor_direction(int v);
 int __sklib__to_sklib_motor_driver_type(motor_driver_type v);
@@ -181,6 +192,8 @@ __sklib_rectangle __sklib__to_sklib_rectangle(rectangle v);
 rectangle __sklib__to_rectangle(__sklib_rectangle v);
 __sklib_drawing_options __sklib__to_sklib_drawing_options(drawing_options v);
 drawing_options __sklib__to_drawing_options(__sklib_drawing_options v);
+__sklib_language_model_options __sklib__to_sklib_language_model_options(language_model_options v);
+language_model_options __sklib__to_language_model_options(__sklib_language_model_options v);
 __sklib_line __sklib__to_sklib_line(line v);
 line __sklib__to_line(__sklib_line v);
 __sklib_quad __sklib__to_sklib_quad(quad v);

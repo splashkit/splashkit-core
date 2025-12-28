@@ -134,6 +134,23 @@ typedef enum {
     BUBBLE_MULTICOLORED = 5
 } interface_style;
 typedef enum {
+    QWEN3_0_6B_BASE = 4,
+    QWEN3_0_6B_INSTRUCT = 5,
+    QWEN3_0_6B_THINKING = 6,
+    QWEN3_1_7B_BASE = 8,
+    QWEN3_1_7B_INSTRUCT = 9,
+    QWEN3_1_7B_THINKING = 10,
+    QWEN3_4B_BASE = 12,
+    QWEN3_4B_INSTRUCT = 13,
+    QWEN3_4B_THINKING = 14,
+    GEMMA3_270M_BASE = 16,
+    GEMMA3_270M_INSTRUCT = 17,
+    GEMMA3_1B_BASE = 20,
+    GEMMA3_1B_INSTRUCT = 21,
+    GEMMA3_4B_BASE = 24,
+    GEMMA3_4B_INSTRUCT = 25
+} language_model;
+typedef enum {
     MOTOR_FORWARD,
     MOTOR_BACKWARD
 } motor_direction;
@@ -249,6 +266,39 @@ inline bool operator==(const drawing_options& lhs, const drawing_options& rhs) {
 }
 
 inline bool operator!=(const drawing_options& lhs, const drawing_options& rhs) {
+    return !(lhs == rhs);
+}
+
+typedef struct {
+    string name;
+    string url;
+    string path;
+    int max_tokens;
+    double temperature;
+    double top_p;
+    int top_k;
+    double min_p;
+    double presence_penalty;
+    string prompt_append;
+    int seed;
+} language_model_options;
+
+inline bool operator==(const language_model_options& lhs, const language_model_options& rhs) {
+    return
+        lhs.name == rhs.name &&
+        lhs.url == rhs.url &&
+        lhs.path == rhs.path &&
+        lhs.max_tokens == rhs.max_tokens &&
+        lhs.temperature == rhs.temperature &&
+        lhs.top_p == rhs.top_p &&
+        lhs.top_k == rhs.top_k &&
+        lhs.min_p == rhs.min_p &&
+        lhs.presence_penalty == rhs.presence_penalty &&
+        lhs.prompt_append == rhs.prompt_append &&
+        lhs.seed == rhs.seed;
+}
+
+inline bool operator!=(const language_model_options& lhs, const language_model_options& rhs) {
     return !(lhs == rhs);
 }
 
