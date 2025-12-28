@@ -28,13 +28,15 @@ namespace splashkit_lib
         conf.setGlobally(ConfigurationType::Filename, "logs/splashkit.log");
 
         Loggers::reconfigureLogger("default", conf);
+        Loggers::reconfigureLogger("GenAI", conf);
+        Loggers::reconfigureLogger("interface", conf);
         
         Loggers::addFlag(LoggingFlag::ColoredTerminalOutput);
         Loggers::addFlag(LoggingFlag::DisableApplicationAbortOnFatalLog);
         Loggers::addFlag(LoggingFlag::LogDetailedCrashReason);
         Loggers::addFlag(LoggingFlag::ImmediateFlush);
-        
+
         // For use in core SDK
         atexit (close_log_process);
-            }
+    }
 }
