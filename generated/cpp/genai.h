@@ -6,7 +6,6 @@
 #ifndef __genai_h
 #define __genai_h
 
-#include "types.h"
 #include <string>
 #include <vector>
 #include <cmath>
@@ -17,6 +16,23 @@ using std::to_string;
 
 struct _conversation_data;
 typedef struct _conversation_data *conversation;
+typedef enum {
+    QWEN3_0_6B_BASE = 4,
+    QWEN3_0_6B_INSTRUCT = 5,
+    QWEN3_0_6B_THINKING = 6,
+    QWEN3_1_7B_BASE = 8,
+    QWEN3_1_7B_INSTRUCT = 9,
+    QWEN3_1_7B_THINKING = 10,
+    QWEN3_4B_BASE = 12,
+    QWEN3_4B_INSTRUCT = 13,
+    QWEN3_4B_THINKING = 14,
+    GEMMA3_270M_BASE = 16,
+    GEMMA3_270M_INSTRUCT = 17,
+    GEMMA3_1B_BASE = 20,
+    GEMMA3_1B_INSTRUCT = 21,
+    GEMMA3_4B_BASE = 24,
+    GEMMA3_4B_INSTRUCT = 25
+} language_model;
 /**
 * Adds a message to a `conversation`, that the language model will begin replying to.
 * You can receive the reply one piece at a time by calling `conversation_get_reply_piece(conversation c)` in a loop
@@ -48,12 +64,6 @@ bool conversation_is_replying(conversation c);
 bool conversation_is_thinking(conversation c);
 /**
 * The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
-* @param options The options to use - use this to choose the language model, and change various parameters.
-* @return Returns a new `conversation` object.
-*/
-conversation create_conversation(language_model_options options);
-/**
-* The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
 
 * @return Returns a new `conversation` object.
 */
@@ -79,14 +89,6 @@ void free_conversation(conversation c);
 /**
 * The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.
 * Instruct or Thinking models are recommended. Base models likely won't output sensible results.
-* @param prompt The prompt for the language model to reply to.
-* @param options The generation options - use the `option_` functions to create this, for instance `option_language_model`
-* @return The generated reply.
-*/
-string generate_reply(string prompt, language_model_options options);
-/**
-* The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.
-* Instruct or Thinking models are recommended. Base models likely won't output sensible results.
 * @param model The language model to use
 * @param prompt The prompt for the language model to reply to.
 * @return The generated reply.
@@ -102,14 +104,6 @@ string generate_reply(string prompt);
 /**
 * The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.
 * Base models are recommended; Instruct and Thinking models may work.
-* @param text The input text for the language model to continue.
-* @param options The generation options - use the `option_` functions to create this, for instance `option_language_model`
-* @return The generated reply.
-*/
-string generate_text(string text, language_model_options options);
-/**
-* The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.
-* Base models are recommended; Instruct and Thinking models may work.
 * @param model The language model to use
 * @param text The input text for the language model to continue.
 * @return The generated reply.
@@ -122,11 +116,5 @@ string generate_text(language_model model, string text);
 * @return The generated reply.
 */
 string generate_text(string text);
-/**
-* Use this option to choose which language model to use, and initialize its default settings
-* @param model The language model to use
-* @return Language model options that will use that model and its default settings.
-*/
-language_model_options option_language_model(language_model model);
 
 #endif /* __genai_h */

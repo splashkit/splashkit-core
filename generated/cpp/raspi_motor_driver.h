@@ -36,6 +36,12 @@ void close_motor(const string &name);
 */
 void close_motor(motor_device dev);
 /**
+* Free the resources associated with a motor device.
+* @param dev The motor device to be destroyed.
+*
+*/
+void free_motor_device(motor_device dev);
+/**
 * Checks if a motor device with the given name is already opened.
 * @param name Identifier for the motor driver.
 * @return true if open, false otherwise.

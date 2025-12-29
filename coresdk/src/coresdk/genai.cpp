@@ -18,6 +18,9 @@ using std::to_string;
 
 namespace splashkit_lib
 {
+    // forward declare private function -- until language_model_options can be exported
+    language_model_options option_language_model(language_model model);
+
     static vector<conversation> objects;
 
     const language_model DEFAULT_LANGUAGE_MODEL = QWEN3_0_6B_INSTRUCT;
@@ -168,36 +171,64 @@ namespace splashkit_lib
         return result;
     }
 
+    // Made private for now - due to string field
 
-    string generate_reply(string prompt)
-    {
-        return generate_reply(DEFAULT_LANGUAGE_MODEL, prompt);
-    }
-
-    string generate_reply(language_model model, string prompt)
-    {
-        return generate_reply(prompt, option_language_model(model));
-    }
+    /**
+     * @brief Generates a reply to a textual prompt by a language model
+     *
+     * The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.
+     * Instruct or Thinking models are recommended. Base models likely won't output sensible results.
+     *
+     * @param prompt  The prompt for the language model to reply to.
+     * @param options The generation options - use the `option_` functions to create this, for instance `option_language_model`
+     *
+     * @returns The generated reply.
+     *
+     * @attribute suffix with_options
+     */
 
     string generate_reply(string prompt, language_model_options options)
     {
         return __generate_common(prompt, options, true);
     }
 
-    string generate_text(string text)
+    string generate_reply(string prompt)
     {
-        return generate_text(DEFAULT_LANGUAGE_MODEL, text);
-    }
+        return generate_reply(DEFAULT_LANGUAGE_MODEL, prompt);
+    }    
 
-    string generate_text(language_model model, string text)
+    string generate_reply(language_model model, string prompt)
     {
-        return generate_text(text, option_language_model(model));
-    }
+        return generate_reply(prompt, option_language_model(model));
+    }    
 
+    /**
+     * @brief Generates text that continues from a prompt
+     *
+     * The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.
+     * Base models are recommended; Instruct and Thinking models may work.
+     *
+     * @param text The input text for the language model to continue.
+     * @param options The generation options - use the `option_` functions to create this, for instance `option_language_model`
+     *
+     * @returns The generated reply.
+     *
+     * @attribute suffix with_options
+     */
     string generate_text(string text, language_model_options options)
     {
         return __generate_common(text, options, false);
     }
+
+    string generate_text(string text)
+    {
+        return generate_text(DEFAULT_LANGUAGE_MODEL, text);
+    }    
+
+    string generate_text(language_model model, string text)
+    {
+        return generate_text(text, option_language_model(model));
+    }    
 
     // --------------------------------------------------------------
 
@@ -210,48 +241,62 @@ namespace splashkit_lib
             return val;\
         }
 
-    conversation create_conversation()
+        /**
+         * @brief Creates a new `conversation` object, that uses a chosen language model among other options.
+         *
+         * The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
+         *
+         * @param options The options to use - use this to choose the language model, and change various parameters.
+         *
+         * @returns Returns a new `conversation` object.
+         *
+         * @attribute class       conversation
+         * @attribute constructor true
+         *
+         * @attribute suffix with_options
+         */
+        conversation create_conversation(language_model_options options)
+        {
+            internal_sk_init();
+    
+            llamacpp::model model = __get_model(options);
+    
+            if (!model.valid) return nullptr;
+    
+            llamacpp::llama_tokens initial_tokens = llamacpp::tokenize_string(model, "", true);
+    
+            sk_conversation* c = new sk_conversation();
+            c->id = CONVERSATION_PTR;
+            c->model = model;
+            c->context = llamacpp::start_context(model, initial_tokens, {
+                options.temperature,
+                options.top_p,
+                options.top_k,
+                options.min_p,
+                options.presence_penalty,
+                options.max_tokens,
+                (uint32_t)options.seed
+            });;
+    
+            c->was_generating = false;
+            c->is_generating = true;
+    
+            c->prompt_append = options.prompt_append;
+    
+            objects.push_back(c);
+    
+            return c;
+        };
+
+    conversation create_conversation()    
     {
         return create_conversation(option_language_model(DEFAULT_LANGUAGE_MODEL));
-    }
+    }    
 
     conversation create_conversation(language_model model)
     {
         return create_conversation(option_language_model(model));
-    }
-
-    conversation create_conversation(language_model_options options)
-    {
-        internal_sk_init();
-
-        llamacpp::model model = __get_model(options);
-
-        if (!model.valid) return nullptr;
-
-        llamacpp::llama_tokens initial_tokens = llamacpp::tokenize_string(model, "", true);
-
-        sk_conversation* c = new sk_conversation();
-        c->id = CONVERSATION_PTR;
-        c->model = model;
-        c->context = llamacpp::start_context(model, initial_tokens, {
-            options.temperature,
-            options.top_p,
-            options.top_k,
-            options.min_p,
-            options.presence_penalty,
-            options.max_tokens,
-            (uint32_t)options.seed
-        });;
-
-        c->was_generating = false;
-        c->is_generating = true;
-
-        c->prompt_append = options.prompt_append;
-
-        objects.push_back(c);
-
-        return c;
-    };
+    }    
 
     void conversation_add_message(conversation c, const string& message)
     {
@@ -365,6 +410,13 @@ namespace splashkit_lib
 
     // --------------------------------------------------------------
 
+    /**
+     * Use this option to choose which language model to use, and initialize its default settings
+     *
+     * @param  model The language model to use
+     *
+     * @return       Language model options that will use that model and its default settings.
+     */
     language_model_options option_language_model(language_model model)
     {
         if (model < 0 || model >= models.size() || models[model].name == "")

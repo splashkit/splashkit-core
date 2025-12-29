@@ -14761,61 +14761,6 @@
         }
       },
       {
-        "signature": "conversation create_conversation(language_model_options options);",
-        "name": "create_conversation",
-        "method_name": null,
-        "unique_global_name": "create_conversation_with_options",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures",
-        "brief": "Creates a new `conversation` object, that uses a chosen language model among other options.",
-        "return": {
-          "type": "conversation",
-          "description": "Returns a new `conversation` object.",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "options": {
-            "type": "language_model_options",
-            "description": "The options to use - use this to choose the language model, and change various parameters.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "class": "conversation",
-          "constructor": true,
-          "suffix": "with_options",
-          "group": "generative_ai",
-          "static": "generative_ai"
-        },
-        "signatures": {
-          "cpp": [
-            "conversation create_conversation(language_model_options options)"
-          ],
-          "python": [
-            "def create_conversation_with_options(options):"
-          ],
-          "csharp": [
-            "public static Conversation SplashKit.CreateConversation(LanguageModelOptions options);",
-            "public Conversation(LanguageModelOptions options);"
-          ],
-          "pascal": [
-            "function CreateConversation(options: LanguageModelOptions): Conversation"
-          ]
-        }
-      },
-      {
         "signature": "conversation create_conversation();",
         "name": "create_conversation",
         "method_name": null,
@@ -15008,71 +14953,6 @@
         }
       },
       {
-        "signature": "string generate_reply(string prompt,language_model_options options);",
-        "name": "generate_reply",
-        "method_name": null,
-        "unique_global_name": "generate_reply_with_options",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.\nInstruct or Thinking models are recommended. Base models likely won't output sensible results.",
-        "brief": "Generates a reply to a textual prompt by a language model",
-        "return": {
-          "type": "string",
-          "description": "The generated reply.",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "prompt": {
-            "type": "string",
-            "description": "The prompt for the language model to reply to.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "options": {
-            "type": "language_model_options",
-            "description": "The generation options - use the `option_` functions to create this, for instance `option_language_model`",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "suffix": "with_options",
-          "group": "generative_ai",
-          "static": "generative_ai"
-        },
-        "signatures": {
-          "cpp": [
-            "string generate_reply(string prompt, language_model_options options)"
-          ],
-          "python": [
-            "def generate_reply_with_options(prompt, options):"
-          ],
-          "csharp": [
-            "public static string SplashKit.GenerateReply(string prompt, LanguageModelOptions options);"
-          ],
-          "pascal": [
-            "function GenerateReply(prompt: String; options: LanguageModelOptions): String"
-          ]
-        }
-      },
-      {
         "signature": "string generate_reply(language_model model,string prompt);",
         "name": "generate_reply",
         "method_name": null,
@@ -15185,71 +15065,6 @@
           ],
           "pascal": [
             "function GenerateReply(prompt: String): String"
-          ]
-        }
-      },
-      {
-        "signature": "string generate_text(string text,language_model_options options);",
-        "name": "generate_text",
-        "method_name": null,
-        "unique_global_name": "generate_text_with_options",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
-        "brief": "Generates text that continues from a prompt",
-        "return": {
-          "type": "string",
-          "description": "The generated reply.",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "text": {
-            "type": "string",
-            "description": "The input text for the language model to continue.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "options": {
-            "type": "language_model_options",
-            "description": "The generation options - use the `option_` functions to create this, for instance `option_language_model`",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "suffix": "with_options",
-          "group": "generative_ai",
-          "static": "generative_ai"
-        },
-        "signatures": {
-          "cpp": [
-            "string generate_text(string text, language_model_options options)"
-          ],
-          "python": [
-            "def generate_text_with_options(text, options):"
-          ],
-          "csharp": [
-            "public static string SplashKit.GenerateText(string text, LanguageModelOptions options);"
-          ],
-          "pascal": [
-            "function GenerateText(text: String; options: LanguageModelOptions): String"
           ]
         }
       },
@@ -15368,64 +15183,13 @@
             "function GenerateText(text: String): String"
           ]
         }
-      },
-      {
-        "signature": "language_model_options option_language_model(language_model model);",
-        "name": "option_language_model",
-        "method_name": null,
-        "unique_global_name": "option_language_model",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Use this option to choose which language model to use, and initialize its default settings",
-        "brief": null,
-        "return": {
-          "type": "language_model_options",
-          "description": "Language model options that will use that model and its default settings.",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "model": {
-            "type": "language_model",
-            "description": "The language model to use",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "generative_ai",
-          "static": "generative_ai"
-        },
-        "signatures": {
-          "cpp": [
-            "language_model_options option_language_model(language_model model)"
-          ],
-          "python": [
-            "def option_language_model(model):"
-          ],
-          "csharp": [
-            "public static LanguageModelOptions SplashKit.OptionLanguageModel(LanguageModel model);"
-          ],
-          "pascal": [
-            "function OptionLanguageModel(model: LanguageModel): LanguageModelOptions"
-          ]
-        }
       }
     ],
     "typedefs": [
       {
         "signature": "typedef struct sk_conversation *conversation;",
         "name": "conversation",
-        "description": "The `conversation` type is used to refer to conversations between the user\nand a language model. You can use it to send messages to the language model,\nand stream responses back.\n\n\nAll `conversation` objects are:\n\n\n- created with `create_conversation()`, `create_conversation(language_model model)` or\n`create_conversation(language_model_options options)`\n\n\n- and must be released using `free_conversation()` (to release a specific `conversation` object)\nor `free_all_conversation()` (to release all created `conversation` objects).",
+        "description": "The `conversation` type is used to refer to conversations between the user\nand a language model. You can use it to send messages to the language model,\nand stream responses back.\n\n\nAll `conversation` objects are:\n\n\n- created with `create_conversation()`, `create_conversation(language_model model)`\n\n\n- and must be released using `free_conversation()` (to release a specific `conversation` object)\nor `free_all_conversation()` (to release all created `conversation` objects).",
         "brief": null,
         "attributes": {
           "class": "conversation",
@@ -15443,7 +15207,84 @@
 
     ],
     "enums": [
-
+      {
+        "signature": "enum language_model {QWEN3_0_6B_BASE = 4,QWEN3_0_6B_INSTRUCT = 5,QWEN3_0_6B_THINKING = 6,QWEN3_1_7B_BASE = 8,QWEN3_1_7B_INSTRUCT = 9,QWEN3_1_7B_THINKING = 10,QWEN3_4B_BASE = 12,QWEN3_4B_INSTRUCT = 13,QWEN3_4B_THINKING = 14,GEMMA3_270M_BASE = 16,GEMMA3_270M_INSTRUCT = 17,GEMMA3_1B_BASE = 20,GEMMA3_1B_INSTRUCT = 21,GEMMA3_4B_BASE = 24,GEMMA3_4B_INSTRUCT = 25,};",
+        "name": "language_model",
+        "description": "Language Models:\nChoose between different language models to trade off speed and intelligence\nEach model is scaled to fit within 1~2GB and will be automatically downloaded when needed - feel free to try them out!",
+        "brief": null,
+        "constants": {
+          "QWEN3_0_6B_BASE": {
+            "description": "Qwen3 0.6B Base model - small, extremely fast and good for text commpletion. Very limited world knowledge.",
+            "number": 4
+          },
+          "QWEN3_0_6B_INSTRUCT": {
+            "description": "Qwen3 0.6B Instruct model (default) - small, extremely fast and can follow simple instructions. Very limited world knowledge.",
+            "number": 5
+          },
+          "QWEN3_0_6B_THINKING": {
+            "description": "Qwen3 0.6B Thinking model - small, extremely fast and can follow more specific instructions, but has a short delay before starting to reply. Very limited world knowledge.",
+            "number": 6
+          },
+          "QWEN3_1_7B_BASE": {
+            "description": "Qwen3 1.7B Base model - decently fast and good for text commpletion. Limited world knowledge.",
+            "number": 8
+          },
+          "QWEN3_1_7B_INSTRUCT": {
+            "description": "Qwen3 1.7B Instruct model - decently fast and can follow instructions. Limited world knowledge.",
+            "number": 9
+          },
+          "QWEN3_1_7B_THINKING": {
+            "description": "Qwen3 1.7B Thinking model - decently fast and can follow more difficult instructions, but has a delay before starting to reply. Limited world knowledge.",
+            "number": 10
+          },
+          "QWEN3_4B_BASE": {
+            "description": "Qwen3 4B Base model - slower but excellent for text commpletion/pattern based completion",
+            "number": 12
+          },
+          "QWEN3_4B_INSTRUCT": {
+            "description": "Qwen3 4B Instruct model - slower but can follow complex instructions",
+            "number": 13
+          },
+          "QWEN3_4B_THINKING": {
+            "description": "Qwen3 4B Thinking model - slower but can follow complex and specific instructions, but has a potentially long delay before starting to reply",
+            "number": 14
+          },
+          "GEMMA3_270M_BASE": {
+            "description": "Gemma3 270M Base model - tiny, extremely fast, and good for text completion. Very limited world knowledge.",
+            "number": 16
+          },
+          "GEMMA3_270M_INSTRUCT": {
+            "description": "Gemma3 270M Instruct model - tiny, extremely fast, and good for very simple instructions. Very limited world knowledge.",
+            "number": 17
+          },
+          "GEMMA3_1B_BASE": {
+            "description": "Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multi-lingual abilities.",
+            "number": 20
+          },
+          "GEMMA3_1B_INSTRUCT": {
+            "description": "Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multi-lingual abilities.",
+            "number": 21
+          },
+          "GEMMA3_4B_BASE": {
+            "description": "Gemma3 4B Base model - slower but good for text commpletion/pattern based completion. Has decent world knowledge and multi-lingual abilities.",
+            "number": 24
+          },
+          "GEMMA3_4B_INSTRUCT": {
+            "description": "Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multi-lingual abilities.",
+            "number": 25
+          }
+        },
+        "attributes": {
+          "group": "generative_ai",
+          "static": "generative_ai"
+        },
+        "signatures": {
+          "cpp": "class language_model {QWEN3_0_6B_BASE = 4, QWEN3_0_6B_INSTRUCT = 5, QWEN3_0_6B_THINKING = 6, QWEN3_1_7B_BASE = 8, QWEN3_1_7B_INSTRUCT = 9, QWEN3_1_7B_THINKING = 10, QWEN3_4B_BASE = 12, QWEN3_4B_INSTRUCT = 13, QWEN3_4B_THINKING = 14, GEMMA3_270M_BASE = 16, GEMMA3_270M_INSTRUCT = 17, GEMMA3_1B_BASE = 20, GEMMA3_1B_INSTRUCT = 21, GEMMA3_4B_BASE = 24, GEMMA3_4B_INSTRUCT = 25};",
+          "python": "public enum {LanguageModel.qwen3_0_6b_base = 4, LanguageModel.qwen3_0_6b_instruct = 5, LanguageModel.qwen3_0_6b_thinking = 6, LanguageModel.qwen3_1_7b_base = 8, LanguageModel.qwen3_1_7b_instruct = 9, LanguageModel.qwen3_1_7b_thinking = 10, LanguageModel.qwen3_4b_base = 12, LanguageModel.qwen3_4b_instruct = 13, LanguageModel.qwen3_4b_thinking = 14, LanguageModel.gemma3_270m_base = 16, LanguageModel.gemma3_270m_instruct = 17, LanguageModel.gemma3_1b_base = 20, LanguageModel.gemma3_1b_instruct = 21, LanguageModel.gemma3_4b_base = 24, LanguageModel.gemma3_4b_instruct = 25}",
+          "csharp": "public enum {LanguageModel.Qwen306BBase = 4, LanguageModel.Qwen306BInstruct = 5, LanguageModel.Qwen306BThinking = 6, LanguageModel.Qwen317BBase = 8, LanguageModel.Qwen317BInstruct = 9, LanguageModel.Qwen317BThinking = 10, LanguageModel.Qwen34BBase = 12, LanguageModel.Qwen34BInstruct = 13, LanguageModel.Qwen34BThinking = 14, LanguageModel.Gemma3270mBase = 16, LanguageModel.Gemma3270mInstruct = 17, LanguageModel.Gemma31BBase = 20, LanguageModel.Gemma31BInstruct = 21, LanguageModel.Gemma34BBase = 24, LanguageModel.Gemma34BInstruct = 25}",
+          "pascal": "public enum {LanguageModel.Qwen306BBase = 4, LanguageModel.Qwen306BInstruct = 5, LanguageModel.Qwen306BThinking = 6, LanguageModel.Qwen317BBase = 8, LanguageModel.Qwen317BInstruct = 9, LanguageModel.Qwen317BThinking = 10, LanguageModel.Qwen34BBase = 12, LanguageModel.Qwen34BInstruct = 13, LanguageModel.Qwen34BThinking = 14, LanguageModel.Gemma3270mBase = 16, LanguageModel.Gemma3270mInstruct = 17, LanguageModel.Gemma31BBase = 20, LanguageModel.Gemma31BInstruct = 21, LanguageModel.Gemma34BBase = 24, LanguageModel.Gemma34BInstruct = 25}"
+        }
+      }
     ],
     "defines": [
 
@@ -53057,13 +52898,13 @@
         }
       },
       {
-        "signature": "string text_box(const string& label_text,const string& value,const rectangle& rect);",
+        "signature": "string text_box(const string& value);",
         "name": "text_box",
         "method_name": null,
-        "unique_global_name": "text_box_at_position",
+        "unique_global_name": "text_box",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Creates a text entry box at a specific position on screen.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string, rectangle_from(0,0,100,100));\n```",
+        "description": "Creates a text entry box with a label.\nReturns the updated value of the text box.",
         "brief": null,
         "return": {
           "type": "string",
@@ -53074,9 +52915,9 @@
           "type_parameter": null
         },
         "parameters": {
-          "label_text": {
+          "value": {
             "type": "string",
-            "description": "Unique identifier for the text box (not drawn)",
+            "description": "The current value of the text box",
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
@@ -53086,7 +52927,45 @@
             ],
             "is_vector": false,
             "type_parameter": null
-          },
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        },
+        "signatures": {
+          "cpp": [
+            "string text_box(const string &value)"
+          ],
+          "python": [
+            "def text_box(value):"
+          ],
+          "csharp": [
+            "public static string SplashKit.TextBox(string value);"
+          ],
+          "pascal": [
+            "function TextBox(const value: String): String"
+          ]
+        }
+      },
+      {
+        "signature": "string text_box(const string& value,const rectangle& rect);",
+        "name": "text_box",
+        "method_name": null,
+        "unique_global_name": "text_box_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a text entry box at a specific position on screen.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string);\n```",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The updated value of the text box",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
           "value": {
             "type": "string",
             "description": "The current value of the text box",
@@ -53121,16 +53000,16 @@
         },
         "signatures": {
           "cpp": [
-            "string text_box(const string &label_text, const string &value, const rectangle &rect)"
+            "string text_box(const string &value, const rectangle &rect)"
           ],
           "python": [
-            "def text_box_at_position(label_text, value, rect):"
+            "def text_box_at_position(value, rect):"
           ],
           "csharp": [
-            "public static string SplashKit.TextBox(string labelText, string value, Rectangle rect);"
+            "public static string SplashKit.TextBox(string value, Rectangle rect);"
           ],
           "pascal": [
-            "function TextBox(const labelText: String; const value: String; const rect: Rectangle): String"
+            "function TextBox(const value: String; const rect: Rectangle): String"
           ]
         }
       },
@@ -53138,7 +53017,7 @@
         "signature": "string text_box(const string& label_text,const string& value);",
         "name": "text_box",
         "method_name": null,
-        "unique_global_name": "text_box",
+        "unique_global_name": "text_box_labeled",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Creates a text entry box with a label.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string);\n```",
@@ -53154,7 +53033,7 @@
         "parameters": {
           "label_text": {
             "type": "string",
-            "description": "Unique identifier for the text box (not drawn)",
+            "description": "The label to show in front of the text box",
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
@@ -53171,83 +53050,6 @@
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "interface",
-          "static": "interface"
-        },
-        "signatures": {
-          "cpp": [
-            "string text_box(const string &label_text, const string &value)"
-          ],
-          "python": [
-            "def text_box(label_text, value):"
-          ],
-          "csharp": [
-            "public static string SplashKit.TextBox(string labelText, string value);"
-          ],
-          "pascal": [
-            "function TextBox(const labelText: String; const value: String): String"
-          ]
-        }
-      },
-      {
-        "signature": "string text_box(const string& label_text,const string& value,bool show_label);",
-        "name": "text_box",
-        "method_name": null,
-        "unique_global_name": "text_box_labeled",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Creates a text entry box with a label that can be shown.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string, true);\n```",
-        "brief": null,
-        "return": {
-          "type": "string",
-          "description": "The updated value of the text box",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "label_text": {
-            "type": "string",
-            "description": "Unique identifier for the text box (not drawn)",
-            "is_pointer": false,
-            "is_const": true,
-            "is_reference": true,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "value": {
-            "type": "string",
-            "description": "The current value of the text box",
-            "is_pointer": false,
-            "is_const": true,
-            "is_reference": true,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "show_label": {
-            "type": "bool",
-            "description": "Whether to show the label or not",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
             "is_array": false,
             "array_dimension_sizes": [
 
@@ -53263,16 +53065,16 @@
         },
         "signatures": {
           "cpp": [
-            "string text_box(const string &label_text, const string &value, bool show_label)"
+            "string text_box(const string &label_text, const string &value)"
           ],
           "python": [
-            "def text_box_labeled(label_text, value, show_label):"
+            "def text_box_labeled(label_text, value):"
           ],
           "csharp": [
-            "public static string SplashKit.TextBox(string labelText, string value, bool showLabel);"
+            "public static string SplashKit.TextBox(string labelText, string value);"
           ],
           "pascal": [
-            "function TextBox(const labelText: String; const value: String; showLabel: Boolean): String"
+            "function TextBox(const labelText: String; const value: String): String"
           ]
         }
       }
@@ -76680,6 +76482,60 @@
         }
       },
       {
+        "signature": "void free_motor_device(motor_device dev);",
+        "name": "free_motor_device",
+        "method_name": null,
+        "unique_global_name": "free_motor_device",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Free the resources associated with a motor device.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "dev": {
+            "type": "motor_device",
+            "description": "The motor device to be destroyed.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "motor_device",
+          "destructor": true,
+          "group": "raspberry",
+          "static": "raspberry",
+          "self": "dev"
+        },
+        "signatures": {
+          "cpp": [
+            "void free_motor_device(motor_device dev)"
+          ],
+          "python": [
+            "def free_motor_device(dev):"
+          ],
+          "csharp": [
+            "public static void SplashKit.FreeMotorDevice(MotorDevice dev);"
+          ],
+          "pascal": [
+            "procedure FreeMotorDevice(dev: MotorDevice)"
+          ]
+        }
+      },
+      {
         "signature": "bool has_motor_device(const string &name);",
         "name": "has_motor_device",
         "method_name": null,
@@ -96310,170 +96166,6 @@
         "is_struct": true
       },
       {
-        "signature": "struct language_model_options {string name;string url;string path;int max_tokens;double temperature;double top_p;int top_k;double min_p;double presence_penalty;string prompt_append;int seed;};",
-        "name": "language_model_options",
-        "description": "Language model options allow you to customize the language model used. These should be\ninitialised using functions such as `option_language_model`.",
-        "brief": null,
-        "fields": {
-          "name": {
-            "type": "string",
-            "description": "The name of the model (used in diagnostic messages).",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "url": {
-            "type": "string",
-            "description": "A URL to download a model from.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "path": {
-            "type": "string",
-            "description": "A path to a custom language model (.gguf) file on your computer/a place to download it to.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "max_tokens": {
-            "type": "int",
-            "description": "The maximum number of tokens to output when replying. One word is approximately two tokens.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "temperature": {
-            "type": "double",
-            "description": "Increases the likelihood of unlikely tokens to be chosen.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "top_p": {
-            "type": "double",
-            "description": "Only choose from the top P most likely tokens.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "top_k": {
-            "type": "int",
-            "description": "Only choose from the top K most likely tokens.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "min_p": {
-            "type": "double",
-            "description": "Remove tokens less likely than P.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "presence_penalty": {
-            "type": "double",
-            "description": "Penalizes words that have been used once, making them less likely. Can reduce repetition.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "prompt_append": {
-            "type": "string",
-            "description": "A string to append to prompts automatically.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "seed": {
-            "type": "int",
-            "description": "Language model options allow you to customize the language model used. These should be\ninitialised using functions such as `option_language_model`.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "types"
-        },
-        "properties": {
-        },
-        "constructors": [
-
-        ],
-        "methods": [
-
-        ],
-        "is_alias": false,
-        "is_struct": true
-      },
-      {
         "signature": "struct line {point_2d start_point;point_2d end_point;};",
         "name": "line",
         "description": "A line goes from a start point to an end point.",
@@ -97269,83 +96961,6 @@
           "python": "public enum {InterfaceStyle.flat_dark_style = 0, InterfaceStyle.shaded_dark_style = 1, InterfaceStyle.flat_light_style = 2, InterfaceStyle.shaded_light_style = 3, InterfaceStyle.bubble = 4, InterfaceStyle.bubble_multicolored = 5}",
           "csharp": "public enum {InterfaceStyle.FlatDarkStyle = 0, InterfaceStyle.ShadedDarkStyle = 1, InterfaceStyle.FlatLightStyle = 2, InterfaceStyle.ShadedLightStyle = 3, InterfaceStyle.Bubble = 4, InterfaceStyle.BubbleMulticolored = 5}",
           "pascal": "public enum {InterfaceStyle.FlatDarkStyle = 0, InterfaceStyle.ShadedDarkStyle = 1, InterfaceStyle.FlatLightStyle = 2, InterfaceStyle.ShadedLightStyle = 3, InterfaceStyle.Bubble = 4, InterfaceStyle.BubbleMulticolored = 5}"
-        }
-      },
-      {
-        "signature": "enum language_model {QWEN3_0_6B_BASE = 4,QWEN3_0_6B_INSTRUCT = 5,QWEN3_0_6B_THINKING = 6,QWEN3_1_7B_BASE = 8,QWEN3_1_7B_INSTRUCT = 9,QWEN3_1_7B_THINKING = 10,QWEN3_4B_BASE = 12,QWEN3_4B_INSTRUCT = 13,QWEN3_4B_THINKING = 14,GEMMA3_270M_BASE = 16,GEMMA3_270M_INSTRUCT = 17,GEMMA3_1B_BASE = 20,GEMMA3_1B_INSTRUCT = 21,GEMMA3_4B_BASE = 24,GEMMA3_4B_INSTRUCT = 25,};",
-        "name": "language_model",
-        "description": "Language Models:\nChoose between different language models to trade off speed and intelligence\nEach model is scaled to fit within 1~2GB and will be automatically downloaded when needed - feel free to try them out!",
-        "brief": null,
-        "constants": {
-          "QWEN3_0_6B_BASE": {
-            "description": "Qwen3 0.6B Base model - small, extremely fast and good for text commpletion. Very limited world knowledge.",
-            "number": 4
-          },
-          "QWEN3_0_6B_INSTRUCT": {
-            "description": "Qwen3 0.6B Instruct model (default) - small, extremely fast and can follow simple instructions. Very limited world knowledge.",
-            "number": 5
-          },
-          "QWEN3_0_6B_THINKING": {
-            "description": "Qwen3 0.6B Thinking model - small, extremely fast and can follow more specific instructions, but has a short delay before starting to reply. Very limited world knowledge.",
-            "number": 6
-          },
-          "QWEN3_1_7B_BASE": {
-            "description": "Qwen3 1.7B Base model - decently fast and good for text commpletion. Limited world knowledge.",
-            "number": 8
-          },
-          "QWEN3_1_7B_INSTRUCT": {
-            "description": "Qwen3 1.7B Instruct model - decently fast and can follow instructions. Limited world knowledge.",
-            "number": 9
-          },
-          "QWEN3_1_7B_THINKING": {
-            "description": "Qwen3 1.7B Thinking model - decently fast and can follow more difficult instructions, but has a delay before starting to reply. Limited world knowledge.",
-            "number": 10
-          },
-          "QWEN3_4B_BASE": {
-            "description": "Qwen3 4B Base model - slower but excellent for text commpletion/pattern based completion",
-            "number": 12
-          },
-          "QWEN3_4B_INSTRUCT": {
-            "description": "Qwen3 4B Instruct model - slower but can follow complex instructions",
-            "number": 13
-          },
-          "QWEN3_4B_THINKING": {
-            "description": "Qwen3 4B Thinking model - slower but can follow complex and specific instructions, but has a potentially long delay before starting to reply",
-            "number": 14
-          },
-          "GEMMA3_270M_BASE": {
-            "description": "Gemma3 270M Base model - tiny, extremely fast, and good for text completion. Very limited world knowledge.",
-            "number": 16
-          },
-          "GEMMA3_270M_INSTRUCT": {
-            "description": "Gemma3 270M Instruct model - tiny, extremely fast, and good for very simple instructions. Very limited world knowledge.",
-            "number": 17
-          },
-          "GEMMA3_1B_BASE": {
-            "description": "Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multi-lingual abilities.",
-            "number": 20
-          },
-          "GEMMA3_1B_INSTRUCT": {
-            "description": "Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multi-lingual abilities.",
-            "number": 21
-          },
-          "GEMMA3_4B_BASE": {
-            "description": "Gemma3 4B Base model - slower but good for text commpletion/pattern based completion. Has decent world knowledge and multi-lingual abilities.",
-            "number": 24
-          },
-          "GEMMA3_4B_INSTRUCT": {
-            "description": "Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multi-lingual abilities.",
-            "number": 25
-          }
-        },
-        "attributes": {
-          "group": "types"
-        },
-        "signatures": {
-          "cpp": "class language_model {QWEN3_0_6B_BASE = 4, QWEN3_0_6B_INSTRUCT = 5, QWEN3_0_6B_THINKING = 6, QWEN3_1_7B_BASE = 8, QWEN3_1_7B_INSTRUCT = 9, QWEN3_1_7B_THINKING = 10, QWEN3_4B_BASE = 12, QWEN3_4B_INSTRUCT = 13, QWEN3_4B_THINKING = 14, GEMMA3_270M_BASE = 16, GEMMA3_270M_INSTRUCT = 17, GEMMA3_1B_BASE = 20, GEMMA3_1B_INSTRUCT = 21, GEMMA3_4B_BASE = 24, GEMMA3_4B_INSTRUCT = 25};",
-          "python": "public enum {LanguageModel.qwen3_0_6b_base = 4, LanguageModel.qwen3_0_6b_instruct = 5, LanguageModel.qwen3_0_6b_thinking = 6, LanguageModel.qwen3_1_7b_base = 8, LanguageModel.qwen3_1_7b_instruct = 9, LanguageModel.qwen3_1_7b_thinking = 10, LanguageModel.qwen3_4b_base = 12, LanguageModel.qwen3_4b_instruct = 13, LanguageModel.qwen3_4b_thinking = 14, LanguageModel.gemma3_270m_base = 16, LanguageModel.gemma3_270m_instruct = 17, LanguageModel.gemma3_1b_base = 20, LanguageModel.gemma3_1b_instruct = 21, LanguageModel.gemma3_4b_base = 24, LanguageModel.gemma3_4b_instruct = 25}",
-          "csharp": "public enum {LanguageModel.Qwen306BBase = 4, LanguageModel.Qwen306BInstruct = 5, LanguageModel.Qwen306BThinking = 6, LanguageModel.Qwen317BBase = 8, LanguageModel.Qwen317BInstruct = 9, LanguageModel.Qwen317BThinking = 10, LanguageModel.Qwen34BBase = 12, LanguageModel.Qwen34BInstruct = 13, LanguageModel.Qwen34BThinking = 14, LanguageModel.Gemma3270mBase = 16, LanguageModel.Gemma3270mInstruct = 17, LanguageModel.Gemma31BBase = 20, LanguageModel.Gemma31BInstruct = 21, LanguageModel.Gemma34BBase = 24, LanguageModel.Gemma34BInstruct = 25}",
-          "pascal": "public enum {LanguageModel.Qwen306BBase = 4, LanguageModel.Qwen306BInstruct = 5, LanguageModel.Qwen306BThinking = 6, LanguageModel.Qwen317BBase = 8, LanguageModel.Qwen317BInstruct = 9, LanguageModel.Qwen317BThinking = 10, LanguageModel.Qwen34BBase = 12, LanguageModel.Qwen34BInstruct = 13, LanguageModel.Qwen34BThinking = 14, LanguageModel.Gemma3270mBase = 16, LanguageModel.Gemma3270mInstruct = 17, LanguageModel.Gemma31BBase = 20, LanguageModel.Gemma31BInstruct = 21, LanguageModel.Gemma34BBase = 24, LanguageModel.Gemma34BInstruct = 25}"
         }
       },
       {

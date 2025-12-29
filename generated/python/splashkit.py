@@ -35,6 +35,22 @@ class _sklib_string(Structure):
         bytes = str.encode(s)
         self.str = c_char_p(bytes)
         self.ptr = None
+class LanguageModel(Enum):
+    qwen3_0_6b_base = 4
+    qwen3_0_6b_instruct = 5
+    qwen3_0_6b_thinking = 6
+    qwen3_1_7b_base = 8
+    qwen3_1_7b_instruct = 9
+    qwen3_1_7b_thinking = 10
+    qwen3_4b_base = 12
+    qwen3_4b_instruct = 13
+    qwen3_4b_thinking = 14
+    gemma3_270m_base = 16
+    gemma3_270m_instruct = 17
+    gemma3_1b_base = 20
+    gemma3_1b_instruct = 21
+    gemma3_4b_base = 24
+    gemma3_4b_instruct = 25
 class KeyCode(Enum):
     unknown_key = 0
     backspace_key = 8
@@ -307,22 +323,6 @@ class InterfaceStyle(Enum):
     shaded_light_style = 3
     bubble = 4
     bubble_multicolored = 5
-class LanguageModel(Enum):
-    qwen3_0_6b_base = 4
-    qwen3_0_6b_instruct = 5
-    qwen3_0_6b_thinking = 6
-    qwen3_1_7b_base = 8
-    qwen3_1_7b_instruct = 9
-    qwen3_1_7b_thinking = 10
-    qwen3_4b_base = 12
-    qwen3_4b_instruct = 13
-    qwen3_4b_thinking = 14
-    gemma3_270m_base = 16
-    gemma3_270m_instruct = 17
-    gemma3_1b_base = 20
-    gemma3_1b_instruct = 21
-    gemma3_4b_base = 24
-    gemma3_4b_instruct = 25
 class MotorDirection(Enum):
     motor_forward = 0
     motor_backward = 1
@@ -548,46 +548,6 @@ class _sklib_drawing_options(Structure):
 
 
 DrawingOptions = _sklib_drawing_options
-class _sklib_language_model_options(Structure):
-    _fields_ = [
-        ("name", _sklib_string),
-        ("url", _sklib_string),
-        ("path", _sklib_string),
-        ("max_tokens", c_int),
-        ("temperature", c_double),
-        ("top_p", c_double),
-        ("top_k", c_int),
-        ("min_p", c_double),
-        ("presence_penalty", c_double),
-        ("prompt_append", _sklib_string),
-        ("seed", c_int),
-    ]
-
-    def __init__(self):
-        super().__init__()
-
-    def __eq__(self, other):
-        if not isinstance(other, self.__class__):
-            return False
-        return (
-            self.name == other.name and
-            self.url == other.url and
-            self.path == other.path and
-            self.max_tokens == other.max_tokens and
-            self.temperature == other.temperature and
-            self.top_p == other.top_p and
-            self.top_k == other.top_k and
-            self.min_p == other.min_p and
-            self.presence_penalty == other.presence_penalty and
-            self.prompt_append == other.prompt_append and
-            self.seed == other.seed
-        )
-
-    def __ne__(self, other):
-        return not (self == other)
-
-
-LanguageModelOptions = _sklib_language_model_options
 class _sklib_line(Structure):
     _fields_ = [
         ("start_point", _sklib_point_2d),
@@ -866,6 +826,14 @@ def __skadapter__to_sklib_unsigned_short(v):
 def __skadapter__to_unsigned_short(v):
     return v
 
+def __skadapter__to_language_model(v):
+    if isinstance(v, LanguageModel):
+        return v
+    return LanguageModel(v)
+
+def __skadapter__to_sklib_language_model(v):
+    return c_int(v.value)
+
 def __skadapter__to_key_code(v):
     if isinstance(v, KeyCode):
         return v
@@ -1000,14 +968,6 @@ def __skadapter__to_interface_style(v):
     return InterfaceStyle(v)
 
 def __skadapter__to_sklib_interface_style(v):
-    return c_int(v.value)
-
-def __skadapter__to_language_model(v):
-    if isinstance(v, LanguageModel):
-        return v
-    return LanguageModel(v)
-
-def __skadapter__to_sklib_language_model(v):
     return c_int(v.value)
 
 def __skadapter__to_motor_direction(v):
@@ -1177,39 +1137,6 @@ def __skadapter__to_drawing_options(v):
     result.camera = __skadapter__to_drawing_dest(v.camera)
     result.line_width = __skadapter__to_int(v.line_width)
     result.anim = __skadapter__to_animation(v.anim)
-    return result
-def __skadapter__to_sklib_language_model_options(v):
-    if isinstance(v, _sklib_language_model_options):
-        return v
-
-    result = LanguageModelOptions()
-    result.name = __skadapter__to_sklib_string(v.name)
-    result.url = __skadapter__to_sklib_string(v.url)
-    result.path = __skadapter__to_sklib_string(v.path)
-    result.max_tokens = __skadapter__to_sklib_int(v.max_tokens)
-    result.temperature = __skadapter__to_sklib_double(v.temperature)
-    result.top_p = __skadapter__to_sklib_double(v.top_p)
-    result.top_k = __skadapter__to_sklib_int(v.top_k)
-    result.min_p = __skadapter__to_sklib_double(v.min_p)
-    result.presence_penalty = __skadapter__to_sklib_double(v.presence_penalty)
-    result.prompt_append = __skadapter__to_sklib_string(v.prompt_append)
-    result.seed = __skadapter__to_sklib_int(v.seed)
-    return result
-def __skadapter__to_language_model_options(v):
-    if isinstance(v, LanguageModelOptions):
-        return v
-    result = LanguageModelOptions()
-    result.name = __skadapter__to_string(v.name)
-    result.url = __skadapter__to_string(v.url)
-    result.path = __skadapter__to_string(v.path)
-    result.max_tokens = __skadapter__to_int(v.max_tokens)
-    result.temperature = __skadapter__to_double(v.temperature)
-    result.top_p = __skadapter__to_double(v.top_p)
-    result.top_k = __skadapter__to_int(v.top_k)
-    result.min_p = __skadapter__to_double(v.min_p)
-    result.presence_penalty = __skadapter__to_double(v.presence_penalty)
-    result.prompt_append = __skadapter__to_string(v.prompt_append)
-    result.seed = __skadapter__to_int(v.seed)
     return result
 def __skadapter__to_sklib_line(v):
     if isinstance(v, _sklib_line):
@@ -2685,8 +2612,6 @@ sklib.__sklib__conversation_is_replying__conversation.argtypes = [ c_void_p ]
 sklib.__sklib__conversation_is_replying__conversation.restype = c_int32
 sklib.__sklib__conversation_is_thinking__conversation.argtypes = [ c_void_p ]
 sklib.__sklib__conversation_is_thinking__conversation.restype = c_int32
-sklib.__sklib__create_conversation__language_model_options.argtypes = [ _sklib_language_model_options ]
-sklib.__sklib__create_conversation__language_model_options.restype = c_void_p
 sklib.__sklib__create_conversation.argtypes = [  ]
 sklib.__sklib__create_conversation.restype = c_void_p
 sklib.__sklib__create_conversation__language_model.argtypes = [ c_int ]
@@ -2695,20 +2620,14 @@ sklib.__sklib__free_all_conversations.argtypes = [  ]
 sklib.__sklib__free_all_conversations.restype = None
 sklib.__sklib__free_conversation__conversation.argtypes = [ c_void_p ]
 sklib.__sklib__free_conversation__conversation.restype = None
-sklib.__sklib__generate_reply__string__language_model_options.argtypes = [ _sklib_string, _sklib_language_model_options ]
-sklib.__sklib__generate_reply__string__language_model_options.restype = _sklib_string
 sklib.__sklib__generate_reply__language_model__string.argtypes = [ c_int, _sklib_string ]
 sklib.__sklib__generate_reply__language_model__string.restype = _sklib_string
 sklib.__sklib__generate_reply__string.argtypes = [ _sklib_string ]
 sklib.__sklib__generate_reply__string.restype = _sklib_string
-sklib.__sklib__generate_text__string__language_model_options.argtypes = [ _sklib_string, _sklib_language_model_options ]
-sklib.__sklib__generate_text__string__language_model_options.restype = _sklib_string
 sklib.__sklib__generate_text__language_model__string.argtypes = [ c_int, _sklib_string ]
 sklib.__sklib__generate_text__language_model__string.restype = _sklib_string
 sklib.__sklib__generate_text__string.argtypes = [ _sklib_string ]
 sklib.__sklib__generate_text__string.restype = _sklib_string
-sklib.__sklib__option_language_model__language_model.argtypes = [ c_int ]
-sklib.__sklib__option_language_model__language_model.restype = _sklib_language_model_options
 sklib.__sklib__cosine__float.argtypes = [ c_float ]
 sklib.__sklib__cosine__float.restype = c_float
 sklib.__sklib__sine__float.argtypes = [ c_float ]
@@ -2993,12 +2912,12 @@ sklib.__sklib__start_popup__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__start_popup__string_ref.restype = c_int32
 sklib.__sklib__start_treenode__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__start_treenode__string_ref.restype = c_int32
-sklib.__sklib__text_box__string_ref__string_ref__rectangle_ref.argtypes = [ _sklib_string, _sklib_string, _sklib_rectangle ]
-sklib.__sklib__text_box__string_ref__string_ref__rectangle_ref.restype = _sklib_string
+sklib.__sklib__text_box__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__text_box__string_ref.restype = _sklib_string
+sklib.__sklib__text_box__string_ref__rectangle_ref.argtypes = [ _sklib_string, _sklib_rectangle ]
+sklib.__sklib__text_box__string_ref__rectangle_ref.restype = _sklib_string
 sklib.__sklib__text_box__string_ref__string_ref.argtypes = [ _sklib_string, _sklib_string ]
 sklib.__sklib__text_box__string_ref__string_ref.restype = _sklib_string
-sklib.__sklib__text_box__string_ref__string_ref__bool.argtypes = [ _sklib_string, _sklib_string, c_int32 ]
-sklib.__sklib__text_box__string_ref__string_ref__bool.restype = _sklib_string
 sklib.__sklib__create_json.argtypes = [  ]
 sklib.__sklib__create_json.restype = c_void_p
 sklib.__sklib__create_json__string.argtypes = [ _sklib_string ]
@@ -3629,6 +3548,8 @@ sklib.__sklib__close_motor__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__close_motor__string_ref.restype = None
 sklib.__sklib__close_motor__motor_device.argtypes = [ c_void_p ]
 sklib.__sklib__close_motor__motor_device.restype = None
+sklib.__sklib__free_motor_device__motor_device.argtypes = [ c_void_p ]
+sklib.__sklib__free_motor_device__motor_device.restype = None
 sklib.__sklib__has_motor_device__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__has_motor_device__string_ref.restype = c_int32
 sklib.__sklib__motor_named__string_ref.argtypes = [ _sklib_string ]
@@ -6761,10 +6682,6 @@ def conversation_is_thinking ( c ):
     __skparam__c = __skadapter__to_sklib_conversation(c)
     __skreturn = sklib.__sklib__conversation_is_thinking__conversation(__skparam__c)
     return __skadapter__to_bool(__skreturn)
-def create_conversation_with_options ( options ):
-    __skparam__options = __skadapter__to_sklib_language_model_options(options)
-    __skreturn = sklib.__sklib__create_conversation__language_model_options(__skparam__options)
-    return __skadapter__to_conversation(__skreturn)
 def create_conversation (  ):
     __skreturn = sklib.__sklib__create_conversation()
     return __skadapter__to_conversation(__skreturn)
@@ -6777,11 +6694,6 @@ def free_all_conversations (  ):
 def free_conversation ( c ):
     __skparam__c = __skadapter__to_sklib_conversation(c)
     sklib.__sklib__free_conversation__conversation(__skparam__c)
-def generate_reply_with_options ( prompt, options ):
-    __skparam__prompt = __skadapter__to_sklib_string(prompt)
-    __skparam__options = __skadapter__to_sklib_language_model_options(options)
-    __skreturn = sklib.__sklib__generate_reply__string__language_model_options(__skparam__prompt, __skparam__options)
-    return __skadapter__to_string(__skreturn)
 def generate_reply_with_model ( model, prompt ):
     __skparam__model = __skadapter__to_sklib_language_model(model)
     __skparam__prompt = __skadapter__to_sklib_string(prompt)
@@ -6790,11 +6702,6 @@ def generate_reply_with_model ( model, prompt ):
 def generate_reply ( prompt ):
     __skparam__prompt = __skadapter__to_sklib_string(prompt)
     __skreturn = sklib.__sklib__generate_reply__string(__skparam__prompt)
-    return __skadapter__to_string(__skreturn)
-def generate_text_with_options ( text, options ):
-    __skparam__text = __skadapter__to_sklib_string(text)
-    __skparam__options = __skadapter__to_sklib_language_model_options(options)
-    __skreturn = sklib.__sklib__generate_text__string__language_model_options(__skparam__text, __skparam__options)
     return __skadapter__to_string(__skreturn)
 def generate_text_with_model ( model, text ):
     __skparam__model = __skadapter__to_sklib_language_model(model)
@@ -6805,10 +6712,6 @@ def generate_text ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__generate_text__string(__skparam__text)
     return __skadapter__to_string(__skreturn)
-def option_language_model ( model ):
-    __skparam__model = __skadapter__to_sklib_language_model(model)
-    __skreturn = sklib.__sklib__option_language_model__language_model(__skparam__model)
-    return __skadapter__to_language_model_options(__skreturn)
 def cosine ( degrees ):
     __skparam__degrees = __skadapter__to_sklib_float(degrees)
     __skreturn = sklib.__sklib__cosine__float(__skparam__degrees)
@@ -7398,22 +7301,19 @@ def start_treenode ( label_text ):
     __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skreturn = sklib.__sklib__start_treenode__string_ref(__skparam__label_text)
     return __skadapter__to_bool(__skreturn)
-def text_box_at_position ( label_text, value, rect ):
-    __skparam__label_text = __skadapter__to_sklib_string(label_text)
+def text_box ( value ):
+    __skparam__value = __skadapter__to_sklib_string(value)
+    __skreturn = sklib.__sklib__text_box__string_ref(__skparam__value)
+    return __skadapter__to_string(__skreturn)
+def text_box_at_position ( value, rect ):
     __skparam__value = __skadapter__to_sklib_string(value)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
-    __skreturn = sklib.__sklib__text_box__string_ref__string_ref__rectangle_ref(__skparam__label_text, __skparam__value, __skparam__rect)
+    __skreturn = sklib.__sklib__text_box__string_ref__rectangle_ref(__skparam__value, __skparam__rect)
     return __skadapter__to_string(__skreturn)
-def text_box ( label_text, value ):
+def text_box_labeled ( label_text, value ):
     __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__value = __skadapter__to_sklib_string(value)
     __skreturn = sklib.__sklib__text_box__string_ref__string_ref(__skparam__label_text, __skparam__value)
-    return __skadapter__to_string(__skreturn)
-def text_box_labeled ( label_text, value, show_label ):
-    __skparam__label_text = __skadapter__to_sklib_string(label_text)
-    __skparam__value = __skadapter__to_sklib_string(value)
-    __skparam__show_label = __skadapter__to_sklib_bool(show_label)
-    __skreturn = sklib.__sklib__text_box__string_ref__string_ref__bool(__skparam__label_text, __skparam__value, __skparam__show_label)
     return __skadapter__to_string(__skreturn)
 def create_json (  ):
     __skreturn = sklib.__sklib__create_json()
@@ -8803,6 +8703,9 @@ def close_motor_named ( name ):
 def close_motor ( dev ):
     __skparam__dev = __skadapter__to_sklib_motor_device(dev)
     sklib.__sklib__close_motor__motor_device(__skparam__dev)
+def free_motor_device ( dev ):
+    __skparam__dev = __skadapter__to_sklib_motor_device(dev)
+    sklib.__sklib__free_motor_device__motor_device(__skparam__dev)
 def has_motor_device ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__has_motor_device__string_ref(__skparam__name)

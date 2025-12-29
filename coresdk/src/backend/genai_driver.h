@@ -16,6 +16,38 @@ namespace splashkit_lib
 {
     typedef unsigned int uint;
 
+    /**
+     * Language model options allow you to customize the language model used. These should be
+     * initialised using functions such as `option_language_model`.
+     *
+     * @field name             The name of the model (used in diagnostic messages).
+     * @field url              A URL to download a model from.
+     * @field path             A path to a custom language model (.gguf) file on your computer/a place to download it to.
+     * @field max_tokens       The maximum number of tokens to output when replying. One word is approximately two tokens.
+     * @field temperature      Increases the likelihood of unlikely tokens to be chosen.
+     * @field top_p            Only choose from the top P most likely tokens.
+     * @field top_k            Only choose from the top K most likely tokens.
+     * @field min_p            Remove tokens less likely than P.
+     * @field presence_penalty Penalizes words that have been used once, making them less likely. Can reduce repetition.
+     * @field prompt_append    A string to append to prompts automatically.
+     * 
+     * @attribute class language_model_options
+     */
+    struct language_model_options
+    {
+        string name;
+        string url;
+        string path;
+        int max_tokens;
+        double temperature;
+        double top_p;
+        int top_k;
+        double min_p;
+        double presence_penalty;
+        string prompt_append;
+        int seed;
+    };
+
     namespace llamacpp
     {
         typedef std::vector<llama_token> llama_tokens;

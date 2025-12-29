@@ -64,6 +64,16 @@ namespace splashkit_lib
     motor_device motor_named(const string &name);
 
     /**
+     * Free the resources associated with a motor device.
+     *
+     * @param dev   The motor device to be destroyed.
+     *
+     * @attribute class motor_device
+     * @attribute destructor true
+     */
+    void free_motor_device(motor_device dev);
+
+    /**
      * Opens a motor device with the specified parameters.
      * 
      * @param name      Identifier for the motor driver.

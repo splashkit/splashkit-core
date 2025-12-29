@@ -636,19 +636,25 @@ bool start_popup(const string &name);
 */
 bool start_treenode(const string &label_text);
 /**
+* Creates a text entry box with a label.
+* Returns the updated value of the text box.
+* @param value The current value of the text box
+* @return The updated value of the text box
+*/
+string text_box(const string &value);
+/**
 * Creates a text entry box at a specific position on screen.
 * Returns the updated value of the text box.
 * 
 * Example usage:
 * ```c++
-* my_string = text_box("Name", my_string, rectangle_from(0,0,100,100));
+* my_string = text_box("Name", my_string);
 * ```
-* @param label_text Unique identifier for the text box (not drawn)
 * @param value The current value of the text box
 * @param rect The rectangle to display the button in
 * @return The updated value of the text box
 */
-string text_box(const string &label_text, const string &value, const rectangle &rect);
+string text_box(const string &value, const rectangle &rect);
 /**
 * Creates a text entry box with a label.
 * Returns the updated value of the text box.
@@ -657,24 +663,10 @@ string text_box(const string &label_text, const string &value, const rectangle &
 * ```c++
 * my_string = text_box("Name", my_string);
 * ```
-* @param label_text Unique identifier for the text box (not drawn)
+* @param label_text The label to show in front of the text box
 * @param value The current value of the text box
 * @return The updated value of the text box
 */
 string text_box(const string &label_text, const string &value);
-/**
-* Creates a text entry box with a label that can be shown.
-* Returns the updated value of the text box.
-* 
-* Example usage:
-* ```c++
-* my_string = text_box("Name", my_string, true);
-* ```
-* @param label_text Unique identifier for the text box (not drawn)
-* @param value The current value of the text box
-* @param show_label Whether to show the label or not
-* @return The updated value of the text box
-*/
-string text_box(const string &label_text, const string &value, bool show_label);
 
 #endif /* __interface_h */

@@ -29,8 +29,7 @@ namespace splashkit_lib
      * All `conversation` objects are:
      *
      *
-     *   - created with `create_conversation()`, `create_conversation(language_model model)` or
-     *   `create_conversation(language_model_options options)`
+     *   - created with `create_conversation()`, `create_conversation(language_model model)`
      *
      *
      *   - and must be released using `free_conversation()` (to release a specific `conversation` object)
@@ -40,6 +39,46 @@ namespace splashkit_lib
      * @attribute class conversation
      */
     typedef struct sk_conversation *conversation;
+
+    /**
+     * Language Models:
+     * Choose between different language models to trade off speed and intelligence
+     * Each model is scaled to fit within 1~2GB and will be automatically downloaded when needed - feel free to try them out!
+     *
+     * @constant QWEN3_0_6B_BASE       Qwen3 0.6B Base model - small, extremely fast and good for text commpletion. Very limited world knowledge.
+     * @constant QWEN3_0_6B_INSTRUCT   Qwen3 0.6B Instruct model (default) - small, extremely fast and can follow simple instructions. Very limited world knowledge.
+     * @constant QWEN3_0_6B_THINKING   Qwen3 0.6B Thinking model - small, extremely fast and can follow more specific instructions, but has a short delay before starting to reply. Very limited world knowledge.
+     * @constant QWEN3_1_7B_BASE       Qwen3 1.7B Base model - decently fast and good for text commpletion. Limited world knowledge.
+     * @constant QWEN3_1_7B_INSTRUCT   Qwen3 1.7B Instruct model - decently fast and can follow instructions. Limited world knowledge.
+     * @constant QWEN3_1_7B_THINKING   Qwen3 1.7B Thinking model - decently fast and can follow more difficult instructions, but has a delay before starting to reply. Limited world knowledge.
+     * @constant QWEN3_4B_BASE         Qwen3 4B Base model - slower but excellent for text commpletion/pattern based completion
+     * @constant QWEN3_4B_INSTRUCT     Qwen3 4B Instruct model - slower but can follow complex instructions
+     * @constant QWEN3_4B_THINKING     Qwen3 4B Thinking model - slower but can follow complex and specific instructions, but has a potentially long delay before starting to reply
+     * @constant GEMMA3_270M_BASE      Gemma3 270M Base model - tiny, extremely fast, and good for text completion. Very limited world knowledge.
+     * @constant GEMMA3_270M_INSTRUCT  Gemma3 270M Instruct model - tiny, extremely fast, and good for very simple instructions. Very limited world knowledge.
+     * @constant GEMMA3_1B_BASE        Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_1B_INSTRUCT    Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_4B_BASE        Gemma3 4B Base model - slower but good for text commpletion/pattern based completion. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_4B_INSTRUCT    Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multi-lingual abilities.
+     */
+    enum language_model
+    {
+        QWEN3_0_6B_BASE = 4,
+        QWEN3_0_6B_INSTRUCT = 5,
+        QWEN3_0_6B_THINKING = 6,
+        QWEN3_1_7B_BASE = 8,
+        QWEN3_1_7B_INSTRUCT = 9,
+        QWEN3_1_7B_THINKING = 10,
+        QWEN3_4B_BASE = 12,
+        QWEN3_4B_INSTRUCT = 13,
+        QWEN3_4B_THINKING = 14,
+        GEMMA3_270M_BASE = 16,
+        GEMMA3_270M_INSTRUCT = 17,
+        GEMMA3_1B_BASE = 20,
+        GEMMA3_1B_INSTRUCT = 21,
+        GEMMA3_4B_BASE = 24,
+        GEMMA3_4B_INSTRUCT = 25,
+    };
 
     /**
      * @brief Generates a reply to a textual prompt by a language model
@@ -69,22 +108,6 @@ namespace splashkit_lib
     string generate_reply(language_model model, string prompt);
 
     /**
-     * @brief Generates a reply to a textual prompt by a language model
-     *
-     * The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.
-     * Instruct or Thinking models are recommended. Base models likely won't output sensible results.
-     *
-     * @param prompt  The prompt for the language model to reply to.
-     * @param options The generation options - use the `option_` functions to create this, for instance `option_language_model`
-     *
-     * @returns The generated reply.
-     *
-     * @attribute suffix with_options
-     */
-    string generate_reply(string prompt, language_model_options options);
-
-
-    /**
      * @brief Generates text that continues from a prompt
      *
      * The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.
@@ -110,21 +133,6 @@ namespace splashkit_lib
      * @attribute suffix with_model
      */
     string generate_text(language_model model, string text);
-
-    /**
-     * @brief Generates text that continues from a prompt
-     *
-     * The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.
-     * Base models are recommended; Instruct and Thinking models may work.
-     *
-     * @param text The input text for the language model to continue.
-     * @param options The generation options - use the `option_` functions to create this, for instance `option_language_model`
-     *
-     * @returns The generated reply.
-     *
-     * @attribute suffix with_options
-     */
-    string generate_text(string text, language_model_options options);
 
     /**
      * @brief Creates a new `conversation` object, that uses the default language model.
@@ -153,22 +161,6 @@ namespace splashkit_lib
      * @attribute suffix with_model
      */
     conversation create_conversation(language_model model);
-
-    /**
-     * @brief Creates a new `conversation` object, that uses a chosen language model among other options.
-     *
-     * The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
-     *
-     * @param options The options to use - use this to choose the language model, and change various parameters.
-     *
-     * @returns Returns a new `conversation` object.
-     *
-     * @attribute class       conversation
-     * @attribute constructor true
-     *
-     * @attribute suffix with_options
-     */
-    conversation create_conversation(language_model_options options);
 
     /**
      * Checks if a language model is currently generating a reply within a `conversation`.
@@ -244,15 +236,5 @@ namespace splashkit_lib
      * @attribute method free_all
      */
     void free_all_conversations();
-
-    /**
-     * Use this option to choose which language model to use, and initialize its default settings
-     *
-     * @param  model The language model to use
-     *
-     * @return       Language model options that will use that model and its default settings.
-     */
-    language_model_options option_language_model(language_model model);
-
 }
 #endif /* genai_hpp */

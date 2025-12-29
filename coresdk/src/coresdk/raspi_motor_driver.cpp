@@ -10,6 +10,7 @@
 #include "raspi_gpio.h"    // For GPIO functions
 #include "easylogging++.h" // For logging
 #include "backend_types.h" // For pointer_identifier
+#include "utility_functions.h"
 
 namespace splashkit_lib
 {
@@ -34,6 +35,24 @@ namespace splashkit_lib
     {
         auto it = _motor_devices.find(name);
         return it != _motor_devices.end() ? it->second : nullptr;
+    }
+
+    void free_motor_device(motor_device dev)
+    {
+        if( (INVALID_PTR(dev, MOTOR_DRIVER_PTR)) )
+        {
+            LOG(WARNING) << "Attempting to free invalid motor device";
+            return;
+        }
+
+        //Dispose sprite
+        notify_of_free(dev);
+
+        // Remove from hashtable
+        _motor_devices.erase(dev->name);
+
+        dev->id = NONE_PTR;
+        delete dev;
     }
 
     motor_device open_motor(const string &name, motor_driver_type type, gpio_pin in1_pin, gpio_pin in2_pin, gpio_pin en_pin)

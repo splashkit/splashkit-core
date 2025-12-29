@@ -578,7 +578,7 @@ namespace splashkit_lib
     {
         if (sk_connection_has_data(&con) > 0)
         {
-            char data[UDP_PACKET_SIZE];
+            char *data = (char*)calloc(UDP_PACKET_SIZE, sizeof(char)); //[UDP_PACKET_SIZE];
             unsigned long size;
             unsigned int times, host;
             unsigned short port;
@@ -600,7 +600,8 @@ namespace splashkit_lib
                 times += 1;
             }
             while (((size != 0) && (host != 0)) || (times < 10));
-
+            free(data);
+            data = nullptr;
             return true;
         }
 

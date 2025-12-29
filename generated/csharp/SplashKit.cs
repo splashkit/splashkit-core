@@ -64,6 +64,11 @@ namespace SplashKitSDK
     private static ushort __skadapter__to_unsigned_short(ushort v) { return v; }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int __skadapter__to_sklib_language_model(LanguageModel v) { return (int)v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static LanguageModel __skadapter__to_language_model(int v) { return (LanguageModel)v; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_sklib_key_code(KeyCode v) { return (int)v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static KeyCode __skadapter__to_key_code(int v) { return (KeyCode)v; }
@@ -147,11 +152,6 @@ namespace SplashKitSDK
     private static int __skadapter__to_sklib_interface_style(InterfaceStyle v) { return (int)v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static InterfaceStyle __skadapter__to_interface_style(int v) { return (InterfaceStyle)v; }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int __skadapter__to_sklib_language_model(LanguageModel v) { return (int)v; }
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static LanguageModel __skadapter__to_language_model(int v) { return (LanguageModel)v; }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_sklib_motor_direction(MotorDirection v) { return (int)v; }
@@ -355,40 +355,6 @@ namespace SplashKitSDK
       __skreturn.Camera = __skadapter__to_drawing_dest(v.Camera);
       __skreturn.LineWidth = __skadapter__to_int(v.LineWidth);
       __skreturn.Anim = __skadapter__to_animation(v.Anim);
-      return __skreturn;
-    }
-
-
-    private static __sklib_language_model_options __skadapter__to_sklib_language_model_options(LanguageModelOptions v)
-    {
-      __sklib_language_model_options __skreturn;
-      __skreturn.Name = __skadapter__to_sklib_string(v.Name);
-      __skreturn.Url = __skadapter__to_sklib_string(v.Url);
-      __skreturn.Path = __skadapter__to_sklib_string(v.Path);
-      __skreturn.MaxTokens = __skadapter__to_sklib_int(v.MaxTokens);
-      __skreturn.Temperature = __skadapter__to_sklib_double(v.Temperature);
-      __skreturn.TopP = __skadapter__to_sklib_double(v.TopP);
-      __skreturn.TopK = __skadapter__to_sklib_int(v.TopK);
-      __skreturn.MinP = __skadapter__to_sklib_double(v.MinP);
-      __skreturn.PresencePenalty = __skadapter__to_sklib_double(v.PresencePenalty);
-      __skreturn.PromptAppend = __skadapter__to_sklib_string(v.PromptAppend);
-      __skreturn.Seed = __skadapter__to_sklib_int(v.Seed);
-      return __skreturn;
-    }
-    private static LanguageModelOptions __skadapter__to_language_model_options(__sklib_language_model_options v)
-    {
-      LanguageModelOptions __skreturn;
-      __skreturn.Name = __skadapter__to_string(v.Name);
-      __skreturn.Url = __skadapter__to_string(v.Url);
-      __skreturn.Path = __skadapter__to_string(v.Path);
-      __skreturn.MaxTokens = __skadapter__to_int(v.MaxTokens);
-      __skreturn.Temperature = __skadapter__to_double(v.Temperature);
-      __skreturn.TopP = __skadapter__to_double(v.TopP);
-      __skreturn.TopK = __skadapter__to_int(v.TopK);
-      __skreturn.MinP = __skadapter__to_double(v.MinP);
-      __skreturn.PresencePenalty = __skadapter__to_double(v.PresencePenalty);
-      __skreturn.PromptAppend = __skadapter__to_string(v.PromptAppend);
-      __skreturn.Seed = __skadapter__to_int(v.Seed);
       return __skreturn;
     }
 
@@ -2539,9 +2505,6 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__conversation_is_thinking__conversation", CharSet=CharSet.Ansi)]
     private static extern int __sklib__conversation_is_thinking__conversation(__sklib_ptr c);
 
-    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_conversation__language_model_options", CharSet=CharSet.Ansi)]
-    private static extern __sklib_ptr __sklib__create_conversation__language_model_options(__sklib_language_model_options options);
-
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_conversation", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_conversation();
 
@@ -2554,26 +2517,17 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_conversation__conversation", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_conversation__conversation(__sklib_ptr c);
 
-    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_reply__string__language_model_options", CharSet=CharSet.Ansi)]
-    private static extern __sklib_string __sklib__generate_reply__string__language_model_options(__sklib_string prompt, __sklib_language_model_options options);
-
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_reply__language_model__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__generate_reply__language_model__string(int model, __sklib_string prompt);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_reply__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__generate_reply__string(__sklib_string prompt);
 
-    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__string__language_model_options", CharSet=CharSet.Ansi)]
-    private static extern __sklib_string __sklib__generate_text__string__language_model_options(__sklib_string text, __sklib_language_model_options options);
-
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__language_model__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__generate_text__language_model__string(int model, __sklib_string text);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__generate_text__string(__sklib_string text);
-
-    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_language_model__language_model", CharSet=CharSet.Ansi)]
-    private static extern __sklib_language_model_options __sklib__option_language_model__language_model(int model);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__cosine__float", CharSet=CharSet.Ansi)]
     private static extern float __sklib__cosine__float(float degrees);
@@ -3001,14 +2955,14 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_treenode__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__start_treenode__string_ref(__sklib_string labelText);
 
-    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_box__string_ref__string_ref__rectangle_ref", CharSet=CharSet.Ansi)]
-    private static extern __sklib_string __sklib__text_box__string_ref__string_ref__rectangle_ref(__sklib_string labelText, __sklib_string value, __sklib_rectangle rect);
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_box__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__text_box__string_ref(__sklib_string value);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_box__string_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__text_box__string_ref__rectangle_ref(__sklib_string value, __sklib_rectangle rect);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_box__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__text_box__string_ref__string_ref(__sklib_string labelText, __sklib_string value);
-
-    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_box__string_ref__string_ref__bool", CharSet=CharSet.Ansi)]
-    private static extern __sklib_string __sklib__text_box__string_ref__string_ref__bool(__sklib_string labelText, __sklib_string value, int showLabel);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_json", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_json();
@@ -3954,6 +3908,9 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_motor__motor_device", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_motor__motor_device(__sklib_ptr dev);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_motor_device__motor_device", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__free_motor_device__motor_device(__sklib_ptr dev);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_motor_device__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_motor_device__string_ref(__sklib_string name);
@@ -12397,19 +12354,6 @@ namespace SplashKitSDK
     /// <summary>
     /// The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
     /// </summary>
-    /// <param name="options"> The options to use - use this to choose the language model, and change various parameters.</param>
-    /// <returns>Returns a new `conversation` object.</returns>
-    public static Conversation CreateConversation(LanguageModelOptions options)
-    {
-      __sklib_language_model_options __skparam__options;
-      __sklib_ptr __skreturn;
-      __skparam__options = __skadapter__to_sklib_language_model_options(options);
-      __skreturn = __sklib__create_conversation__language_model_options(__skparam__options);
-      return __skadapter__to_conversation(__skreturn);
-    }
-    /// <summary>
-    /// The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
-    /// </summary>
     /// <returns>Returns a new `conversation` object.</returns>
     public static Conversation CreateConversation()
     {
@@ -12450,23 +12394,6 @@ namespace SplashKitSDK
     /// <summary>
     /// The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions. Instruct or Thinking models are recommended. Base models likely won't output sensible results.
     /// </summary>
-    /// <param name="prompt"> The prompt for the language model to reply to.</param>
-    /// <param name="options"> The generation options - use the `option_` functions to create this, for instance `option_language_model`</param>
-    /// <returns>The generated reply.</returns>
-    public static string GenerateReply(string prompt, LanguageModelOptions options)
-    {
-      __sklib_string __skparam__prompt;
-      __sklib_language_model_options __skparam__options;
-      __sklib_string __skreturn;
-      __skparam__prompt = __skadapter__to_sklib_string(prompt);
-      __skparam__options = __skadapter__to_sklib_language_model_options(options);
-      __skreturn = __sklib__generate_reply__string__language_model_options(__skparam__prompt, __skparam__options);
-    __skadapter__free__sklib_string(ref __skparam__prompt);
-      return __skadapter__to_string(__skreturn);
-    }
-    /// <summary>
-    /// The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions. Instruct or Thinking models are recommended. Base models likely won't output sensible results.
-    /// </summary>
     /// <param name="model"> The language model to use</param>
     /// <param name="prompt"> The prompt for the language model to reply to.</param>
     /// <returns>The generated reply.</returns>
@@ -12493,23 +12420,6 @@ namespace SplashKitSDK
       __skparam__prompt = __skadapter__to_sklib_string(prompt);
       __skreturn = __sklib__generate_reply__string(__skparam__prompt);
     __skadapter__free__sklib_string(ref __skparam__prompt);
-      return __skadapter__to_string(__skreturn);
-    }
-    /// <summary>
-    /// The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
-    /// </summary>
-    /// <param name="text"> The input text for the language model to continue.</param>
-    /// <param name="options"> The generation options - use the `option_` functions to create this, for instance `option_language_model`</param>
-    /// <returns>The generated reply.</returns>
-    public static string GenerateText(string text, LanguageModelOptions options)
-    {
-      __sklib_string __skparam__text;
-      __sklib_language_model_options __skparam__options;
-      __sklib_string __skreturn;
-      __skparam__text = __skadapter__to_sklib_string(text);
-      __skparam__options = __skadapter__to_sklib_language_model_options(options);
-      __skreturn = __sklib__generate_text__string__language_model_options(__skparam__text, __skparam__options);
-    __skadapter__free__sklib_string(ref __skparam__text);
       return __skadapter__to_string(__skreturn);
     }
     /// <summary>
@@ -12542,19 +12452,6 @@ namespace SplashKitSDK
       __skreturn = __sklib__generate_text__string(__skparam__text);
     __skadapter__free__sklib_string(ref __skparam__text);
       return __skadapter__to_string(__skreturn);
-    }
-    /// <summary>
-    /// Use this option to choose which language model to use, and initialize its default settings
-    /// </summary>
-    /// <param name="model"> The language model to use</param>
-    /// <returns>Language model options that will use that model and its default settings.</returns>
-    public static LanguageModelOptions OptionLanguageModel(LanguageModel model)
-    {
-      int __skparam__model;
-      __sklib_language_model_options __skreturn;
-      __skparam__model = __skadapter__to_sklib_language_model(model);
-      __skreturn = __sklib__option_language_model__language_model(__skparam__model);
-      return __skadapter__to_language_model_options(__skreturn);
     }
     /// <summary>
     /// Returns the cosine of the supplied angle (in degrees).
@@ -14509,30 +14406,40 @@ namespace SplashKitSDK
       return __skadapter__to_bool(__skreturn);
     }
     /// <summary>
-    /// Creates a text entry box at a specific position on screen. Returns the updated value of the text box.  Example usage: ```c++ my_string = text_box("Name", my_string, rectangle_from(0,0,100,100)); ```
+    /// Creates a text entry box with a label. Returns the updated value of the text box.
     /// </summary>
-    /// <param name="labelText"> Unique identifier for the text box (not drawn)</param>
+    /// <param name="value"> The current value of the text box</param>
+    /// <returns>The updated value of the text box</returns>
+    public static string TextBox(string value)
+    {
+      __sklib_string __skparam__value;
+      __sklib_string __skreturn;
+      __skparam__value = __skadapter__to_sklib_string(value);
+      __skreturn = __sklib__text_box__string_ref(__skparam__value);
+    __skadapter__free__sklib_string(ref __skparam__value);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// Creates a text entry box at a specific position on screen. Returns the updated value of the text box.  Example usage: ```c++ my_string = text_box("Name", my_string); ```
+    /// </summary>
     /// <param name="value"> The current value of the text box</param>
     /// <param name="rect"> The rectangle to display the button in</param>
     /// <returns>The updated value of the text box</returns>
-    public static string TextBox(string labelText, string value, Rectangle rect)
+    public static string TextBox(string value, Rectangle rect)
     {
-      __sklib_string __skparam__label_text;
       __sklib_string __skparam__value;
       __sklib_rectangle __skparam__rect;
       __sklib_string __skreturn;
-      __skparam__label_text = __skadapter__to_sklib_string(labelText);
       __skparam__value = __skadapter__to_sklib_string(value);
       __skparam__rect = __skadapter__to_sklib_rectangle(rect);
-      __skreturn = __sklib__text_box__string_ref__string_ref__rectangle_ref(__skparam__label_text, __skparam__value, __skparam__rect);
-    __skadapter__free__sklib_string(ref __skparam__label_text);
+      __skreturn = __sklib__text_box__string_ref__rectangle_ref(__skparam__value, __skparam__rect);
     __skadapter__free__sklib_string(ref __skparam__value);
       return __skadapter__to_string(__skreturn);
     }
     /// <summary>
     /// Creates a text entry box with a label. Returns the updated value of the text box.  Example usage: ```c++ my_string = text_box("Name", my_string); ```
     /// </summary>
-    /// <param name="labelText"> Unique identifier for the text box (not drawn)</param>
+    /// <param name="labelText"> The label to show in front of the text box</param>
     /// <param name="value"> The current value of the text box</param>
     /// <returns>The updated value of the text box</returns>
     public static string TextBox(string labelText, string value)
@@ -14543,27 +14450,6 @@ namespace SplashKitSDK
       __skparam__label_text = __skadapter__to_sklib_string(labelText);
       __skparam__value = __skadapter__to_sklib_string(value);
       __skreturn = __sklib__text_box__string_ref__string_ref(__skparam__label_text, __skparam__value);
-    __skadapter__free__sklib_string(ref __skparam__label_text);
-    __skadapter__free__sklib_string(ref __skparam__value);
-      return __skadapter__to_string(__skreturn);
-    }
-    /// <summary>
-    /// Creates a text entry box with a label that can be shown. Returns the updated value of the text box.  Example usage: ```c++ my_string = text_box("Name", my_string, true); ```
-    /// </summary>
-    /// <param name="labelText"> Unique identifier for the text box (not drawn)</param>
-    /// <param name="value"> The current value of the text box</param>
-    /// <param name="showLabel"> Whether to show the label or not</param>
-    /// <returns>The updated value of the text box</returns>
-    public static string TextBox(string labelText, string value, bool showLabel)
-    {
-      __sklib_string __skparam__label_text;
-      __sklib_string __skparam__value;
-      int __skparam__show_label;
-      __sklib_string __skreturn;
-      __skparam__label_text = __skadapter__to_sklib_string(labelText);
-      __skparam__value = __skadapter__to_sklib_string(value);
-      __skparam__show_label = __skadapter__to_sklib_bool(showLabel);
-      __skreturn = __sklib__text_box__string_ref__string_ref__bool(__skparam__label_text, __skparam__value, __skparam__show_label);
     __skadapter__free__sklib_string(ref __skparam__label_text);
     __skadapter__free__sklib_string(ref __skparam__value);
       return __skadapter__to_string(__skreturn);
@@ -19119,6 +19005,16 @@ namespace SplashKitSDK
       __sklib_ptr __skparam__dev;
       __skparam__dev = __skadapter__to_sklib_motor_device(dev);
       __sklib__close_motor__motor_device(__skparam__dev);
+    }
+    /// <summary>
+    /// Free the resources associated with a motor device.
+    /// </summary>
+    /// <param name="dev"> The motor device to be destroyed.</param>
+    public static void FreeMotorDevice(MotorDevice dev)
+    {
+      __sklib_ptr __skparam__dev;
+      __skparam__dev = __skadapter__to_sklib_motor_device(dev);
+      __sklib__free_motor_device__motor_device(__skparam__dev);
     }
     /// <summary>
     /// Checks if a motor device with the given name is already opened.
@@ -26428,7 +26324,25 @@ namespace SplashKitSDK
     }
   }
 
-    public enum KeyCode
+    public enum LanguageModel
+  {
+    Qwen306BBase = 4,
+    Qwen306BInstruct = 5,
+    Qwen306BThinking = 6,
+    Qwen317BBase = 8,
+    Qwen317BInstruct = 9,
+    Qwen317BThinking = 10,
+    Qwen34BBase = 12,
+    Qwen34BInstruct = 13,
+    Qwen34BThinking = 14,
+    Gemma3270mBase = 16,
+    Gemma3270mInstruct = 17,
+    Gemma31BBase = 20,
+    Gemma31BInstruct = 21,
+    Gemma34BBase = 24,
+    Gemma34BInstruct = 25
+  }
+  public enum KeyCode
   {
     UnknownKey = 0,
     BackspaceKey = 8,
@@ -26733,24 +26647,6 @@ namespace SplashKitSDK
     ShadedLightStyle = 3,
     Bubble = 4,
     BubbleMulticolored = 5
-  }
-  public enum LanguageModel
-  {
-    Qwen306BBase = 4,
-    Qwen306BInstruct = 5,
-    Qwen306BThinking = 6,
-    Qwen317BBase = 8,
-    Qwen317BInstruct = 9,
-    Qwen317BThinking = 10,
-    Qwen34BBase = 12,
-    Qwen34BInstruct = 13,
-    Qwen34BThinking = 14,
-    Gemma3270mBase = 16,
-    Gemma3270mInstruct = 17,
-    Gemma31BBase = 20,
-    Gemma31BInstruct = 21,
-    Gemma34BBase = 24,
-    Gemma34BInstruct = 25
   }
   public enum MotorDirection
   {
@@ -27565,38 +27461,6 @@ namespace SplashKitSDK
   }
 
   [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-  internal struct __sklib_language_model_options
-  {
-    public __sklib_string Name;
-    public __sklib_string Url;
-    public __sklib_string Path;
-    public int MaxTokens;
-    public double Temperature;
-    public double TopP;
-    public int TopK;
-    public double MinP;
-    public double PresencePenalty;
-    public __sklib_string PromptAppend;
-    public int Seed;
-
-  }
-
-  public struct LanguageModelOptions
-  {
-    public string Name;
-    public string Url;
-    public string Path;
-    public int MaxTokens;
-    public double Temperature;
-    public double TopP;
-    public int TopK;
-    public double MinP;
-    public double PresencePenalty;
-    public string PromptAppend;
-    public int Seed;
-  }
-
-  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
   internal struct __sklib_line
   {
     public __sklib_point_2d StartPoint;
@@ -27838,12 +27702,6 @@ public class Conversation : PointerWrapper
     return new Conversation(ptr);
   }
 
-    /// <summary>
-    /// Creates a new instance of Conversation using the provided parameters.
-    /// </summary>
-    /// <param name="options"> The options to use - use this to choose the language model, and change various parameters.</param>
-    public Conversation(LanguageModelOptions options) : base ( SplashKit.CreateConversation(options), false )
-    { }
     /// <summary>
     /// Creates a new instance of Conversation using the provided parameters.
     /// </summary>
@@ -28733,6 +28591,10 @@ public class MotorDevice : PointerWrapper
     return new MotorDevice(ptr);
   }
 
+    protected internal override void DoFree()
+    {
+        SplashKit.FreeMotorDevice(this);
+    }
 }
 /// <summary>
 /// This class represents ServoDevice, which wraps a pointer to SplashKit resources.

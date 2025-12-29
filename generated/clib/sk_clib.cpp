@@ -2657,11 +2657,6 @@ int __sklib__conversation_is_thinking__conversation(__sklib_conversation c) {
     bool __skreturn = conversation_is_thinking(__skparam__c);
     return __sklib__to_int(__skreturn);
 }
-__sklib_conversation __sklib__create_conversation__language_model_options(__sklib_language_model_options options) {
-    language_model_options __skparam__options = __sklib__to_language_model_options(options);
-    conversation __skreturn = create_conversation(__skparam__options);
-    return __sklib__to_sklib_conversation(__skreturn);
-}
 __sklib_conversation __sklib__create_conversation() {
     conversation __skreturn = create_conversation();
     return __sklib__to_sklib_conversation(__skreturn);
@@ -2678,12 +2673,6 @@ void __sklib__free_conversation__conversation(__sklib_conversation c) {
     conversation __skparam__c = __sklib__to_conversation(c);
     free_conversation(__skparam__c);
 }
-__sklib_string __sklib__generate_reply__string__language_model_options(__sklib_string prompt, __sklib_language_model_options options) {
-    string __skparam__prompt = __sklib__to_string(prompt);
-    language_model_options __skparam__options = __sklib__to_language_model_options(options);
-    string __skreturn = generate_reply(__skparam__prompt, __skparam__options);
-    return __sklib__to_sklib_string(__skreturn);
-}
 __sklib_string __sklib__generate_reply__language_model__string(int model, __sklib_string prompt) {
     language_model __skparam__model = __sklib__to_language_model(model);
     string __skparam__prompt = __sklib__to_string(prompt);
@@ -2693,12 +2682,6 @@ __sklib_string __sklib__generate_reply__language_model__string(int model, __skli
 __sklib_string __sklib__generate_reply__string(__sklib_string prompt) {
     string __skparam__prompt = __sklib__to_string(prompt);
     string __skreturn = generate_reply(__skparam__prompt);
-    return __sklib__to_sklib_string(__skreturn);
-}
-__sklib_string __sklib__generate_text__string__language_model_options(__sklib_string text, __sklib_language_model_options options) {
-    string __skparam__text = __sklib__to_string(text);
-    language_model_options __skparam__options = __sklib__to_language_model_options(options);
-    string __skreturn = generate_text(__skparam__text, __skparam__options);
     return __sklib__to_sklib_string(__skreturn);
 }
 __sklib_string __sklib__generate_text__language_model__string(int model, __sklib_string text) {
@@ -2711,11 +2694,6 @@ __sklib_string __sklib__generate_text__string(__sklib_string text) {
     string __skparam__text = __sklib__to_string(text);
     string __skreturn = generate_text(__skparam__text);
     return __sklib__to_sklib_string(__skreturn);
-}
-__sklib_language_model_options __sklib__option_language_model__language_model(int model) {
-    language_model __skparam__model = __sklib__to_language_model(model);
-    language_model_options __skreturn = option_language_model(__skparam__model);
-    return __sklib__to_sklib_language_model_options(__skreturn);
 }
 float __sklib__cosine__float(float degrees) {
     float __skparam__degrees = __sklib__to_float(degrees);
@@ -3448,24 +3426,21 @@ int __sklib__start_treenode__string_ref(const __sklib_string label_text) {
     bool __skreturn = start_treenode(__skparam__label_text);
     return __sklib__to_int(__skreturn);
 }
-__sklib_string __sklib__text_box__string_ref__string_ref__rectangle_ref(const __sklib_string label_text, const __sklib_string value, const __sklib_rectangle rect) {
-    string __skparam__label_text = __sklib__to_string(label_text);
+__sklib_string __sklib__text_box__string_ref(const __sklib_string value) {
+    string __skparam__value = __sklib__to_string(value);
+    string __skreturn = text_box(__skparam__value);
+    return __sklib__to_sklib_string(__skreturn);
+}
+__sklib_string __sklib__text_box__string_ref__rectangle_ref(const __sklib_string value, const __sklib_rectangle rect) {
     string __skparam__value = __sklib__to_string(value);
     rectangle __skparam__rect = __sklib__to_rectangle(rect);
-    string __skreturn = text_box(__skparam__label_text, __skparam__value, __skparam__rect);
+    string __skreturn = text_box(__skparam__value, __skparam__rect);
     return __sklib__to_sklib_string(__skreturn);
 }
 __sklib_string __sklib__text_box__string_ref__string_ref(const __sklib_string label_text, const __sklib_string value) {
     string __skparam__label_text = __sklib__to_string(label_text);
     string __skparam__value = __sklib__to_string(value);
     string __skreturn = text_box(__skparam__label_text, __skparam__value);
-    return __sklib__to_sklib_string(__skreturn);
-}
-__sklib_string __sklib__text_box__string_ref__string_ref__bool(const __sklib_string label_text, const __sklib_string value, int show_label) {
-    string __skparam__label_text = __sklib__to_string(label_text);
-    string __skparam__value = __sklib__to_string(value);
-    bool __skparam__show_label = __sklib__to_bool(show_label);
-    string __skreturn = text_box(__skparam__label_text, __skparam__value, __skparam__show_label);
     return __sklib__to_sklib_string(__skreturn);
 }
 __sklib_json __sklib__create_json() {
@@ -5170,6 +5145,10 @@ void __sklib__close_motor__string_ref(const __sklib_string name) {
 void __sklib__close_motor__motor_device(__sklib_motor_device dev) {
     motor_device __skparam__dev = __sklib__to_motor_device(dev);
     close_motor(__skparam__dev);
+}
+void __sklib__free_motor_device__motor_device(__sklib_motor_device dev) {
+    motor_device __skparam__dev = __sklib__to_motor_device(dev);
+    free_motor_device(__skparam__dev);
 }
 int __sklib__has_motor_device__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
