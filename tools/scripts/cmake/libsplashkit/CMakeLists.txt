@@ -61,7 +61,7 @@ if (WIN32 OR MSYS OR MINGW)
     )
 elseif (APPLE)
     set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk")
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "12") # CACHE STRING "Minimum OS X deployment version")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "13.3") # CACHE STRING "Minimum OS X deployment version")
     message(CMAKE_OSX_DEPLOYMENT_TARGET="${CMAKE_OSX_DEPLOYMENT_TARGET}")
     message(CMAKE_OSX_SYSROOT="${CMAKE_OSX_SYSROOT}")
 
@@ -185,7 +185,7 @@ endif()
 # MAC OS ONLY DIRECTORY INCLUDES
 if (APPLE)
     include_directories("${SK_EXT}/SDL_image/external/libpng-1.6.2")
-    set(CMAKE_OSX_ARCHITECTURES "arm64")
+    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
 endif()
 
 # WINDOWS ONLY DIRECTORY INCLUDES
@@ -202,45 +202,59 @@ endif()
 
 # Compiled as CPU only
 # TODO: Decide on minimum architecture requirements
-ExternalProject_Add(
-    llama_ext
-    SOURCE_DIR "${SK_EXT}/llama.cpp"
-    CMAKE_ARGS
-        -DLLAMA_BUILD_TESTS=OFF
-        -DLLAMA_BUILD_TOOLS=OFF
-        -DLLAMA_BUILD_EXAMPLES=OFF
-        -DLLAMA_BUILD_SERVER=OFF
-        -DGGML_BLAS=OFF
-        -DGGML_METAL=OFF
-        -DGGML_VULKAN=OFF
-        -DBUILD_SHARED_LIBS=OFF
-        -DLLAMA_BUILD_COMMON=OFF
-        -DLLAMA_TOOLS_INSTALL=OFF
-        -DCMAKE_BUILD_TYPE=Release
-        -DGGML_STATIC=ON
-        -DGGML_OPENMP=OFF
-        -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
-        -DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk
-        -DCMAKE_OSX_DEPLOYMENT_TARGET=12
-)
 
-ExternalProject_Get_Property(llama_ext INSTALL_DIR)
+if (APPLE)
+    message("Need to use pre-build fat binary")
+    set(LLAMA_PATH ../../../../coresdk/external/llama.cpp/out/)
+    message("Using path to llama: ${LLAMA_PATH}")
 
-foreach(lib llama ggml ggml-cpu ggml-base)
-    add_library(${lib} STATIC IMPORTED GLOBAL)
-    if (MSYS AND NOT "${lib}" STREQUAL "llama") # llama still ends up as libllama.a on Windows, unsure why
+    foreach(lib llama ggml ggml-cpu ggml-base)
+        add_library(${lib} STATIC IMPORTED GLOBAL)
         set_target_properties(${lib} PROPERTIES
             IMPORTED_LOCATION
-                ${INSTALL_DIR}/lib/${lib}.a # no lib prefix
+                ${LLAMA_PATH}/lib/lib${lib}.a # lib prefix
         )
-    else()
-        set_target_properties(${lib} PROPERTIES
-            IMPORTED_LOCATION
-                ${INSTALL_DIR}/lib/lib${lib}.a # lib prefix
-        )
-    endif()
-    add_dependencies(${lib} llama_ext)
-endforeach()
+        message("${LLAMA_PATH}/lib/lib${lib}.a")
+    endforeach()
+else()
+    ExternalProject_Add(
+        llama_ext
+        SOURCE_DIR "${SK_EXT}/llama.cpp"
+        CMAKE_ARGS
+            -DLLAMA_BUILD_TESTS=OFF
+            -DLLAMA_BUILD_TOOLS=OFF
+            -DLLAMA_BUILD_EXAMPLES=OFF
+            -DLLAMA_BUILD_SERVER=OFF
+            -DGGML_BLAS=OFF
+            -DGGML_METAL=OFF
+            -DGGML_VULKAN=OFF
+            -DBUILD_SHARED_LIBS=OFF
+            -DLLAMA_BUILD_COMMON=OFF
+            -DLLAMA_TOOLS_INSTALL=OFF
+            -DCMAKE_BUILD_TYPE=Release
+            -DGGML_STATIC=ON
+            -DGGML_OPENMP=OFF
+            -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+    )
+
+    ExternalProject_Get_Property(llama_ext INSTALL_DIR)
+
+    foreach(lib llama ggml ggml-cpu ggml-base)
+        add_library(${lib} STATIC IMPORTED GLOBAL)
+        if (MSYS AND NOT "${lib}" STREQUAL "llama") # llama still ends up as libllama.a on Windows, unsure why
+            set_target_properties(${lib} PROPERTIES
+                IMPORTED_LOCATION
+                    ${INSTALL_DIR}/lib/${lib}.a # no lib prefix
+            )
+        else()
+            set_target_properties(${lib} PROPERTIES
+                IMPORTED_LOCATION
+                    ${INSTALL_DIR}/lib/lib${lib}.a # lib prefix
+            )
+        endif()
+        add_dependencies(${lib} llama_ext)
+    endforeach()
+endif()
 
 set(LLAMA_LIB_FLAGS llama ggml ggml-cpu ggml-base)
 

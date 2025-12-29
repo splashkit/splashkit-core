@@ -10,6 +10,9 @@ SK_SRC="${SK_ROOT}/coresdk/src"
 SK_EXT="${SK_ROOT}/coresdk/external"
 SK_LIB="${SK_ROOT}/coresdk/lib"
 
+LLAMA_SRC_DIR="${SK_EXT}/llama.cpp"
+LLAMA_OUT_DIR="${APP_PATH}/llama.cpp"
+
 SK_GENERATED="${SK_ROOT}/generated"
 SK_BIN="${SK_ROOT}/bin"
 SK_OUT="${SK_ROOT}/out"
@@ -49,8 +52,6 @@ case $doit in
   n|N) echo ; echo "Keeping cache" ;;
   *) exit -1 ;;
 esac
-
-
 
 if [[ $GENERATE_LIB ]]; then
   echo
@@ -108,6 +109,35 @@ function do_make {
   if [ $? != 0 ]; then echo "Error installing"; exit 1; fi
 }
 
+read -p "Build llama lib? (needed on Mac) [y,n] " doit
+case $doit in
+  y|Y) BUILD_LLAMA=true ;;
+  n|N) echo ; echo "Skipping llama build" ;;
+  *) exit -1 ;;
+esac
+
+if [[ $BUILD_LLAMA ]]; then
+  mkdir -p "${LLAMA_OUT_DIR}"
+  cd "${LLAMA_OUT_DIR}"
+
+  MACOS_MIN_OS_VERSION=13.3
+  COMMON_C_FLAGS="-Wno-macro-redefined -Wno-shorten-64-to-32 -Wno-unused-command-line-argument -mmacosx-version-min=${MACOS_MIN_OS_VERSION}"
+  COMMON_CXX_FLAGS="-Wno-macro-redefined -Wno-shorten-64-to-32 -Wno-unused-command-line-argument -mmacosx-version-min=${MACOS_MIN_OS_VERSION}"
+
+  cmake \
+    -DCMAKE_C_FLAGS="${COMMON_C_FLAGS}" \
+    -DCMAKE_CXX_FLAGS="${COMMON_CXX_FLAGS}" \
+    -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_TOOLS=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_SERVER=OFF -DGGML_BLAS=OFF -DGGML_METAL=OFF -DGGML_VULKAN=OFF -DBUILD_SHARED_LIBS=OFF -DLLAMA_BUILD_COMMON=OFF -DLLAMA_TOOLS_INSTALL=OFF -DCMAKE_BUILD_TYPE=Release -DGGML_STATIC=ON -DGGML_OPENMP=OFF \
+    -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=${MACOS_MIN_OS_VERSION} \
+    -DCMAKE_OSX_SYSROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk" \
+    -DCMAKE_INSTALL_PREFIX=./out \
+    -S ${LLAMA_SRC_DIR}
+  
+  make
+  make install
+fi
+
 echo
 echo "Building -- clib"
 echo
@@ -131,8 +161,6 @@ echo "Building -- Python adapter"
 echo
 cd "${SK_CMAKE_PYTHON}"
 do_make
-
-
 
 cd "${APP_PATH}"
 
