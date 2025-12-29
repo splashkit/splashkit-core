@@ -29,6 +29,27 @@ namespace splashkit_lib
 
     static mu_Id focused_text_box = 0;
 
+    // Hold a stack in parallel to MicroUI's, which we use to
+    // get incrementing IDs for elements which don't require labels
+    static std::vector<mu_Id> id_stack;
+
+    mu_Id _id_stack_next()
+    {
+        id_stack.back()++;
+
+        return mu_get_id(ctx, &id_stack.back(), sizeof(id_stack.back()));
+    }
+
+    void _id_stack_push()
+    {
+        id_stack.push_back(0);
+    }
+
+    void _id_stack_pop()
+    {
+        id_stack.pop_back();
+    }
+
     static bool element_changed = false;
     static bool element_confirmed = false;
 
@@ -430,11 +451,14 @@ namespace splashkit_lib
         mu_get_current_container(ctx)->zindex = -1;
         int widths[] = {0};
         sk_interface_set_layout(1,widths,0);
+
+        _id_stack_push();
     }
 
     void sk_interface_end()
     {
         // end root window
+        _id_stack_pop();
         mu_end_window(ctx);
 
         mu_end(ctx);
@@ -469,41 +493,55 @@ namespace splashkit_lib
 
     bool sk_interface_start_panel(const string& name, rectangle initial_rectangle)
     {
-        return mu_begin_window(ctx, name.c_str(), to_mu(initial_rectangle));
+        bool open = mu_begin_window(ctx, name.c_str(), to_mu(initial_rectangle));
+        if (open) _id_stack_push();
+
+        return open;
     }
 
     void sk_interface_end_panel()
     {
+        _id_stack_pop();
         mu_end_window(ctx);
     }
 
     bool sk_interface_start_popup(const string& name)
     {
-        return mu_begin_popup(ctx, name.c_str());
+        bool open = mu_begin_popup(ctx, name.c_str());
+        if (open) _id_stack_push();
+
+        return open;
     }
 
     void sk_interface_end_popup()
     {
+        _id_stack_pop();
         mu_end_popup(ctx);
     }
 
     void sk_interface_start_inset(const string& name)
     {
         mu_begin_panel(ctx, name.c_str());
+        _id_stack_push();
     }
 
     void sk_interface_end_inset()
     {
+        _id_stack_pop();
         mu_end_panel(ctx);
     }
 
     bool sk_interface_start_treenode(const string& name)
     {
-        return mu_begin_treenode(ctx, name.c_str());
+        bool open = mu_begin_treenode(ctx, name.c_str());
+        if (open) _id_stack_push();
+
+        return open;
     }
 
     void sk_interface_end_treenode()
     {
+        _id_stack_pop();
         mu_end_treenode(ctx);
     }
 
@@ -572,9 +610,10 @@ namespace splashkit_lib
         element_confirmed = result & MU_RES_SUBMIT;
     }
 
-    void sk_interface_push_ptr_id(void* ptr)
+    void sk_interface_push_temp_id()
     {
-        mu_push_id(ctx, &ptr, sizeof(ptr));
+        mu_Id id = _id_stack_next();
+        mu_push_id(ctx, &id, sizeof(id));
     }
 
     void sk_interface_pop_id()
@@ -605,7 +644,7 @@ namespace splashkit_lib
 
     bool sk_interface_checkbox(const string& label_text, const bool& value)
     {
-        sk_interface_push_ptr_id((void*)&value);
+        sk_interface_push_temp_id();
 
         int temp_value = value;
         update_elements_changed(mu_checkbox(ctx, label_text.c_str(), &temp_value));
@@ -616,7 +655,7 @@ namespace splashkit_lib
 
     float sk_interface_slider(const float& value, float min_value, float max_value)
     {
-        sk_interface_push_ptr_id((void*)&value);
+        sk_interface_push_temp_id();
 
         float temp_value = value;
         update_elements_changed(mu_slider(ctx, &temp_value, min_value, max_value));
@@ -627,7 +666,7 @@ namespace splashkit_lib
 
     float sk_interface_number(const float& value, float step)
     {
-        sk_interface_push_ptr_id((void*)&value);
+        sk_interface_push_temp_id();
 
         float temp_value = value;
         update_elements_changed(mu_number(ctx, &temp_value, step));
@@ -636,10 +675,9 @@ namespace splashkit_lib
         return temp_value;
     }
 
-    std::string sk_interface_text_box(const std::string& id, const std::string& value)
+    std::string sk_interface_text_box(const std::string& value)
     {
-        // const std::string* id = &value; 
-        mu_Id m_id = mu_get_id(ctx, id.c_str(), id.length());
+        mu_Id m_id = _id_stack_next();
         mu_Rect r = mu_layout_next(ctx);
 
         // max 512 characters
