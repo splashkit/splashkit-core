@@ -28,11 +28,13 @@ void run_ui_test()
 
     // Some variables to test the elements with
     bool checkbox_val = false;
+    bool checkbox_val2 = false;
     float val1 = 0;
     float val2 = 0;
     float val3 = 0;
     std::string text_box_val1 = "Type here!";
     std::string text_box_val2 = "And here!";
+    std::string text_box_val3 = "Option text";
 
     // A sprite to test bitmap buttons
     animation_script player_animations = load_animation_script("player_animations", "player_animations.txt");
@@ -132,7 +134,7 @@ void run_ui_test()
                 val1 = slider("Slider", val1, -25, 25);
 
                 // Show two sliders without labels
-                val2 = slider(val2, 0, 100);
+                val2 = slider(val2, 0, 40);
                 val3 = slider(val3, -25, 25);
 
                 // Show checkbox that's checked when we drag the slider
@@ -146,13 +148,13 @@ void run_ui_test()
                 val3 = number_box("Number: ", val3, 1.0);
 
                 // Show two text boxes
-                text_box_val1 = text_box("V1", text_box_val1);
+                text_box_val1 = text_box("Text:", text_box_val1);
                 if (last_element_confirmed())
                 {
                     checkbox_val = true;
                 }
                 set_interface_font(fontB);
-                text_box_val2 = text_box("Text:", text_box_val2, true);
+                text_box_val2 = text_box("Text:", text_box_val2);
                 set_interface_font(fontA);
             }
 
@@ -165,6 +167,17 @@ void run_ui_test()
 
         if (start_panel("Second Window", rectangle_from(300, 200, 240, 186)))
         {
+            checkbox_val2 = checkbox("ID Handle Check", checkbox_val2);
+            if (checkbox_val2)
+            {
+                start_inset("Options", 25);
+                    text_box_val3 = text_box("Text:", text_box_val3);
+                end_inset("Options");
+                start_inset("Options2", 25);
+                    text_box_val3 = text_box("Text:", text_box_val3);
+                end_inset("Options2");
+            }
+
             start_inset("TreeView", -25);
                 if (start_treenode("Node1"))
                 {
@@ -182,6 +195,20 @@ void run_ui_test()
                     checkbox("It works right?", true);
                     end_treenode("Node2");
                 }
+                if (start_treenode("ID Test 2"))
+                {
+                    // This demonstrates an edge case with the current ID system
+                    // Focus on Box 1 will switch back and forth between it and Box 2
+                    // This test can be used to check if future work has fixed this
+                    static int time = 0;
+                    time += 1;
+                    if (time % 120 < 60)
+                    {
+                        text_box_val1 = text_box("Box 1:", text_box_val1);
+                    }
+                    text_box_val2 = text_box("Box 2:", text_box_val2);
+                    end_treenode("ID Test 2");
+                }
 
             end_inset("TreeView");
 
@@ -195,7 +222,7 @@ void run_ui_test()
             write_line("Button1 pressed");
         }
         val2 = slider(val2, 0, 40, {40, 170, 150, 20});
-        text_box_val2 = text_box("V2", text_box_val2, rectangle_from(40, 200, 150, 20));
+        text_box_val2 = text_box(text_box_val2, rectangle_from(40, 200, 150, 20));
 
         interface_style_panel(rectangle_from(0, 600-200, 600, 200));
 

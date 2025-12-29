@@ -51,7 +51,7 @@ namespace splashkit_lib
     int sk_interface_get_layout_width();
     int sk_interface_get_layout_height();
 
-    void sk_interface_push_ptr_id(void* ptr);
+    void sk_interface_push_temp_id();
     void sk_interface_pop_id();
 
     bool sk_interface_header(const string& label_text);
@@ -61,7 +61,7 @@ namespace splashkit_lib
     bool sk_interface_checkbox(const string& label_text, const bool& value);
     float sk_interface_slider(const float& value, float min_value, float max_value);
     float sk_interface_number(const float& value, float step);
-    std::string sk_interface_text_box(const std::string& id, const std::string& value);
+    std::string sk_interface_text_box(const std::string& value);
 
     void sk_interface_color_box(color clr);
 
