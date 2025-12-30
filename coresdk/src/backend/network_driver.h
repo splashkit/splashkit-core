@@ -18,7 +18,7 @@ namespace splashkit_lib
     sk_network_connection sk_open_udp_connection(unsigned short port);
     sk_network_connection sk_open_tcp_connection(const char *host, unsigned short port);
 
-    int sk_send_bytes(sk_network_connection *con, char *buffer, unsigned long size);
+    int sk_send_bytes(sk_network_connection *con, std::vector<char> &buffer, unsigned long size);
 
     int sk_send_udp_message(sk_network_connection *con, const char *host, unsigned short port, const char *buffer, unsigned long size);
     void sk_read_udp_message(sk_network_connection *con, unsigned int *host, unsigned short *port, char *buffer, unsigned long *size);

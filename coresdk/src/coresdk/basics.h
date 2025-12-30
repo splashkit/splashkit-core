@@ -112,6 +112,34 @@ namespace splashkit_lib
     double to_double(const string &text);
 
     /**
+     * Convert the passed in integer to a string.
+     * 
+     * @param value the value to convert to a string.
+     * @return string containing the integer value.
+     */
+    string to_string(int value);
+
+    /**
+     * Convert the passed in double to a string.
+     * 
+     * @param value the value to convert to a string.
+     * @return string containing the double value.
+     */
+    string to_string(double value);
+
+    /**
+     * Convert the passed in double to a string, restricting
+     * the output the a given number of decimal places. For example
+     * if value is 3.14159265359 and precision is 2 then the output
+     * will be "3.14".
+     * 
+     * @param value the value to convert to a string.
+     * @param precision the number of decimal places to output.
+     * @return string containing the double value.
+     */
+    string to_string(double value, int precision);
+
+    /**
      * Returns the length of a string in characters.
      *
      * @param text      The text to get the length of

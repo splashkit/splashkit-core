@@ -24,7 +24,6 @@
 
 using std::map;
 using std::vector;
-using std::to_string;
 using std::swap;
 
 namespace splashkit_lib
@@ -174,7 +173,7 @@ namespace splashkit_lib
 
         while (has_sprite(sn))
         {
-            sn = name + to_string(idx);
+            sn = name + std::to_string(idx);
             idx += 1;
         }
 
@@ -734,7 +733,7 @@ namespace splashkit_lib
         if ( INVALID_PTR(s->script, ANIMATION_SCRIPT_PTR)) return;
         if ( (idx < 0) or (idx >= animation_count(s->script)))
         {
-            LOG(WARNING) << "Unable to create animation no. " + to_string(idx) + " for sprite " + s->name + " from script " + animation_script_name(s->script);
+            LOG(WARNING) << "Unable to create animation no. " + std::to_string(idx) + " for sprite " + s->name + " from script " + animation_script_name(s->script);
             return;
         }
 

@@ -19,7 +19,6 @@
 #include <map>
 
 using std::map;
-using std::to_string;
 
 namespace splashkit_lib
 {
@@ -96,7 +95,7 @@ namespace splashkit_lib
 
         while (file_exists( path_from({path}, filename)))
         {
-            filename = basename + to_string(i) + ".png";
+            filename = basename + std::to_string(i) + ".png";
             i = i + 1;
         }
 

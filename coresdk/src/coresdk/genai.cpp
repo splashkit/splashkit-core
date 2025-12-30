@@ -14,8 +14,6 @@
 
 #include <filesystem>
 
-using std::to_string;
-
 namespace splashkit_lib
 {
     // forward declare private function -- until language_model_options can be exported
@@ -40,7 +38,7 @@ namespace splashkit_lib
         if (count == -1)
             write("\r\033[K");
         else
-            write("\033["+to_string(count)+"D\033[K");
+            write("\033[" + std::to_string(count) + "D\033[K");
     }
 
     std::vector<int> terminal_stack;
@@ -89,7 +87,7 @@ namespace splashkit_lib
                 progress_bar[progress_bar_filled] = spinner[(spinner_index++)/2 % spinner.size()];
 
             // write message
-            terminal_push(progress_bar + "| (" + to_string(current_mb) + "mb / " + to_string(expected_mb) + "mb)");
+            terminal_push(progress_bar + "| (" + std::to_string(current_mb) + "mb / " + std::to_string(expected_mb) + "mb)");
         };
 
         terminal_push("");

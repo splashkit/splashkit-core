@@ -740,7 +740,7 @@ namespace splashkit_lib
             vector<char> buffer(num_send_bytes);
             memcpy(buffer.data(), &cmd, num_send_bytes);
 
-            if (sk_send_bytes(&pi->socket, buffer.data(), num_send_bytes))
+            if (sk_send_bytes(&pi->socket, buffer, num_send_bytes))
             {
                 int num_bytes_recv = sk_read_bytes(&pi->socket, buffer.data(), num_send_bytes);
                 if (num_bytes_recv == num_send_bytes)

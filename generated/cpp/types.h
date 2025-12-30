@@ -12,7 +12,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 struct _animation_data;
 typedef struct _animation_data *animation;

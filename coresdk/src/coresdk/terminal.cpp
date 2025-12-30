@@ -15,7 +15,6 @@
 using std::map;
 using std::pair;
 using std::cout;
-using std::to_string;
 using std::endl;
 using std::cin;
 
@@ -29,7 +28,7 @@ namespace splashkit_lib
     
     void write(int data)
     {
-        write(to_string(data));
+        write(std::to_string(data));
     }
 
     void write(char data)
@@ -39,7 +38,7 @@ namespace splashkit_lib
     
     void write(double data)
     {
-        write(to_string(data));
+        write(std::to_string(data));
     }
 
     void write_line()
@@ -56,12 +55,12 @@ namespace splashkit_lib
     
     void write_line(int data)
     {
-        write_line(to_string(data));
+        write_line(std::to_string(data));
     }
     
     void write_line(double data)
     {
-        write_line(to_string(data));
+        write_line(std::to_string(data));
     }
 
     void write_line(char data)

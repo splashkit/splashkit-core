@@ -12,12 +12,12 @@
 #include "basics.h"
 #include <cassert>
 
-using namespace std;
 using namespace splashkit_lib;
 
 void test_simple_terminal()
 {
-    write_line("Hello World!" + to_string(10));
+    write_line("Hello World! " + to_string(10));
+    write_line("Hello World! " + to_string(3.1415, 2));
     write("Hello");
     write(" ");
     write("World!");
@@ -122,6 +122,7 @@ void bin_to_dec()
     assert(bin_to_dec("10000000000") == 1024);
 
     // High values (32-bit boundaries)
+    std::cout << bin_to_dec("10000000000000000000000000000000") << std::endl;
     assert(bin_to_dec("10000000000000000000000000000000") == 2147483648);
 
     // Mixed bits

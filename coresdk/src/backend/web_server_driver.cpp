@@ -14,8 +14,6 @@
 #include <iostream>
 #include <cstring>
 
-using std::to_string;
-
 namespace splashkit_lib
 {
     static map<unsigned short, sk_web_server*> servers;
@@ -198,7 +196,7 @@ namespace splashkit_lib
         server->port = port;
         server->last_request = nullptr;
 
-        string port_str = to_string(port);
+        string port_str = std::to_string(port);
 
         // List of options. Last element must be NULL.
         const char *options[] = {"listening_ports", port_str.c_str(), NULL};

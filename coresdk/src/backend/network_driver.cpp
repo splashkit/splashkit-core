@@ -101,7 +101,7 @@ namespace splashkit_lib
         return result;
     }
 
-    int sk_send_bytes(sk_network_connection *con, char *buffer, unsigned long size)
+    int sk_send_bytes(sk_network_connection *con, std::vector<char> &buffer, unsigned long size)
     {
         // not entry point...
         //    printf("Sending %d\n", size);
@@ -109,7 +109,7 @@ namespace splashkit_lib
         if ((TCPsocket)con->_socket)
         {
             //printf("here -- %p\n", (TCPsocket)con->_socket);
-            sent = SDLNet_TCP_Send((TCPsocket)con->_socket, buffer, static_cast<int>(size));
+            sent = SDLNet_TCP_Send((TCPsocket)con->_socket, static_cast<void*>(buffer.data()), static_cast<int>(size));
         }
         //    printf("Sent %d\n", sent);
         return sent;

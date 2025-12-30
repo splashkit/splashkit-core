@@ -14,13 +14,11 @@
 #include "utility_functions.h"
 #include <cmath>
 
-using std::to_string;
-
 namespace splashkit_lib
 {
     string vector_to_string(const vector_2d &v)
     {
-        return "Vec -> " + to_string(v.x) + ":" + to_string(v.y);
+        return "Vec -> " + std::to_string(v.x) + ":" + std::to_string(v.y);
     }
 
     vector_2d vector_to(double x, double y)

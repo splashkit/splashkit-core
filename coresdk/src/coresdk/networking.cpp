@@ -11,7 +11,6 @@
 
 using std::endl;
 using std::stringstream;
-using std::to_string;
 using std::uppercase;
 using std::hex;
 using std::setw;
@@ -1148,8 +1147,8 @@ namespace splashkit_lib
             size[2] = (n >> 8) & 0xFF;
             size[3] = n & 0xFF;
 
-            unsigned long len = msg.size() + 4;
-            char buffer[len];
+            const unsigned long len = msg.size() + 4;
+            std::vector<char> buffer(len);
 
             for (int i = 0; i < len; ++i)
             {
@@ -1227,7 +1226,7 @@ namespace splashkit_lib
             }
             dec += c_val * pow(16, (a_hex.length() - i - 1));
         }
-        return to_string(dec);
+        return std::to_string(dec);
     }
 
     string dec_to_hex(unsigned int a_dec)

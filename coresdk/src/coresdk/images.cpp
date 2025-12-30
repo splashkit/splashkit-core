@@ -18,7 +18,6 @@
 #include <cmath>
 
 using std::map;
-using std::to_string;
 
 namespace splashkit_lib
 {
@@ -152,7 +151,7 @@ namespace splashkit_lib
         string key = name;
         while (has_bitmap(key))
         {
-            key = name + to_string(idx);
+            key = name + std::to_string(idx);
             idx++;
         }
 

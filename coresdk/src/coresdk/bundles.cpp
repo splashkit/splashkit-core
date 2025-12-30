@@ -22,7 +22,6 @@
 #include <fstream>
 
 using std::ifstream;
-using std::to_string;
 
 namespace splashkit_lib
 {
@@ -91,7 +90,7 @@ namespace splashkit_lib
             int num_delim = count_delimiter(line, ',');
             if ( num_delim > 2 and num_delim != 7 )
             {
-                LOG(WARNING) << "Incorrect cell options for bitmap " + line_name + " at " + to_string(line_no) + " of bundle " + name;
+                LOG(WARNING) << "Incorrect cell options for bitmap " + line_name + " at " + std::to_string(line_no) + " of bundle " + name;
                 return;
             }
             else if ( num_delim == 2 ) return;
@@ -114,19 +113,19 @@ namespace splashkit_lib
 
             if ( kind == OTHER_RESOURCE )
             {
-                LOG(WARNING) << "Unknown resource type at line " + to_string(line_no) + " of bundle " + name;
+                LOG(WARNING) << "Unknown resource type at line " + std::to_string(line_no) + " of bundle " + name;
                 return;
             }
 
             if ( line_name.length() == 0 )
             {
-                LOG(WARNING) << "Name missing for resource at line " + to_string(line_no) + " of bundle " + name;
+                LOG(WARNING) << "Name missing for resource at line " + std::to_string(line_no) + " of bundle " + name;
                 return;
             }
 
             if ( line_path.length() == 0 && kind != TIMER_RESOURCE )
             {
-                LOG(WARNING) << "Name missing for resource at line " + to_string(line_no) + " of bundle " + name;
+                LOG(WARNING) << "Name missing for resource at line " + std::to_string(line_no) + " of bundle " + name;
                 return;
             }
 
