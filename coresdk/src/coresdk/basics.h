@@ -116,6 +116,8 @@ namespace splashkit_lib
      * 
      * @param value the value to convert to a string.
      * @return string containing the integer value.
+     * 
+     * @attribute suffix    from_int
      */
     string to_string(int value);
 
@@ -124,6 +126,8 @@ namespace splashkit_lib
      * 
      * @param value the value to convert to a string.
      * @return string containing the double value.
+     *
+     * @attribute suffix    from_double
      */
     string to_string(double value);
 
@@ -136,6 +140,8 @@ namespace splashkit_lib
      * @param value the value to convert to a string.
      * @param precision the number of decimal places to output.
      * @return string containing the double value.
+     * 
+     * @attribute suffix    from_double_with_precision
      */
     string to_string(double value, int precision);
 
