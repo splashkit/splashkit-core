@@ -16,6 +16,7 @@
 #include <cctype>
 #include <locale>
 #include <cmath>
+#include <iomanip>
 
 namespace splashkit_lib
 {
