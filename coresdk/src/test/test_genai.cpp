@@ -9,18 +9,21 @@
 #include "terminal.h"
 #include "basics.h"
 #include "utils.h"
+#include "random.h"
+
 #include <vector>
 #include <iostream>
 
 using namespace std;
 using namespace splashkit_lib;
 
-void run_genai_test()
+void test_conversation()
 {
     const string THINKING_STYLE = "\033[37;3m";
     const string RESET_STYLE = "\033[0m";
 
     conversation conv = create_conversation(QWEN3_1_7B_THINKING);
+    int option = 0;
 
     while(true)
     {
@@ -37,37 +40,62 @@ void run_genai_test()
 
         // otherwise continue the conversation
         conversation_add_message(conv, prompt);
-
-        bool thinking = false;
-        string last_piece = "\n";
-        while(conversation_is_replying(conv))
+        
+        switch(option++ % 3)
         {
-            if (conversation_is_thinking(conv) != thinking)
-            {
-                thinking = conversation_is_thinking(conv);
+            case 0:
+                write_line(conversation_get_reply(conv));
+                break;
+            case 1:
+                write_line(conversation_get_reply(conv, true));
+                break;
+            case 2:
+                bool thinking = false;
+                string last_piece = "\n";
+                while(conversation_is_replying(conv))
+                {
+                    if (conversation_is_thinking(conv) != thinking)
+                    {
+                        thinking = conversation_is_thinking(conv);
 
-                if (thinking)
-                    write(THINKING_STYLE);
-                else
-                    write(RESET_STYLE);
-            }
+                        if (thinking)
+                            write(THINKING_STYLE);
+                        else
+                            write(RESET_STYLE);
+                    }
 
-            string piece = conversation_get_reply_piece(conv);
+                    string piece = conversation_get_reply_piece(conv);
 
-            // avoid double newlines - ideally this will be filtered on SplashKit's side instead
-            if (piece == "\n" && last_piece == "\n")
-                continue;
+                    // avoid double newlines - ideally this will be filtered on SplashKit's side instead
+                    if (piece == "\n" && last_piece == "\n")
+                        continue;
 
-            if (piece == "\n\n")
-                piece = "\n";
+                    if (piece == "\n\n")
+                        piece = "\n";
 
-            write(piece);
-            last_piece = piece;
+                    write(piece);
+                    last_piece = piece;
+                }
+
+                if (last_piece != "\n")
+                    write("\n");
+                break;
         }
-
-        if (last_piece != "\n")
-            write("\n");
     }
 
     free_conversation(conv);
+}
+
+void test_generation()
+{
+    write("The capital of Victoria is ");
+    write_line(generate_text("The capital of Victoria is called", 4));
+}
+
+void run_genai_test()
+{
+    test_generation();
+
+    write_line("Have a conversation");
+    test_conversation();
 }

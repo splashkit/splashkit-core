@@ -1,7 +1,7 @@
 /**
  * @header  genai
  * @author  Sean Boettger
- * @brief   SplashKit gives you a simple way to use and embed local AIs in your projects,
+ *   SplashKit gives you a simple way to use and embed local AIs in your projects,
  * that run on your own computer.
  *
  * @attribute group  generative_ai
@@ -45,21 +45,21 @@ namespace splashkit_lib
      * Choose between different language models to trade off speed and intelligence
      * Each model is scaled to fit within 1~2GB and will be automatically downloaded when needed - feel free to try them out!
      *
-     * @constant QWEN3_0_6B_BASE       Qwen3 0.6B Base model - small, extremely fast and good for text commpletion. Very limited world knowledge.
+     * @constant QWEN3_0_6B_BASE       Qwen3 0.6B Base model - small, extremely fast and good for text completion. Very limited world knowledge.
      * @constant QWEN3_0_6B_INSTRUCT   Qwen3 0.6B Instruct model (default) - small, extremely fast and can follow simple instructions. Very limited world knowledge.
      * @constant QWEN3_0_6B_THINKING   Qwen3 0.6B Thinking model - small, extremely fast and can follow more specific instructions, but has a short delay before starting to reply. Very limited world knowledge.
-     * @constant QWEN3_1_7B_BASE       Qwen3 1.7B Base model - decently fast and good for text commpletion. Limited world knowledge.
+     * @constant QWEN3_1_7B_BASE       Qwen3 1.7B Base model - decently fast and good for text completion. Limited world knowledge.
      * @constant QWEN3_1_7B_INSTRUCT   Qwen3 1.7B Instruct model - decently fast and can follow instructions. Limited world knowledge.
      * @constant QWEN3_1_7B_THINKING   Qwen3 1.7B Thinking model - decently fast and can follow more difficult instructions, but has a delay before starting to reply. Limited world knowledge.
-     * @constant QWEN3_4B_BASE         Qwen3 4B Base model - slower but excellent for text commpletion/pattern based completion
+     * @constant QWEN3_4B_BASE         Qwen3 4B Base model - slower but excellent for text completion/pattern based completion
      * @constant QWEN3_4B_INSTRUCT     Qwen3 4B Instruct model - slower but can follow complex instructions
      * @constant QWEN3_4B_THINKING     Qwen3 4B Thinking model - slower but can follow complex and specific instructions, but has a potentially long delay before starting to reply
      * @constant GEMMA3_270M_BASE      Gemma3 270M Base model - tiny, extremely fast, and good for text completion. Very limited world knowledge.
      * @constant GEMMA3_270M_INSTRUCT  Gemma3 270M Instruct model - tiny, extremely fast, and good for very simple instructions. Very limited world knowledge.
-     * @constant GEMMA3_1B_BASE        Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multi-lingual abilities.
-     * @constant GEMMA3_1B_INSTRUCT    Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multi-lingual abilities.
-     * @constant GEMMA3_4B_BASE        Gemma3 4B Base model - slower but good for text commpletion/pattern based completion. Has decent world knowledge and multi-lingual abilities.
-     * @constant GEMMA3_4B_INSTRUCT    Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_1B_BASE        Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multilingual abilities.
+     * @constant GEMMA3_1B_INSTRUCT    Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multilingual abilities.
+     * @constant GEMMA3_4B_BASE        Gemma3 4B Base model - slower but good for text completion/pattern based completion. Has decent world knowledge and multilingual abilities.
+     * @constant GEMMA3_4B_INSTRUCT    Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multilingual abilities.
      */
     enum language_model
     {
@@ -81,7 +81,7 @@ namespace splashkit_lib
     };
 
     /**
-     * @brief Generates a reply to a textual prompt by a language model
+     * Generates a reply to a textual prompt by a language model
      *
      * The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.
      * Instruct or Thinking models are recommended. Base models likely won't output sensible results.
@@ -93,7 +93,7 @@ namespace splashkit_lib
     string generate_reply(string prompt);
 
     /**
-     * @brief Generates a reply to a textual prompt by a language model
+     * Generates a reply to a textual prompt by a language model
      *
      * The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.
      * Instruct or Thinking models are recommended. Base models likely won't output sensible results.
@@ -108,7 +108,7 @@ namespace splashkit_lib
     string generate_reply(language_model model, string prompt);
 
     /**
-     * @brief Generates text that continues from a prompt
+     * Generates text that continues from a prompt - with default of 125 tokens.
      *
      * The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.
      * Base models are recommended; Instruct and Thinking models may work.
@@ -120,7 +120,21 @@ namespace splashkit_lib
     string generate_text(string text);
 
     /**
-     * @brief Generates text that continues from a prompt
+     * Generates text that continues from a prompt.
+     *
+     * The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.
+     * Base models are recommended; Instruct and Thinking models may work.
+     *
+     * @param text The input text for the language model to continue.
+     * @param max_tokens The maximum tokens used in response - determining the length of the output and the time taken. Keep this small for reasonable execution times.
+     *
+     * @returns The generated reply.
+     * @attribute suffix with_tokens
+     */
+    string generate_text(string text, int max_tokens);
+
+    /**
+     * Generates text that continues from a prompt, with a maximum of 125 tokens.
      *
      * The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.
      * Base models are recommended; Instruct and Thinking models may work.
@@ -135,7 +149,23 @@ namespace splashkit_lib
     string generate_text(language_model model, string text);
 
     /**
-     * @brief Creates a new `conversation` object, that uses the default language model.
+     * Generates text that continues from a prompt, with a maximum of 125 tokens.
+     *
+     * The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.
+     * Base models are recommended; Instruct and Thinking models may work.
+     *
+     * @param model  The language model to use
+     * @param text The input text for the language model to continue.
+     * @param max_tokens The maximum tokens used in response - determining the length of the output and the time taken. Keep this small for reasonable execution times.
+     *
+     * @returns The generated reply.
+     *
+     * @attribute suffix with_model_and_tokens
+     */
+    string generate_text(language_model model, string text, int max_tokens);
+
+    /**
+     * Creates a new `conversation` object, that uses the default language model.
      *
      * The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
      *
@@ -147,7 +177,7 @@ namespace splashkit_lib
     conversation create_conversation();
 
     /**
-     * @brief Creates a new `conversation` object, that uses a chosen language model.
+     * Creates a new `conversation` object, that uses a chosen language model.
      *
      * The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
      *
@@ -202,6 +232,34 @@ namespace splashkit_lib
      * @attribute self c
      */
     void conversation_add_message(conversation c, const string& message);
+
+    /**
+     * Returns a reply from a `conversation`, without any related thoughts.
+     *
+     * @param conv The `conversation` to recieve the reply from
+     *
+     * @returns The response from the model
+     *
+     * @attribute class conversation
+     * @attribute method get_reply
+     * @attribute self conv
+     */
+    string conversation_get_reply(conversation conv);
+
+    /**
+     * Returns a reply from a `conversation`, with the ability to indicate if thoughts should be included.
+     *
+     * @param conv The `conversation` to recieve the reply from
+     * @param with_thoughts A boolean to indicate if thoughts should be included in the reply
+     *
+     * @returns The response from the model
+     *
+     * @attribute class conversation
+     * @attribute method get_reply
+     * @attribute self conv
+     * @attribute suffix with_thoughts
+     */
+    string conversation_get_reply(conversation conv, bool with_thoughts);
 
     /**
      * Returns a single piece of a reply (generally one word at a time) from the `conversation`

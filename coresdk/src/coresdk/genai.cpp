@@ -11,8 +11,10 @@
 #include "web_driver.h"
 #include "terminal.h"
 #include "core_driver.h"
+#include "random.h"
 
 #include <filesystem>
+#include <sstream>
 
 namespace splashkit_lib
 {
@@ -22,10 +24,11 @@ namespace splashkit_lib
     static vector<conversation> objects;
 
     const language_model DEFAULT_LANGUAGE_MODEL = QWEN3_0_6B_INSTRUCT;
+    const language_model DEFAULT_BASE_LANGUAGE_MODEL = QWEN3_0_6B_BASE;
 
-    const int default_max_tokens_base = 256; // base has a higher likelihood of running forever for no reason, better to limit it early
-    const int default_max_tokens_instruct = 4096;
-    const int default_max_tokens_thinking = 4096;
+    const int DEFAULT_MAX_TOKENS_BASE = 125; // base has a higher likelihood of running forever for no reason, better to limit it early
+    const int DEFAULT_MAX_TOKENS_INSTRUCT = 4096;
+    const int DEFAULT_MAX_TOKENS_THINKING = 4096;
 
     extern const std::array<language_model_options, 26> models; // defined at end of file
 
@@ -151,6 +154,7 @@ namespace splashkit_lib
             options.min_p,
             options.presence_penalty,
             options.max_tokens,
+            options.use_seed,
             (uint32_t)options.seed
         });
 
@@ -166,7 +170,7 @@ namespace splashkit_lib
         llamacpp::delete_context(ctx);
         llamacpp::delete_model(model);
 
-        return result;
+        return trim(result);
     }
 
     // Made private for now - due to string field
@@ -218,15 +222,28 @@ namespace splashkit_lib
         return __generate_common(text, options, false);
     }
 
+    string generate_text(language_model model, string text, int max_tokens)
+    {
+        language_model_options opts = option_language_model(model);
+        opts.max_tokens = max_tokens;
+        return generate_text(text, opts);
+    }    
+
+    string generate_text(string text, int length)
+    {
+        return generate_text(DEFAULT_BASE_LANGUAGE_MODEL, text, length);
+    }    
+
     string generate_text(string text)
     {
-        return generate_text(DEFAULT_LANGUAGE_MODEL, text);
+        return generate_text(DEFAULT_BASE_LANGUAGE_MODEL, text, DEFAULT_MAX_TOKENS_BASE);
     }    
 
     string generate_text(language_model model, string text)
     {
-        return generate_text(text, option_language_model(model));
+        return generate_text(model, text, DEFAULT_MAX_TOKENS_BASE);
     }    
+
 
     // --------------------------------------------------------------
 
@@ -273,6 +290,7 @@ namespace splashkit_lib
                 options.min_p,
                 options.presence_penalty,
                 options.max_tokens,
+                options.use_seed,
                 (uint32_t)options.seed
             });;
     
@@ -370,6 +388,42 @@ namespace splashkit_lib
         return c->next_token.text;
     }
 
+    string conversation_get_reply(conversation conv, bool with_thoughts)
+    {
+        std::stringstream result;
+        string last_piece = "\n";
+
+        while(conversation_is_replying(conv))
+        {
+            
+            // Skip the thinking
+            if (conversation_is_thinking(conv) && !with_thoughts)
+            {
+                conversation_get_reply_piece(conv);
+                continue;
+            }
+            
+            string piece = conversation_get_reply_piece(conv);
+
+            // avoid double newlines
+            if (piece == "\n" && last_piece == "\n")
+                continue;
+
+            if (piece == "\n\n")
+                piece = "\n";
+
+            result << piece;
+            last_piece = piece;
+        }
+
+        return trim(result.str());
+    }
+
+    string conversation_get_reply(conversation conv)
+    {
+        return conversation_get_reply(conv, false);
+    }
+
     void __free_conversation_resource(conversation c)
     {
         llamacpp::delete_context(c->context);
@@ -456,19 +510,19 @@ namespace splashkit_lib
             "Qwen3 0.6B Base",
             "https://huggingface.co/mradermacher/Qwen3-0.6B-Base-GGUF/resolve/main/Qwen3-0.6B-Base.Q8_0.gguf?download=true",
             "Qwen3-0.6B-Base.Q8_0.gguf",
-            default_max_tokens_base, 0.7, 0.8, 20, 0, 1.5
+            DEFAULT_MAX_TOKENS_BASE, 0.7, 0.8, 20, 0, 1.5
         },
         [QWEN3_0_6B_INSTRUCT] = {
             "Qwen3 0.6B Instruct",
             "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q8_0.gguf?download=true",
             "Qwen3-0.6B-Q8_0.gguf",
-            default_max_tokens_instruct, 0.7, 0.8, 20, 0, 1.5, " /no_think"
+            DEFAULT_MAX_TOKENS_INSTRUCT, 0.7, 0.8, 20, 0, 1.5, " /no_think"
         },
         [QWEN3_0_6B_THINKING] = {
             "Qwen3 0.6B Thinking",
             "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q8_0.gguf?download=true",
             "Qwen3-0.6B-Q8_0.gguf",
-            default_max_tokens_thinking, 0.6, 0.95, 20, 0, 1.5
+            DEFAULT_MAX_TOKENS_THINKING, 0.6, 0.95, 20, 0, 1.5
         },
 
         [7]={},
@@ -477,19 +531,19 @@ namespace splashkit_lib
             "Qwen3 1.7B Base",
             "https://huggingface.co/mradermacher/Qwen3-1.7B-Base-GGUF/resolve/main/Qwen3-1.7B-Base.Q8_0.gguf?download=true",
             "Qwen3-1.7B-Base.Q8_0.gguf",
-            default_max_tokens_base, 0.7, 0.8, 20, 0, 1.5
+            DEFAULT_MAX_TOKENS_BASE, 0.7, 0.8, 20, 0, 1.5
         },
         [QWEN3_1_7B_INSTRUCT] = {
             "Qwen3 1.7B Instruct",
             "https://huggingface.co/Qwen/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-Q8_0.gguf?download=true",
             "Qwen3-1.7B-Q8_0.gguf",
-            default_max_tokens_instruct, 0.7, 0.8, 20, 0, 1.5, " /no_think"
+            DEFAULT_MAX_TOKENS_INSTRUCT, 0.7, 0.8, 20, 0, 1.5, " /no_think"
         },
         [QWEN3_1_7B_THINKING] = {
             "Qwen3 1.7B Thinking",
             "https://huggingface.co/Qwen/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-Q8_0.gguf?download=true",
             "Qwen3-1.7B-Q8_0.gguf",
-            default_max_tokens_thinking, 0.6, 0.95, 20, 0, 1.5
+            DEFAULT_MAX_TOKENS_THINKING, 0.6, 0.95, 20, 0, 1.5
         },
 
         [11]={},
@@ -498,19 +552,19 @@ namespace splashkit_lib
             "Qwen3 4B Base",
             "https://huggingface.co/mradermacher/Qwen3-4B-Base-GGUF/resolve/main/Qwen3-4B-Base.Q2_K.gguf?download=true",
             "Qwen3-4B-Base.Q2_K.gguf",
-            default_max_tokens_base, 0.7, 0.8, 20, 0, 0
+            DEFAULT_MAX_TOKENS_BASE, 0.7, 0.8, 20, 0, 0
         },
         [QWEN3_4B_INSTRUCT] = {
             "Qwen3 4B Instruct",
             "https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF/resolve/main/Qwen3-4B-Instruct-2507-UD-Q2_K_XL.gguf?download=true",
             "Qwen3-4B-Instruct-2507-UD-Q2_K_XL.gguf",
-            default_max_tokens_instruct, 0.7, 0.8, 20, 0, 0
+            DEFAULT_MAX_TOKENS_INSTRUCT, 0.7, 0.8, 20, 0, 0
         },
         [QWEN3_4B_THINKING] = {
             "Qwen3 4B Thinking",
             "https://huggingface.co/unsloth/Qwen3-4B-Thinking-2507-GGUF/resolve/main/Qwen3-4B-Thinking-2507-UD-Q2_K_XL.gguf?download=true",
             "Qwen3-4B-Thinking-2507-UD-Q2_K_XL.gguf",
-            default_max_tokens_thinking, 0.6, 0.95, 20, 0, 0
+            DEFAULT_MAX_TOKENS_THINKING, 0.6, 0.95, 20, 0, 0
         },
 
         [15]={},
@@ -519,13 +573,13 @@ namespace splashkit_lib
             "Gemma3 270M Base",
             "https://huggingface.co/ggml-org/gemma-3-270m-GGUF/resolve/main/gemma-3-270m-Q8_0.gguf?download=true",
             "gemma-3-270m-Q8_0.gguf",
-            default_max_tokens_base, 1.0, 0.95, 64, 0, 0
+            DEFAULT_MAX_TOKENS_BASE, 1.0, 0.95, 64, 0, 0
         },
         [GEMMA3_270M_INSTRUCT] = {
             "Gemma3 270M Instruct",
             "https://huggingface.co/unsloth/gemma-3-270m-it-GGUF/resolve/main/gemma-3-270m-it-Q8_0.gguf?download=true",
             "gemma-3-270m-it-Q8_0.gguf",
-            default_max_tokens_instruct, 1.0, 0.95, 64, 0, 0
+            DEFAULT_MAX_TOKENS_INSTRUCT, 1.0, 0.95, 64, 0, 0
         },
 
         [18]={}, [19]={},
@@ -534,13 +588,13 @@ namespace splashkit_lib
             "Gemma3 1B Base",
             "https://huggingface.co/mradermacher/gemma-3-1b-pt-GGUF/resolve/main/gemma-3-1b-pt.Q8_0.gguf?download=true",
             "gemma-3-1b-pt.Q8_0.gguf",
-            default_max_tokens_base, 1.0, 0.95, 64, 0, 0
+            DEFAULT_MAX_TOKENS_BASE, 1.0, 0.95, 64, 0, 0
         },
         [GEMMA3_1B_INSTRUCT] = {
             "Gemma3 1B Instruct",
             "https://huggingface.co/unsloth/gemma-3-1b-it-GGUF/resolve/main/gemma-3-1b-it-Q8_0.gguf?download=true",
             "gemma-3-1b-it-Q8_0.gguf",
-            default_max_tokens_instruct, 1.0, 0.95, 64, 0, 0
+            DEFAULT_MAX_TOKENS_INSTRUCT, 1.0, 0.95, 64, 0, 0
         },
 
         [22]={}, [23]={},
@@ -549,13 +603,13 @@ namespace splashkit_lib
             "Gemma3 4B Base",
             "https://huggingface.co/mradermacher/gemma-3-4b-pt-GGUF/resolve/main/gemma-3-4b-pt.Q2_K.gguf?download=true",
             "gemma-3-4b-pt.Q2_K.gguf",
-            default_max_tokens_base, 1.0, 0.95, 64, 0, 0
+            DEFAULT_MAX_TOKENS_BASE, 1.0, 0.95, 64, 0, 0
         },
         [GEMMA3_4B_INSTRUCT] = {
             "Gemma3 4B Instruct",
             "https://huggingface.co/unsloth/gemma-3-4b-it-GGUF/resolve/main/gemma-3-4b-it-UD-IQ3_XXS.gguf?download=true",
             "gemma-3-4b-it-UD-IQ3_XXS.gguf",
-            default_max_tokens_instruct, 1.0, 0.95, 64, 0, 0
+            DEFAULT_MAX_TOKENS_INSTRUCT, 1.0, 0.95, 64, 0, 0
         }
     }};
 }

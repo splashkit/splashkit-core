@@ -45,6 +45,7 @@ namespace splashkit_lib
         double min_p;
         double presence_penalty;
         string prompt_append;
+        bool use_seed;
         int seed;
     };
 
@@ -68,6 +69,9 @@ namespace splashkit_lib
             double min_p = 0;
             double presence_penalty = 0;
             int max_length = 256;
+
+            // by default use a random seed
+            bool use_seed = false;
             uint32_t seed = 42;
         };
 

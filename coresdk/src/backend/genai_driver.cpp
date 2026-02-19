@@ -11,6 +11,8 @@
 #include "genai_driver.h"
 #include "core_driver.h"
 #include "utility_functions.h"
+#include <climits>
+#include "random.h"
 
 namespace splashkit_lib
 {
@@ -156,9 +158,20 @@ namespace splashkit_lib
             llama_sampler_chain_add(smpl, llama_sampler_init_temp(settings.temperature));
             llama_sampler_chain_add(smpl, llama_sampler_init_top_k(settings.top_k));
             llama_sampler_chain_add(smpl, llama_sampler_init_top_p(settings.top_p, 0));
+            
             if (settings.presence_penalty > 0)
+            {
                 llama_sampler_chain_add(smpl, llama_sampler_init_penalties(64, 0, 0, settings.presence_penalty));
-            llama_sampler_chain_add(smpl, llama_sampler_init_dist(settings.seed));
+            }
+
+            if (settings.use_seed)
+            {
+                llama_sampler_chain_add(smpl, llama_sampler_init_dist(settings.seed));
+            }
+            else
+            {
+                llama_sampler_chain_add(smpl, llama_sampler_init_dist(rnd(INT_MAX)));
+            }
 
             // Prepare batch for starting context
             llama_tokens next_batch = starting_context;

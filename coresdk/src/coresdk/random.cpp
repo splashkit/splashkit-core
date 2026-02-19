@@ -30,6 +30,8 @@ namespace splashkit_lib
         {
             _do_seed = false;
             srand((unsigned)time(0));
+            // flush any old seed
+            rand();
         }
         
         return rand() % ubound;
