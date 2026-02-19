@@ -10,6 +10,7 @@
 
 #include <cstdlib>
 #include <new>
+#include <array>
 #include <string>
 #include <utility>
 #include <vector>
@@ -26,8 +27,8 @@ struct array_invalid_index {};
 struct array_allocation_failed {};
 
 /**
- * Exception thrown when creating a fixed-size array with
- * a size outside the allowed range.
+ * Exception thrown when creating or resizing a dynamic array
+ * with an invalid size.
  */
 struct array_invalid_size {};
 
@@ -35,8 +36,7 @@ struct array_invalid_size {};
 /**
  * A fixed-size array container.
  *
- * fixed_array stores exactly `size` elements of type T, where `size`
- * is set when the array is created.
+ * fixed_array stores exactly `MAX_SIZE` elements of type T.
  * Elements are stored next to each other and accessed by index.
  *
  * This container does not support add/remove operations.
@@ -51,8 +51,8 @@ struct array_invalid_size {};
 template<typename T, int MAX_SIZE>
 class fixed_array
 {
-    int _size;
-    T data[MAX_SIZE];
+    const int _size = MAX_SIZE;
+    std::array<T, MAX_SIZE> data;
 
     /**
      * Checks whether an index is valid for this array.
@@ -83,29 +83,35 @@ class fixed_array
     /**
      * Constructs a fixed-size fixed_array.
      *
-     * @param size  Number of elements in this array (0 to MAX_SIZE)
-     *
-     * @throws array_invalid_size when size is outside 0 to MAX_SIZE.
+     * The array always has length MAX_SIZE.
      */
-    explicit fixed_array(int size = MAX_SIZE)
-    {
-         if (size < 0 || size > MAX_SIZE)
-         {
-             write_line("Invalid fixed_array size (" + to_string(size) + "). Valid range is 0 - " + to_string(MAX_SIZE) + ".");
-             throw array_invalid_size();
-         }
-         _size = size;
-    }
+    fixed_array() = default;
 
     /**
      * Constructs a fixed-size fixed_array and initializes each element.
      *
-     * @param size          Number of elements in this array (0 to MAX_SIZE)
      * @param initial_value Value assigned to each element
      */
-    fixed_array(int size, const T& initial_value) : fixed_array(size)
+    explicit fixed_array(const T& initial_value)
     {
         fill(initial_value);
+    }
+
+    /**
+     * Assigns element values from another fixed_array with the same type and
+     * max size.
+     *
+     * @param other The array to copy values from
+     *
+     * @return This array after copying
+     */
+    fixed_array& operator=(const fixed_array& other)
+    {
+        if (this != &other)
+        {
+            data = other.data;
+        }
+        return *this;
     }
 
     /**

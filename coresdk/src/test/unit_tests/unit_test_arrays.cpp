@@ -14,10 +14,10 @@ namespace
 {
     fixed_array<int, 5> build_fixed_sequence()
     {
-        fixed_array<int, 5> arr(3);
+        fixed_array<int, 5> arr(0);
         arr[0] = 10;
         arr[1] = 20;
-        arr[2] = 30;
+        arr[4] = 30;
         return arr;
     }
 
@@ -96,8 +96,8 @@ namespace
 
 TEST_CASE("fixed_array basic operations", "[arrays][fixed]")
 {
-    fixed_array<int, 5> arr(3);
-    REQUIRE(arr.length() == 3);
+    fixed_array<int, 5> arr;
+    REQUIRE(arr.length() == 5);
 
     arr[0] = 10;
     arr[1] = 20;
@@ -110,10 +110,12 @@ TEST_CASE("fixed_array basic operations", "[arrays][fixed]")
 
 TEST_CASE("fixed_array helpers and safety methods", "[arrays][fixed]")
 {
-    fixed_array<int, 5> arr(3, 7);
+    fixed_array<int, 5> arr(7);
     REQUIRE(arr[0] == 7);
     REQUIRE(arr[1] == 7);
     REQUIRE(arr[2] == 7);
+    REQUIRE(arr[3] == 7);
+    REQUIRE(arr[4] == 7);
 
     fill(arr, 2);
     REQUIRE(arr[0] == 2);
@@ -122,7 +124,7 @@ TEST_CASE("fixed_array helpers and safety methods", "[arrays][fixed]")
 
     set(arr, 1, 11);
     REQUIRE(get(arr, 1) == 11);
-    REQUIRE(length(arr) == 3);
+    REQUIRE(length(arr) == 5);
 
     int value = 0;
     REQUIRE(try_get(arr, 1, value));
@@ -133,17 +135,12 @@ TEST_CASE("fixed_array helpers and safety methods", "[arrays][fixed]")
     REQUIRE(arr[2] == 9);
     REQUIRE_FALSE(try_set(arr, 10, 9));
 
-    fixed_array<int, 5> empty(0);
-    REQUIRE(is_empty_array(empty));
     REQUIRE_FALSE(is_empty_array(arr));
 }
 
-TEST_CASE("fixed_array validates size and index", "[arrays][fixed]")
+TEST_CASE("fixed_array validates index", "[arrays][fixed]")
 {
-    fixed_array<int, 2> arr(2);
-
-    REQUIRE_THROWS_AS((fixed_array<int, 2>(3)), array_invalid_size);
-    REQUIRE_THROWS_AS((fixed_array<int, 2>(-1)), array_invalid_size);
+    fixed_array<int, 2> arr;
     REQUIRE_THROWS_AS(arr.get(-1), array_invalid_index);
     REQUIRE_THROWS_AS(arr.get(2), array_invalid_index);
 }
