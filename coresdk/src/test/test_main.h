@@ -45,5 +45,6 @@ void run_terminal_test();
 void run_logging_test();
 void run_ui_test();
 void run_genai_test();
+void run_arrays_test();
 
 #endif /* test_main_h */

@@ -12,6 +12,7 @@ set(SK_EXT "${CMAKE_CURRENT_SOURCE_DIR}/../../coresdk/external")
 set(SK_LIB "${CMAKE_CURRENT_SOURCE_DIR}/../../coresdk/lib")
 set(SK_OUT "${CMAKE_CURRENT_SOURCE_DIR}/../../out")
 set(SK_BIN "${CMAKE_CURRENT_SOURCE_DIR}/../../bin")
+set(SK_CPP "${CMAKE_CURRENT_SOURCE_DIR}/../../languages/cpp")
 
 # FLAGS
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
@@ -247,6 +248,7 @@ include_directories("${SK_EXT}/catch")
 include_directories("${SK_EXT}/microui/src")
 include_directories("${SK_EXT}/llama.cpp/include")
 include_directories("${SK_EXT}/llama.cpp/ggml/include")
+include_directories("${SK_CPP}")
 
 # MAC OS DIRECTORY INCLUDES
 if (APPLE)
