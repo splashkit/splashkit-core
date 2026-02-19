@@ -54,16 +54,13 @@ namespace bounded_tests
     {
         cout << "\nRunning test_basic_int_operations...\n";
 
-        bounded_array<int, 5> arr;
+        bounded_array<int, 5> arr(3);
+        assert_true(arr.length() == 3, "Length should be set during construction");
 
-        assert_true(arr.length() == 0, "Initial length should be 0");
-        assert_true(arr.capacity() == 5, "Capacity should be 5");
+        arr[0] = 10;
+        arr[1] = 20;
+        arr[2] = 30;
 
-        arr.add(10);
-        arr.add(20);
-        arr.add(30);
-
-        assert_true(arr.length() == 3, "Length should be 3 after 3 adds");
         assert_true(arr[0] == 10, "Index 0 should be 10");
         assert_true(arr[1] == 20, "Index 1 should be 20");
         assert_true(arr[2] == 30, "Index 2 should be 30");
@@ -73,30 +70,30 @@ namespace bounded_tests
     {
         cout << "\nRunning test_string...\n";
 
-        bounded_array<std::string, 10> arr;
-
-        arr.add("Hello");
-        add(arr, "world");
+        bounded_array<std::string, 10> arr(2);
+        arr[0] = "Hello";
+        arr[1] = "world";
         arr[1] += "!";
         get(arr, 1) += "!";
 
         assert_true(arr[1] == "world!!", "Index 1 should equal 'world!!'");
     }
 
-    void test_capacity_and_exceptions()
+    void test_size_and_exceptions()
     {
-        cout << "\nRunning test_capacity_and_exceptions...\n";
+        cout << "\nRunning test_size_and_exceptions...\n";
 
-        bounded_array<int, 2> arr;
-
-        arr.add(1);
-        arr.add(2);
-
+        bounded_array<int, 2> arr(2);
         assert_true(arr.length() == 2, "Length should be 2");
 
-        assert_throws<array_full>(
-            [&]() { arr.add(3); },
-            "Adding past capacity should throw array_full"
+        assert_throws<array_invalid_size>(
+            [&]() { bounded_array<int, 2> invalid(3); },
+            "Creating with size > max should throw array_invalid_size"
+        );
+
+        assert_throws<array_invalid_size>(
+            [&]() { bounded_array<int, 2> invalid(-1); },
+            "Creating with negative size should throw array_invalid_size"
         );
 
         assert_throws<array_invalid_index>(
@@ -108,50 +105,19 @@ namespace bounded_tests
             [&]() { arr.get(2); },
             "Accessing index >= size should throw"
         );
-
-        assert_throws<array_invalid_index>(
-            [&]() { arr.remove(5); },
-            "Removing invalid index should throw"
-        );
     }
-
-
-    void test_remove_and_shifting()
-    {
-        cout << "\nRunning test_remove_and_shifting...\n";
-
-        bounded_array<int, 5> arr;
-
-        arr.add(10);
-        arr.add(20);
-        arr.add(30);
-        arr.add(40);
-
-        arr.remove(1);  // remove 20
-
-        assert_true(arr.length() == 3, "Length should decrease after remove");
-        assert_true(arr[0] == 10, "Index 0 should remain 10");
-        assert_true(arr[1] == 30, "Index 1 should now be 30");
-        assert_true(arr[2] == 40, "Index 2 should now be 40");
-
-        arr.remove(0);  // remove 10
-
-        assert_true(arr[0] == 30, "After removing first element");
-        assert_true(arr.length() == 2, "Length should be 2");
-    }
-
 
     void test_accessor_variants()
     {
         cout << "\nRunning test_accessor_variants...\n";
 
-        bounded_array<int, 3> arr;
-        add(arr, 5);
-        add(arr, 10);
+        bounded_array<int, 3> arr(2);
+        arr[0] = 5;
+        arr[1] = 10;
+        set(arr, 1, 11);
 
         assert_true(length(arr) == 2, "Free length() should work");
-        assert_true(capacity(arr) == 3, "Free capacity() should work");
-        assert_true(get(arr, 1) == 10, "Free get() should work");
+        assert_true(get(arr, 1) == 11, "Free get()/set() should work");
 
         const bounded_array<int, 3>& const_arr = arr;
 
@@ -175,10 +141,9 @@ namespace bounded_tests
     {
         cout << "\nRunning test_complex_types...\n";
 
-        bounded_array<Person, 3> people;
-
-        people.add({"Alice", 25});
-        people.add({"Bob", 30});
+        bounded_array<Person, 3> people(2);
+        people[0] = {"Alice", 25};
+        people[1] = {"Bob", 30};
 
         assert_true(people.length() == 2, "People length should be 2");
         assert_true(people[0] == Person{"Alice", 25}, "First person correct");
@@ -191,35 +156,69 @@ namespace bounded_tests
     {
         cout << "\nRunning test_nested_arrays...\n";
 
-        bounded_array< bounded_array<int, 3>, 2 > outer;
+        bounded_array< bounded_array<int, 3>, 2 > outer(2);
 
-        bounded_array<int, 3> inner1;
-        inner1.add(1);
-        inner1.add(2);
+        bounded_array<int, 3> inner1(2);
+        inner1[0] = 1;
+        inner1[1] = 2;
 
-        bounded_array<int, 3> inner2;
-        inner2.add(10);
+        bounded_array<int, 3> inner2(1);
+        inner2[0] = 10;
 
-        outer.add(inner1);
-        outer.add(inner2);
+        outer[0] = inner1;
+        outer[1] = inner2;
 
         assert_true(outer.length() == 2, "Outer length should be 2");
         assert_true(outer[0][0] == 1, "Nested access should work");
         assert_true(outer[0][1] == 2, "Nested access should work");
         assert_true(outer[1][0] == 10, "Nested access should work");
-
-        outer[0].remove(0);
-        assert_true(outer[0][0] == 2, "Nested remove should shift correctly");
     }
+
+    bounded_array<int, 5> build_sequence()
+    {
+        bounded_array<int, 5> arr(3);
+        arr[0] = 10;
+        arr[1] = 20;
+        arr[2] = 30;
+        return arr;
+    }
+
+    int first_plus_last(bounded_array<int, 5> arr)
+    {
+        return arr[0] + arr[arr.length() - 1];
+    }
+
+    void write_first(bounded_array<int, 5>& arr, int value)
+    {
+        arr[0] = value;
+    }
+
+    void test_copy_and_parameter_passing()
+    {
+        cout << "\nRunning test_copy_and_parameter_passing...\n";
+
+        bounded_array<int, 5> original = build_sequence();
+        bounded_array<int, 5> copied = original;
+
+        copied[0] = 99;
+        assert_true(original[0] == 10, "Copy should be independent from original");
+        assert_true(copied[0] == 99, "Copied array should hold modified value");
+
+        write_first(original, 7);
+        assert_true(original[0] == 7, "Pass-by-reference should modify original");
+
+        assert_true(first_plus_last(original) == 37, "Pass-by-value should work");
+    }
+
     void run_all_tests()
     {
         test_basic_int_operations();
         test_string();
-        test_capacity_and_exceptions();
-        test_remove_and_shifting();
+        test_size_and_exceptions();
         test_accessor_variants();
         test_complex_types();
         test_nested_arrays();
+        test_copy_and_parameter_passing();
 
         cout << "\n=========================\n";
         cout << "Tests passed: " << tests_passed << " / " << tests_run << endl;
@@ -399,13 +398,14 @@ namespace dynamic_tests
 
         add(arr, 10);
         add(arr, 20);
+        set(arr, 1, 21);
 
         assert_true(length(arr) == 2, "Free length works");
         assert_true(capacity(arr) >= 2, "Free capacity works");
 
         const dynamic_array<int>& const_arr = arr;
 
-        assert_true(get(const_arr, 1) == 20, "Const get works");
+        assert_true(get(const_arr, 1) == 21, "Const get works");
         assert_true(const_arr[0] == 10, "Const operator[] works");
     }
 

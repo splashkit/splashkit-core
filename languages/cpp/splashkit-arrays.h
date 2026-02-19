@@ -15,12 +15,6 @@
 #include <vector>
 
 /**
- * Exception thrown when attempting to add an element to a
- * bounded_array that has already reached its maximum capacity.
- */
-struct array_full {};
-
-/**
  * Exception thrown when attempting to access or remove
  * an element using an invalid index.
  */
@@ -31,52 +25,47 @@ struct array_invalid_index {};
  */
 struct array_allocation_failed {};
 
+/**
+ * Exception thrown when creating a fixed-size array with
+ * a size outside the valid range.
+ */
+struct array_invalid_size {};
+
 
 /**
- * A fixed-capacity array container.
+ * A fixed-size array container.
  *
- * bounded_array stores up to MAX_CAPACITY elements of type T.
+ * bounded_array stores exactly `size` elements of type T, where `size`
+ * is set when the array is created.
  * Elements are stored contiguously and accessed by index.
  *
- * This container does not dynamically resize. Attempting to add
- * more than MAX_CAPACITY elements will result in an array_full
- * exception being thrown.
+ * This container does not support add/remove operations.
+ * Its length is fixed after construction.
  *
- * Bounds checking is performed for element access and removal.
+ * Bounds checking is performed for element access.
  * Invalid index access results in an array_invalid_index exception.
  *
  * @tparam T             The type of elements stored in the array
- * @tparam MAX_CAPACITY  The maximum number of elements the array can hold
+ * @tparam MAX_SIZE      The maximum number of elements the array can hold
  */
-template<typename T, int MAX_CAPACITY>
+template<typename T, int MAX_SIZE>
 class bounded_array
 {
-    int size;
-    T data[MAX_CAPACITY];
-
-    template<typename U>
-    void add_impl(U&& value)
-    {
-        if (size >= MAX_CAPACITY)
-        {
-            write_line("Tried to add a new element when size has already reached maximum capacity (" + to_string(MAX_CAPACITY) + ")");
-            throw array_full();
-        }
-        data[size++] = std::forward<U>(value);
-    }
+    int _size;
+    T data[MAX_SIZE];
 
     void check_index(int index, const std::string& access_type) const
     {
-        if (index < 0 || index >= size)
+        if (index < 0 || index >= _size)
         {
-            if (size == 0)
+            if (_size == 0)
             {
                 write_line("Cannot access index " + to_string(index) +
     " because array is empty.");
             }
             else
             {
-                write_line("Index to " + access_type + " (" + to_string(index) + ") is outside of range 0 - " + to_string(size - 1) + ".");
+                write_line("Index to " + access_type + " (" + to_string(index) + ") is outside of range 0 - " + to_string(_size - 1) + ".");
             }
             throw array_invalid_index();
         }
@@ -84,23 +73,20 @@ class bounded_array
 
     public:
     /**
-     * Constructs an empty bounded_array.
+     * Constructs a fixed-size bounded_array.
      *
-     * The initial length of the array is 0.
-     */
-    bounded_array()
-    {
-         size = 0;
-    }
-
-    /**
-     * Returns the maximum number of elements this array can store.
+     * @param size  Number of elements in this array (0 to MAX_SIZE)
      *
-     * @return The maximum capacity of the array
+     * @throws array_invalid_size when size is outside 0 to MAX_SIZE.
      */
-    int capacity() const
+    explicit bounded_array(int size = MAX_SIZE)
     {
-        return MAX_CAPACITY;
+         if (size < 0 || size > MAX_SIZE)
+         {
+             write_line("Invalid bounded_array size (" + to_string(size) + "). Valid range is 0 - " + to_string(MAX_SIZE) + ".");
+             throw array_invalid_size();
+         }
+         _size = size;
     }
 
     /**
@@ -110,7 +96,7 @@ class bounded_array
      */
     int length() const
     {
-        return size;
+        return _size;
     }
 
     /**
@@ -148,6 +134,34 @@ class bounded_array
     }
 
     /**
+     * Sets the value at the specified index.
+     *
+     * @param index  The index to update
+     * @param value  The new value for that index
+     *
+     * @throws array_invalid_index if index is outside the valid range
+     */
+    void set(int index, const T& value)
+    {
+        check_index(index, "set");
+        data[index] = value;
+    }
+
+    /**
+     * Sets the value at the specified index.
+     *
+     * @param index  The index to update
+     * @param value  The new value for that index
+     *
+     * @throws array_invalid_index if index is outside the valid range
+     */
+    void set(int index, T&& value)
+    {
+        check_index(index, "set");
+        data[index] = std::move(value);
+    }
+
+    /**
      * Returns a reference to the element at the specified index.
      *
      * @param index  The index of the element to access
@@ -175,78 +189,21 @@ class bounded_array
         return get(index);
     }
 
-    /**
-     * Adds a new element to the end of the array.
-     *
-     * The element is copied into the next available position.
-     *
-     * @param value  The value to add to the array
-     *
-     * @throws array_full if the array has already reached MAX_CAPACITY
-     */
-    void add(const T& value)
-    {
-        add_impl(value);
-    }
-
-    void add(T&& value)
-    {
-        add_impl(std::move(value));
-    }
-
-    /**
-     * Removes the element at the specified index.
-     *
-     * All elements after the removed element are shifted
-     * one position to the left.
-     *
-     * @param index  The index of the element to remove
-     *
-     * @throws array_invalid_index if index is outside the valid range
-     */
-    void remove(int index)
-    {
-        check_index(index, "remove");
-
-        for(int i = index; i < size - 1; i ++)
-        {
-            data[i] = data[i + 1];
-        }
-
-        size--;
-    }
 };
-
-/**
- * Returns the maximum number of elements that the given
- * bounded_array can store.
- *
- * @tparam T             The type of elements stored in the array
- * @tparam MAX_CAPACITY  The maximum capacity of the array
- *
- * @param array  The bounded_array to query
- *
- * @return The maximum capacity of the array
- */
-template<typename T, int MAX_CAPACITY>
-int capacity(const bounded_array<T, MAX_CAPACITY>& array)
-{
-    return array.capacity();
-}
 
 /**
  * Returns the current number of elements stored in the given
  * bounded_array.
  *
  * @tparam T             The type of elements stored in the array
- * @tparam MAX_CAPACITY  The maximum capacity of the array
+ * @tparam MAX_SIZE      The maximum capacity of the array
  *
  * @param array  The bounded_array to query
  *
  * @return The number of elements currently stored in the array
  */
-template<typename T, int MAX_CAPACITY>
-int length(const bounded_array<T, MAX_CAPACITY>& array)
+template<typename T, int MAX_SIZE>
+int length(const bounded_array<T, MAX_SIZE>& array)
 {
     return array.length();
 }
@@ -256,7 +213,7 @@ int length(const bounded_array<T, MAX_CAPACITY>& array)
  * within the given bounded_array.
  *
  * @tparam T             The type of elements stored in the array
- * @tparam MAX_CAPACITY  The maximum capacity of the array
+ * @tparam MAX_SIZE      The maximum capacity of the array
  *
  * @param array  The bounded_array to access
  * @param index  The index of the element to retrieve
@@ -265,8 +222,8 @@ int length(const bounded_array<T, MAX_CAPACITY>& array)
  *
  * @throws array_invalid_index if index is outside the valid range
  */
-template<typename T, int MAX_CAPACITY>
-T& get(bounded_array<T, MAX_CAPACITY>& array, int index)
+template<typename T, int MAX_SIZE>
+T& get(bounded_array<T, MAX_SIZE>& array, int index)
 {
     return array.get(index);
 }
@@ -278,7 +235,7 @@ T& get(bounded_array<T, MAX_CAPACITY>& array, int index)
  * This overload allows access to elements of a const bounded_array.
  *
  * @tparam T             The type of elements stored in the array
- * @tparam MAX_CAPACITY  The maximum capacity of the array
+ * @tparam MAX_SIZE      The maximum capacity of the array
  *
  * @param array  The bounded_array to access
  * @param index  The index of the element to retrieve
@@ -288,49 +245,30 @@ T& get(bounded_array<T, MAX_CAPACITY>& array, int index)
  * @throws array_invalid_index if index is outside the valid range
  */
 
-template<typename T, int MAX_CAPACITY>
-const T& get(const bounded_array<T, MAX_CAPACITY>& array, int index)
+template<typename T, int MAX_SIZE>
+const T& get(const bounded_array<T, MAX_SIZE>& array, int index)
 {
     return array.get(index);
 }
 
 /**
- * Adds a new element to the end of the given bounded_array.
- *
- * @tparam T             The type of elements stored in the array
- * @tparam MAX_CAPACITY  The maximum capacity of the array
- * @tparam U             The type of element being added
- *
- * @param array  The bounded_array to modify
- * @param value  The value to add to the array
- *
- * @throws array_full if the array has reached its maximum capacity
- */
-template<typename T, int MAX_CAPACITY, typename U>
-void add(bounded_array<T, MAX_CAPACITY>& array, U&& value)
-{
-    array.add(std::forward<U>(value));
-}
-
-/**
- * Removes the element at the specified index from the given
+ * Sets the element at the specified index within the given
  * bounded_array.
  *
- * All elements following the removed element are shifted one
- * position to the left.
- *
- * @tparam T             The type of elements stored in the array
- * @tparam MAX_CAPACITY  The maximum capacity of the array
+ * @tparam T         The type of elements stored in the array
+ * @tparam MAX_SIZE  The maximum capacity of the array
+ * @tparam U         The type of value being assigned
  *
  * @param array  The bounded_array to modify
- * @param index  The index of the element to remove
+ * @param index  The index of the element to update
+ * @param value  The new value for that index
  *
  * @throws array_invalid_index if index is outside the valid range
  */
-template<typename T, int MAX_CAPACITY>
-void remove(bounded_array<T, MAX_CAPACITY>& array, int index)
+template<typename T, int MAX_SIZE, typename U>
+void set(bounded_array<T, MAX_SIZE>& array, int index, U&& value)
 {
-    array.remove(index);
+    array.set(index, std::forward<U>(value));
 }
 
 
@@ -440,6 +378,34 @@ class dynamic_array
     {
         check_index(index, "access");
         return data[static_cast<size_t>(index)];
+    }
+
+    /**
+     * Sets the value at the specified index.
+     *
+     * @param index  The index to update
+     * @param value  The new value for that index
+     *
+     * @throws array_invalid_index if index is outside the valid range
+     */
+    void set(int index, const T& value)
+    {
+        check_index(index, "set");
+        data[static_cast<size_t>(index)] = value;
+    }
+
+    /**
+     * Sets the value at the specified index.
+     *
+     * @param index  The index to update
+     * @param value  The new value for that index
+     *
+     * @throws array_invalid_index if index is outside the valid range
+     */
+    void set(int index, T&& value)
+    {
+        check_index(index, "set");
+        data[static_cast<size_t>(index)] = std::move(value);
     }
 
     /**
@@ -592,6 +558,25 @@ template<typename T>
 const T& get(const dynamic_array<T>& array, int index)
 {
     return array.get(index);
+}
+
+/**
+ * Sets the element at the specified index within the given
+ * dynamic_array.
+ *
+ * @tparam T     The type of elements stored in the array
+ * @tparam U     The type of value being assigned
+ *
+ * @param array  The dynamic_array to modify
+ * @param index  The index of the element to update
+ * @param value  The new value for that index
+ *
+ * @throws array_invalid_index if index is outside the valid range
+ */
+template<typename T, typename U>
+void set(dynamic_array<T>& array, int index, U&& value)
+{
+    array.set(index, std::forward<U>(value));
 }
 
 /**
