@@ -35,7 +35,7 @@ struct array_invalid_size {};
 /**
  * A fixed-size array container.
  *
- * bounded_array stores exactly `size` elements of type T, where `size`
+ * fixed_array stores exactly `size` elements of type T, where `size`
  * is set when the array is created.
  * Elements are stored contiguously and accessed by index.
  *
@@ -49,7 +49,7 @@ struct array_invalid_size {};
  * @tparam MAX_SIZE      The maximum number of elements the array can hold
  */
 template<typename T, int MAX_SIZE>
-class bounded_array
+class fixed_array
 {
     int _size;
     T data[MAX_SIZE];
@@ -73,17 +73,17 @@ class bounded_array
 
     public:
     /**
-     * Constructs a fixed-size bounded_array.
+     * Constructs a fixed-size fixed_array.
      *
      * @param size  Number of elements in this array (0 to MAX_SIZE)
      *
      * @throws array_invalid_size when size is outside 0 to MAX_SIZE.
      */
-    explicit bounded_array(int size = MAX_SIZE)
+    explicit fixed_array(int size = MAX_SIZE)
     {
          if (size < 0 || size > MAX_SIZE)
          {
-             write_line("Invalid bounded_array size (" + to_string(size) + "). Valid range is 0 - " + to_string(MAX_SIZE) + ".");
+             write_line("Invalid fixed_array size (" + to_string(size) + "). Valid range is 0 - " + to_string(MAX_SIZE) + ".");
              throw array_invalid_size();
          }
          _size = size;
@@ -118,7 +118,7 @@ class bounded_array
     /**
      * Returns a const reference to the element at the specified index.
      *
-     * This overload allows access on const bounded_array objects.
+     * This overload allows access on const fixed_array objects.
      *
      * @param index  The index of the element to access
      *
@@ -193,29 +193,29 @@ class bounded_array
 
 /**
  * Returns the current number of elements stored in the given
- * bounded_array.
+ * fixed_array.
  *
  * @tparam T             The type of elements stored in the array
  * @tparam MAX_SIZE      The maximum capacity of the array
  *
- * @param array  The bounded_array to query
+ * @param array  The fixed_array to query
  *
  * @return The number of elements currently stored in the array
  */
 template<typename T, int MAX_SIZE>
-int length(const bounded_array<T, MAX_SIZE>& array)
+int length(const fixed_array<T, MAX_SIZE>& array)
 {
     return array.length();
 }
 
 /**
  * Returns a reference to the element at the specified index
- * within the given bounded_array.
+ * within the given fixed_array.
  *
  * @tparam T             The type of elements stored in the array
  * @tparam MAX_SIZE      The maximum capacity of the array
  *
- * @param array  The bounded_array to access
+ * @param array  The fixed_array to access
  * @param index  The index of the element to retrieve
  *
  * @return A reference to the element at the given index
@@ -223,21 +223,21 @@ int length(const bounded_array<T, MAX_SIZE>& array)
  * @throws array_invalid_index if index is outside the valid range
  */
 template<typename T, int MAX_SIZE>
-T& get(bounded_array<T, MAX_SIZE>& array, int index)
+T& get(fixed_array<T, MAX_SIZE>& array, int index)
 {
     return array.get(index);
 }
 
 /**
  * Returns a const reference to the element at the specified index
- * within the given bounded_array.
+ * within the given fixed_array.
  *
- * This overload allows access to elements of a const bounded_array.
+ * This overload allows access to elements of a const fixed_array.
  *
  * @tparam T             The type of elements stored in the array
  * @tparam MAX_SIZE      The maximum capacity of the array
  *
- * @param array  The bounded_array to access
+ * @param array  The fixed_array to access
  * @param index  The index of the element to retrieve
  *
  * @return A const reference to the element at the given index
@@ -246,27 +246,27 @@ T& get(bounded_array<T, MAX_SIZE>& array, int index)
  */
 
 template<typename T, int MAX_SIZE>
-const T& get(const bounded_array<T, MAX_SIZE>& array, int index)
+const T& get(const fixed_array<T, MAX_SIZE>& array, int index)
 {
     return array.get(index);
 }
 
 /**
  * Sets the element at the specified index within the given
- * bounded_array.
+ * fixed_array.
  *
  * @tparam T         The type of elements stored in the array
  * @tparam MAX_SIZE  The maximum capacity of the array
  * @tparam U         The type of value being assigned
  *
- * @param array  The bounded_array to modify
+ * @param array  The fixed_array to modify
  * @param index  The index of the element to update
  * @param value  The new value for that index
  *
  * @throws array_invalid_index if index is outside the valid range
  */
 template<typename T, int MAX_SIZE, typename U>
-void set(bounded_array<T, MAX_SIZE>& array, int index, U&& value)
+void set(fixed_array<T, MAX_SIZE>& array, int index, U&& value)
 {
     array.set(index, std::forward<U>(value));
 }
@@ -365,7 +365,7 @@ class dynamic_array
     /**
      * Returns a const reference to the element at the specified index.
      *
-     * This overload allows access on const bounded_array objects.
+     * This overload allows access on const fixed_array objects.
      *
      * @param index  The index of the element to access
      *

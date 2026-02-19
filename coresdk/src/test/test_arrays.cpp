@@ -11,7 +11,7 @@ using namespace splashkit_lib;
 
 #include "splashkit-arrays.h"
 
-namespace bounded_tests
+namespace fixed_tests
 {
     using namespace std;
 
@@ -54,7 +54,7 @@ namespace bounded_tests
     {
         cout << "\nRunning test_basic_int_operations...\n";
 
-        bounded_array<int, 5> arr(3);
+        fixed_array<int, 5> arr(3);
         assert_true(arr.length() == 3, "Length should be set during construction");
 
         arr[0] = 10;
@@ -70,7 +70,7 @@ namespace bounded_tests
     {
         cout << "\nRunning test_string...\n";
 
-        bounded_array<std::string, 10> arr(2);
+        fixed_array<std::string, 10> arr(2);
         arr[0] = "Hello";
         arr[1] = "world";
         arr[1] += "!";
@@ -83,16 +83,16 @@ namespace bounded_tests
     {
         cout << "\nRunning test_size_and_exceptions...\n";
 
-        bounded_array<int, 2> arr(2);
+        fixed_array<int, 2> arr(2);
         assert_true(arr.length() == 2, "Length should be 2");
 
         assert_throws<array_invalid_size>(
-            [&]() { bounded_array<int, 2> invalid(3); },
+            [&]() { fixed_array<int, 2> invalid(3); },
             "Creating with size > max should throw array_invalid_size"
         );
 
         assert_throws<array_invalid_size>(
-            [&]() { bounded_array<int, 2> invalid(-1); },
+            [&]() { fixed_array<int, 2> invalid(-1); },
             "Creating with negative size should throw array_invalid_size"
         );
 
@@ -111,7 +111,7 @@ namespace bounded_tests
     {
         cout << "\nRunning test_accessor_variants...\n";
 
-        bounded_array<int, 3> arr(2);
+        fixed_array<int, 3> arr(2);
         arr[0] = 5;
         arr[1] = 10;
         set(arr, 1, 11);
@@ -119,7 +119,7 @@ namespace bounded_tests
         assert_true(length(arr) == 2, "Free length() should work");
         assert_true(get(arr, 1) == 11, "Free get()/set() should work");
 
-        const bounded_array<int, 3>& const_arr = arr;
+        const fixed_array<int, 3>& const_arr = arr;
 
         assert_true(const_arr[0] == 5, "Const operator[] should work");
         assert_true(get(const_arr, 0) == 5, "Const free get() should work");
@@ -141,7 +141,7 @@ namespace bounded_tests
     {
         cout << "\nRunning test_complex_types...\n";
 
-        bounded_array<Person, 3> people(2);
+        fixed_array<Person, 3> people(2);
         people[0] = {"Alice", 25};
         people[1] = {"Bob", 30};
 
@@ -156,13 +156,13 @@ namespace bounded_tests
     {
         cout << "\nRunning test_nested_arrays...\n";
 
-        bounded_array< bounded_array<int, 3>, 2 > outer(2);
+        fixed_array< fixed_array<int, 3>, 2 > outer(2);
 
-        bounded_array<int, 3> inner1(2);
+        fixed_array<int, 3> inner1(2);
         inner1[0] = 1;
         inner1[1] = 2;
 
-        bounded_array<int, 3> inner2(1);
+        fixed_array<int, 3> inner2(1);
         inner2[0] = 10;
 
         outer[0] = inner1;
@@ -174,21 +174,21 @@ namespace bounded_tests
         assert_true(outer[1][0] == 10, "Nested access should work");
     }
 
-    bounded_array<int, 5> build_sequence()
+    fixed_array<int, 5> build_sequence()
     {
-        bounded_array<int, 5> arr(3);
+        fixed_array<int, 5> arr(3);
         arr[0] = 10;
         arr[1] = 20;
         arr[2] = 30;
         return arr;
     }
 
-    int first_plus_last(bounded_array<int, 5> arr)
+    int first_plus_last(fixed_array<int, 5> arr)
     {
         return arr[0] + arr[arr.length() - 1];
     }
 
-    void write_first(bounded_array<int, 5>& arr, int value)
+    void write_first(fixed_array<int, 5>& arr, int value)
     {
         arr[0] = value;
     }
@@ -197,8 +197,8 @@ namespace bounded_tests
     {
         cout << "\nRunning test_copy_and_parameter_passing...\n";
 
-        bounded_array<int, 5> original = build_sequence();
-        bounded_array<int, 5> copied = original;
+        fixed_array<int, 5> original = build_sequence();
+        fixed_array<int, 5> copied = original;
 
         copied[0] = 99;
         assert_true(original[0] == 10, "Copy should be independent from original");
@@ -509,6 +509,6 @@ namespace dynamic_tests
 
 void run_arrays_test() {
 
-    bounded_tests::run_all_tests();
+    fixed_tests::run_all_tests();
     dynamic_tests::run_all_dynamic_tests();
 }
