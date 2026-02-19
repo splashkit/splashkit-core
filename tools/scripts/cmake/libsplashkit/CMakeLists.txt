@@ -158,6 +158,12 @@ file(GLOB SK_LIB_INCLUDE_FILE
     "${SK_GENERATED}/clib/*.h"
 )
 
+# C++ specific includes
+
+file(GLOB CPP_ONLY_INCLUDE_FILES
+    "${SK_ROOT}/languages/cpp/splashkit-arrays.h"
+)
+
 # DIRECTORY INCLUDES
 include_directories("${SK_SRC}")
 include_directories("${SK_SRC}/coresdk")
@@ -232,6 +238,7 @@ else()
             -DLLAMA_BUILD_COMMON=OFF
             -DLLAMA_TOOLS_INSTALL=OFF
             -DCMAKE_BUILD_TYPE=Release
+            -DCMAKE_POSITION_INDEPENDENT_CODE=ON
             -DGGML_STATIC=ON
             -DGGML_OPENMP=OFF
             -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
@@ -266,7 +273,7 @@ add_definitions(-DELPP_THREAD_SAFE)
 #### SplashKitBackend STATIC LIBRARY ####
 
 
-add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES} ${ADAPTER_INCLUDE_FILES} ${ADAPTER_CPP_FILES})
+add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES} ${ADAPTER_INCLUDE_FILES} ${CPP_ONLY_INCLUDE_FILES} ${ADAPTER_CPP_FILES})
 target_link_libraries(SplashKit ${LIB_FLAGS} ${LLAMA_LIB_FLAGS})
 
 if (LINUX)
@@ -307,8 +314,10 @@ file(GLOB INL_FILES
 
 # Adapter files
 install(FILES ${ADAPTER_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/g++/include)
+install(FILES ${CPP_ONLY_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/g++/include)
 install(FILES ${ADAPTER_CPP_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/g++/src)
 install(FILES ${ADAPTER_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/clang++/include)
+install(FILES ${CPP_ONLY_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/clang++/src)
 install(FILES ${ADAPTER_CPP_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/clang++/src)
 
 install(FILES ${LINUX_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/source/include)
