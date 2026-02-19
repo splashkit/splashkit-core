@@ -1,14 +1,18 @@
 #ifndef splashkit_arrays_h
 #define splashkit_arrays_h
 
+// Ensure that splashkit headers in included, if not included
+// use terminal as an indicator that the other library is already
+// included.
 #if !(defined(__terminal_h) || defined(terminal_h))
-
 #include "splashkit.h"
-
 #endif
 
 #include <cstdlib>
+#include <new>
 #include <string>
+#include <utility>
+#include <vector>
 
 /**
  * Exception thrown when attempting to add an element to a
@@ -49,6 +53,17 @@ class bounded_array
 {
     int size;
     T data[MAX_CAPACITY];
+
+    template<typename U>
+    void add_impl(U&& value)
+    {
+        if (size >= MAX_CAPACITY)
+        {
+            write_line("Tried to add a new element when size has already reached maximum capacity (" + to_string(MAX_CAPACITY) + ")");
+            throw array_full();
+        }
+        data[size++] = std::forward<U>(value);
+    }
 
     void check_index(int index, const std::string& access_type) const
     {
@@ -171,12 +186,12 @@ class bounded_array
      */
     void add(const T& value)
     {
-        if (size >= MAX_CAPACITY)
-        {
-            write_line("Tried to add a new element when size has already reached maximum capacity (" + to_string(MAX_CAPACITY) + ")");
-            throw array_full();
-        }
-        data[size++] = value;
+        add_impl(value);
+    }
+
+    void add(T&& value)
+    {
+        add_impl(std::move(value));
     }
 
     /**
@@ -324,105 +339,38 @@ void remove(bounded_array<T, MAX_CAPACITY>& array, int index)
 /**
  * A dynamically resizing array container.
  *
- * dynamic_array stores elements of type T in contiguous memory.
- * It automatically grows its internal storage as elements are added,
- * doubling the capacity when full, and may shrink when elements are removed.
+ * dynamic_array stores elements in contiguous memory and automatically
+ * resizes as needed.
+ *
+ * It supports copying, assignment, passing by value, returning from functions,
+ * and passing by reference.
  *
  * Bounds checking is performed for element access and removal.
  * Invalid index access results in an array_invalid_index exception.
  * Memory allocation failures throw array_allocation_failed.
- *
- * This container cannot be assigned or copied.
  *
  * @tparam T  The type of elements stored in the array
  */
 template<typename T>
 class dynamic_array
 {
-    int size;
-    int current_capacity;
-    T* data;
+    std::vector<T> data;
 
     void check_index(int index, const std::string& access_type) const
     {
-        if (index < 0 || index >= size)
+        if (index < 0 || index >= static_cast<int>(data.size()))
         {
-            if (size == 0)
+            if (data.empty())
             {
                 write_line("Cannot access index " + to_string(index) +
     " because array is empty.");
             }
             else
             {
-                write_line("Index to " + access_type + " (" + to_string(index) + ") is outside of range 0 - " + to_string(size - 1) + ".");
+                write_line("Index to " + access_type + " (" + to_string(index) + ") is outside of range 0 - " + to_string(static_cast<int>(data.size()) - 1) + ".");
             }
             throw array_invalid_index();
         }
-    }
-
-    void resize(int new_capacity)
-    {
-        if (new_capacity == current_capacity)
-        {
-            return;
-        }
-
-        if (new_capacity == 0)
-        {
-            // Destroy all live elements
-            for (int i = 0; i < size; i++)
-            {
-                data[i].~T();
-            }
-
-            std::free(data);
-            data = nullptr;
-            current_capacity = 0;
-            return;
-        }
-
-        void* raw = std::malloc(sizeof(T) * new_capacity);
-        if (!raw)
-        {
-            throw array_allocation_failed();
-        }
-
-        T* new_data = static_cast<T*>(raw);
-
-        // Copy construct existing elements into new storage
-        // But be able to undo if an exception is thrown during construction
-        int constructed = 0;
-        try
-        {
-            int elements_to_copy = (size < new_capacity) ? size : new_capacity;
-
-            for (; constructed < size; constructed++)
-            {
-                new (&new_data[constructed]) T(data[constructed]);
-            }
-
-            size = elements_to_copy;
-        }
-        catch (...)
-        {
-            // Destroy partially constructed elements
-            for (int i = 0; i < constructed; i++)
-                new_data[i].~T();
-
-            std::free(new_data);
-            throw;
-        }
-
-        // Destroy old elements
-        for (int i = 0; i < size; ++i)
-        {
-            data[i].~T();
-        }
-
-        std::free(data);
-
-        data = new_data;
-        current_capacity = new_capacity;
     }
 
     public:
@@ -430,28 +378,14 @@ class dynamic_array
     /**
      * Constructs an empty dynamic_array.
      */
-    dynamic_array()
-        : size(0), current_capacity(0), data(nullptr)
-    {
-    }
+    dynamic_array() = default;
 
     /**
      * Destructor.
      *
      * Destroys all valid elements and frees allocated memory.
      */
-    ~dynamic_array()
-    {
-        for (int i = 0; i < size; ++i)
-        {
-            data[i].~T();
-        }
-        std::free(data);
-    }
-
-    // Disable copy & assignment
-    dynamic_array(const dynamic_array&) = delete;
-    dynamic_array& operator=(const dynamic_array&) = delete;
+    ~dynamic_array() = default;
 
     /**
      * Returns the current capacity of the array.
@@ -461,7 +395,7 @@ class dynamic_array
      */
     int capacity() const
     {
-        return current_capacity;
+        return static_cast<int>(data.capacity());
     }
 
     /**
@@ -471,7 +405,7 @@ class dynamic_array
      */
     int length() const
     {
-        return size;
+        return static_cast<int>(data.size());
     }
 
     /**
@@ -487,7 +421,7 @@ class dynamic_array
     T& get(int index)
     {
         check_index(index, "access");
-        return data[index];
+        return data[static_cast<size_t>(index)];
     }
 
     /**
@@ -505,7 +439,7 @@ class dynamic_array
     const T& get(int index) const
     {
         check_index(index, "access");
-        return data[index];
+        return data[static_cast<size_t>(index)];
     }
 
     /**
@@ -547,51 +481,42 @@ class dynamic_array
      */
     void add(const T& value)
     {
-        if (size == current_capacity)
+        try
         {
-            int new_capacity = (current_capacity == 0) ? 1 : current_capacity * 2;
-            resize(new_capacity);
+            data.push_back(value);
         }
+        catch (const std::bad_alloc&)
+        {
+            throw array_allocation_failed();
+        }
+    }
 
-        new (&data[size]) T(value);
-        size++;
+    void add(T&& value)
+    {
+        try
+        {
+            data.push_back(std::move(value));
+        }
+        catch (const std::bad_alloc&)
+        {
+            throw array_allocation_failed();
+        }
     }
 
     /**
      * Removes the element at the specified index.
      *
-     * All elements after the removed element are shifted
-     * one position to the left.
+     * All elements after the removed element are shifted one position
+     * to the left, which changes their indices.
      *
      * @param index  The index of the element to remove
      *
      * @throws array_invalid_index if index is outside the valid range
-     * @throws array_allocation_failed if shrinking allocation fails.
      */
     void remove(int index)
     {
         check_index(index, "remove");
-
-        // Destroy the element at index
-        data[index].~T();
-
-        for(int i = index; i < size - 1; i ++)
-        {
-            new (&data[i]) T(data[i + 1]);
-            data[i + 1].~T();
-        }
-
-        size--;
-
-        // Shrink if necessary
-        if (size > 0 && size < current_capacity / 2)
-        {
-            resize(current_capacity / 2);
-        }
-        else if (size == 0)
-        {
-            resize(0);
-        }
+        data.erase(data.begin() + index);
     }
 };
 
@@ -699,7 +624,6 @@ void add(dynamic_array<T>& array, U&& value)
  * @param index  The index of the element to remove
  *
  * @throws array_invalid_index if index is outside the valid range
- * @throws array_allocation_failed if shrinking allocation fails.
  */
 template<typename T>
 void remove(dynamic_array<T>& array, int index)
