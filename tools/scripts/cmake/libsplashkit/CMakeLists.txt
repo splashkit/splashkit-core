@@ -238,6 +238,7 @@ else()
             -DLLAMA_BUILD_COMMON=OFF
             -DLLAMA_TOOLS_INSTALL=OFF
             -DCMAKE_BUILD_TYPE=Release
+            -DCMAKE_POSITION_INDEPENDENT_CODE=ON
             -DGGML_STATIC=ON
             -DGGML_OPENMP=OFF
             -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
