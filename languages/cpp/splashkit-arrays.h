@@ -125,16 +125,6 @@ class fixed_array
     }
 
     /**
-     * Returns true when this array has no elements.
-     *
-     * @return True if length() == 0.
-     */
-    bool is_empty() const
-    {
-        return _size == 0;
-    }
-
-    /**
      * Returns a reference to the element at the given index.
      *
      * @param index  The index of the element to access
@@ -314,15 +304,6 @@ int length(const fixed_array<T, MAX_SIZE>& array)
 }
 
 /**
- * Returns true when the given fixed_array has no elements.
- */
-template<typename T, int MAX_SIZE>
-bool is_empty_array(const fixed_array<T, MAX_SIZE>& array)
-{
-    return array.is_empty();
-}
-
-/**
  * Returns a reference to the element at the given index
  * within the given fixed_array.
  *
@@ -486,56 +467,6 @@ class dynamic_array
      * Constructs an empty dynamic_array.
      */
     dynamic_array() = default;
-
-    /**
-     * Constructs a dynamic_array with the given initial length.
-     *
-     * @param size Number of elements in this array.
-     *
-     * @throws array_invalid_size if size is negative.
-     * @throws array_allocation_failed if memory allocation fails.
-     */
-    explicit dynamic_array(int size)
-    {
-        if (size < 0)
-        {
-            write_line("Invalid dynamic_array size (" + to_string(size) + "). Size must be 0 or greater.");
-            throw array_invalid_size();
-        }
-
-        try
-        {
-            data.resize(static_cast<size_t>(size));
-        }
-        catch (const std::bad_alloc&)
-        {
-            throw array_allocation_failed();
-        }
-    }
-
-    /**
-     * Constructs a dynamic_array with the given initial length and value.
-     *
-     * @param size          Number of elements in this array.
-     * @param initial_value Value assigned to each element.
-     */
-    dynamic_array(int size, const T& initial_value)
-    {
-        if (size < 0)
-        {
-            write_line("Invalid dynamic_array size (" + to_string(size) + "). Size must be 0 or greater.");
-            throw array_invalid_size();
-        }
-
-        try
-        {
-            data.resize(static_cast<size_t>(size), initial_value);
-        }
-        catch (const std::bad_alloc&)
-        {
-            throw array_allocation_failed();
-        }
-    }
 
     /**
      * Destructor.

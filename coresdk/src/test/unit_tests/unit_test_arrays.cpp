@@ -135,7 +135,6 @@ TEST_CASE("fixed_array helpers and safety methods", "[arrays][fixed]")
     REQUIRE(arr[2] == 9);
     REQUIRE_FALSE(try_set(arr, 10, 9));
 
-    REQUIRE_FALSE(is_empty_array(arr));
 }
 
 TEST_CASE("fixed_array validates index", "[arrays][fixed]")
@@ -189,7 +188,10 @@ TEST_CASE("dynamic_array set/get and free helper variants", "[arrays][dynamic]")
 
 TEST_CASE("dynamic_array size-changing and insertion helpers", "[arrays][dynamic]")
 {
-    dynamic_array<int> arr(3, 4);
+    dynamic_array<int> arr;
+    add(arr, 4);
+    add(arr, 4);
+    add(arr, 4);
     REQUIRE(arr.length() == 3);
     REQUIRE(arr[0] == 4);
     REQUIRE(arr[1] == 4);
@@ -218,7 +220,9 @@ TEST_CASE("dynamic_array size-changing and insertion helpers", "[arrays][dynamic
 
 TEST_CASE("dynamic_array non-throwing helpers", "[arrays][dynamic]")
 {
-    dynamic_array<int> arr(2, 10);
+    dynamic_array<int> arr;
+    add(arr, 10);
+    add(arr, 10);
 
     int value = 0;
     REQUIRE(try_get(arr, 1, value));
@@ -240,7 +244,6 @@ TEST_CASE("dynamic_array validates index and size", "[arrays][dynamic]")
     REQUIRE_THROWS_AS(arr.get(5), array_invalid_index);
     REQUIRE_THROWS_AS(arr.insert(3, 10), array_invalid_index);
 
-    REQUIRE_THROWS_AS((dynamic_array<int>(-1)), array_invalid_size);
     REQUIRE_THROWS_AS(arr.resize(-1), array_invalid_size);
 }
 
