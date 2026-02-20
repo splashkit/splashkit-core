@@ -13,7 +13,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 struct _motor_device_data;
 typedef struct _motor_device_data *motor_device;

@@ -14,7 +14,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Returns a circle that will encompass the entire bitamp.

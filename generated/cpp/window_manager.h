@@ -13,7 +13,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 struct _window_data;
 typedef struct _window_data *window;

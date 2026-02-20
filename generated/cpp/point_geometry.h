@@ -14,7 +14,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Returns a point at the given location.

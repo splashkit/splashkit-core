@@ -14,7 +14,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Gets the number of milliseconds that have passed since the program was

@@ -14,7 +14,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Returns the rectangle of the current clip area for the current window

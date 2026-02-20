@@ -14,7 +14,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Draws an ellipse using the provided location, and size.

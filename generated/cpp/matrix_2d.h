@@ -13,7 +13,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 typedef struct {
     double elements[3][3];

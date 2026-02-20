@@ -13,7 +13,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Returns the number of `animation`s within an `animation_script`.

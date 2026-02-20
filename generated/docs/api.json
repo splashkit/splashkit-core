@@ -14524,7 +14524,7 @@
     ]
   },
   "generative_ai": {
-    "brief": "SplashKit gives you a simple way to use and embed local AIs in your projects,\nthat run on your own computer.",
+    "brief": "",
     "description": "",
     "functions": [
       {
@@ -14592,6 +14592,130 @@
           ],
           "pascal": [
             "procedure ConversationAddMessage(c: Conversation; const message: String)"
+          ]
+        }
+      },
+      {
+        "signature": "string conversation_get_reply(conversation conv);",
+        "name": "conversation_get_reply",
+        "method_name": "get_reply",
+        "unique_global_name": "conversation_get_reply",
+        "unique_method_name": "conversation.get_reply",
+        "suffix_name": null,
+        "description": "Returns a reply from a `conversation`, without any related thoughts.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The response from the model",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "conv": {
+            "type": "conversation",
+            "description": "The `conversation` to recieve the reply from",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "conversation",
+          "method": "get_reply",
+          "self": "conv",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        },
+        "signatures": {
+          "cpp": [
+            "string conversation_get_reply(conversation conv)"
+          ],
+          "python": [
+            "def conversation_get_reply(conv):"
+          ],
+          "csharp": [
+            "public string Conversation.GetReply();",
+            "public static string SplashKit.ConversationGetReply(Conversation conv);"
+          ],
+          "pascal": [
+            "function ConversationGetReply(conv: Conversation): String"
+          ]
+        }
+      },
+      {
+        "signature": "string conversation_get_reply(conversation conv,bool with_thoughts);",
+        "name": "conversation_get_reply",
+        "method_name": "get_reply",
+        "unique_global_name": "conversation_get_reply_with_thoughts",
+        "unique_method_name": "conversation.get_reply_with_thoughts",
+        "suffix_name": null,
+        "description": "Returns a reply from a `conversation`, with the ability to indicate if thoughts should be included.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The response from the model",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "conv": {
+            "type": "conversation",
+            "description": "The `conversation` to recieve the reply from",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "with_thoughts": {
+            "type": "bool",
+            "description": "A boolean to indicate if thoughts should be included in the reply",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "conversation",
+          "method": "get_reply",
+          "self": "conv",
+          "suffix": "with_thoughts",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        },
+        "signatures": {
+          "cpp": [
+            "string conversation_get_reply(conversation conv, bool with_thoughts)"
+          ],
+          "python": [
+            "def conversation_get_reply_with_thoughts(conv, with_thoughts):"
+          ],
+          "csharp": [
+            "public string Conversation.GetReply(bool withThoughts);",
+            "public static string SplashKit.ConversationGetReply(Conversation conv, bool withThoughts);"
+          ],
+          "pascal": [
+            "function ConversationGetReply(conv: Conversation; withThoughts: Boolean): String"
           ]
         }
       },
@@ -14767,8 +14891,8 @@
         "unique_global_name": "create_conversation",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures",
-        "brief": "Creates a new `conversation` object, that uses the default language model.",
+        "description": "Creates a new `conversation` object, that uses the default language model.\n\nThe `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures",
+        "brief": null,
         "return": {
           "type": "conversation",
           "description": "Returns a new `conversation` object.",
@@ -14808,8 +14932,8 @@
         "unique_global_name": "create_conversation_with_model",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures",
-        "brief": "Creates a new `conversation` object, that uses a chosen language model.",
+        "description": "Creates a new `conversation` object, that uses a chosen language model.\n\nThe `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures",
+        "brief": null,
         "return": {
           "type": "conversation",
           "description": "Returns a new `conversation` object.",
@@ -14959,8 +15083,8 @@
         "unique_global_name": "generate_reply_with_model",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.\nInstruct or Thinking models are recommended. Base models likely won't output sensible results.",
-        "brief": "Generates a reply to a textual prompt by a language model",
+        "description": "Generates a reply to a textual prompt by a language model\n\nThe language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.\nInstruct or Thinking models are recommended. Base models likely won't output sensible results.",
+        "brief": null,
         "return": {
           "type": "string",
           "description": "The generated reply.",
@@ -15024,8 +15148,8 @@
         "unique_global_name": "generate_reply",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.\nInstruct or Thinking models are recommended. Base models likely won't output sensible results.",
-        "brief": "Generates a reply to a textual prompt by a language model",
+        "description": "Generates a reply to a textual prompt by a language model\n\nThe language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions.\nInstruct or Thinking models are recommended. Base models likely won't output sensible results.",
+        "brief": null,
         "return": {
           "type": "string",
           "description": "The generated reply.",
@@ -15075,8 +15199,8 @@
         "unique_global_name": "generate_text_with_model",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
-        "brief": "Generates text that continues from a prompt",
+        "description": "Generates text that continues from a prompt, with a maximum of 125 tokens.\n\nThe language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
+        "brief": null,
         "return": {
           "type": "string",
           "description": "The generated reply.",
@@ -15134,14 +15258,92 @@
         }
       },
       {
+        "signature": "string generate_text(language_model model,string text,int max_tokens);",
+        "name": "generate_text",
+        "method_name": null,
+        "unique_global_name": "generate_text_with_model_and_tokens",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Generates text that continues from a prompt, with a maximum of 125 tokens.\n\nThe language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The generated reply.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "model": {
+            "type": "language_model",
+            "description": "The language model to use",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The input text for the language model to continue.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "max_tokens": {
+            "type": "int",
+            "description": "The maximum tokens used in response - determining the length of the output and the time taken. Keep this small for reasonable execution times.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_model_and_tokens",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        },
+        "signatures": {
+          "cpp": [
+            "string generate_text(language_model model, string text, int max_tokens)"
+          ],
+          "python": [
+            "def generate_text_with_model_and_tokens(model, text, max_tokens):"
+          ],
+          "csharp": [
+            "public static string SplashKit.GenerateText(LanguageModel model, string text, int maxTokens);"
+          ],
+          "pascal": [
+            "function GenerateText(model: LanguageModel; text: String; maxTokens: Integer): String"
+          ]
+        }
+      },
+      {
         "signature": "string generate_text(string text);",
         "name": "generate_text",
         "method_name": null,
         "unique_global_name": "generate_text",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
-        "brief": "Generates text that continues from a prompt",
+        "description": "Generates text that continues from a prompt - with default of 125 tokens.\n\nThe language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
+        "brief": null,
         "return": {
           "type": "string",
           "description": "The generated reply.",
@@ -15183,6 +15385,71 @@
             "function GenerateText(text: String): String"
           ]
         }
+      },
+      {
+        "signature": "string generate_text(string text,int max_tokens);",
+        "name": "generate_text",
+        "method_name": null,
+        "unique_global_name": "generate_text_with_tokens",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Generates text that continues from a prompt.\n\nThe language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions.\nBase models are recommended; Instruct and Thinking models may work.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The generated reply.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The input text for the language model to continue.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "max_tokens": {
+            "type": "int",
+            "description": "The maximum tokens used in response - determining the length of the output and the time taken. Keep this small for reasonable execution times.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_tokens",
+          "group": "generative_ai",
+          "static": "generative_ai"
+        },
+        "signatures": {
+          "cpp": [
+            "string generate_text(string text, int max_tokens)"
+          ],
+          "python": [
+            "def generate_text_with_tokens(text, max_tokens):"
+          ],
+          "csharp": [
+            "public static string SplashKit.GenerateText(string text, int maxTokens);"
+          ],
+          "pascal": [
+            "function GenerateText(text: String; maxTokens: Integer): String"
+          ]
+        }
       }
     ],
     "typedefs": [
@@ -15214,7 +15481,7 @@
         "brief": null,
         "constants": {
           "QWEN3_0_6B_BASE": {
-            "description": "Qwen3 0.6B Base model - small, extremely fast and good for text commpletion. Very limited world knowledge.",
+            "description": "Qwen3 0.6B Base model - small, extremely fast and good for text completion. Very limited world knowledge.",
             "number": 4
           },
           "QWEN3_0_6B_INSTRUCT": {
@@ -15226,7 +15493,7 @@
             "number": 6
           },
           "QWEN3_1_7B_BASE": {
-            "description": "Qwen3 1.7B Base model - decently fast and good for text commpletion. Limited world knowledge.",
+            "description": "Qwen3 1.7B Base model - decently fast and good for text completion. Limited world knowledge.",
             "number": 8
           },
           "QWEN3_1_7B_INSTRUCT": {
@@ -15238,7 +15505,7 @@
             "number": 10
           },
           "QWEN3_4B_BASE": {
-            "description": "Qwen3 4B Base model - slower but excellent for text commpletion/pattern based completion",
+            "description": "Qwen3 4B Base model - slower but excellent for text completion/pattern based completion",
             "number": 12
           },
           "QWEN3_4B_INSTRUCT": {
@@ -15258,19 +15525,19 @@
             "number": 17
           },
           "GEMMA3_1B_BASE": {
-            "description": "Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multi-lingual abilities.",
+            "description": "Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multilingual abilities.",
             "number": 20
           },
           "GEMMA3_1B_INSTRUCT": {
-            "description": "Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multi-lingual abilities.",
+            "description": "Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multilingual abilities.",
             "number": 21
           },
           "GEMMA3_4B_BASE": {
-            "description": "Gemma3 4B Base model - slower but good for text commpletion/pattern based completion. Has decent world knowledge and multi-lingual abilities.",
+            "description": "Gemma3 4B Base model - slower but good for text completion/pattern based completion. Has decent world knowledge and multilingual abilities.",
             "number": 24
           },
           "GEMMA3_4B_INSTRUCT": {
-            "description": "Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multi-lingual abilities.",
+            "description": "Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multilingual abilities.",
             "number": 25
           }
         },
@@ -98816,6 +99083,175 @@
           ],
           "pascal": [
             "function ToLowercase(const text: String): String"
+          ]
+        }
+      },
+      {
+        "signature": "string to_string(double value,int precision);",
+        "name": "to_string",
+        "method_name": null,
+        "unique_global_name": "to_string_from_double_with_precision",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Convert the passed in double to a string, restricting\nthe output the a given number of decimal places. For example\nif value is 3.14159265359 and precision is 2 then the output\nwill be \"3.14\".",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "string containing the double value.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "double",
+            "description": "the value to convert to a string.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "precision": {
+            "type": "int",
+            "description": "the number of decimal places to output.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_double_with_precision",
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "cpp": [
+            "string to_string(double value, int precision)"
+          ],
+          "python": [
+            "def to_string_from_double_with_precision(value, precision):"
+          ],
+          "csharp": [
+            "public static string SplashKit.ToString(double value, int precision);"
+          ],
+          "pascal": [
+            "function ToString(value: Double; precision: Integer): String"
+          ]
+        }
+      },
+      {
+        "signature": "string to_string(double value);",
+        "name": "to_string",
+        "method_name": null,
+        "unique_global_name": "to_string_from_double",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Convert the passed in double to a string.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "string containing the double value.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "double",
+            "description": "the value to convert to a string.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_double",
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "cpp": [
+            "string to_string(double value)"
+          ],
+          "python": [
+            "def to_string_from_double(value):"
+          ],
+          "csharp": [
+            "public static string SplashKit.ToString(double value);"
+          ],
+          "pascal": [
+            "function ToString(value: Double): String"
+          ]
+        }
+      },
+      {
+        "signature": "string to_string(int value);",
+        "name": "to_string",
+        "method_name": null,
+        "unique_global_name": "to_string_from_int",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Convert the passed in integer to a string.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "string containing the integer value.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "int",
+            "description": "the value to convert to a string.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_int",
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "cpp": [
+            "string to_string(int value)"
+          ],
+          "python": [
+            "def to_string_from_int(value):"
+          ],
+          "csharp": [
+            "public static string SplashKit.ToString(int value);"
+          ],
+          "pascal": [
+            "function ToString(value: Integer): String"
           ]
         }
       },

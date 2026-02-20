@@ -15,7 +15,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Tests if a bitmap drawn at `pt` would intersect with a circle.

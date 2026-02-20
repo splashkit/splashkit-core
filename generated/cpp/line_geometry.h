@@ -13,7 +13,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Gets the closest point on the line to a given point.

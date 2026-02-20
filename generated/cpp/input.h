@@ -12,7 +12,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * ProcessEvents allows SplashKit to react to user interactions. This

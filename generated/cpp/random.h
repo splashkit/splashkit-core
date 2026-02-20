@@ -12,7 +12,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Generates a random number between 'min' and `max`, including 'min' and 'max'.

@@ -1296,6 +1296,15 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_lowercase__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__to_lowercase__string_ref(__sklib_string text);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_string__double__int", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__to_string__double__int(double value, int precision);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_string__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__to_string__double(double value);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_string__int", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__to_string__int(int value);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_uppercase__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__to_uppercase__string_ref(__sklib_string text);
 
@@ -2496,6 +2505,12 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__conversation_add_message__conversation__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__conversation_add_message__conversation__string_ref(__sklib_ptr c, __sklib_string message);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__conversation_get_reply__conversation", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__conversation_get_reply__conversation(__sklib_ptr conv);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__conversation_get_reply__conversation__bool", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__conversation_get_reply__conversation__bool(__sklib_ptr conv, int withThoughts);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__conversation_get_reply_piece__conversation", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__conversation_get_reply_piece__conversation(__sklib_ptr c);
 
@@ -2526,8 +2541,14 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__language_model__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__generate_text__language_model__string(int model, __sklib_string text);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__language_model__string__int", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__generate_text__language_model__string__int(int model, __sklib_string text, int maxTokens);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__generate_text__string(__sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__generate_text__string__int", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__generate_text__string__int(__sklib_string text, int maxTokens);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__cosine__float", CharSet=CharSet.Ansi)]
     private static extern float __sklib__cosine__float(float degrees);
@@ -6399,6 +6420,48 @@ namespace SplashKitSDK
       __skparam__text = __skadapter__to_sklib_string(text);
       __skreturn = __sklib__to_lowercase__string_ref(__skparam__text);
     __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// Convert the passed in double to a string, restricting the output the a given number of decimal places. For example if value is 3.14159265359 and precision is 2 then the output will be "3.14".
+    /// </summary>
+    /// <param name="value"> the value to convert to a string.</param>
+    /// <param name="precision"> the number of decimal places to output.</param>
+    /// <returns>string containing the double value.</returns>
+    public static string ToString(double value, int precision)
+    {
+      double __skparam__value;
+      int __skparam__precision;
+      __sklib_string __skreturn;
+      __skparam__value = __skadapter__to_sklib_double(value);
+      __skparam__precision = __skadapter__to_sklib_int(precision);
+      __skreturn = __sklib__to_string__double__int(__skparam__value, __skparam__precision);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// Convert the passed in double to a string.
+    /// </summary>
+    /// <param name="value"> the value to convert to a string.</param>
+    /// <returns>string containing the double value.</returns>
+    public static string ToString(double value)
+    {
+      double __skparam__value;
+      __sklib_string __skreturn;
+      __skparam__value = __skadapter__to_sklib_double(value);
+      __skreturn = __sklib__to_string__double(__skparam__value);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// Convert the passed in integer to a string.
+    /// </summary>
+    /// <param name="value"> the value to convert to a string.</param>
+    /// <returns>string containing the integer value.</returns>
+    public static string ToString(int value)
+    {
+      int __skparam__value;
+      __sklib_string __skreturn;
+      __skparam__value = __skadapter__to_sklib_int(value);
+      __skreturn = __sklib__to_string__int(__skparam__value);
       return __skadapter__to_string(__skreturn);
     }
     /// <summary>
@@ -12313,6 +12376,35 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__message);
     }
     /// <summary>
+    /// Returns a reply from a `conversation`, without any related thoughts.
+    /// </summary>
+    /// <param name="conv"> The `conversation` to recieve the reply from</param>
+    /// <returns>The response from the model</returns>
+    public static string ConversationGetReply(Conversation conv)
+    {
+      __sklib_ptr __skparam__conv;
+      __sklib_string __skreturn;
+      __skparam__conv = __skadapter__to_sklib_conversation(conv);
+      __skreturn = __sklib__conversation_get_reply__conversation(__skparam__conv);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// Returns a reply from a `conversation`, with the ability to indicate if thoughts should be included.
+    /// </summary>
+    /// <param name="conv"> The `conversation` to recieve the reply from</param>
+    /// <param name="withThoughts"> A boolean to indicate if thoughts should be included in the reply</param>
+    /// <returns>The response from the model</returns>
+    public static string ConversationGetReply(Conversation conv, bool withThoughts)
+    {
+      __sklib_ptr __skparam__conv;
+      int __skparam__with_thoughts;
+      __sklib_string __skreturn;
+      __skparam__conv = __skadapter__to_sklib_conversation(conv);
+      __skparam__with_thoughts = __skadapter__to_sklib_bool(withThoughts);
+      __skreturn = __sklib__conversation_get_reply__conversation__bool(__skparam__conv, __skparam__with_thoughts);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
     /// Returns a single piece of a reply (generally one word at a time) from the `conversation` You can use a loop while checking `conversation_is_replying` to retrieve the reply as it generates
     /// </summary>
     /// <param name="c"> The `conversation` object to recieve the reply from</param>
@@ -12352,7 +12444,7 @@ namespace SplashKitSDK
       return __skadapter__to_bool(__skreturn);
     }
     /// <summary>
-    /// The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
+    /// Creates a new `conversation` object, that uses the default language model.  The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
     /// </summary>
     /// <returns>Returns a new `conversation` object.</returns>
     public static Conversation CreateConversation()
@@ -12362,7 +12454,7 @@ namespace SplashKitSDK
       return __skadapter__to_conversation(__skreturn);
     }
     /// <summary>
-    /// The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
+    /// Creates a new `conversation` object, that uses a chosen language model.  The `conversation` object can have messages added to it, and responses streamed back from it via the other Conversation functions and procedures
     /// </summary>
     /// <param name="model"> The language model to use</param>
     /// <returns>Returns a new `conversation` object.</returns>
@@ -12392,7 +12484,7 @@ namespace SplashKitSDK
       __sklib__free_conversation__conversation(__skparam__c);
     }
     /// <summary>
-    /// The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions. Instruct or Thinking models are recommended. Base models likely won't output sensible results.
+    /// Generates a reply to a textual prompt by a language model  The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions. Instruct or Thinking models are recommended. Base models likely won't output sensible results.
     /// </summary>
     /// <param name="model"> The language model to use</param>
     /// <param name="prompt"> The prompt for the language model to reply to.</param>
@@ -12409,7 +12501,7 @@ namespace SplashKitSDK
       return __skadapter__to_string(__skreturn);
     }
     /// <summary>
-    /// The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions. Instruct or Thinking models are recommended. Base models likely won't output sensible results.
+    /// Generates a reply to a textual prompt by a language model  The language model will respond to the textual prompt in a chat style format. It will follow instructions and answer questions. Instruct or Thinking models are recommended. Base models likely won't output sensible results.
     /// </summary>
     /// <param name="prompt"> The prompt for the language model to reply to.</param>
     /// <returns>The generated reply.</returns>
@@ -12423,7 +12515,7 @@ namespace SplashKitSDK
       return __skadapter__to_string(__skreturn);
     }
     /// <summary>
-    /// The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
+    /// Generates text that continues from a prompt, with a maximum of 125 tokens.  The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
     /// </summary>
     /// <param name="model"> The language model to use</param>
     /// <param name="text"> The input text for the language model to continue.</param>
@@ -12440,7 +12532,27 @@ namespace SplashKitSDK
       return __skadapter__to_string(__skreturn);
     }
     /// <summary>
-    /// The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
+    /// Generates text that continues from a prompt, with a maximum of 125 tokens.  The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
+    /// </summary>
+    /// <param name="model"> The language model to use</param>
+    /// <param name="text"> The input text for the language model to continue.</param>
+    /// <param name="maxTokens"> The maximum tokens used in response - determining the length of the output and the time taken. Keep this small for reasonable execution times.</param>
+    /// <returns>The generated reply.</returns>
+    public static string GenerateText(LanguageModel model, string text, int maxTokens)
+    {
+      int __skparam__model;
+      __sklib_string __skparam__text;
+      int __skparam__max_tokens;
+      __sklib_string __skreturn;
+      __skparam__model = __skadapter__to_sklib_language_model(model);
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__max_tokens = __skadapter__to_sklib_int(maxTokens);
+      __skreturn = __sklib__generate_text__language_model__string__int(__skparam__model, __skparam__text, __skparam__max_tokens);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// Generates text that continues from a prompt - with default of 125 tokens.  The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
     /// </summary>
     /// <param name="text"> The input text for the language model to continue.</param>
     /// <returns>The generated reply.</returns>
@@ -12450,6 +12562,23 @@ namespace SplashKitSDK
       __sklib_string __skreturn;
       __skparam__text = __skadapter__to_sklib_string(text);
       __skreturn = __sklib__generate_text__string(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_string(__skreturn);
+    }
+    /// <summary>
+    /// Generates text that continues from a prompt.  The language model will continue predicting text based on patterns in the prompt - it will not directly follow instructions or answer questions. Base models are recommended; Instruct and Thinking models may work.
+    /// </summary>
+    /// <param name="text"> The input text for the language model to continue.</param>
+    /// <param name="maxTokens"> The maximum tokens used in response - determining the length of the output and the time taken. Keep this small for reasonable execution times.</param>
+    /// <returns>The generated reply.</returns>
+    public static string GenerateText(string text, int maxTokens)
+    {
+      __sklib_string __skparam__text;
+      int __skparam__max_tokens;
+      __sklib_string __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__max_tokens = __skadapter__to_sklib_int(maxTokens);
+      __skreturn = __sklib__generate_text__string__int(__skparam__text, __skparam__max_tokens);
     __skadapter__free__sklib_string(ref __skparam__text);
       return __skadapter__to_string(__skreturn);
     }
@@ -27724,6 +27853,25 @@ public class Conversation : PointerWrapper
     public void AddMessage(string message)
     {
         SplashKit.ConversationAddMessage(this, message);
+    }
+
+    /// <summary>
+    /// Returns a reply from a `conversation`, without any related thoughts.
+    /// </summary>
+    /// <returns>The response from the model</returns>
+    public string GetReply()
+    {
+        return SplashKit.ConversationGetReply(this);
+    }
+
+    /// <summary>
+    /// Returns a reply from a `conversation`, with the ability to indicate if thoughts should be included.
+    /// </summary>
+    /// <param name="withThoughts"> A boolean to indicate if thoughts should be included in the reply</param>
+    /// <returns>The response from the model</returns>
+    public string GetReply(bool withThoughts)
+    {
+        return SplashKit.ConversationGetReply(this, withThoughts);
     }
 
     /// <summary>

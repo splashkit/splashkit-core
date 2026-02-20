@@ -13,7 +13,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 struct _servo_device_data;
 typedef struct _servo_device_data *servo_device;

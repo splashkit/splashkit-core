@@ -13,7 +13,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 #define COLOR_ALICE_BLUE color_alice_blue()
 #define COLOR_ANTIQUE_WHITE color_antique_white()

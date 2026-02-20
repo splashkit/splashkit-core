@@ -14,7 +14,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Converts an ASCII character to a binary value to be used with the Quad 14-segment display module (HT16K33 backpack).

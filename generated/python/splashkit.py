@@ -1806,6 +1806,12 @@ sklib.__sklib__to_integer__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__to_integer__string_ref.restype = c_int
 sklib.__sklib__to_lowercase__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__to_lowercase__string_ref.restype = _sklib_string
+sklib.__sklib__to_string__double__int.argtypes = [ c_double, c_int ]
+sklib.__sklib__to_string__double__int.restype = _sklib_string
+sklib.__sklib__to_string__double.argtypes = [ c_double ]
+sklib.__sklib__to_string__double.restype = _sklib_string
+sklib.__sklib__to_string__int.argtypes = [ c_int ]
+sklib.__sklib__to_string__int.restype = _sklib_string
 sklib.__sklib__to_uppercase__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__to_uppercase__string_ref.restype = _sklib_string
 sklib.__sklib__trim__string_ref.argtypes = [ _sklib_string ]
@@ -2606,6 +2612,10 @@ sklib.__sklib__fill_ellipse_on_window__window__color__double__double__double__do
 sklib.__sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options.restype = None
 sklib.__sklib__conversation_add_message__conversation__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__conversation_add_message__conversation__string_ref.restype = None
+sklib.__sklib__conversation_get_reply__conversation.argtypes = [ c_void_p ]
+sklib.__sklib__conversation_get_reply__conversation.restype = _sklib_string
+sklib.__sklib__conversation_get_reply__conversation__bool.argtypes = [ c_void_p, c_int32 ]
+sklib.__sklib__conversation_get_reply__conversation__bool.restype = _sklib_string
 sklib.__sklib__conversation_get_reply_piece__conversation.argtypes = [ c_void_p ]
 sklib.__sklib__conversation_get_reply_piece__conversation.restype = _sklib_string
 sklib.__sklib__conversation_is_replying__conversation.argtypes = [ c_void_p ]
@@ -2626,8 +2636,12 @@ sklib.__sklib__generate_reply__string.argtypes = [ _sklib_string ]
 sklib.__sklib__generate_reply__string.restype = _sklib_string
 sklib.__sklib__generate_text__language_model__string.argtypes = [ c_int, _sklib_string ]
 sklib.__sklib__generate_text__language_model__string.restype = _sklib_string
+sklib.__sklib__generate_text__language_model__string__int.argtypes = [ c_int, _sklib_string, c_int ]
+sklib.__sklib__generate_text__language_model__string__int.restype = _sklib_string
 sklib.__sklib__generate_text__string.argtypes = [ _sklib_string ]
 sklib.__sklib__generate_text__string.restype = _sklib_string
+sklib.__sklib__generate_text__string__int.argtypes = [ _sklib_string, c_int ]
+sklib.__sklib__generate_text__string__int.restype = _sklib_string
 sklib.__sklib__cosine__float.argtypes = [ c_float ]
 sklib.__sklib__cosine__float.restype = c_float
 sklib.__sklib__sine__float.argtypes = [ c_float ]
@@ -4817,6 +4831,19 @@ def to_lowercase ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__to_lowercase__string_ref(__skparam__text)
     return __skadapter__to_string(__skreturn)
+def to_string_from_double_with_precision ( value, precision ):
+    __skparam__value = __skadapter__to_sklib_double(value)
+    __skparam__precision = __skadapter__to_sklib_int(precision)
+    __skreturn = sklib.__sklib__to_string__double__int(__skparam__value, __skparam__precision)
+    return __skadapter__to_string(__skreturn)
+def to_string_from_double ( value ):
+    __skparam__value = __skadapter__to_sklib_double(value)
+    __skreturn = sklib.__sklib__to_string__double(__skparam__value)
+    return __skadapter__to_string(__skreturn)
+def to_string_from_int ( value ):
+    __skparam__value = __skadapter__to_sklib_int(value)
+    __skreturn = sklib.__sklib__to_string__int(__skparam__value)
+    return __skadapter__to_string(__skreturn)
 def to_uppercase ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__to_uppercase__string_ref(__skparam__text)
@@ -6670,6 +6697,15 @@ def conversation_add_message ( c, message ):
     __skparam__c = __skadapter__to_sklib_conversation(c)
     __skparam__message = __skadapter__to_sklib_string(message)
     sklib.__sklib__conversation_add_message__conversation__string_ref(__skparam__c, __skparam__message)
+def conversation_get_reply ( conv ):
+    __skparam__conv = __skadapter__to_sklib_conversation(conv)
+    __skreturn = sklib.__sklib__conversation_get_reply__conversation(__skparam__conv)
+    return __skadapter__to_string(__skreturn)
+def conversation_get_reply_with_thoughts ( conv, with_thoughts ):
+    __skparam__conv = __skadapter__to_sklib_conversation(conv)
+    __skparam__with_thoughts = __skadapter__to_sklib_bool(with_thoughts)
+    __skreturn = sklib.__sklib__conversation_get_reply__conversation__bool(__skparam__conv, __skparam__with_thoughts)
+    return __skadapter__to_string(__skreturn)
 def conversation_get_reply_piece ( c ):
     __skparam__c = __skadapter__to_sklib_conversation(c)
     __skreturn = sklib.__sklib__conversation_get_reply_piece__conversation(__skparam__c)
@@ -6708,9 +6744,20 @@ def generate_text_with_model ( model, text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__generate_text__language_model__string(__skparam__model, __skparam__text)
     return __skadapter__to_string(__skreturn)
+def generate_text_with_model_and_tokens ( model, text, max_tokens ):
+    __skparam__model = __skadapter__to_sklib_language_model(model)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__max_tokens = __skadapter__to_sklib_int(max_tokens)
+    __skreturn = sklib.__sklib__generate_text__language_model__string__int(__skparam__model, __skparam__text, __skparam__max_tokens)
+    return __skadapter__to_string(__skreturn)
 def generate_text ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__generate_text__string(__skparam__text)
+    return __skadapter__to_string(__skreturn)
+def generate_text_with_tokens ( text, max_tokens ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__max_tokens = __skadapter__to_sklib_int(max_tokens)
+    __skreturn = sklib.__sklib__generate_text__string__int(__skparam__text, __skparam__max_tokens)
     return __skadapter__to_string(__skreturn)
 def cosine ( degrees ):
     __skparam__degrees = __skadapter__to_sklib_float(degrees)

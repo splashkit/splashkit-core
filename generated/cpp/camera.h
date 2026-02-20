@@ -15,7 +15,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Returns the position of the camera in game coordinates. This will be the

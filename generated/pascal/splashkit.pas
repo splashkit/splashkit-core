@@ -539,6 +539,9 @@ function SquareRoot(number: Integer): Double;
 function ToDouble(const text: String): Double;
 function ToInteger(const text: String): Integer;
 function ToLowercase(const text: String): String;
+function ToString(value: Double; precision: Integer): String;
+function ToString(value: Double): String;
+function ToString(value: Integer): String;
 function ToUppercase(const text: String): String;
 function Trim(const text: String): String;
 procedure FreeResourceBundle(name: String);
@@ -939,6 +942,8 @@ procedure FillEllipseOnWindow(destination: Window; clr: Color; rect: Rectangle; 
 procedure FillEllipseOnWindow(destination: Window; clr: Color; x: Double; y: Double; width: Double; height: Double);
 procedure FillEllipseOnWindow(destination: Window; clr: Color; x: Double; y: Double; width: Double; height: Double; opts: DrawingOptions);
 procedure ConversationAddMessage(c: Conversation; const message: String);
+function ConversationGetReply(conv: Conversation): String;
+function ConversationGetReply(conv: Conversation; withThoughts: Boolean): String;
 function ConversationGetReplyPiece(c: Conversation): String;
 function ConversationIsReplying(c: Conversation): Boolean;
 function ConversationIsThinking(c: Conversation): Boolean;
@@ -949,7 +954,9 @@ procedure FreeConversation(c: Conversation);
 function GenerateReply(model: LanguageModel; prompt: String): String;
 function GenerateReply(prompt: String): String;
 function GenerateText(model: LanguageModel; text: String): String;
+function GenerateText(model: LanguageModel; text: String; maxTokens: Integer): String;
 function GenerateText(text: String): String;
+function GenerateText(text: String; maxTokens: Integer): String;
 function Cosine(degrees: Single): Single;
 function Sine(degrees: Single): Single;
 function Tangent(degrees: Single): Single;
@@ -3156,6 +3163,9 @@ function __sklib__square_root__int(number: Integer): Double; cdecl; external;
 function __sklib__to_double__string_ref(const text: __sklib_string): Double; cdecl; external;
 function __sklib__to_integer__string_ref(const text: __sklib_string): Integer; cdecl; external;
 function __sklib__to_lowercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__to_string__double__int(value: Double; precision: Integer): __sklib_string; cdecl; external;
+function __sklib__to_string__double(value: Double): __sklib_string; cdecl; external;
+function __sklib__to_string__int(value: Integer): __sklib_string; cdecl; external;
 function __sklib__to_uppercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__trim__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
 procedure __sklib__free_resource_bundle__string(name: __sklib_string); cdecl; external;
@@ -3556,6 +3566,8 @@ procedure __sklib__fill_ellipse_on_window__window__color__rectangle__drawing_opt
 procedure __sklib__fill_ellipse_on_window__window__color__double__double__double__double(destination: __sklib_ptr; clr: __sklib_color; x: Double; y: Double; width: Double; height: Double); cdecl; external;
 procedure __sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options(destination: __sklib_ptr; clr: __sklib_color; x: Double; y: Double; width: Double; height: Double; opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__conversation_add_message__conversation__string_ref(c: __sklib_ptr; const message: __sklib_string); cdecl; external;
+function __sklib__conversation_get_reply__conversation(conv: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__conversation_get_reply__conversation__bool(conv: __sklib_ptr; withThoughts: LongInt): __sklib_string; cdecl; external;
 function __sklib__conversation_get_reply_piece__conversation(c: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__conversation_is_replying__conversation(c: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__conversation_is_thinking__conversation(c: __sklib_ptr): LongInt; cdecl; external;
@@ -3566,7 +3578,9 @@ procedure __sklib__free_conversation__conversation(c: __sklib_ptr); cdecl; exter
 function __sklib__generate_reply__language_model__string(model: LongInt; prompt: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__generate_reply__string(prompt: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__generate_text__language_model__string(model: LongInt; text: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__generate_text__language_model__string__int(model: LongInt; text: __sklib_string; maxTokens: Integer): __sklib_string; cdecl; external;
 function __sklib__generate_text__string(text: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__generate_text__string__int(text: __sklib_string; maxTokens: Integer): __sklib_string; cdecl; external;
 function __sklib__cosine__float(degrees: Single): Single; cdecl; external;
 function __sklib__sine__float(degrees: Single): Single; cdecl; external;
 function __sklib__tangent__float(degrees: Single): Single; cdecl; external;
@@ -5194,6 +5208,35 @@ var
 begin
   __skparam__text := __skadapter__to_sklib_string(text);
   __skreturn := __sklib__to_lowercase__string_ref(__skparam__text);
+  result := __skadapter__to_string(__skreturn);
+end;
+function ToString(value: Double; precision: Integer): String;
+var
+  __skparam__value: Double;
+  __skparam__precision: Integer;
+  __skreturn: __sklib_string;
+begin
+  __skparam__value := __skadapter__to_sklib_double(value);
+  __skparam__precision := __skadapter__to_sklib_int(precision);
+  __skreturn := __sklib__to_string__double__int(__skparam__value, __skparam__precision);
+  result := __skadapter__to_string(__skreturn);
+end;
+function ToString(value: Double): String;
+var
+  __skparam__value: Double;
+  __skreturn: __sklib_string;
+begin
+  __skparam__value := __skadapter__to_sklib_double(value);
+  __skreturn := __sklib__to_string__double(__skparam__value);
+  result := __skadapter__to_string(__skreturn);
+end;
+function ToString(value: Integer): String;
+var
+  __skparam__value: Integer;
+  __skreturn: __sklib_string;
+begin
+  __skparam__value := __skadapter__to_sklib_int(value);
+  __skreturn := __sklib__to_string__int(__skparam__value);
   result := __skadapter__to_string(__skreturn);
 end;
 function ToUppercase(const text: String): String;
@@ -9272,6 +9315,26 @@ begin
   __skparam__message := __skadapter__to_sklib_string(message);
   __sklib__conversation_add_message__conversation__string_ref(__skparam__c, __skparam__message);
 end;
+function ConversationGetReply(conv: Conversation): String;
+var
+  __skparam__conv: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__conv := __skadapter__to_sklib_conversation(conv);
+  __skreturn := __sklib__conversation_get_reply__conversation(__skparam__conv);
+  result := __skadapter__to_string(__skreturn);
+end;
+function ConversationGetReply(conv: Conversation; withThoughts: Boolean): String;
+var
+  __skparam__conv: __sklib_ptr;
+  __skparam__with_thoughts: LongInt;
+  __skreturn: __sklib_string;
+begin
+  __skparam__conv := __skadapter__to_sklib_conversation(conv);
+  __skparam__with_thoughts := __skadapter__to_sklib_bool(withThoughts);
+  __skreturn := __sklib__conversation_get_reply__conversation__bool(__skparam__conv, __skparam__with_thoughts);
+  result := __skadapter__to_string(__skreturn);
+end;
 function ConversationGetReplyPiece(c: Conversation): String;
 var
   __skparam__c: __sklib_ptr;
@@ -9357,6 +9420,19 @@ begin
   __skreturn := __sklib__generate_text__language_model__string(__skparam__model, __skparam__text);
   result := __skadapter__to_string(__skreturn);
 end;
+function GenerateText(model: LanguageModel; text: String; maxTokens: Integer): String;
+var
+  __skparam__model: LongInt;
+  __skparam__text: __sklib_string;
+  __skparam__max_tokens: Integer;
+  __skreturn: __sklib_string;
+begin
+  __skparam__model := __skadapter__to_sklib_language_model(model);
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__max_tokens := __skadapter__to_sklib_int(maxTokens);
+  __skreturn := __sklib__generate_text__language_model__string__int(__skparam__model, __skparam__text, __skparam__max_tokens);
+  result := __skadapter__to_string(__skreturn);
+end;
 function GenerateText(text: String): String;
 var
   __skparam__text: __sklib_string;
@@ -9364,6 +9440,17 @@ var
 begin
   __skparam__text := __skadapter__to_sklib_string(text);
   __skreturn := __sklib__generate_text__string(__skparam__text);
+  result := __skadapter__to_string(__skreturn);
+end;
+function GenerateText(text: String; maxTokens: Integer): String;
+var
+  __skparam__text: __sklib_string;
+  __skparam__max_tokens: Integer;
+  __skreturn: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__max_tokens := __skadapter__to_sklib_int(maxTokens);
+  __skreturn := __sklib__generate_text__string__int(__skparam__text, __skparam__max_tokens);
   result := __skadapter__to_string(__skreturn);
 end;
 function Cosine(degrees: Single): Single;

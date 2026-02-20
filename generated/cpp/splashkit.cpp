@@ -442,6 +442,22 @@ string to_lowercase(const string &text) {
     __skadapter__free__sklib_string(__skparam__text);
     return __skadapter__to_string(__skreturn);
 }
+string to_string(double value, int precision) {
+    double __skparam__value = __skadapter__to_double(value);
+    int __skparam__precision = __skadapter__to_int(precision);
+    __sklib_string __skreturn = __sklib__to_string__double__int(__skparam__value, __skparam__precision);
+    return __skadapter__to_string(__skreturn);
+}
+string to_string(double value) {
+    double __skparam__value = __skadapter__to_double(value);
+    __sklib_string __skreturn = __sklib__to_string__double(__skparam__value);
+    return __skadapter__to_string(__skreturn);
+}
+string to_string(int value) {
+    int __skparam__value = __skadapter__to_int(value);
+    __sklib_string __skreturn = __sklib__to_string__int(__skparam__value);
+    return __skadapter__to_string(__skreturn);
+}
 string to_uppercase(const string &text) {
     const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
     __sklib_string __skreturn = __sklib__to_uppercase__string_ref(__skparam__text);
@@ -2703,6 +2719,17 @@ void conversation_add_message(conversation c, const string &message) {
     __sklib__conversation_add_message__conversation__string_ref(__skparam__c, __skparam__message);
     __skadapter__free__sklib_string(__skparam__message);
 }
+string conversation_get_reply(conversation conv) {
+    __sklib_conversation __skparam__conv = __skadapter__to_sklib_conversation(conv);
+    __sklib_string __skreturn = __sklib__conversation_get_reply__conversation(__skparam__conv);
+    return __skadapter__to_string(__skreturn);
+}
+string conversation_get_reply(conversation conv, bool with_thoughts) {
+    __sklib_conversation __skparam__conv = __skadapter__to_sklib_conversation(conv);
+    int __skparam__with_thoughts = __skadapter__to_int(with_thoughts);
+    __sklib_string __skreturn = __sklib__conversation_get_reply__conversation__bool(__skparam__conv, __skparam__with_thoughts);
+    return __skadapter__to_string(__skreturn);
+}
 string conversation_get_reply_piece(conversation c) {
     __sklib_conversation __skparam__c = __skadapter__to_sklib_conversation(c);
     __sklib_string __skreturn = __sklib__conversation_get_reply_piece__conversation(__skparam__c);
@@ -2754,9 +2781,24 @@ string generate_text(language_model model, string text) {
     __skadapter__free__sklib_string(__skparam__text);
     return __skadapter__to_string(__skreturn);
 }
+string generate_text(language_model model, string text, int max_tokens) {
+    int __skparam__model = __skadapter__to_int(model);
+    __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    int __skparam__max_tokens = __skadapter__to_int(max_tokens);
+    __sklib_string __skreturn = __sklib__generate_text__language_model__string__int(__skparam__model, __skparam__text, __skparam__max_tokens);
+    __skadapter__free__sklib_string(__skparam__text);
+    return __skadapter__to_string(__skreturn);
+}
 string generate_text(string text) {
     __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
     __sklib_string __skreturn = __sklib__generate_text__string(__skparam__text);
+    __skadapter__free__sklib_string(__skparam__text);
+    return __skadapter__to_string(__skreturn);
+}
+string generate_text(string text, int max_tokens) {
+    __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    int __skparam__max_tokens = __skadapter__to_int(max_tokens);
+    __sklib_string __skreturn = __sklib__generate_text__string__int(__skparam__text, __skparam__max_tokens);
     __skadapter__free__sklib_string(__skparam__text);
     return __skadapter__to_string(__skreturn);
 }

@@ -12,7 +12,6 @@
 #include <cstdint>
 using std::string;
 using std::vector;
-using std::to_string;
 
 /**
 * Returns the cosine of the supplied angle (in degrees).
