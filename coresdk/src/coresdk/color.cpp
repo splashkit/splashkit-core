@@ -979,4 +979,9 @@ namespace splashkit_lib
     {
         return rgba_color(237/255.0, 36/255.0, 25/255.0, 1.0);
     }
+
+    color color_monash_blue()
+    {
+        return rgba_color(0/255.0, 109/255.0, 174/255.0, 1.0);
+    }
 }

@@ -11,6 +11,11 @@
 #include "types.h"
 
 /**
+ * A shorthand macro to the result of calling `color_monash_blue`.
+ */
+#define COLOR_MONASH_BLUE color_monash_blue()
+
+/**
  * A shorthand macro to the result of calling `color_swinburne_red`.
  */
 #define COLOR_SWINBURNE_RED color_swinburne_red()
@@ -2091,6 +2096,15 @@ namespace splashkit_lib
      * @attribute getter swinburne_red
      */
     color color_swinburne_red();
+
+    /**
+     * Generates a new `color` associated to the color `monash_blue`.
+     * @return A new `color` set to `monash_blue`.
+     *
+     * @attribute static color
+     * @attribute getter monash_blue
+     */
+    color color_monash_blue();
 
     /**
      * Generates a new `color` associated to the color `tan`.
