@@ -2154,6 +2154,9 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_moccasin", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_moccasin();
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_monash_blue", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__color_monash_blue();
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_navajo_white", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_navajo_white();
 
@@ -10721,6 +10724,16 @@ namespace SplashKitSDK
     {
       __sklib_color __skreturn;
       __skreturn = __sklib__color_moccasin();
+      return __skadapter__to_color(__skreturn);
+    }
+    /// <summary>
+    /// Generates a new `color` associated to the color `monash_blue`.
+    /// </summary>
+    /// <returns>A new `color` set to `monash_blue`.</returns>
+    public static Color ColorMonashBlue()
+    {
+      __sklib_color __skreturn;
+      __skreturn = __sklib__color_monash_blue();
       return __skadapter__to_color(__skreturn);
     }
     /// <summary>
@@ -27338,6 +27351,10 @@ namespace SplashKitSDK
     public static Color Moccasin
     {
         get { return SplashKit.ColorMoccasin(); }
+    }
+    public static Color MonashBlue
+    {
+        get { return SplashKit.ColorMonashBlue(); }
     }
     public static Color NavajoWhite
     {

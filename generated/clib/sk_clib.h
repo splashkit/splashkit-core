@@ -539,6 +539,7 @@ __sklib_color __sklib__color_midnight_blue();
 __sklib_color __sklib__color_mint_cream();
 __sklib_color __sklib__color_misty_rose();
 __sklib_color __sklib__color_moccasin();
+__sklib_color __sklib__color_monash_blue();
 __sklib_color __sklib__color_navajo_white();
 __sklib_color __sklib__color_navy();
 __sklib_color __sklib__color_old_lace();

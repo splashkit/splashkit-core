@@ -2378,6 +2378,8 @@ sklib.__sklib__color_misty_rose.argtypes = [  ]
 sklib.__sklib__color_misty_rose.restype = _sklib_color
 sklib.__sklib__color_moccasin.argtypes = [  ]
 sklib.__sklib__color_moccasin.restype = _sklib_color
+sklib.__sklib__color_monash_blue.argtypes = [  ]
+sklib.__sklib__color_monash_blue.restype = _sklib_color
 sklib.__sklib__color_navajo_white.argtypes = [  ]
 sklib.__sklib__color_navajo_white.restype = _sklib_color
 sklib.__sklib__color_navy.argtypes = [  ]
@@ -6185,6 +6187,9 @@ def color_misty_rose (  ):
     return __skadapter__to_color(__skreturn)
 def color_moccasin (  ):
     __skreturn = sklib.__sklib__color_moccasin()
+    return __skadapter__to_color(__skreturn)
+def color_monash_blue (  ):
+    __skreturn = sklib.__sklib__color_monash_blue()
     return __skadapter__to_color(__skreturn)
 def color_navajo_white (  ):
     __skreturn = sklib.__sklib__color_navajo_white()

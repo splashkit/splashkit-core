@@ -2089,6 +2089,10 @@ color color_moccasin() {
     __sklib_color __skreturn = __sklib__color_moccasin();
     return __skadapter__to_color(__skreturn);
 }
+color color_monash_blue() {
+    __sklib_color __skreturn = __sklib__color_monash_blue();
+    return __skadapter__to_color(__skreturn);
+}
 color color_navajo_white() {
     __sklib_color __skreturn = __sklib__color_navajo_white();
     return __skadapter__to_color(__skreturn);

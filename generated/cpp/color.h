@@ -111,6 +111,7 @@ using std::vector;
 #define COLOR_MINT_CREAM color_mint_cream()
 #define COLOR_MISTY_ROSE color_misty_rose()
 #define COLOR_MOCCASIN color_moccasin()
+#define COLOR_MONASH_BLUE color_monash_blue()
 #define COLOR_NAVAJO_WHITE color_navajo_white()
 #define COLOR_NAVY color_navy()
 #define COLOR_OLD_LACE color_old_lace()
@@ -747,6 +748,12 @@ color color_misty_rose();
 * @return A new `color` set to `moccasin`.
 */
 color color_moccasin();
+/**
+* Generates a new `color` associated to the color `monash_blue`.
+
+* @return A new `color` set to `monash_blue`.
+*/
+color color_monash_blue();
 /**
 * Generates a new `color` associated to the color `navajo_white`.
 
