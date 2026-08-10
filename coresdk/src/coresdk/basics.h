@@ -19,7 +19,7 @@ using std::vector;
 
 namespace splashkit_lib
 {
-    
+
     /**
      * Return a new string that removes the spaces from the start and end of
      * the input string.
@@ -112,18 +112,26 @@ namespace splashkit_lib
     double to_double(const string &text);
 
     /**
+     * Convert the passed in integer value into a double (decimal value).
+     *
+     * @param  value The integer value to convert.
+     * @return      The double value.
+     */
+    double to_double(int value);
+
+    /**
      * Convert the passed in integer to a string.
-     * 
+     *
      * @param value the value to convert to a string.
      * @return string containing the integer value.
-     * 
+     *
      * @attribute suffix    from_int
      */
     string to_string(int value);
 
     /**
      * Convert the passed in double to a string.
-     * 
+     *
      * @param value the value to convert to a string.
      * @return string containing the double value.
      *
@@ -136,11 +144,11 @@ namespace splashkit_lib
      * the output the a given number of decimal places. For example
      * if value is 3.14159265359 and precision is 2 then the output
      * will be "3.14".
-     * 
+     *
      * @param value the value to convert to a string.
      * @param precision the number of decimal places to output.
      * @return string containing the double value.
-     * 
+     *
      * @attribute suffix    from_double_with_precision
      */
     string to_string(double value, int precision);
@@ -155,7 +163,7 @@ namespace splashkit_lib
 
     /**
      * Returns true if the string contains the substring.
-     * 
+     *
      * @param text      The text to search
      * @param subtext   The substring to search for
      * @returns         True if the substring is found in the text.
@@ -164,7 +172,7 @@ namespace splashkit_lib
 
     /**
      * Returns the index of the first occurrence of the substring in the text.
-     * 
+     *
      * @param text      The text to search
      * @param subtext   The substring to search for
      * @returns         The index of the first occurrence of the substring in the text, or -1 if the substring is not found.
@@ -173,7 +181,7 @@ namespace splashkit_lib
 
     /**
      * Replace all occurrences of a substring in a string with another string.
-     * 
+     *
      * @param text      The text to search
      * @param substr    The substring to find and replace
      * @param new_text  The string to replace the substring with
@@ -183,7 +191,7 @@ namespace splashkit_lib
 
     /**
      * Split a string into an array of strings based on a delimiter.
-     * 
+     *
      * @param text      The text to split
      * @param delimiter The character to split the text on
      * @returns         An array of strings
@@ -223,7 +231,7 @@ namespace splashkit_lib
      * @returns True if the string is a valid octal string, false otherwise
      */
     bool is_octal(const string &octal_str);
-    
+
     /**
      * @brief Converts a decimal (unsigned integer) to a binary string
      *
@@ -334,9 +342,9 @@ namespace splashkit_lib
 
     /**
      * @brief Convert a hexadecimal string to its numeric value.
-     * 
+     *
      * @param hex_string the data to convert
-     * 
+     *
      * @return unsigned int the numeric value of the hex string
      */
     unsigned int hex_to_dec(const string &hex_string);

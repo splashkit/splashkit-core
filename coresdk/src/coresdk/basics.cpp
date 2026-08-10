@@ -163,7 +163,12 @@ namespace splashkit_lib
     {
         return std::stod(text);
     }
-    
+
+    double to_double(int value)
+    {
+        return static_cast<double>(value);
+    }
+
     string to_string(int value)
     {
         return std::to_string(value);
@@ -247,12 +252,11 @@ namespace splashkit_lib
                 return stol(bin_str, nullptr, 2);
             }
         }
-        catch(const std::exception& e)
+        catch (const std::exception &e)
         {
             LOG(ERROR) << "Invalid binary string \"" << bin_str << "\" passed to bin_to_dec. Returning 0.";
             return 0;
         }
-        
     }
 
     string hex_to_bin(const string &hex_str)
