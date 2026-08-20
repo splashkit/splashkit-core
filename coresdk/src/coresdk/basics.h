@@ -112,6 +112,8 @@ namespace splashkit_lib
      *
      * @param  value The integer value to convert.
      * @return      The double value.
+     *
+     * @attribute suffix    from_int
      */
     double to_double(int value);
 
