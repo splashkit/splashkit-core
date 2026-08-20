@@ -72,9 +72,7 @@ namespace splashkit_lib
     bool is_number(const string &text);
 
     /**
-     * Convert the passed in string into an integer. This can fail in an error if
-     * the value is not an integer, consider using `is_integer` to check before
-     * converting a string.
+     * Note: This function is deprecated. Use `to_integer` instead.
      *
      * @param  text The text to convert.
      * @return      The integer value read from the text.
@@ -82,9 +80,7 @@ namespace splashkit_lib
     int convert_to_integer(const string &text);
 
     /**
-     * Convert the passed in string into a double. This can fail in an error if
-     * the value is not a number, consider using `is_number` to check before
-     * converting a string.
+     * Note: This function is deprecated. Use `to_double` instead.
      *
      * @param  text The text to convert.
      * @return      The double value read from the text.
