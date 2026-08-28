@@ -16,9 +16,9 @@ constexpr int ROCKET_WIDTH = 36, ROCKET_HEIGHT = 72,
               BACKGROUND_WIDTH = 864, BACKGROUND_HEIGHT = 769,
               FROG_WIDTH = 294, FROG_HEIGHT = 422;
 
-TEST_CASE("bitmaps can be created and freed", "[load_bitmap][bitmap_width][bitmap_height][free_bitmap]")
+TEST_CASE("bitmaps can be loaded and freed", "[load_bitmap][bitmap_width][bitmap_height][free_bitmap]")
 {
-    // Creating bitmaps
+    // Loading bitmaps
     bitmap rocket_bmp, frog_bmp, background_bmp;
     rocket_bmp = load_bitmap("rocket_sprt", "rocket_sprt.png");
     REQUIRE(bitmap_valid(rocket_bmp));
@@ -131,6 +131,51 @@ TEST_CASE("bitmap bounding details can be retrieved", "[bitmap]")
             REQUIRE(circ2.center.y == pt.y);
             REQUIRE(circ2.radius == center_corner_dist * scale);
         }
+    }
+    free_bitmap(bmp);
+}
+
+TEST_CASE("can create and free a new bitmap", "[create_bitmap]")
+{
+    // Initialise
+    int width = 256;
+    int height = 128;
+    bitmap bmp = create_bitmap("new_bitmap", width, height);
+
+    // Ensure bitmap exists and is valid
+    REQUIRE(bmp != nullptr);
+    REQUIRE(bitmap_valid(bmp));
+    REQUIRE(has_bitmap("new_bitmap"));
+
+    SECTION("bitmap has correct dimensions")
+    {
+        REQUIRE(bitmap_width(bmp) == width);
+        REQUIRE(bitmap_height(bmp) == height);
+    }
+
+    SECTION("bitmap is transparent")
+    {
+        // Sample pixel colours
+        color p1 = get_pixel(bmp, 0, 0);
+        color p2 = get_pixel(bmp, width - 1, height - 1);
+        color p3 = get_pixel(bmp, width / 2, height / 2);
+
+        // Check transparency (alpha == 0)
+        REQUIRE(p1.a == 0);
+        REQUIRE(p2.a == 0);
+        REQUIRE(p3.a == 0);
+    }
+
+    SECTION("bitmap can be drawn on")
+    {
+        // Try to draw a single white pixel
+        REQUIRE_NOTHROW(draw_pixel_on_bitmap(bmp, color_white(), 0, 0));
+    }
+
+    SECTION("bitmap can be freed")
+    {
+        free_bitmap(bmp);
+        REQUIRE_FALSE(bitmap_valid(bmp));
     }
     free_bitmap(bmp);
 }
