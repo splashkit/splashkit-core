@@ -13,6 +13,7 @@
 #include "color.h"
 
 using namespace splashkit_lib;
+using Catch::Matchers::WithinRel;
 
 json create_person()
 {
@@ -120,4 +121,59 @@ TEST_CASE("json can be created and read", "[json]")
 
     free_json(person);
     free_all_json();
+}
+
+TEST_CASE("json can be created and read with different number types", "[json][json_read_number][json_read_number_as_double]")
+{
+    json number_types = create_json();
+    
+    SECTION("can read values correctly")
+    {
+        json_set_number(number_types, "float", 21.2f);
+        REQUIRE_THAT(json_read_number(number_types, "float"), WithinRel(21.2f));
+        json_set_number(number_types, "double", 30.1);
+        REQUIRE_THAT(json_read_number_as_double(number_types, "double"), WithinRel(30.1));
+    }
+    
+    SECTION("handles non-existent keys")
+    {
+        REQUIRE_FALSE(json_has_key(number_types, "nonExistent"));
+        REQUIRE(json_read_number(number_types, "nonExistent") == 0.0f);
+        REQUIRE(json_read_number_as_double(number_types, "nonExistent") == 0.0);
+    }
+
+    SECTION("handles reading non-numeric types")
+    {
+        json_set_string(number_types, "string", "21.2");
+        REQUIRE(json_read_number(number_types, "nonNumericString") == 0.0f);
+        REQUIRE(json_read_number_as_double(number_types, "nonNumericString") == 0.0);
+    }
+
+    SECTION("correctly handles very large numbers")
+    {
+        // Handles largest possible float
+        float max_f = std::numeric_limits<float>::max();
+        json_set_number(number_types, "maxFloat", max_f);
+        REQUIRE_THAT(json_read_number(number_types, "maxFloat"), WithinRel(max_f));
+
+        // Handles largest possible double
+        double max_d = std::numeric_limits<double>::max();
+        json_set_number(number_types, "maxDouble", max_d);
+        REQUIRE_THAT(json_read_number_as_double(number_types, "maxDouble"), WithinRel(max_d));
+    }
+
+    SECTION("correctly handles very small numbers")
+    {
+        // Handles smallest possible float
+        float min_f = std::numeric_limits<float>::min();
+        json_set_number(number_types, "minFloat", min_f);
+        REQUIRE_THAT(json_read_number(number_types, "minFloat"), WithinRel(min_f));
+
+        // Handles smallest possible double
+        double min_d = std::numeric_limits<double>::min();
+        json_set_number(number_types, "minDouble", min_d);
+        REQUIRE_THAT(json_read_number_as_double(number_types, "minDouble"), WithinRel(min_d));
+    }
+    
+    free_json(number_types);
 }
