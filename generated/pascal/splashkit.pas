@@ -537,6 +537,7 @@ function ReplaceAll(const text: String; const substr: String; const newText: Str
 function Split(const text: String; delimiter: Char): ArrayOfString;
 function SquareRoot(number: Integer): Double;
 function ToDouble(const text: String): Double;
+function ToDouble(value: Integer): Double;
 function ToInteger(const text: String): Integer;
 function ToLowercase(const text: String): String;
 function ToString(value: Double; precision: Integer): String;
@@ -3162,6 +3163,7 @@ function __sklib__replace_all__string_ref__string_ref__string_ref(const text: __
 function __sklib__split__string_ref__char(const text: __sklib_string; delimiter: Char): __sklib_vector_string; cdecl; external;
 function __sklib__square_root__int(number: Integer): Double; cdecl; external;
 function __sklib__to_double__string_ref(const text: __sklib_string): Double; cdecl; external;
+function __sklib__to_double__int(value: Integer): Double; cdecl; external;
 function __sklib__to_integer__string_ref(const text: __sklib_string): Integer; cdecl; external;
 function __sklib__to_lowercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__to_string__double__int(value: Double; precision: Integer): __sklib_string; cdecl; external;
@@ -5192,6 +5194,15 @@ var
 begin
   __skparam__text := __skadapter__to_sklib_string(text);
   __skreturn := __sklib__to_double__string_ref(__skparam__text);
+  result := __skadapter__to_double(__skreturn);
+end;
+function ToDouble(value: Integer): Double;
+var
+  __skparam__value: Integer;
+  __skreturn: Double;
+begin
+  __skparam__value := __skadapter__to_sklib_int(value);
+  __skreturn := __sklib__to_double__int(__skparam__value);
   result := __skadapter__to_double(__skreturn);
 end;
 function ToInteger(const text: String): Integer;

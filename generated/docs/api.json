@@ -97729,7 +97729,7 @@
         "unique_global_name": "convert_to_double",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Convert the passed in string into a double. This can fail in an error if\nthe value is not a number, consider using `is_number` to check before\nconverting a string.",
+        "description": "Note: This function is deprecated. Use `to_double` instead.",
         "brief": null,
         "return": {
           "type": "double",
@@ -97780,7 +97780,7 @@
         "unique_global_name": "convert_to_integer",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Convert the passed in string into an integer. This can fail in an error if\nthe value is not an integer, consider using `is_integer` to check before\nconverting a string.",
+        "description": "Note: This function is deprecated. Use `to_integer` instead.",
         "brief": null,
         "return": {
           "type": "int",
@@ -99072,6 +99072,58 @@
           ],
           "pascal": [
             "function ToDouble(const text: String): Double"
+          ]
+        }
+      },
+      {
+        "signature": "double to_double(int value);",
+        "name": "to_double",
+        "method_name": null,
+        "unique_global_name": "to_double_from_int",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Convert the passed in integer value into a double (decimal value).",
+        "brief": null,
+        "return": {
+          "type": "double",
+          "description": "The double value.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "int",
+            "description": "The integer value to convert.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_int",
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "python": [
+            "def to_double_from_int(value):"
+          ],
+          "cpp": [
+            "double to_double(int value)"
+          ],
+          "csharp": [
+            "public static double SplashKit.ToDouble(int value);"
+          ],
+          "pascal": [
+            "function ToDouble(value: Integer): Double"
           ]
         }
       },

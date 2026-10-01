@@ -56,17 +56,13 @@ string bin_to_oct(const string &bin_str);
 */
 bool contains(const string &text, const string &subtext);
 /**
-* Convert the passed in string into a double. This can fail in an error if
-* the value is not a number, consider using `is_number` to check before
-* converting a string.
+* Note: This function is deprecated. Use `to_double` instead.
 * @param text The text to convert.
 * @return The double value read from the text.
 */
 double convert_to_double(const string &text);
 /**
-* Convert the passed in string into an integer. This can fail in an error if
-* the value is not an integer, consider using `is_integer` to check before
-* converting a string.
+* Note: This function is deprecated. Use `to_integer` instead.
 * @param text The text to convert.
 * @return The integer value read from the text.
 */
@@ -226,6 +222,12 @@ double square_root(int number);
 * @return The double value read from the text.
 */
 double to_double(const string &text);
+/**
+* Convert the passed in integer value into a double (decimal value).
+* @param value The integer value to convert.
+* @return The double value.
+*/
+double to_double(int value);
 /**
 * Convert the passed in string into an integer. This can fail in an error if
 * the value is not an integer, consider using `is_integer` to check before

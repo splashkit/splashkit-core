@@ -379,6 +379,11 @@ double __sklib__to_double__string_ref(const __sklib_string text) {
     double __skreturn = to_double(__skparam__text);
     return __sklib__to_double(__skreturn);
 }
+double __sklib__to_double__int(int value) {
+    int __skparam__value = __sklib__to_int(value);
+    double __skreturn = to_double(__skparam__value);
+    return __sklib__to_double(__skreturn);
+}
 int __sklib__to_integer__string_ref(const __sklib_string text) {
     string __skparam__text = __sklib__to_string(text);
     int __skreturn = to_integer(__skparam__text);

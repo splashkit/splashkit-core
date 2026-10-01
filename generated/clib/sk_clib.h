@@ -251,6 +251,7 @@ __sklib_string __sklib__replace_all__string_ref__string_ref__string_ref(const __
 __sklib_vector_string __sklib__split__string_ref__char(const __sklib_string text, char delimiter);
 double __sklib__square_root__int(int number);
 double __sklib__to_double__string_ref(const __sklib_string text);
+double __sklib__to_double__int(int value);
 int __sklib__to_integer__string_ref(const __sklib_string text);
 __sklib_string __sklib__to_lowercase__string_ref(const __sklib_string text);
 __sklib_string __sklib__to_string__double__int(double value, int precision);

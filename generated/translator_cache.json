@@ -2047,7 +2047,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1785755550,
+    "parsed_at": 1790842022,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -2292,7 +2292,7 @@
         "unique_global_name": "convert_to_double",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Convert the passed in string into a double. This can fail in an error if\nthe value is not a number, consider using `is_number` to check before\nconverting a string.",
+        "description": "Note: This function is deprecated. Use `to_double` instead.",
         "brief": null,
         "return": {
           "type": "double",
@@ -2329,7 +2329,7 @@
         "unique_global_name": "convert_to_integer",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Convert the passed in string into an integer. This can fail in an error if\nthe value is not an integer, consider using `is_integer` to check before\nconverting a string.",
+        "description": "Note: This function is deprecated. Use `to_integer` instead.",
         "brief": null,
         "return": {
           "type": "int",
@@ -3284,6 +3284,44 @@
           }
         },
         "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "double to_double(int value);",
+        "name": "to_double",
+        "method_name": null,
+        "unique_global_name": "to_double_from_int",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Convert the passed in integer value into a double (decimal value).",
+        "brief": null,
+        "return": {
+          "type": "double",
+          "description": "The double value.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "int",
+            "description": "The integer value to convert.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_int",
           "group": "utilities",
           "static": "utilities"
         }
@@ -14998,7 +15036,7 @@
     "group": "color",
     "brief": "SplashKit simplifies color manipulation in graphical applications for developers, ensuring ease of use and efficiency.",
     "description": null,
-    "parsed_at": 1785755557,
+    "parsed_at": 1790842039,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {

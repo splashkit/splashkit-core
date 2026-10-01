@@ -1290,6 +1290,9 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_double__string_ref", CharSet=CharSet.Ansi)]
     private static extern double __sklib__to_double__string_ref(__sklib_string text);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_double__int", CharSet=CharSet.Ansi)]
+    private static extern double __sklib__to_double__int(int value);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_integer__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__to_integer__string_ref(__sklib_string text);
 
@@ -6033,7 +6036,7 @@ namespace SplashKitSDK
       return __skadapter__to_bool(__skreturn);
     }
     /// <summary>
-    /// Convert the passed in string into a double. This can fail in an error if the value is not a number, consider using `is_number` to check before converting a string.
+    /// Note: This function is deprecated. Use `to_double` instead.
     /// </summary>
     /// <param name="text"> The text to convert.</param>
     /// <returns>The double value read from the text.</returns>
@@ -6047,7 +6050,7 @@ namespace SplashKitSDK
       return __skadapter__to_double(__skreturn);
     }
     /// <summary>
-    /// Convert the passed in string into an integer. This can fail in an error if the value is not an integer, consider using `is_integer` to check before converting a string.
+    /// Note: This function is deprecated. Use `to_integer` instead.
     /// </summary>
     /// <param name="text"> The text to convert.</param>
     /// <returns>The integer value read from the text.</returns>
@@ -6395,6 +6398,19 @@ namespace SplashKitSDK
       __skparam__text = __skadapter__to_sklib_string(text);
       __skreturn = __sklib__to_double__string_ref(__skparam__text);
     __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_double(__skreturn);
+    }
+    /// <summary>
+    /// Convert the passed in integer value into a double (decimal value).
+    /// </summary>
+    /// <param name="value"> The integer value to convert.</param>
+    /// <returns>The double value.</returns>
+    public static double ToDouble(int value)
+    {
+      int __skparam__value;
+      double __skreturn;
+      __skparam__value = __skadapter__to_sklib_int(value);
+      __skreturn = __sklib__to_double__int(__skparam__value);
       return __skadapter__to_double(__skreturn);
     }
     /// <summary>
