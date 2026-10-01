@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         include: [
-          { msystem: MINGW64, arch: x86_64, path: win64 },
+          { msystem: UCRT64, arch: x86_64, path: win64 },
           # { msystem: MINGW32, arch: i686,   path: win32 }
         ]
     defaults:
@@ -22,7 +22,7 @@ jobs:
           msystem: ${{ matrix.msystem }}
           path-type: inherit
           update: true
-          install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-${{ matrix.arch }}-make mingw-w64-${{ matrix.arch }}-cmake mingw-w64-${{ matrix.arch }}-ca-certificates mingw-w64-${{ matrix.arch }}-gcc mingw-w64-${{ matrix.arch }}-libpng cmake mingw-w64-${{ matrix.arch }}-SDL2 mingw-w64-${{ matrix.arch }}-SDL2_gfx mingw-w64-${{ matrix.arch }}-SDL2_image mingw-w64-${{ matrix.arch }}-SDL2_mixer mingw-w64-${{ matrix.arch }}-SDL2_net mingw-w64-${{ matrix.arch }}-SDL2_sound mingw-w64-${{ matrix.arch }}-SDL2_ttf mingw-w64-${{ matrix.arch }}-civetweb mingw-w64-${{ matrix.arch }}-clang mingw-w64-${{ matrix.arch }}-ntldd 
+          install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-ucrt-${{ matrix.arch }}-make mingw-w64-ucrt-${{ matrix.arch }}-cmake mingw-w64-ucrt-${{ matrix.arch }}-ca-certificates mingw-w64-ucrt-${{ matrix.arch }}-gcc mingw-w64-ucrt-${{ matrix.arch }}-libpng cmake mingw-w64-ucrt-${{ matrix.arch }}-SDL2 mingw-w64-ucrt-${{ matrix.arch }}-SDL2_gfx mingw-w64-ucrt-${{ matrix.arch }}-SDL2_image mingw-w64-ucrt-${{ matrix.arch }}-SDL2_mixer mingw-w64-ucrt-${{ matrix.arch }}-SDL2_net mingw-w64-ucrt-${{ matrix.arch }}-SDL2_sound mingw-w64-ucrt-${{ matrix.arch }}-SDL2_ttf mingw-w64-ucrt-${{ matrix.arch }}-civetweb mingw-w64-ucrt-${{ matrix.arch }}-clang mingw-w64-ucrt-${{ matrix.arch }}-ntldd 
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
