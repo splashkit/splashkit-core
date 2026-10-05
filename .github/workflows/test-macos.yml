@@ -20,7 +20,7 @@ jobs:
         run: ./skunit_tests
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.3 # Not needed with a .ruby-version file
+          ruby-version: 3.3.12 # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: translate
         working-directory: ./tools/translator
