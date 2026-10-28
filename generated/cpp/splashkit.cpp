@@ -3408,6 +3408,11 @@ float number_box(const string &label_text, const float &value, float step) {
     __skadapter__free__sklib_string(__skparam__label_text);
     return __skadapter__to_float(__skreturn);
 }
+void open_panel(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib__open_panel__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+}
 void open_popup(const string &name) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
     __sklib__open_popup__string_ref(__skparam__name);

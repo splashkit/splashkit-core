@@ -2862,6 +2862,8 @@ sklib.__sklib__number_box__float_ref__float.argtypes = [ c_float, c_float ]
 sklib.__sklib__number_box__float_ref__float.restype = c_float
 sklib.__sklib__number_box__string_ref__float_ref__float.argtypes = [ _sklib_string, c_float, c_float ]
 sklib.__sklib__number_box__string_ref__float_ref__float.restype = c_float
+sklib.__sklib__open_panel__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__open_panel__string_ref.restype = None
 sklib.__sklib__open_popup__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__open_popup__string_ref.restype = None
 sklib.__sklib__paragraph__string_ref.argtypes = [ _sklib_string ]
@@ -7226,6 +7228,9 @@ def number_box_labeled ( label_text, value, step ):
     __skparam__step = __skadapter__to_sklib_float(step)
     __skreturn = sklib.__sklib__number_box__string_ref__float_ref__float(__skparam__label_text, __skparam__value, __skparam__step)
     return __skadapter__to_float(__skreturn)
+def open_panel ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    sklib.__sklib__open_panel__string_ref(__skparam__name)
 def open_popup ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__open_popup__string_ref(__skparam__name)

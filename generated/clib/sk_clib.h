@@ -781,6 +781,7 @@ void __sklib__leave_column();
 float __sklib__number_box__float_ref__float__rectangle_ref(const float value, float step, const __sklib_rectangle rect);
 float __sklib__number_box__float_ref__float(const float value, float step);
 float __sklib__number_box__string_ref__float_ref__float(const __sklib_string label_text, const float value, float step);
+void __sklib__open_panel__string_ref(const __sklib_string name);
 void __sklib__open_popup__string_ref(const __sklib_string name);
 void __sklib__paragraph__string_ref(const __sklib_string text);
 void __sklib__paragraph__string_ref__rectangle_ref(const __sklib_string text, const __sklib_rectangle rect);

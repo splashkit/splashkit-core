@@ -2880,6 +2880,9 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__number_box__string_ref__float_ref__float", CharSet=CharSet.Ansi)]
     private static extern float __sklib__number_box__string_ref__float_ref__float(__sklib_string labelText, float value, float step);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_panel__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__open_panel__string_ref(__sklib_string name);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_popup__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__open_popup__string_ref(__sklib_string name);
 
@@ -14119,6 +14122,17 @@ namespace SplashKitSDK
       __skreturn = __sklib__number_box__string_ref__float_ref__float(__skparam__label_text, __skparam__value, __skparam__step);
     __skadapter__free__sklib_string(ref __skparam__label_text);
       return __skadapter__to_float(__skreturn);
+    }
+    /// <summary>
+    /// Reopens a draggable panel with a title bar.  Use as follows: ```c++ if (key_typed(KEY_P)) { open_panel("My panel"); } if (start_panel("My panel", rectangle_from(0,0,100,100))) { // Rest of interface goes here end_panel("My panel"); } ```
+    /// </summary>
+    /// <param name="name"> The name shown in the panel's titlebar</param>
+    public static void OpenPanel(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__open_panel__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
     }
     /// <summary>
     /// Makes the popup named `name` open/popup at the cursor's position.

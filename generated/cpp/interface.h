@@ -348,6 +348,25 @@ float number_box(const float &value, float step);
 */
 float number_box(const string &label_text, const float &value, float step);
 /**
+* Reopens a draggable panel with a title bar.
+* 
+* Use as follows:
+* ```c++
+* if (key_typed(KEY_P))
+* {
+* open_panel("My panel");
+* }
+* if (start_panel("My panel", rectangle_from(0,0,100,100)))
+* {
+* // Rest of interface goes here
+* end_panel("My panel");
+* }
+* ```
+* @param name The name shown in the panel's titlebar
+*
+*/
+void open_panel(const string &name);
+/**
 * Makes the popup named `name` open/popup at the cursor's position.
 * @param name The popup's name. Must match with the same name used in `start_popup`
 *

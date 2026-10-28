@@ -27858,7 +27858,7 @@
     "group": "interface",
     "brief": "SplashKit Interface provides functions to create user interfaces, with elements such as draggable panels, buttons and text boxes.",
     "description": "SplashKit`s interface library provides various functions for creating\npanels, and drawing interface elements such as buttons, text boxes, and more",
-    "parsed_at": 1785755562,
+    "parsed_at": 1793185477,
     "path": "coresdk/src/coresdk/interface.h",
     "functions": [
       {
@@ -27973,7 +27973,7 @@
         }
       },
       {
-        "signature": "bool bitmap_button(bitmap bmp,const rectangle& rect);",
+        "signature": "bool bitmap_button(bitmap bmp,const rectangle &rect);",
         "name": "bitmap_button",
         "method_name": null,
         "unique_global_name": "bitmap_button_at_position",
@@ -28024,7 +28024,7 @@
         }
       },
       {
-        "signature": "bool bitmap_button(bitmap bmp,const rectangle& rect,drawing_options opts);",
+        "signature": "bool bitmap_button(bitmap bmp,const rectangle &rect,drawing_options opts);",
         "name": "bitmap_button",
         "method_name": null,
         "unique_global_name": "bitmap_button_at_position_with_options",
@@ -28139,7 +28139,7 @@
         }
       },
       {
-        "signature": "bool bitmap_button(const string& label_text,bitmap bmp);",
+        "signature": "bool bitmap_button(const string &label_text,bitmap bmp);",
         "name": "bitmap_button",
         "method_name": null,
         "unique_global_name": "bitmap_button_labeled",
@@ -28190,7 +28190,7 @@
         }
       },
       {
-        "signature": "bool bitmap_button(const string& label_text,bitmap bmp,drawing_options opts);",
+        "signature": "bool bitmap_button(const string &label_text,bitmap bmp,drawing_options opts);",
         "name": "bitmap_button",
         "method_name": null,
         "unique_global_name": "bitmap_button_labeled_with_options",
@@ -28254,7 +28254,7 @@
         }
       },
       {
-        "signature": "bool button(const string& text,const rectangle& rect);",
+        "signature": "bool button(const string &text,const rectangle &rect);",
         "name": "button",
         "method_name": null,
         "unique_global_name": "button_at_position",
@@ -28305,7 +28305,7 @@
         }
       },
       {
-        "signature": "bool button(const string& text);",
+        "signature": "bool button(const string &text);",
         "name": "button",
         "method_name": null,
         "unique_global_name": "button",
@@ -28342,7 +28342,7 @@
         }
       },
       {
-        "signature": "bool button(const string& label_text,const string& text);",
+        "signature": "bool button(const string &label_text,const string &text);",
         "name": "button",
         "method_name": null,
         "unique_global_name": "button_labeled",
@@ -28393,7 +28393,7 @@
         }
       },
       {
-        "signature": "bool checkbox(const string& text,const bool& value,const rectangle& rect);",
+        "signature": "bool checkbox(const string &text,const bool &value,const rectangle &rect);",
         "name": "checkbox",
         "method_name": null,
         "unique_global_name": "checkbox_at_position",
@@ -28457,7 +28457,7 @@
         }
       },
       {
-        "signature": "bool checkbox(const string& text,const bool& value);",
+        "signature": "bool checkbox(const string &text,const bool &value);",
         "name": "checkbox",
         "method_name": null,
         "unique_global_name": "checkbox",
@@ -28507,7 +28507,7 @@
         }
       },
       {
-        "signature": "bool checkbox(const string& label_text,const string& text,const bool& value);",
+        "signature": "bool checkbox(const string &label_text,const string &text,const bool &value);",
         "name": "checkbox",
         "method_name": null,
         "unique_global_name": "checkbox_labeled",
@@ -28571,7 +28571,7 @@
         }
       },
       {
-        "signature": "color color_slider(const color& clr,const rectangle& rect);",
+        "signature": "color color_slider(const color &clr,const rectangle &rect);",
         "name": "color_slider",
         "method_name": null,
         "unique_global_name": "color_slider_at_position",
@@ -28622,7 +28622,7 @@
         }
       },
       {
-        "signature": "color color_slider(const color& clr);",
+        "signature": "color color_slider(const color &clr);",
         "name": "color_slider",
         "method_name": null,
         "unique_global_name": "color_slider",
@@ -28659,7 +28659,7 @@
         }
       },
       {
-        "signature": "color color_slider(const string& label_text,const color& clr);",
+        "signature": "color color_slider(const string &label_text,const color &clr);",
         "name": "color_slider",
         "method_name": null,
         "unique_global_name": "color_slider_labeled",
@@ -28782,7 +28782,7 @@
         }
       },
       {
-        "signature": "void end_inset(const string& name);",
+        "signature": "void end_inset(const string &name);",
         "name": "end_inset",
         "method_name": null,
         "unique_global_name": "end_inset",
@@ -28819,7 +28819,7 @@
         }
       },
       {
-        "signature": "void end_panel(const string& name);",
+        "signature": "void end_panel(const string &name);",
         "name": "end_panel",
         "method_name": null,
         "unique_global_name": "end_panel",
@@ -28856,7 +28856,7 @@
         }
       },
       {
-        "signature": "void end_popup(const string& name);",
+        "signature": "void end_popup(const string &name);",
         "name": "end_popup",
         "method_name": null,
         "unique_global_name": "end_popup",
@@ -28893,7 +28893,7 @@
         }
       },
       {
-        "signature": "void end_treenode(const string& label_text);",
+        "signature": "void end_treenode(const string &label_text);",
         "name": "end_treenode",
         "method_name": null,
         "unique_global_name": "end_treenode",
@@ -28978,7 +28978,7 @@
         }
       },
       {
-        "signature": "bool header(const string& label_text);",
+        "signature": "bool header(const string &label_text);",
         "name": "header",
         "method_name": null,
         "unique_global_name": "header",
@@ -29015,7 +29015,7 @@
         }
       },
       {
-        "signature": "color hsb_color_slider(const color& clr,const rectangle& rect);",
+        "signature": "color hsb_color_slider(const color &clr,const rectangle &rect);",
         "name": "hsb_color_slider",
         "method_name": null,
         "unique_global_name": "hsb_color_slider_at_position",
@@ -29066,7 +29066,7 @@
         }
       },
       {
-        "signature": "color hsb_color_slider(const color& clr);",
+        "signature": "color hsb_color_slider(const color &clr);",
         "name": "hsb_color_slider",
         "method_name": null,
         "unique_global_name": "hsb_color_slider",
@@ -29103,7 +29103,7 @@
         }
       },
       {
-        "signature": "color hsb_color_slider(const string& label_text,const color& clr);",
+        "signature": "color hsb_color_slider(const string &label_text,const color &clr);",
         "name": "hsb_color_slider",
         "method_name": null,
         "unique_global_name": "hsb_color_slider_labeled",
@@ -29178,7 +29178,7 @@
         }
       },
       {
-        "signature": "void interface_style_panel(const rectangle& initial_rectangle);",
+        "signature": "void interface_style_panel(const rectangle &initial_rectangle);",
         "name": "interface_style_panel",
         "method_name": null,
         "unique_global_name": "interface_style_panel",
@@ -29215,7 +29215,7 @@
         }
       },
       {
-        "signature": "void label_element(const string& text);",
+        "signature": "void label_element(const string &text);",
         "name": "label_element",
         "method_name": null,
         "unique_global_name": "label_element",
@@ -29252,7 +29252,7 @@
         }
       },
       {
-        "signature": "void label_element(const string& text,const rectangle& rect);",
+        "signature": "void label_element(const string &text,const rectangle &rect);",
         "name": "label_element",
         "method_name": null,
         "unique_global_name": "label_element_at_position",
@@ -29375,7 +29375,7 @@
         }
       },
       {
-        "signature": "float number_box(const float& value,float step,const rectangle& rect);",
+        "signature": "float number_box(const float &value,float step,const rectangle &rect);",
         "name": "number_box",
         "method_name": null,
         "unique_global_name": "number_box_at_position",
@@ -29439,7 +29439,7 @@
         }
       },
       {
-        "signature": "float number_box(const float& value,float step);",
+        "signature": "float number_box(const float &value,float step);",
         "name": "number_box",
         "method_name": null,
         "unique_global_name": "number_box",
@@ -29489,7 +29489,7 @@
         }
       },
       {
-        "signature": "float number_box(const string& label_text,const float& value,float step);",
+        "signature": "float number_box(const string &label_text,const float &value,float step);",
         "name": "number_box",
         "method_name": null,
         "unique_global_name": "number_box_labeled",
@@ -29553,7 +29553,44 @@
         }
       },
       {
-        "signature": "void open_popup(const string& name);",
+        "signature": "void open_panel(const string &name);",
+        "name": "open_panel",
+        "method_name": null,
+        "unique_global_name": "open_panel",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Reopens a draggable panel with a title bar.\n\nUse as follows:\n```c++\nif (key_typed(KEY_P))\n{\nopen_panel(\"My panel\");\n}\nif (start_panel(\"My panel\", rectangle_from(0,0,100,100)))\n{\n// Rest of interface goes here\nend_panel(\"My panel\");\n}\n```",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name shown in the panel's titlebar",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void open_popup(const string &name);",
         "name": "open_popup",
         "method_name": null,
         "unique_global_name": "open_popup",
@@ -29590,7 +29627,7 @@
         }
       },
       {
-        "signature": "void paragraph(const string& text);",
+        "signature": "void paragraph(const string &text);",
         "name": "paragraph",
         "method_name": null,
         "unique_global_name": "paragraph",
@@ -29627,7 +29664,7 @@
         }
       },
       {
-        "signature": "void paragraph(const string& text,const rectangle& rect);",
+        "signature": "void paragraph(const string &text,const rectangle &rect);",
         "name": "paragraph",
         "method_name": null,
         "unique_global_name": "paragraph_at_position",
@@ -29991,7 +30028,7 @@
         }
       },
       {
-        "signature": "void set_interface_font(const string& fnt);",
+        "signature": "void set_interface_font(const string &fnt);",
         "name": "set_interface_font",
         "method_name": null,
         "unique_global_name": "set_interface_font_font_as_string",
@@ -30539,7 +30576,7 @@
         }
       },
       {
-        "signature": "float slider(const float& value,float min_value,float max_value,const rectangle& rect);",
+        "signature": "float slider(const float &value,float min_value,float max_value,const rectangle &rect);",
         "name": "slider",
         "method_name": null,
         "unique_global_name": "slider_at_position",
@@ -30616,7 +30653,7 @@
         }
       },
       {
-        "signature": "float slider(const float& value,float min_value,float max_value);",
+        "signature": "float slider(const float &value,float min_value,float max_value);",
         "name": "slider",
         "method_name": null,
         "unique_global_name": "slider",
@@ -30679,7 +30716,7 @@
         }
       },
       {
-        "signature": "float slider(const string& label_text,const float& value,float min_value,float max_value);",
+        "signature": "float slider(const string &label_text,const float &value,float min_value,float max_value);",
         "name": "slider",
         "method_name": null,
         "unique_global_name": "slider_labeled",
@@ -30919,7 +30956,7 @@
         }
       },
       {
-        "signature": "void start_inset(const string& name,const rectangle& rect);",
+        "signature": "void start_inset(const string &name,const rectangle &rect);",
         "name": "start_inset",
         "method_name": null,
         "unique_global_name": "start_inset_at_position",
@@ -30970,7 +31007,7 @@
         }
       },
       {
-        "signature": "void start_inset(const string& name,int height);",
+        "signature": "void start_inset(const string &name,int height);",
         "name": "start_inset",
         "method_name": null,
         "unique_global_name": "start_inset",
@@ -31020,7 +31057,7 @@
         }
       },
       {
-        "signature": "bool start_panel(const string& name,rectangle initial_rectangle);",
+        "signature": "bool start_panel(const string &name,rectangle initial_rectangle);",
         "name": "start_panel",
         "method_name": null,
         "unique_global_name": "start_panel",
@@ -31070,7 +31107,7 @@
         }
       },
       {
-        "signature": "bool start_popup(const string& name);",
+        "signature": "bool start_popup(const string &name);",
         "name": "start_popup",
         "method_name": null,
         "unique_global_name": "start_popup",
@@ -31107,7 +31144,7 @@
         }
       },
       {
-        "signature": "bool start_treenode(const string& label_text);",
+        "signature": "bool start_treenode(const string &label_text);",
         "name": "start_treenode",
         "method_name": null,
         "unique_global_name": "start_treenode",
@@ -31144,7 +31181,7 @@
         }
       },
       {
-        "signature": "string text_box(const string& value);",
+        "signature": "string text_box(const string &value);",
         "name": "text_box",
         "method_name": null,
         "unique_global_name": "text_box",
@@ -31181,7 +31218,7 @@
         }
       },
       {
-        "signature": "string text_box(const string& value,const rectangle& rect);",
+        "signature": "string text_box(const string &value,const rectangle &rect);",
         "name": "text_box",
         "method_name": null,
         "unique_global_name": "text_box_at_position",
@@ -31232,7 +31269,7 @@
         }
       },
       {
-        "signature": "string text_box(const string& label_text,const string& value);",
+        "signature": "string text_box(const string &label_text,const string &value);",
         "name": "text_box",
         "method_name": null,
         "unique_global_name": "text_box_labeled",

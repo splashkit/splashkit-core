@@ -3308,6 +3308,10 @@ float __sklib__number_box__string_ref__float_ref__float(const __sklib_string lab
     float __skreturn = number_box(__skparam__label_text, __skparam__value, __skparam__step);
     return __sklib__to_float(__skreturn);
 }
+void __sklib__open_panel__string_ref(const __sklib_string name) {
+    string __skparam__name = __sklib__to_string(name);
+    open_panel(__skparam__name);
+}
 void __sklib__open_popup__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     open_popup(__skparam__name);

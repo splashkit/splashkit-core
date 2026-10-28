@@ -1067,6 +1067,7 @@ procedure LeaveColumn();
 function NumberBox(const value: Single; step: Single; const rect: Rectangle): Single;
 function NumberBox(const value: Single; step: Single): Single;
 function NumberBox(const labelText: String; const value: Single; step: Single): Single;
+procedure OpenPanel(const name: String);
 procedure OpenPopup(const name: String);
 procedure Paragraph(const text: String);
 procedure Paragraph(const text: String; const rect: Rectangle);
@@ -3693,6 +3694,7 @@ procedure __sklib__leave_column(); cdecl; external;
 function __sklib__number_box__float_ref__float__rectangle_ref(const value: Single; step: Single; const rect: __sklib_rectangle): Single; cdecl; external;
 function __sklib__number_box__float_ref__float(const value: Single; step: Single): Single; cdecl; external;
 function __sklib__number_box__string_ref__float_ref__float(const labelText: __sklib_string; const value: Single; step: Single): Single; cdecl; external;
+procedure __sklib__open_panel__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__open_popup__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__paragraph__string_ref(const text: __sklib_string); cdecl; external;
 procedure __sklib__paragraph__string_ref__rectangle_ref(const text: __sklib_string; const rect: __sklib_rectangle); cdecl; external;
@@ -10482,6 +10484,13 @@ begin
   __skparam__step := __skadapter__to_sklib_float(step);
   __skreturn := __sklib__number_box__string_ref__float_ref__float(__skparam__label_text, __skparam__value, __skparam__step);
   result := __skadapter__to_float(__skreturn);
+end;
+procedure OpenPanel(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__open_panel__string_ref(__skparam__name);
 end;
 procedure OpenPopup(const name: String);
 var
