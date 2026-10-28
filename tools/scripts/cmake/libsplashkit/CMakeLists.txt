@@ -209,8 +209,8 @@ endif()
 
 if (APPLE)
     message("Need to use pre-build fat binary")
-    set(LLAMA_PATH ../../../../coresdk/external/llama.cpp/out/)
-    # set(LLAMA_PATH ../../llama.cpp/out/)
+    # set(LLAMA_PATH ../../../../coresdk/external/llama.cpp/out/)
+    set(LLAMA_PATH ../../llama.cpp/out/)
     message("Using path to llama: ${LLAMA_PATH}")
 
     foreach(lib llama ggml ggml-cpu ggml-base)
