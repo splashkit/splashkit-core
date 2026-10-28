@@ -41,7 +41,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        font_as_string
      */
-    void set_interface_font(const string& fnt);
+    void set_interface_font(const string &fnt);
 
     /**
      * Sets the interface's font size.
@@ -70,6 +70,26 @@ namespace splashkit_lib
     int get_interface_label_width();
 
     /**
+     * Reopens a draggable panel with a title bar.
+     *
+     * Use as follows:
+     * ```c++
+     * if (key_typed(KEY_P))
+     * {
+     *     open_panel("My panel");
+     * }
+     * if (start_panel("My panel", rectangle_from(0,0,100,100)))
+     * {
+     *      // Rest of interface goes here
+     *      end_panel("My panel");
+     * }
+     * ```
+     *
+     * @param name              The name shown in the panel's titlebar
+     */
+    void open_panel(const string &name);
+
+    /**
      * Starts the creation of a draggable panel with a title bar.
      * Returns whether the panel is visible or not.
      *
@@ -90,14 +110,14 @@ namespace splashkit_lib
      * @param initial_rectangle The initial position/size the panel starts off in
      * @return                  Whether the panel is visible or not
      */
-    bool start_panel(const string& name, rectangle initial_rectangle);
+    bool start_panel(const string &name, rectangle initial_rectangle);
 
     /**
      * Finishes the creation of a panel.
      *
      * @param name              The name shown in the panel's titlebar - must match with `start_panel`
      */
-    void end_panel(const string& name);
+    void end_panel(const string &name);
 
     /**
      * Starts the creation of a popup.
@@ -110,15 +130,14 @@ namespace splashkit_lib
      * @param name              The name of the popup
      * @return                  Whether the popup is visible or not
      */
-    bool start_popup(const string& name);
+    bool start_popup(const string &name);
 
     /**
      * Finishes the creation of a popup.
      *
      * @param name              The popup's name - must match with `start_popup`
      */
-    void end_popup(const string& name);
-
+    void end_popup(const string &name);
 
     /**
      * Starts the creation of an inset area inside a panel/popup.
@@ -136,7 +155,7 @@ namespace splashkit_lib
      * @param name              The name of the area
      * @param height            Height of the inset area in pixels. -1 fills entire space. Use negative heights to fill _up to_ `height` away from the bottom
      */
-    void start_inset(const string& name, int height);
+    void start_inset(const string &name, int height);
 
     /**
      * Starts the creation of an inset area inside an arbitrary rectangle.
@@ -149,14 +168,14 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    void start_inset(const string& name, const rectangle& rect);
+    void start_inset(const string &name, const rectangle &rect);
 
     /**
      * Finishes the creation of an inset area.
      *
      * @param name              The area's name - must match with `start_inset`
      */
-    void end_inset(const string& name);
+    void end_inset(const string &name);
 
     /**
      * Starts the creation of a tree node (such as those in a file tree view).
@@ -169,21 +188,21 @@ namespace splashkit_lib
      * @param label_text        The name of the node
      * @return                  Whether the tree node is expanded or not
      */
-    bool start_treenode(const string& label_text);
+    bool start_treenode(const string &label_text);
 
     /**
      * Finishes the creation of a tree node.
      *
      * @param label_text        The node's name - must match with `start_treenode`
      */
-    void end_treenode(const string& label_text);
+    void end_treenode(const string &label_text);
 
     /**
      * Makes the popup named `name` open/popup at the cursor's position.
      *
      * @param name              The popup's name. Must match with the same name used in `start_popup`
      */
-    void open_popup(const string& name);
+    void open_popup(const string &name);
 
     /**
      * Resets to the default layout of a single column with default height.
@@ -228,8 +247,8 @@ namespace splashkit_lib
 
     /**
      * Adds `count` columns to the current layout, with equal widths.
-	 * Has extra parameter `last_width`, which lets you specify a specific
-	 * width (in pixels) for the last column.
+     * Has extra parameter `last_width`, which lets you specify a specific
+     * width (in pixels) for the last column.
      *
      * @param count             Number of columns to add
      * @param last_width        The width of the last column in pixels
@@ -240,8 +259,8 @@ namespace splashkit_lib
 
     /**
      * Adds `count` columns to the current layout, with equal widths.
-	 * Has extra parameter `last_width`, which lets you specify a specific
-	 * width (relative to the width of the container, between 0 and 1) for the last column.
+     * Has extra parameter `last_width`, which lets you specify a specific
+     * width (relative to the width of the container, between 0 and 1) for the last column.
      *
      * @param count             Number of columns to add
      * @param last_width        The width of the last column as percentage of the container's width (between 0 and 1)
@@ -284,14 +303,14 @@ namespace splashkit_lib
      * @param label_text        The label to show in the header
      * @return                  Whether the header is expanded or not
      */
-    bool header(const string& label_text);
+    bool header(const string &label_text);
 
     /**
      * Creates a label with the given text.
      *
      * @param text             The label to show
      */
-    void label_element(const string& text);
+    void label_element(const string &text);
 
     /**
      * Creates a label at a specific position on screen.
@@ -301,14 +320,14 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    void label_element(const string& text, const rectangle& rect);
+    void label_element(const string &text, const rectangle &rect);
 
     /**
      * Creates a paragraph of text that auto-wraps.
      *
      * @param text              The text to show
      */
-    void paragraph(const string& text);
+    void paragraph(const string &text);
 
     /**
      * Creates a paragraph of text that auto-wraps at a specific position on screen.
@@ -318,7 +337,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    void paragraph(const string& text, const rectangle& rect);
+    void paragraph(const string &text, const rectangle &rect);
 
     /**
      * Creates a button with a label.
@@ -339,7 +358,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    bool button(const string& label_text, const string& text);
+    bool button(const string &label_text, const string &text);
 
     /**
      * Creates a button without a label.
@@ -348,7 +367,7 @@ namespace splashkit_lib
      * @param text              The text to show inside the button
      * @return                  Whether the button was clicked
      */
-    bool button(const string& text);
+    bool button(const string &text);
 
     /**
      * Creates a button at a specific position on screen.
@@ -360,7 +379,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    bool button(const string& text, const rectangle& rect);
+    bool button(const string &text, const rectangle &rect);
 
     /**
      * Creates a button with a bitmap in it and a label.
@@ -372,7 +391,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    bool bitmap_button(const string& label_text, bitmap bmp);
+    bool bitmap_button(const string &label_text, bitmap bmp);
 
     /**
      * Creates a button with a bitmap in it and a label.
@@ -385,7 +404,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled_with_options
      */
-    bool bitmap_button(const string& label_text, bitmap bmp, drawing_options opts);
+    bool bitmap_button(const string &label_text, bitmap bmp, drawing_options opts);
 
     /**
      * Creates a button with a bitmap in it, and no label.
@@ -419,7 +438,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    bool bitmap_button(bitmap bmp, const rectangle& rect);
+    bool bitmap_button(bitmap bmp, const rectangle &rect);
 
     /**
      * Creates a button with a bitmap in it at a specific position on screen.
@@ -432,7 +451,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position_with_options
      */
-    bool bitmap_button(bitmap bmp, const rectangle& rect, drawing_options opts);
+    bool bitmap_button(bitmap bmp, const rectangle &rect, drawing_options opts);
 
     /**
      * Creates a checkbox with a label.
@@ -450,7 +469,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    bool checkbox(const string& label_text, const string& text, const bool& value);
+    bool checkbox(const string &label_text, const string &text, const bool &value);
 
     /**
      * Creates a checkbox.
@@ -460,7 +479,7 @@ namespace splashkit_lib
      * @param value             The current value of the checkbox
      * @return                  The updated value of the checkbox
      */
-    bool checkbox(const string& text, const bool& value);
+    bool checkbox(const string &text, const bool &value);
 
     /**
      * Creates a checkbox at a specific position on screen.
@@ -473,7 +492,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    bool checkbox(const string& text, const bool& value, const rectangle& rect);
+    bool checkbox(const string &text, const bool &value, const rectangle &rect);
 
     /**
      * Creates a slider with a label.
@@ -492,7 +511,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    float slider(const string& label_text, const float& value, float min_value, float max_value);
+    float slider(const string &label_text, const float &value, float min_value, float max_value);
 
     /**
      * Creates a slider without a label.
@@ -503,7 +522,7 @@ namespace splashkit_lib
      * @param max_value         The maximum value of the slider
      * @return                  The updated value of the slider
      */
-    float slider(const float& value, float min_value, float max_value);
+    float slider(const float &value, float min_value, float max_value);
 
     /**
      * Creates a slider at a specific position on screen.
@@ -517,7 +536,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    float slider(const float& value, float min_value, float max_value, const rectangle& rect);
+    float slider(const float &value, float min_value, float max_value, const rectangle &rect);
 
     /**
      * Creates a set of RGBA sliders to adjust a color, with a label.
@@ -534,7 +553,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    color color_slider(const string& label_text, const color& clr);
+    color color_slider(const string &label_text, const color &clr);
 
     /**
      * Creates a set of RGBA sliders to adjust a color.
@@ -543,7 +562,7 @@ namespace splashkit_lib
      * @param clr               The current value of the color slider
      * @return                  The updated value of the slider
      */
-    color color_slider(const color& clr);
+    color color_slider(const color &clr);
 
     /**
      * Creates a set of RGBA sliders to adjust a color, at a specific position on screen.
@@ -555,7 +574,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    color color_slider(const color& clr, const rectangle& rect);
+    color color_slider(const color &clr, const rectangle &rect);
 
     /**
      * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color, with a label.
@@ -572,7 +591,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    color hsb_color_slider(const string& label_text, const color& clr);
+    color hsb_color_slider(const string &label_text, const color &clr);
 
     /**
      * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color.
@@ -581,7 +600,7 @@ namespace splashkit_lib
      * @param clr               The current value of the color slider
      * @return                  The updated value of the slider
      */
-    color hsb_color_slider(const color& clr);
+    color hsb_color_slider(const color &clr);
 
     /**
      * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color, at a specific position on screen.
@@ -593,7 +612,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    color hsb_color_slider(const color& clr, const rectangle& rect);
+    color hsb_color_slider(const color &clr, const rectangle &rect);
 
     /**
      * Creates a number entry box with a label.
@@ -611,7 +630,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    float number_box(const string& label_text, const float& value, float step);
+    float number_box(const string &label_text, const float &value, float step);
 
     /**
      * Creates a number entry box with a label.
@@ -621,7 +640,7 @@ namespace splashkit_lib
      * @param step              The amount incremented when dragging on the box
      * @return                  The updated value of the slider
      */
-    float number_box(const float& value, float step);
+    float number_box(const float &value, float step);
 
     /**
      * Creates a number entry box at a specific position on screen.
@@ -634,7 +653,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    float number_box(const float& value, float step, const rectangle& rect);
+    float number_box(const float &value, float step, const rectangle &rect);
 
     /**
      * Creates a text entry box with a label.
@@ -651,7 +670,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    string text_box(const string& label_text, const string& value);
+    string text_box(const string &label_text, const string &value);
 
     /**
      * Creates a text entry box at a specific position on screen.
@@ -668,7 +687,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    string text_box(const string& value, const rectangle& rect);
+    string text_box(const string &value, const rectangle &rect);
 
     /**
      * Creates a text entry box with a label.
@@ -676,7 +695,7 @@ namespace splashkit_lib
      * @param value             The current value of the text box
      * @return                  The updated value of the text box
      */
-    string text_box(const string& value);
+    string text_box(const string &value);
 
     /**
      * Returns if the last created element was changed at all (such as dragged, typed in, etc)
@@ -787,7 +806,7 @@ namespace splashkit_lib
      *
      * @param initial_rectangle The initial position/size the panel starts off in
      */
-    void interface_style_panel(const rectangle& initial_rectangle);
+    void interface_style_panel(const rectangle &initial_rectangle);
 
     /**
      * Disables the interface temporarily. Elements created after this function will appear disabled and cannot be interacted with.

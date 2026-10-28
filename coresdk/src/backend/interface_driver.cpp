@@ -491,6 +491,12 @@ namespace splashkit_lib
         #undef INTERFACE_SAFE_CAPACITY
     }
 
+    void sk_interface_open_panel(const string& name)
+    {
+        mu_Container *cnt = mu_get_container(ctx, name.c_str());
+        cnt->open = true;
+    }
+    
     bool sk_interface_start_panel(const string& name, rectangle initial_rectangle)
     {
         bool open = mu_begin_window(ctx, name.c_str(), to_mu(initial_rectangle));

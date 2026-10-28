@@ -24,6 +24,7 @@ namespace splashkit_lib
     bool sk_interface_is_started();
     bool sk_interface_capacity_limited();
 
+    void sk_interface_open_panel(const string& name);
     bool sk_interface_start_panel(const string& name, rectangle initial_rectangle);
     void sk_interface_end_panel();
 

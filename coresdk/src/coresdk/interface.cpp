@@ -524,6 +524,13 @@ namespace splashkit_lib
             return container_stack.back().label_width;
     }
 
+    void open_panel(const string& name)
+    {
+        _interface_sanity_check();
+
+        sk_interface_open_panel(name);
+    }
+    
     bool start_panel(const string &name, rectangle initial_rectangle)
     {
         _interface_sanity_check();
