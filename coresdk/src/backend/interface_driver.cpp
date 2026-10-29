@@ -407,7 +407,13 @@ namespace splashkit_lib
                         break;
 
                     case MU_COMMAND_CLIP:
-                        sk_set_clip_rect(surface, cmd->clip.rect.x, cmd->clip.rect.y, cmd->clip.rect.w, cmd->clip.rect.h);
+                        if (cmd->clip.rect.x == unclipped_rect.x &&
+                            cmd->clip.rect.y == unclipped_rect.y &&
+                            cmd->clip.rect.w == unclipped_rect.w &&
+                            cmd->clip.rect.h == unclipped_rect.h)
+                            sk_clear_clip_rect(surface);
+                        else
+                            sk_set_clip_rect(surface, cmd->clip.rect.x, cmd->clip.rect.y, cmd->clip.rect.w, cmd->clip.rect.h);
 
                         break;
                 }

@@ -313,8 +313,11 @@ namespace splashkit_lib
         if (container_stack.size() == 0)
             return;
 
-        if (container_stack.back().layout_widths.size() == 0)
-            container_stack.back().layout_widths.push_back(-1);
+        if (container_stack.back().layout_widths.empty())
+        {
+            sk_interface_set_layout(0, nullptr, container_stack.back().layout_height);
+            return;
+        }
 
         sk_interface_set_layout(container_stack.back().layout_widths.size(), &container_stack.back().layout_widths[0], container_stack.back().layout_height);
     }
@@ -524,13 +527,13 @@ namespace splashkit_lib
             return container_stack.back().label_width;
     }
 
-    void open_panel(const string& name)
+    void open_panel(const string &name)
     {
         _interface_sanity_check();
 
         sk_interface_open_panel(name);
     }
-    
+
     bool start_panel(const string &name, rectangle initial_rectangle)
     {
         _interface_sanity_check();
